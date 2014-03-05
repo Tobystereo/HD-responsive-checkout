@@ -1,4 +1,17 @@
 /*------------------------------------*\
+    STYLE.CSS
+\*------------------------------------*/
+/**
+ *
+ * sass --watch style.scss:style.min.css --style compressed
+ *
+ * Here we pull in some variables, include the inuit.css framework, then add our
+ * project-specific components afterwards.
+ */
+/**
+ * Setup
+ */
+/*------------------------------------*\
     VARS.SCSS
 \*------------------------------------*/
 /**
@@ -9,11 +22,6 @@
  * using your own, so you can completely modify how inuit.css works without ever
  * having to alter the framework itself.
  */
-
-
-
-
-
 /*------------------------------------*\
     $OBJECTS-AND-ABSTRACTIONS
 \*------------------------------------*/
@@ -23,54 +31,19 @@
  * and introducing objects and abstractions is as simple as switching the
  * following variables to `true`.
  */
-$use-grids:         true;
-$use-flexbox:       true;
-$use-columns:       true;
-$use-nav:           true;
-$use-options:       true;
-$use-pagination:    true;
-$use-breadcrumb:    true;
-$use-media:         true;
-$use-marginalia:    true;
-$use-island:        true;
-$use-block-list:    true;
-$use-matrix:        true;
-$use-split:         true;
-$use-this-or-this:  true;
-$use-link-complex:  true;
-$use-flyout:        true;
-$use-arrows:        true;
-$use-sprite:        true;
-$use-icon-text:     true;
-$use-beautons:      true;
-$use-lozenges:      true;
-$use-rules:         true;
-$use-stats:         true;
-$use-greybox:       true;
-
-
-
-
-
 /*------------------------------------*\
     $OVERRIDES
 \*------------------------------------*/
 /**
  * Place any variables that should override inuit.css’ defaults here.
  */
-//.grid{
-//	letter-spacing: -1em;
-
-//	.grid__item{
-//		letter-spacing: 1em;
-//	}
-//}
-
-
-
 /*------------------------------------*\
     $CUSTOM
 \*------------------------------------*/
 /**
  * Place any of your own variables that sit on top of inuit.css here.
+ */
+@import url("inuit.css/inuit");
+/**
+ * She’s all yours, cap’n... Begin importing your stuff here.
  */
