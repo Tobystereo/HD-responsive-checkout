@@ -3680,3 +3680,7 @@ html.flexbox {
   letter-spacing: -1em; }
   .grid .grid__item {
     letter-spacing: initial; }
+
+.checkout .logo {
+  padding-left: 0px;
+  text-align: left; }
