@@ -40,7 +40,7 @@
 .grid {
   letter-spacing: -1em; }
   .grid .grid__item {
-    letter-spacing: 1em; }
+    letter-spacing: initial; }
 
 /*------------------------------------*\
     $CUSTOM

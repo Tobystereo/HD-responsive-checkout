@@ -61,8 +61,8 @@ $use-greybox:       true;
 .grid{
 	letter-spacing: -1em;
 
-	.grid__item{
-		letter-spacing: 1em;
+	.grid__item {
+		letter-spacing: initial;
 	}
 }
 
