@@ -11,8 +11,8 @@
     <div class="checkout grid">
         <div class="top grid__item one-whole greybox">
             <div class="grid">
-                <div class="grid__item one-half logo"><img src="http://placehold.it/100x44&text=logo" /></div>
-                <div class="grid__item one-half help"><a href="#help-content">Need Help?</a></div>
+                <div class="grid__item one-sixth logo"><img src="http://placehold.it/100x44&text=logo" /></div>
+                <div class="grid__item five-sixths help"><a href="#help-content">Need Help?</a></div>
             </div>
         </div>
         <div class="progress grid__item one-whole greybox">
@@ -22,8 +22,9 @@
                 <li><a href="#">Review</a></li>
             </ul>
         </div>
-        <div class="content grid__item one-whole greybox">
-            <div id="shipping-address">&nbsp;
+        <div class="content grid__item one-whole greybox greybox--huge">
+            <div id="shipping-address">
+                &nbsp;
                 <!--<div class="address-list grid__item one-whole">
                     <div class="grid">
                         <ul class="address-item form-fields grid__item one-whole desk-one-quarter">
@@ -116,12 +117,16 @@
             </div>
         </div>
         <div class="cta-bar grid__item one-whole greybox">
-            <div class="total">$99.99</div>
-            <button class="btn cta">Next</button>
+            <div class="grid">
+                <div class="total grid__item three-quarters">$99.99</div>
+                <button class="btn cta grid__item one-quarter">Next</button>
+            </div>
         </div>
         <div id="help-content" class="help grid__item one-whole greybox">
-            <a href="tel:+15555555555">Call us: +1 555-555-5555</a>
-            <a href="mailto:talk@hairdirect.com">Email: talk@hairdirect.com</a>
+            <div class="grid">
+                <a href="tel:+15555555555" class="grid__item one-whole">Call us: +1 555-555-5555</a>
+                <a href="mailto:talk@hairdirect.com" class="grid__item one-whole">Email: talk@hairdirect.com</a>
+            </div>
         </div>
         <div class="privacy-policy grid__item one-whole greybox">
             <a href="#">Privacy Policy</a>
@@ -130,7 +135,7 @@
             <a href="#">Shipping Policy</a>
         </div>
         <div class="cancel-order grid__item one-whole greybox">
-            <button class="btn danger one-whole">Cancel Order</button>
+            <button class="btn danger btn--negative btn--full">Cancel Order</button>
         </div>
     </div>
 </body>

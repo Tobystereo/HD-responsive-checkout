@@ -37,11 +37,6 @@
 /**
  * Place any variables that should override inuit.cssâ€™ defaults here.
  */
-.grid {
-  letter-spacing: -1em; }
-  .grid .grid__item {
-    letter-spacing: initial; }
-
 /*------------------------------------*\
     $CUSTOM
 \*------------------------------------*/
@@ -3681,3 +3676,7 @@ html.flexbox {
 /**
  * Sheâ€™s all yours, capâ€™n... Begin importing your stuff here.
  */
+.grid {
+  letter-spacing: -1em; }
+  .grid .grid__item {
+    letter-spacing: initial; }
