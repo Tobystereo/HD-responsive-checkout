@@ -6,12 +6,13 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="css/style.css" rel="stylesheet" />
+    <link href="css/modal.css" rel="stylesheet" />
 </head>
 <body>
     <div class="checkout grid">
         <div class="top grid__item one-whole greybox">
             <div class="grid">
-                <div class="grid__item one-sixth logo"><img src="http://lorempixel.com/g/100/44/abstract/10/" /></div>
+                <div class="grid__item one-sixth logo"><img src="http://lorempixel.com/g/100/44/abstract/10/HD/" /></div>
                 <div class="grid__item five-sixths help"><a href="#help-content">Need Help?</a></div>
             </div>
         </div>
@@ -129,14 +130,34 @@
             </div>
         </div>
         <div class="privacy-policy grid__item one-whole greybox">
-            <a href="#">Privacy Policy</a>
+            <a href="#privacy-policy-modal">Privacy Policy</a>
         </div>
         <div class="shipping-policy grid__item one-whole greybox">
-            <a href="#">Shipping Policy</a>
+            <a href="#shipping-policy-modal">Shipping Policy</a>
         </div>
         <div class="cancel-order grid__item one-whole greybox">
             <button class="btn btn--hard btn--small btn--negative btn--full">Cancel Order</button>
         </div>
     </div>
+    <!-- MODALS -->
+    <section class="semantic-content" id="privacy-policy-modal" tabindex="-1"
+             role="dialog" aria-labelledby="privacy-policy-modal-label" aria-hidden="true">
+        <div class="modal-inner">
+            <header id="privacy-policy-modal-label">Privacy Policy</header>
+            <div class="modal-content">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed convallis pharetra velit, ac ullamcorper turpis. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Proin tempor odio odio, egestas fringilla velit sagittis a. Curabitur non dignissim risus, ut iaculis ligula. Suspendisse laoreet, massa ut semper malesuada, felis massa varius tortor, et ultrices nunc ligula et dolor. Duis id lorem eu ligula elementum cursus. Maecenas eget quam est. Vestibulum purus mi, lacinia sit amet lacinia eu, viverra vel dui. Donec lobortis, magna a rhoncus auctor, ante lorem congue lectus, non dapibus diam ligula eget est. Cras volutpat metus.</div>
+        </div>
+        <a href="#!" class="modal-close" title="Close this modal" data-close="Close"
+           data-dismiss="modal">×</a>
+    </section>
+    <section class="semantic-content" id="shipping-policy-modal" tabindex="-1"
+             role="dialog" aria-labelledby="shipping-policy-modal-label" aria-hidden="true">
+        <div class="modal-inner">
+            <header id="shipping-policy-modal-label">Shipping Policy</header>
+            <div class="modal-content">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed convallis pharetra velit, ac ullamcorper turpis. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Proin tempor odio odio, egestas fringilla velit sagittis a. Curabitur non dignissim risus, ut iaculis ligula. Suspendisse laoreet, massa ut semper malesuada, felis massa varius tortor, et ultrices nunc ligula et dolor. Duis id lorem eu ligula elementum cursus. Maecenas eget quam est. Vestibulum purus mi, lacinia sit amet lacinia eu, viverra vel dui. Donec lobortis, magna a rhoncus auctor, ante lorem congue lectus, non dapibus diam ligula eget est. Cras volutpat metus.</div>
+        </div>
+        <a href="#!" class="modal-close" title="Close this modal" data-close="Close"
+           data-dismiss="modal">×</a>
+    </section>
+    <script src="js/modal.js"></script>
 </body>
 </html>
