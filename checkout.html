@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html>
 <head>
     <title>Hair Direct Checkout</title>
@@ -165,35 +165,31 @@
     </section>
     <script src="js/modal.js"></script>
     <script>
-        $(document).ready(function() {
-            var footerpos = $('#help-content').position();
-            var footertop = footerpos.top;
-            console.log(footertop);
+        $(document).ready(function () {
+            var $cta_bar = $('.cta_bar'),
+                footertop = $('#help-content').position().top;
 
             $(window).on("scroll", function (event) {
-                // called when the window is scrolled.
-//                console.log(window.scrollY);
-                var scrollPos = window.scrollY;
-                var windowheight = window.innerHeight;
-                var scrollbottom = scrollPos + windowheight;
-                var ctabarheight = $('.cta_bar').height();
-                console.log(ctabarheight);
-                if(scrollbottom >= footertop) {
-                    if($('.cta_bar').hasClass('absolute')) {
-                    } else {
-                        $('.cta_bar').addClass('absolute').css({
-                            "top": footertop-ctabarheight+"px"
+                var scrollPos = window.scrollY,
+                    windowheight = window.innerHeight,
+                    scrollbottom = scrollPos + windowheight,
+                    ctabarheight = $cta_bar.height();
+
+                if (scrollbottom >= footertop) {
+                    if (!$cta_bar.hasClass('absolute')) {
+                        $cta_bar.addClass('absolute').css({
+                            "top": footertop - ctabarheight + "px"
                         });
                     }
-                } else {
-                    if($('.cta_bar').hasClass('absolute')) {
-                        $('.cta_bar').removeClass('absolute').css({
+                }
+                else {
+                    if ($cta_bar.hasClass('absolute')) {
+                        $cta_bar.removeClass('absolute').css({
                             "top": "auto"
                         });
                     }
                 }
             });
-
         });
     </script>
 </body>
