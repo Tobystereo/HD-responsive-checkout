@@ -170,12 +170,30 @@
             var footertop = footerpos.top;
             console.log(footertop);
 
-
-            function scroller() {
-                if($(document).scrollTop >= footertop) {
-                    $('cta_bar').toggleClass('absolute');
+            $(window).on("scroll", function (event) {
+                // called when the window is scrolled.
+//                console.log(window.scrollY);
+                var scrollPos = window.scrollY;
+                var windowheight = window.innerHeight;
+                var scrollbottom = scrollPos + windowheight;
+                var ctabarheight = $('.cta_bar').height();
+                console.log(ctabarheight);
+                if(scrollbottom >= footertop) {
+                    if($('.cta_bar').hasClass('absolute')) {
+                    } else {
+                        $('.cta_bar').addClass('absolute').css({
+                            "top": footertop-ctabarheight+"px"
+                        });
+                    }
+                } else {
+                    if($('.cta_bar').hasClass('absolute')) {
+                        $('.cta_bar').removeClass('absolute').css({
+                            "top": "auto"
+                        });
+                    }
                 }
-            }
+            });
+
         });
     </script>
 </body>
