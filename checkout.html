@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html>
 <head>
     <title>Hair Direct Checkout</title>
@@ -165,22 +165,35 @@
     </section>
     <script src="js/modal.js"></script>
     <script>
-        var footertop, $cta_bar;
-        $(document).ready(function () {
-            $cta_bar = $('cta_bar');
-            footertop = $('#help-content').position().top;
+        $(document).ready(function() {
+            var footerpos = $('#help-content').position();
+            var footertop = footerpos.top;
             console.log(footertop);
-        });
-        $(window).on("scroll", function () {
-            var scrollTop = $(document).scrollTop();
-            if (scrollTop >= footertop) {
-                $cta_bar.addClass("absolute");
-                $cta_bar.css("top", footertop - $cta_bar.outerHeight + "px");
-            }
-            else {
-                $cta_bar.removeClass('absolute');
-                $cta_bar.css("top", "auto");
-            }
+
+            $(window).on("scroll", function (event) {
+                // called when the window is scrolled.
+//                console.log(window.scrollY);
+                var scrollPos = window.scrollY;
+                var windowheight = window.innerHeight;
+                var scrollbottom = scrollPos + windowheight;
+                var ctabarheight = $('.cta_bar').height();
+                console.log(ctabarheight);
+                if(scrollbottom >= footertop) {
+                    if($('.cta_bar').hasClass('absolute')) {
+                    } else {
+                        $('.cta_bar').addClass('absolute').css({
+                            "top": footertop-ctabarheight+"px"
+                        });
+                    }
+                } else {
+                    if($('.cta_bar').hasClass('absolute')) {
+                        $('.cta_bar').removeClass('absolute').css({
+                            "top": "auto"
+                        });
+                    }
+                }
+            });
+
         });
     </script>
 </body>
