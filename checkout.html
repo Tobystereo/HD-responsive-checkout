@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html>
 <head>
     <title>Hair Direct Checkout</title>
@@ -10,12 +10,9 @@
 </head>
 <body>
     <div class="checkout grid">
-        <div class="top grid__item one-whole greybox">
-            <div class="grid">
-                <div class="grid__item one-sixth logo"><img src="http://lorempixel.com/g/100/44/abstract/10/HD/" /></div>
-                <div class="grid__item five-sixths help"><a href="#help-content">Need Help?</a></div>
-            </div>
-        </div>
+        <div class="grid__item one-sixth logo graybox"><img src="http://lorempixel.com/g/100/44/abstract/10/HD/" /></div>
+        <div class="grid__item five-sixths help graybox"><a href="#help-content">Need Help?</a></div>
+
         <div class="progress grid__item one-whole greybox">
             <ul class="nav nav--fit nav--block">
                 <li><a href="#">Shipping</a></li>
@@ -117,28 +114,32 @@
             <div id="order-confirmation">
             </div>
         </div>
-        <div class="cta-bar grid__item one-whole greybox">
+        <div class="cta_bar one-whole">
             <div class="grid">
-                <div class="total grid__item three-quarters">$99.99</div>
+                <div class="total grid__item three-quarters graybox">$99.99</div>
                 <button class="btn btn--positive grid__item one-quarter">Next</button>
             </div>
         </div>
         <div id="help-content" class="help grid__item one-whole greybox">
+            <h3>Need Help?</h3>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse eu magna sed felis vehicula tristique sed id turpis. Sed mattis, libero sed volutpat laoreet, nunc ipsum egestas nisl, a ornare ligula massa at sem. Cras semper arcu eu turpis porttitor suscipit. Sed semper tortor a magna ornare porta. Donec hendrerit, tellus vitae ultricies auctor, enim erat auctor arcu, ut varius elit nunc non urna. Quisque sit amet leo ipsum, euismod feugiat ante. Aenean metus est, hendrerit cursus congue nec, accumsan at lectus. Aliquam nulla dui, varius vitae mattis bibendum, dictum hendrerit dui. Nullam enim risus, viverra eget euismod at, lacinia vitae purus. Vestibulum ipsum est, ultricies vitae congue at, ullamcorper vulputate dui. Quisque eget est nec tellus vehicula aliquet.</p>
             <div class="grid">
                 <a href="tel:+15555555555" class="grid__item one-whole">Call us: +1 555-555-5555</a>
                 <a href="mailto:talk@hairdirect.com" class="grid__item one-whole">Email: talk@hairdirect.com</a>
             </div>
         </div>
-        <div class="privacy-policy grid__item one-whole greybox">
+        <div class="privacy-policy grid__item one-whole greybox taptarget">
             <a href="#privacy-policy-modal">Privacy Policy</a>
         </div>
-        <div class="shipping-policy grid__item one-whole greybox">
+        <div class="shipping-policy grid__item one-whole greybox taptarget">
             <a href="#shipping-policy-modal">Shipping Policy</a>
         </div>
         <div class="cancel-order grid__item one-whole greybox">
             <button class="btn btn--hard btn--small btn--negative btn--full">Cancel Order</button>
         </div>
     </div>
+
+
     <!-- MODALS -->
     <section class="semantic-content" id="privacy-policy-modal" tabindex="-1"
              role="dialog" aria-labelledby="privacy-policy-modal-label" aria-hidden="true">

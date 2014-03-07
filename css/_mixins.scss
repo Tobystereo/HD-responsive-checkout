@@ -1,0 +1,9 @@
+@mixin font-size($size) {
+    font-size: ($size * $rootfontsize) + px;
+    font-size: $size + rem;
+}
+
+@mixin rem-height($size) {
+    min-height: ($size * $rootfontsize) + px;
+    min-height: $size + rem;
+}

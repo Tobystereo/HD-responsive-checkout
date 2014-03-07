@@ -1,7 +1,7 @@
-﻿.grid{
-	letter-spacing: -1em;
+.grid{
+	letter-spacing: -1em !important;
 
 	.grid__item {
-		letter-spacing: 0em;
+		letter-spacing: 0;
 	}
 }

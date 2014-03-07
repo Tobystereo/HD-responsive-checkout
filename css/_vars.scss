@@ -65,3 +65,12 @@ $use-greybox:       true;
 /**
  * Place any of your own variables that sit on top of inuit.css here.
  */
+$rootfontsize: 16;
+$tapheight: 5;
+
+// Colors
+$lightest: #ffffff;
+$light: #cbcbcb;
+$lighter: lighten($light, 50);
+$dark: darken($light, 50);
+$darkest: #000000;

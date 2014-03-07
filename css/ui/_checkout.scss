@@ -1,6 +1,99 @@
-﻿.checkout{
+.checkout{
+    display: block;
+    display: -webkit-box;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+
+    -webkit-flex-flow: row wrap;
+
+    font-weight: bold;
+    text-align: center;
+
+    & > * {
+        flex: 1 row 100%;
+    }
+
 	.logo {
 		padding-left: 0px;
 		text-align: left;
 	}
+
+    .cancel-order {
+        @include rem-height($tapheight);
+
+        button {
+            @include rem-height($tapheight);
+        }
+    }
+
+    .btn, .cta, button {
+        @include rem-height($tapheight);
+    }
+
+    .cta_bar {
+        flex: 1 row 100%;
+        outline: 1px solid green;
+        left: 0;
+        z-index: 9999;
+
+
+        &.fixed {
+            position: fixed;
+            bottom: 0;
+        }
+
+        &.absolute {
+            position: absolute;
+            bottom: auto;
+        }
+
+        @include rem-height($tapheight);
+        background-color: $dark;
+
+        & .grid__item {
+            @include rem-height($tapheight);
+        }
+
+
+    }
+
+    .content {
+        min-height: 1000px;
+        background-color: $lightest;
+    }
+
+    #help-content, .privacy-policy, .shipping-policy {
+        background-color: $dark;
+    }
+
+    .taptarget {
+        @include rem-height($tapheight);
+        a, button {
+            @include rem-height($tapheight);
+        }
+    }
+}
+
+
+
+@media all and (min-width: 800px) {
+  .main    { flex: 2 0px; }
+  .aside-1 { order: 1; }
+  .main    { order: 2; }
+  .aside-2 { order: 3; }
+  .footer  { order: 4; }
+}
+
+
+// Colors
+.bg-lightest { background-color: $lightest; }
+.bg-lighter { background-color: $lighter; }
+.bg-light { background-color: $light; }
+.bg-dark { background-color: $dark; }
+.bg-darkest { background-color: $darkest; }
+
+.graybox, .greybox {
+    outline: 1px solid red;
 }
