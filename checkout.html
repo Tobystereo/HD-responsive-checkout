@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html>
 <head>
     <title>Hair Direct Checkout</title>
@@ -163,16 +163,21 @@
     </section>
     <script src="js/modal.js"></script>
     <script>
-        $(document).ready(function() {
-            var footerpos = $('#help-content').position();
-            var footertop = footerpos.top;
+        var footertop, $cta_bar;
+        $(document).ready(function () {
+            $cta_bar = $('cta_bar');
+            footertop = $('#help-content').position().top;
             console.log(footertop);
-
-
-            function scroller() {
-                if($(document).scrollTop >= footertop) {
-                    $('cta_bar').toggleClass('absolute');
-                }
+        });
+        $(window).on("scroll", function () {
+            var scrollTop = $(document).scrollTop();
+            if (scrollTop >= footertop) {
+                $cta_bar.addClass("absolute");
+                $cta_bar.css("top", footertop - $cta_bar.outerHeight + "px");
+            }
+            else {
+                $cta_bar.removeClass('absolute');
+                $cta_bar.css("top", "auto");
             }
         });
     </script>
