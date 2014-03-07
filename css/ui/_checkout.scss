@@ -16,7 +16,10 @@
     }
 
 	.logo {
-		padding-left: 0px;
+//		padding-left: 0px;
+        img {
+            max-height: $tapheight + em;
+        }
 		text-align: left;
 	}
 
@@ -37,12 +40,8 @@
         outline: 1px solid green;
         left: 0;
         z-index: 9999;
-
-
-        &.fixed {
-            position: fixed;
-            bottom: 0;
-        }
+        position: fixed;
+        bottom: 0;
 
         &.absolute {
             position: absolute;
@@ -96,4 +95,10 @@
 
 .graybox, .greybox {
     outline: 1px solid red;
+}
+
+// Typography
+a, a:link, a:hover, a:active, a:focus {
+    text-decoration: none;
+    border-bottom: 1px solid;
 }

@@ -3880,8 +3880,9 @@ html.flexbox {
   .checkout > * {
     flex: 1 row 100%; }
   .checkout .logo {
-    padding-left: 0px;
     text-align: left; }
+    .checkout .logo img {
+      max-height: 5em; }
   .checkout .cancel-order {
     min-height: 80px;
     min-height: 5rem; }
@@ -3896,12 +3897,11 @@ html.flexbox {
     outline: 1px solid green;
     left: 0;
     z-index: 9999;
+    position: fixed;
+    bottom: 0;
     min-height: 80px;
     min-height: 5rem;
     background-color: #4c4c4c; }
-    .checkout .cta_bar.fixed {
-      position: fixed;
-      bottom: 0; }
     .checkout .cta_bar.absolute {
       position: absolute;
       bottom: auto; }
@@ -3952,3 +3952,7 @@ html.flexbox {
 
 .graybox, .greybox {
   outline: 1px solid red; }
+
+a, a:link, a:hover, a:active, a:focus {
+  text-decoration: none;
+  border-bottom: 1px solid; }
