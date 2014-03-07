@@ -39,7 +39,7 @@
         flex: 1 row 100%;
         outline: 1px solid green;
         left: 0;
-        z-index: 9999;
+        z-index: 99;
         position: fixed;
         bottom: 0;
 
@@ -68,9 +68,9 @@
     }
 
     .taptarget {
-        @include rem-height($tapheight);
+        @include taptarget();
         a, button {
-            @include rem-height($tapheight);
+            @include taptarget();
         }
     }
 }

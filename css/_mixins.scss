@@ -4,6 +4,12 @@
 }
 
 @mixin rem-height($size) {
-    min-height: ($size * $rootfontsize) + px;
-    min-height: $size + rem;
+    height: ($size * $rootfontsize) + px;
+    height: $size + rem;
+}
+
+@mixin taptarget() {
+    @include rem-height($tapheight);
+    min-height: ($mintapheight * $rootfontsize) + px;
+    min-height: $mintapheight + rem;
 }
