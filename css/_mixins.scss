@@ -3,6 +3,11 @@
     font-size: $size + rem;
 }
 
+@mixin line-height($size) {
+    line-height: ($size * $rootfontsize) + px;
+    line-height: $size + rem;
+}
+
 @mixin rem-height($size) {
     height: ($size * $rootfontsize) + px;
     height: $size + rem;
@@ -13,3 +18,4 @@
     min-height: ($mintapheight * $rootfontsize) + px;
     min-height: $mintapheight + rem;
 }
+

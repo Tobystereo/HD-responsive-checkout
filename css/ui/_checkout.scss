@@ -23,6 +23,24 @@
 		text-align: left;
 	}
 
+    .progress {
+        a {
+            border-bottom: none;
+            padding: 0;
+            @include font-size(2);
+            @include line-height($tapheight);
+
+            &.active {
+                background-color: $dark;
+            }
+
+        }
+
+        .nav {
+            margin: 0;
+        }
+    }
+
     .cancel-order {
         @include rem-height($tapheight);
 

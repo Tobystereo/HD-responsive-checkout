@@ -3883,6 +3883,17 @@ html.flexbox {
     text-align: left; }
     .checkout .logo img {
       max-height: 5em; }
+  .checkout .progress a {
+    border-bottom: none;
+    padding: 0;
+    font-size: 32px;
+    font-size: 2rem;
+    line-height: 80px;
+    line-height: 5rem; }
+    .checkout .progress a.active {
+      background-color: #4c4c4c; }
+  .checkout .progress .nav {
+    margin: 0; }
   .checkout .cancel-order {
     height: 80px;
     height: 5rem; }
