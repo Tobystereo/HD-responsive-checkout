@@ -1,3 +1,7 @@
+.hidden {
+	display: none;
+}
+
 .checkout{
     display: block;
     display: -webkit-box;
@@ -16,7 +20,6 @@
     }
 
 	.logo {
-//		padding-left: 0px;
         img {
             max-height: $tapheight + em;
             margin: 1em;
@@ -167,7 +170,6 @@
     background-color: $light-green;
 }
 
-
 @media all and (min-width: 800px) {
     #content {
         margin: 0 auto;
@@ -182,7 +184,7 @@
 }
 
 
-// Colors
+/* Colors */
 .bg-lightest { background-color: $lightest; }
 .bg-lighter { background-color: $lighter; }
 .bg-light { background-color: $light; }
@@ -190,10 +192,10 @@
 .bg-darkest { background-color: $darkest; }
 
 .graybox, .greybox {
-//    outline: 1px solid red;
 }
 
-// Typography
+
+/* Typography */
 a, a:link, a:hover, a:active, a:focus {
     text-decoration: none;
     border-bottom: 1px solid;

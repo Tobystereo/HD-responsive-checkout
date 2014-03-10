@@ -2,7 +2,7 @@
 /*------------------------------------*\
     STYLE.CSS
 \*------------------------------------*/
-/**
+/*
  *
  * sass --watch style.scss:style.min.css --style compressed
  *
@@ -11,18 +11,16 @@
  */
 
 
-/**
+/*
  * Setup
  */
 @import "vars";
 @import "inuit.css/inuit";
 
 
-/**
- * She’s all yours, cap’n... Begin importing your stuff here.
+/*
+ * Custom Styles
  */
-//@import "ui/example";
-
 @import "mixins";
 @import "ui/objects/grids";
 @import "ui/checkout";
