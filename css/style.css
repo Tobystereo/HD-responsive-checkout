@@ -44,6 +44,7 @@
 /**
  * Place any of your own variables that sit on top of inuit.css here.
  */
+/* MEDIA QUERIES */
 /*------------------------------------*\
     INUIT.CSS
 \*------------------------------------*/
@@ -3892,6 +3893,39 @@ html.flexbox {
     line-height: 5rem; }
     .checkout .progress a.active {
       background-color: #4c4c4c; }
+    @media only screen and (min-width: 50em) {
+      .checkout .progress a {
+        background: white;
+        color: #4c4c4c;
+        font-size: 16px;
+        font-size: 1rem;
+        font-weight: normal;
+        text-align: left;
+        padding-left: 60px; }
+        .checkout .progress a:before {
+          display: block;
+          width: 40px;
+          height: 40px;
+          content: "1";
+          background: #cbcbcb;
+          color: #4c4c4c;
+          border-radius: 40px;
+          line-height: 40px;
+          position: absolute;
+          margin-top: 1em;
+          margin-left: -60px;
+          text-align: center; }
+        .checkout .progress a.active {
+          background: white; }
+          .checkout .progress a.active:before {
+            background: #4c4c4c;
+            color: #cbcbcb; } }
+  .checkout .progress .shipping a:before {
+    content: "1"; }
+  .checkout .progress .billing a:before {
+    content: "2"; }
+  .checkout .progress .review a:before {
+    content: "3"; }
   .checkout .progress .nav {
     margin: 0; }
   .checkout .cancel-order {
@@ -3905,7 +3939,6 @@ html.flexbox {
     height: 5rem; }
   .checkout .cta_bar {
     flex: 1 row 100%;
-    outline: 1px solid green;
     left: 0;
     z-index: 99;
     position: fixed;
@@ -3924,6 +3957,8 @@ html.flexbox {
     background-color: white; }
   .checkout #help-content, .checkout .privacy-policy, .checkout .shipping-policy {
     background-color: #4c4c4c; }
+  .checkout #help-content {
+    padding-top: 80px; }
   .checkout .taptarget {
     height: 80px;
     height: 5rem;
@@ -3936,6 +3971,11 @@ html.flexbox {
       min-height: 3rem; }
 
 @media all and (min-width: 800px) {
+  #content {
+    margin: 0 auto;
+    width: 960px;
+    max-width: 100%; }
+
   .main {
     flex: 2 0px; }
 
@@ -3964,9 +4004,6 @@ html.flexbox {
 
 .bg-darkest {
   background-color: black; }
-
-.graybox, .greybox {
-  outline: 1px solid red; }
 
 a, a:link, a:hover, a:active, a:focus {
   text-decoration: none;

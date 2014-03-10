@@ -19,17 +19,35 @@
 
         <div class="progress grid__item one-whole greybox">
             <ul class="nav nav--fit nav--block">
-                <li><a href="#" class="active">Shipping</a></li>
-                <li><a href="#">Billing</a></li>
-                <li><a href="#">Review</a></li>
+                <li class="shipping"><a href="#" class="active">Shipping</a></li>
+                <li class="billing"><a href="#">Billing</a></li>
+                <li class="review"><a href="#">Review</a></li>
             </ul>
         </div>
-        <div class="content grid__item one-whole greybox greybox--huge">
-            <div id="shipping-address">
-                &nbsp;
-                <!--<div class="address-list grid__item one-whole">
+        <div id="shipping-address" class="grid__item one-whole greybox--large">
+            <div class="defaultaddress">
+                <ul class="address-item form-fields">
+                    <li>
+                        <span class="name">Mike Koser</span>
+                        <span class="compnay">HairDirect</span>
+                        <span class="street">765 Test Rd</span>,
+                        <span class="city">Lancaster</span>
+                        <span class="state">PA</span>
+                        <span class="zip">17603</span>
+                        <span class="country">United States</span>
+                        <span class="phone">+1-555-5555</span>
+                    </li>
+                </ul>
+                <button class="changeaddress btn taptarget">Select or edit different address</button>
+                <button class="createaddress btn taptarget">Create new address</button>
+            </div>
+        </div>
+<!--
+        <div class="content grid__item one-whole greybox">
+            <div id="shipping-address" class="">
+                <div class="address-list grid__item one-whole">
                     <div class="grid">
-                        <ul class="address-item form-fields grid__item one-whole desk-one-quarter">
+                        <ul class="address-item form-fields grid__item one-whole">
                             <li>
                                 <ul class="data">
                                     <li class="bold name">
@@ -52,7 +70,7 @@
                                 </ul>
                             </li>
                         </ul>
-                        <ul class="address-item form-fields grid__item one-whole desk-one-quarter">
+                        <ul class="address-item form-fields grid__item one-whole">
                             <li>
                                 <ul class="data">
                                     <li class="bold name">
@@ -107,8 +125,9 @@
                             <input type="text" class="text-input" id="postal-code-input">
                         </li>
                     </ul>
-                </form>-->
+                </form>
             </div>
+-->
             <div id="shipping-method">
             </div>
             <div id="billing-information">
@@ -117,7 +136,7 @@
             </div>
             <div id="order-confirmation">
             </div>
-        </div>
+<!--        </div>-->
         <div class="cta_bar one-whole">
             <div class="grid">
                 <div class="total grid__item three-quarters graybox">$99.99</div>
@@ -164,7 +183,7 @@
            data-dismiss="modal">×</a>
     </section>
     <script src="js/modal.js"></script>
-<<<<<<< HEAD
+    <script src="js/checkout.js"></script>
     <script>
         $(document).ready(function() {
             var footerpos = $('#help-content').position();
@@ -178,11 +197,11 @@
                 var scrollbottom = scrollPos + windowheight;
                 var ctabarheight = $('.cta_bar').height();
                 console.log(ctabarheight);
+                console.log(footertop+ctabarheight);
                 if(scrollbottom >= footertop) {
-                    if($('.cta_bar').hasClass('absolute')) {
-                    } else {
+                    if(!$('.cta_bar').hasClass('absolute')) {
                         $('.cta_bar').addClass('absolute').css({
-                            "top": footertop-ctabarheight+"px"
+                            "top": footertop+"px"
                         });
                     }
                 } else {
@@ -196,8 +215,8 @@
 
         });
     </script>
-=======
-    <script src="js/checkout.js"></script>
->>>>>>> FETCH_HEAD
+
+
+
 </body>
 </html>

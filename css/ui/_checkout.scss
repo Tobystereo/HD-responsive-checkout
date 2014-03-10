@@ -34,6 +34,52 @@
                 background-color: $dark;
             }
 
+            @media #{$large} {
+                $pillsize: 40px;
+
+                background: $lightest;
+                color: $dark;
+                @include font-size(1);
+                font-weight: normal;
+                text-align: left;
+                padding-left: $pillsize * 1.5;
+
+                &:before {
+                    display: block;
+                    width: $pillsize;
+                    height: $pillsize;
+                    content: "1";
+                    background: $light;
+                    color: $dark;
+                    border-radius: $pillsize;
+                    line-height: $pillsize;
+                    position: absolute;
+                    margin-top: 1em;
+                    margin-left: -$pillsize*1.5;
+                    text-align: center;
+                }
+
+                &.active {
+                    background: $lightest;
+
+                    &:before {
+                        background: $dark;
+                        color: $light;
+                    }
+                }
+            }
+        }
+
+        .shipping a:before {
+            content: "1";
+        }
+
+        .billing a:before {
+            content: "2";
+        }
+
+        .review a:before {
+            content: "3";
         }
 
         .nav {
@@ -55,7 +101,6 @@
 
     .cta_bar {
         flex: 1 row 100%;
-        outline: 1px solid green;
         left: 0;
         z-index: 99;
         position: fixed;
@@ -85,6 +130,10 @@
         background-color: $dark;
     }
 
+    #help-content {
+        padding-top: $taptarget+px;
+    }
+
     .taptarget {
         @include taptarget();
         a, button {
@@ -96,6 +145,11 @@
 
 
 @media all and (min-width: 800px) {
+    #content {
+        margin: 0 auto;
+        width: 960px;
+        max-width: 100%;
+    }
   .main    { flex: 2 0px; }
   .aside-1 { order: 1; }
   .main    { order: 2; }
@@ -112,7 +166,7 @@
 .bg-darkest { background-color: $darkest; }
 
 .graybox, .greybox {
-    outline: 1px solid red;
+//    outline: 1px solid red;
 }
 
 // Typography
