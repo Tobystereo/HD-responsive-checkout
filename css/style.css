@@ -3876,14 +3876,15 @@ html.flexbox {
   display: -webkit-flex;
   display: flex;
   -webkit-flex-flow: row wrap;
-  font-weight: bold;
+  font-weight: normal;
   text-align: center; }
   .checkout > * {
     flex: 1 row 100%; }
   .checkout .logo {
     text-align: left; }
     .checkout .logo img {
-      max-height: 5em; }
+      max-height: 5em;
+      margin: 1em; }
   .checkout .progress a {
     border-bottom: none;
     padding: 0;
@@ -3920,12 +3921,13 @@ html.flexbox {
           .checkout .progress a.active:before {
             background: #4c4c4c;
             color: #cbcbcb; } }
-  .checkout .progress .shipping a:before {
-    content: "1"; }
-  .checkout .progress .billing a:before {
-    content: "2"; }
-  .checkout .progress .review a:before {
-    content: "3"; }
+  @media only screen and (min-width: 50em) {
+    .checkout .progress .shipping a:before {
+      content: "1"; }
+    .checkout .progress .billing a:before {
+      content: "2"; }
+    .checkout .progress .review a:before {
+      content: "3"; } }
   .checkout .progress .nav {
     margin: 0; }
   .checkout .cancel-order {
@@ -3958,7 +3960,7 @@ html.flexbox {
   .checkout #help-content, .checkout .privacy-policy, .checkout .shipping-policy {
     background-color: #4c4c4c; }
   .checkout #help-content {
-    padding-top: 80px; }
+    padding-top: 120px; }
   .checkout .taptarget {
     height: 80px;
     height: 5rem;
@@ -3969,6 +3971,22 @@ html.flexbox {
       height: 5rem;
       min-height: 48px;
       min-height: 3rem; }
+
+.address-item.readonly {
+  list-style: none;
+  text-align: left;
+  padding: 2rem;
+  margin: 1rem; }
+  .address-item.readonly span {
+    display: inline-block;
+    text-align: left; }
+  .address-item.readonly .name, .address-item.readonly .company, .address-item.readonly .country {
+    display: block;
+    clear: both; }
+
+.selected {
+  border: 1px solid black;
+  background-color: #e4f3e2; }
 
 @media all and (min-width: 800px) {
   #content {

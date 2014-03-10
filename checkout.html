@@ -24,12 +24,16 @@
                 <li class="review"><a href="#">Review</a></li>
             </ul>
         </div>
-        <div id="shipping-address" class="grid__item one-whole greybox--large">
+        <div id="shipping-address" class="grid__item one-whole">
+            <p>
+                Do you want to use your default shipping address?
+            </p>
             <div class="defaultaddress">
-                <ul class="address-item form-fields">
+                <ul class="address-item readonly selected">
                     <li>
+                        <p>Selected address</p>
                         <span class="name">Mike Koser</span>
-                        <span class="compnay">HairDirect</span>
+                        <span class="company">HairDirect</span>
                         <span class="street">765 Test Rd</span>,
                         <span class="city">Lancaster</span>
                         <span class="state">PA</span>
@@ -38,9 +42,9 @@
                         <span class="phone">+1-555-5555</span>
                     </li>
                 </ul>
-                <button class="changeaddress btn taptarget">Select or edit different address</button>
-                <button class="createaddress btn taptarget">Create new address</button>
             </div>
+            <button class="changeaddress btn taptarget">Select or edit different address</button>
+            <button class="createaddress btn taptarget">Create new address</button>
         </div>
 <!--
         <div class="content grid__item one-whole greybox">
@@ -184,39 +188,5 @@
     </section>
     <script src="js/modal.js"></script>
     <script src="js/checkout.js"></script>
-    <script>
-        $(document).ready(function() {
-            var footerpos = $('#help-content').position();
-            var footertop = footerpos.top;
-            console.log(footertop);
-
-            $(window).on("scroll", function (event) {
-                // called when the window is scrolled.
-                var scrollPos = window.scrollY;
-                var windowheight = window.innerHeight;
-                var scrollbottom = scrollPos + windowheight;
-                var ctabarheight = $('.cta_bar').height();
-                console.log(ctabarheight);
-                console.log(footertop+ctabarheight);
-                if(scrollbottom >= footertop) {
-                    if(!$('.cta_bar').hasClass('absolute')) {
-                        $('.cta_bar').addClass('absolute').css({
-                            "top": footertop+"px"
-                        });
-                    }
-                } else {
-                    if($('.cta_bar').hasClass('absolute')) {
-                        $('.cta_bar').removeClass('absolute').css({
-                            "top": "auto"
-                        });
-                    }
-                }
-            });
-
-        });
-    </script>
-
-
-
 </body>
 </html>

@@ -1,8 +1,8 @@
-﻿$(document).ready(function () {
+$(document).ready(function () {
 	var $cta_bar = $('.cta_bar'),
 		footertop = $('#help-content').position().top;
 
-	$(window).on("scroll", function (event) {
+	$(window).on("load scroll", function (event) {
 		var scrollPos = window.scrollY,
 			windowheight = window.innerHeight,
 			scrollbottom = scrollPos + windowheight,
@@ -11,7 +11,7 @@
 		if (scrollbottom >= footertop) {
 			if (!$cta_bar.hasClass('absolute')) {
 				$cta_bar.addClass('absolute').css({
-					"top": footertop - ctabarheight + "px"
+					"top": footertop + "px"
 				});
 			}
 		}

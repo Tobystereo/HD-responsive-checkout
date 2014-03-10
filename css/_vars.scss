@@ -77,6 +77,9 @@ $lighter: lighten($light, 50);
 $dark: darken($light, 50);
 $darkest: #000000;
 
+$green: #4a993d;
+$light-green: lighten($green, 50);
+$dark-green: darken($green, 50);
 
 
 /* MEDIA QUERIES */
