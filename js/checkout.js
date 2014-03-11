@@ -1,4 +1,4 @@
-﻿/********** PLUGINS **********/
+/********** PLUGINS **********/
 (function ($) {
 	$.fn.toggleContainer = function (options) {
 		// Default options
@@ -15,12 +15,12 @@
 			this.on(settings.firing_events, function () {
 				var content_height;
 				if (settings.content_element.hasClass(settings.show_class)) {
-					settings.content_element.removeClass(settings.show_class).addClass(setting.hide_class);
+					settings.content_element.removeClass(settings.show_class).addClass(settings.hide_class);
 				}
 				else {
 					content_height = settings.content_element.height();
 					settings.content_element.removeClass(settings.hide_class).addClass(settings.show_class);
-					setTimeout(function () {	
+					setTimeout(function () {
 						settings.content_element.css("height", content_height + "px");
 						if (settings.callback !== undefined) {
 							settings.callback(this);
@@ -66,7 +66,7 @@ function WireEvents() {
 		content_element: $additional_addresses
 		//,callback: UpdateCtaBar
 	});
-	
+
 	//$btnchangeaddress.on("click", function () {
 	//	var additional_addresses_height = $additional_addresses.height();
 	//	$additional_addresses.addClass("show");

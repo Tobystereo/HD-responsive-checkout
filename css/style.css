@@ -3873,18 +3873,17 @@ html.flexbox {
 .thetoggler_speaks_for_the_DOMS {
   -webkit-transition: all 0.3s ease-in-out;
   -moz-transition: all 0.3s ease-in-out;
-  transition: all 0.3s ease-in-out; }
+  transition: all 0.3s ease-in-out;
+  overflow: hidden; }
 
 .hide {
   position: absolute;
-  clip: rect(0, 0, 0, 0);
-  overflow: hidden; }
+  clip: rect(0, 0, 0, 0); }
 
 .show {
   position: relative;
   clip: auto;
-  height: 0;
-  overflow: hidden; }
+  height: 0; }
 
 .checkout {
   display: block;
