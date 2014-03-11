@@ -124,6 +124,7 @@
 
     .btn, .cta, button {
         @include rem-height($tapheight);
+        @include font(2.5, 5);
     }
 
     .cta_bar {
@@ -139,16 +140,26 @@
         }
 
         @include rem-height($tapheight);
-        background-color: $dark;
+        background-color: $light;
 
         & .grid__item {
             @include rem-height($tapheight);
         }
 
+        .total {
+            @include font(2.5, 5);
+
+            &:before {
+                @include pseudo(6rem, 1em, "Total: ");
+                margin-right: .6em;
+
+            }
+        }
+
 
     }
 
-    .content {
+    #content {
         min-height: 1000px;
         background-color: $lightest;
     }
@@ -183,6 +194,23 @@
         display: block;
         clear: both;
     }
+
+    label {
+        display: block;
+        padding: 1em;
+        @include border();
+        background-color: $lighter;
+    }
+
+    input[type=radio] {
+        display: none;
+
+        &:checked + label {
+            outline-color: green;
+            background: $light-green;
+        }
+    }
+
 }
 
 .selected {
@@ -190,17 +218,17 @@
     background-color: $light-green;
 }
 
-@media all and (min-width: 800px) {
-    #content {
+@media #{$large} {
+    #Content {
         margin: 0 auto;
-        width: 960px;
-        max-width: 100%;
+        max-width: 960px;
     }
-  .main    { flex: 2 0px; }
-  .aside-1 { order: 1; }
-  .main    { order: 2; }
-  .aside-2 { order: 3; }
-  .footer  { order: 4; }
+
+//    .main    { flex: 2 0px; }
+//    .aside-1 { order: 1; }
+//    .main    { order: 2; }
+//    .aside-2 { order: 3; }
+//    .footer  { order: 4; }
 }
 
 

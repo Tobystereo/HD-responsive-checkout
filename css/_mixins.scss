@@ -8,6 +8,17 @@
     line-height: $size + rem;
 }
 
+@mixin font-family {
+    font-family: 'Helvetica Neue', Helvetica, sans-serif;
+    font-weight: 100;
+}
+
+@mixin font($size, $line-height) {
+    @include font-size($size);
+    @include line-height($line-height);
+    @include font-family;
+}
+
 @mixin rem-height($size) {
     height: ($size * $rootfontsize) + px;
     height: $size + rem;
@@ -19,3 +30,18 @@
     min-height: $mintapheight + rem;
 }
 
+@mixin pseudo($width, $height, $content) {
+    display: inline-block;
+    position: relative;
+    content: $content;
+    width: $width;
+    height: $height;
+}
+
+@mixin outline {
+    outline: 1px solid red;
+}
+
+@mixin border($lineweight: $lineweight, $linetype: $linetype, $linecolor: $linecolor) {
+    border: $lineweight $linetype $linecolor;
+}

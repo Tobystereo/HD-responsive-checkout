@@ -46,6 +46,7 @@
  */
 /* MEDIA QUERIES */
 /* Animations and Transitions */
+/* Atoms */
 /*------------------------------------*\
     INUIT.CSS
 \*------------------------------------*/
@@ -3873,9 +3874,9 @@ html.flexbox {
   position: absolute;
   clip: rect(0, 0, 0, 0);
   overflow: hidden;
-  -webkit-transition: all 3s ease-in-out;
-  -moz-transition: all 3s ease-in-out;
-  transition: all 3s ease-in-out; }
+  -webkit-transition: all 0.3s ease-in-out;
+  -moz-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out; }
 
 .show {
   position: relative;
@@ -3907,13 +3908,13 @@ html.flexbox {
     font-size: 2rem;
     line-height: 80px;
     line-height: 5rem;
-    -webkit-transition: all 3s ease-in-out;
-    -moz-transition: all 3s ease-in-out;
-    transition: all 3s ease-in-out; }
+    -webkit-transition: all 0.3s ease-in-out;
+    -moz-transition: all 0.3s ease-in-out;
+    transition: all 0.3s ease-in-out; }
     .checkout .progress a:hover:before {
-      -webkit-transition: all 3s ease-in-out;
-      -moz-transition: all 3s ease-in-out;
-      transition: all 3s ease-in-out;
+      -webkit-transition: all 0.3s ease-in-out;
+      -moz-transition: all 0.3s ease-in-out;
+      transition: all 0.3s ease-in-out;
       background: #e4f3e2; }
     .checkout .progress a.active {
       background-color: #4c4c4c; }
@@ -3961,7 +3962,13 @@ html.flexbox {
       height: 5rem; }
   .checkout .btn, .checkout .cta, .checkout button {
     height: 80px;
-    height: 5rem; }
+    height: 5rem;
+    font-size: 40px;
+    font-size: 2.5rem;
+    line-height: 80px;
+    line-height: 5rem;
+    font-family: 'Helvetica Neue', Helvetica, sans-serif;
+    font-weight: 100; }
   .checkout .cta_bar {
     flex: 1 row 100%;
     left: 0;
@@ -3970,14 +3977,28 @@ html.flexbox {
     bottom: 0;
     height: 80px;
     height: 5rem;
-    background-color: #4c4c4c; }
+    background-color: #cbcbcb; }
     .checkout .cta_bar.absolute {
       position: absolute;
       bottom: auto; }
     .checkout .cta_bar .grid__item {
       height: 80px;
       height: 5rem; }
-  .checkout .content {
+    .checkout .cta_bar .total {
+      font-size: 40px;
+      font-size: 2.5rem;
+      line-height: 80px;
+      line-height: 5rem;
+      font-family: 'Helvetica Neue', Helvetica, sans-serif;
+      font-weight: 100; }
+      .checkout .cta_bar .total:before {
+        display: inline-block;
+        position: relative;
+        content: "Total: ";
+        width: 6rem;
+        height: 1em;
+        margin-right: .6em; }
+  .checkout #content {
     min-height: 1000px;
     background-color: white; }
   .checkout #help-content, .checkout .privacy-policy, .checkout .shipping-policy {
@@ -4006,31 +4027,25 @@ html.flexbox {
   .address-item.readonly .name, .address-item.readonly .company, .address-item.readonly .country {
     display: block;
     clear: both; }
+  .address-item.readonly label {
+    display: block;
+    padding: 1em;
+    border: 1px solid #4c4c4c;
+    background-color: white; }
+  .address-item.readonly input[type=radio] {
+    display: none; }
+    .address-item.readonly input[type=radio]:checked + label {
+      outline-color: green;
+      background: #e4f3e2; }
 
 .selected {
   border: 1px solid black;
   background-color: #e4f3e2; }
 
-@media all and (min-width: 800px) {
-  #content {
+@media only screen and (min-width: 50em) {
+  #Content {
     margin: 0 auto;
-    width: 960px;
-    max-width: 100%; }
-
-  .main {
-    flex: 2 0px; }
-
-  .aside-1 {
-    order: 1; }
-
-  .main {
-    order: 2; }
-
-  .aside-2 {
-    order: 3; }
-
-  .footer {
-    order: 4; } }
+    max-width: 960px; } }
 /* Colors */
 .bg-lightest {
   background-color: white; }
