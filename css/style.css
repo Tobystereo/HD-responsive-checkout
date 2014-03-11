@@ -3881,10 +3881,7 @@ html.flexbox {
   position: relative;
   clip: auto;
   height: 0;
-  overflow: hidden;
-  -webkit-transition: all 3s ease-in-out;
-  -moz-transition: all 3s ease-in-out;
-  transition: all 3s ease-in-out; }
+  overflow: hidden; }
 
 .checkout {
   display: block;

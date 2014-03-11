@@ -29,7 +29,9 @@ function WireEvents() {
 	$btnchangeaddress.on("click", function () {
         var additional_addresses_height = $additional_addresses.height();
 		$additional_addresses.addClass("show");
-        $additional_addresses.delay(5000).css("height", additional_addresses_height + "px");
+        setTimeout(function(){
+            $additional_addresses.css("height", additional_addresses_height + "px")
+        }, 1);
 
 		UpdateCtaBar();
 	});
