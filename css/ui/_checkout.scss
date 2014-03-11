@@ -1,3 +1,7 @@
+body {
+    @include font(1,1.3);
+}
+
 .hide {
     display: none;
 }
@@ -24,18 +28,23 @@
         background-color: $light-blue-lighter;
         @include outline;
         max-height: $tapheight + em;
-        img {
-            height: 100%;
+		text-align: left;
+        overflow: hidden;
+        display: block;
 
+        img {
+            height: 80%;
+            max-height: $tapheight + em;
             margin: 5px;
             display: block;
             max-width: 100%;
         }
-		text-align: left;
+
 	}
 
     .help {
         background-color: $light-blue-lighter;
+        max-height: $tapheight + em;
     }
 
     .progress {
@@ -187,10 +196,21 @@
 }
 
 .address-item.readonly {
-    list-style: none;
     text-align: left;
-    padding: 2rem;
-    margin: 1rem;
+
+//    padding: 0;
+//    margin: 0;
+//    list-style: none;
+//
+//    display: -webkit-box;
+//    display: -moz-box;
+//    display: -ms-flexbox;
+//    display: -webkit-flex;
+//    display: flex;
+//
+//    -webkit-flex-flow: row wrap;
+//    justify-content: space-around;
+
 
     span {
         display: inline-block;
@@ -201,11 +221,17 @@
         clear: both;
     }
 
+    li {
+//        align-items: stretch;
+//        align-content: stretch;
+    }
+
     label {
-        display: block;
-        padding: 1em;
+        padding: 1em 1em 1em 5em;
         @include border();
         background-color: $lighter;
+//        @include outline;
+        flex: auto;
     }
 
     input[type=radio] {
@@ -214,6 +240,17 @@
         &:checked + label {
             outline-color: green;
             background: $light-green;
+
+            &:before {
+                @include pseudo(2em, 6em, '\2714');
+                color: $green;
+                @include font-size(2);
+                @include line-height(6);
+                margin-left: -2em;
+                margin-bottom: -6em;
+                display: block;
+//                @include outline;
+            }
         }
     }
 
