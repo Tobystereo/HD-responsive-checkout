@@ -3870,13 +3870,15 @@ html.flexbox {
   .grid .grid__item {
     letter-spacing: 0; }
 
-.hide {
-  position: absolute;
-  clip: rect(0, 0, 0, 0);
-  overflow: hidden;
+.thetoggler_speaks_for_the_DOMS {
   -webkit-transition: all 0.3s ease-in-out;
   -moz-transition: all 0.3s ease-in-out;
   transition: all 0.3s ease-in-out; }
+
+.hide {
+  position: absolute;
+  clip: rect(0, 0, 0, 0);
+  overflow: hidden; }
 
 .show {
   position: relative;
