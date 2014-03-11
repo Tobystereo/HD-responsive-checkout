@@ -89,12 +89,8 @@ function WireEvents() {
 function ToggleShippingInstructionText() {
 	var defaultText = $shipping_address_instructions.attr("data-text"),
 		altText = $shipping_address_instructions.attr("data-alt-text");
-	if ($shipping_address_instructions.text().trim() == defaultText) {
-		$shipping_address_instructions.text(altText);
-	}
-	else {
-		$shipping_address_instructions.text(defaultText);
-	}
+	
+	$shipping_address_instructions.text(($shipping_address_instructions.text().trim() == defaultText ? altText : defaultText));
 }
 
 //#endregion -- FUNCTIONS --
