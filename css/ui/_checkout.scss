@@ -21,17 +21,22 @@
     }
 
 	.logo {
-
+        background-color: $light-blue-lighter;
         @include outline;
+        max-height: $tapheight + em;
         img {
             height: 100%;
-            max-height: $tapheight + em;
+
             margin: 5px;
             display: block;
             max-width: 100%;
         }
 		text-align: left;
 	}
+
+    .help {
+        background-color: $light-blue-lighter;
+    }
 
     .progress {
         a {

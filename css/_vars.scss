@@ -81,6 +81,22 @@ $green: #4a993d;
 $light-green: lighten($green, 50);
 $dark-green: darken($green, 50);
 
+$light-blue: #3e6d9d;
+$light-blue-light: lighten($light-blue, 25);
+$light-blue-lighter: lighten($light-blue, 50);
+$light-blue-lightest: lighten($light-blue, 75);
+$light-blue-dark: darken($light-blue, 25);
+$light-blue-darker: darken($light-blue, 50);
+$light-blue-darkest: darken($light-blue, 75);
+
+
+$dark-blue: #232e50;
+$dark-blue-light: lighten($dark-blue, 25);
+$dark-blue-lighter: lighten($dark-blue, 50);
+$dark-blue-lightest: lighten($dark-blue, 75);
+$dark-blue-dark: darken($dark-blue, 25);
+$dark-blue-darker: darken($dark-blue, 50);
+$dark-blue-darkest: darken($dark-blue, 75);
 
 /* MEDIA QUERIES */
 //$small: "only screen and (max-width : 20em)";
