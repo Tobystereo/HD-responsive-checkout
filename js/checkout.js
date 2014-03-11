@@ -19,7 +19,7 @@
 				}
 				else {
 					content_height = settings.content_element.height();
-					settings.content_element.addClass(settings.show_class);
+					settings.content_element.removeClass(settings.hide_class).addClass(settings.show_class);
 					setTimeout(function () {	
 						settings.content_element.css("height", content_height + "px");
 						if (settings.callback !== undefined) {
