@@ -2,33 +2,32 @@
 (function ($) {
 	$.fn.toggleContainer = function (options) {
 		// Default options
-		var settings = $.extend({
-			content_element: undefined,
-			callback: undefined,
-			delay: 1,
-			show_class: "show",
-			hide_class: "hide",
-			firing_events: "click"
-		}, options);
+		var $self = this,
+			settings = $.extend({
+				content_element: undefined,
+				callback: undefined,
+				delay: 300,
+				show_class: "show",
+				hide_class: "hide",
+				firing_events: "click",
+				hide_self: true
+			}, options);
 
 		if (settings.content_element !== undefined) {
 			this.on(settings.firing_events, function () {
-				var content_height;
-				if (settings.content_element.hasClass(settings.show_class)) {
-					settings.content_element.removeClass(settings.show_class).addClass(settings.hide_class);
+				if (settings.hide_self) {
+					//var $this = $(this),
+					//	height = $this.height();
+					//$this.css("height", height + "px"); 
+					$self.fadeToggle(settings.delay - 100);
 				}
-				else {
-					content_height = settings.content_element.height();
-					settings.content_element.removeClass(settings.hide_class).addClass(settings.show_class);
-					setTimeout(function () {	
-						settings.content_element.css("height", content_height + "px");
-						if (settings.callback !== undefined) {
-							settings.callback(this);
-						}
-					}, settings.delay);
+				settings.content_element.slideToggle(settings.delay);
+				if (settings.callback !== undefined) {
+					settings.callback(this);
 				}
 			});
 		}
+
 		return this;
 	};
 }(jQuery));
@@ -37,6 +36,7 @@ var $cta_bar,
 	$help_content,
 	$btnchangeaddress,
 	$btncreateaddress,
+	$default_address_wrapper,
 	$additional_addresses,
 	footertop,
 	absoluteClassName = "absolute";
@@ -54,6 +54,7 @@ function SetGlobalVariables() {
 	$help_content = $("#help-content");
 	$btnchangeaddress = $("button.changeaddress");
 	$btncreateaddress = $("button.createaddress");
+	$default_address_wrapper = $("div.defaultaddress-wrapper");
 	$additional_addresses = $("div.additional-addresses");
 }
 
@@ -63,10 +64,13 @@ function WireEvents() {
 		UpdateCtaBar();
 	});
 	$btnchangeaddress.toggleContainer({
-		content_element: $additional_addresses
-		//,callback: UpdateCtaBar
+		content_element: $default_address_wrapper,
+		hide_self: false
+	}).toggleContainer({
+		content_element: $additional_addresses,
+		callback: UpdateCtaBar
 	});
-	
+
 	//$btnchangeaddress.on("click", function () {
 	//	var additional_addresses_height = $additional_addresses.height();
 	//	$additional_addresses.addClass("show");
