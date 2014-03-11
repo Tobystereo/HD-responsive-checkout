@@ -1,27 +1,7 @@
-<<<<<<< HEAD
-.thetoggler_speaks_for_the_DOMS {
-    @include transition ($transition);
-    overflow: hidden;
-}
-
-.hide {
-    position: absolute;
-    clip: rect(0,0,0,0);
-}
-
-.show {
-    position: relative;
-    clip: auto;
-    height: 0;
-}
-
-
-=======
 .hide {
     display: none;
 }
 
->>>>>>> FETCH_HEAD
 .checkout{
     display: block;
     display: -webkit-box;
@@ -41,9 +21,14 @@
     }
 
 	.logo {
+
+        @include outline;
         img {
+            height: 100%;
             max-height: $tapheight + em;
-            margin: 1em;
+            margin: 5px;
+            display: block;
+            max-width: 100%;
         }
 		text-align: left;
 	}
@@ -52,7 +37,7 @@
         a {
             border-bottom: none;
             padding: 0;
-            @include font-size(2);
+            @include font(1.5, $tapheight);
             @include line-height($tapheight);
             @include transition ($transition);
 
@@ -133,20 +118,23 @@
 
     .btn, .cta, button {
         @include rem-height($tapheight);
-        @include font(2.5, 5);
+
+        @include font(1, 2);
+
+        @media #{$large} {
+            @include font(2.5, 5);
+        }
+
     }
 
     .cta_bar {
         flex: 1 row 100%;
         left: 0;
-        z-index: 99;
-        position: fixed;
-        bottom: 0;
 
-        &.absolute {
-            position: absolute;
-            bottom: auto;
-        }
+//        &.absolute {
+//            position: absolute;
+//            bottom: auto;
+//        }
 
         @include rem-height($tapheight);
         background-color: $light;
@@ -156,10 +144,14 @@
         }
 
         .total {
-            @include font(2.5, 5);
+            @include font(2, 5);
+
+            @media #{$large} {
+                @include font(2.5, 5);
+            }
 
             &:before {
-                @include pseudo(6rem, 1em, "Total: ");
+                @include pseudo(6rem, 1, "Total: ");
                 margin-right: .6em;
 
             }

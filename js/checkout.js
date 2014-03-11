@@ -15,31 +15,15 @@
 
 		if (settings.content_element !== undefined) {
 			this.on(settings.firing_events, function () {
-<<<<<<< HEAD
-				var content_height;
-				if (settings.content_element.hasClass(settings.show_class)) {
-					settings.content_element.removeClass(settings.show_class).addClass(settings.hide_class);
-				}
-				else {
-					content_height = settings.content_element.height();
-					settings.content_element.removeClass(settings.hide_class).addClass(settings.show_class);
-					setTimeout(function () {
-						settings.content_element.css("height", content_height + "px");
-						if (settings.callback !== undefined) {
-							settings.callback(this);
-						}
-					}, settings.delay);
-=======
 				if (settings.hide_self) {
 					//var $this = $(this),
 					//	height = $this.height();
-					//$this.css("height", height + "px"); 
+					//$this.css("height", height + "px");
 					$self.fadeToggle(settings.delay - 100);
 				}
 				settings.content_element.slideToggle(settings.delay);
 				if (settings.callback !== undefined) {
 					settings.callback(this);
->>>>>>> FETCH_HEAD
 				}
 			});
 		}
