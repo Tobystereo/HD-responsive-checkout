@@ -1,4 +1,4 @@
-/********** PLUGINS **********/
+﻿/********** PLUGINS **********/
 (function ($) {
 	$.fn.toggleContainer = function (options) {
 		// Default options
@@ -10,18 +10,23 @@
 				show_class: "show",
 				hide_class: "hide",
 				firing_events: "click",
-				hide_self: true
+				toggle_self: true,
+				toggle_order: "before" /* before|after */
 			}, options);
 
 		if (settings.content_element !== undefined) {
 			this.on(settings.firing_events, function () {
-				if (settings.hide_self) {
-					//var $this = $(this),
-					//	height = $this.height();
-					//$this.css("height", height + "px");
+				// Toggle self (before)
+				if (settings.toggle_self && settings.toggle_order == "before") {
 					$self.fadeToggle(settings.delay - 100);
 				}
+				// Toggle continer
 				settings.content_element.slideToggle(settings.delay);
+				// Toggle self (after)
+				if (settings.toggle_self && settings.toggle_order == "after") {
+					$self.fadeToggle(settings.delay + 100);
+				}
+				// Fire Callback
 				if (settings.callback !== undefined) {
 					settings.callback(this);
 				}
@@ -38,6 +43,7 @@ var $cta_bar,
 	$btncreateaddress,
 	$default_address_wrapper,
 	$additional_addresses,
+	$new_address,
 	footertop,
 	absoluteClassName = "absolute";
 
@@ -56,63 +62,21 @@ function SetGlobalVariables() {
 	$btncreateaddress = $("button.createaddress");
 	$default_address_wrapper = $("div.defaultaddress-wrapper");
 	$additional_addresses = $("div.additional-addresses");
+	$new_address = $("form.new-address");
 }
 
 function WireEvents() {
 	/// <summary>Wire up control events</summary>
-	$(window).on("load scroll", function (event) {
-		UpdateCtaBar();
-	});
 	$btnchangeaddress.toggleContainer({
 		content_element: $default_address_wrapper,
-		hide_self: false
+		toggle_self: false
 	}).toggleContainer({
-		content_element: $additional_addresses,
-		callback: UpdateCtaBar
+		content_element: $additional_addresses
 	});
-
-	//$btnchangeaddress.on("click", function () {
-	//	var additional_addresses_height = $additional_addresses.height();
-	//	$additional_addresses.addClass("show");
-	//	setTimeout(function () {
-	//		$additional_addresses.css("height", additional_addresses_height + "px")
-	//	}, 1);
-
-	//	UpdateCtaBar();
-	//});
-}
-
-function UpdateCtaBar() {
-	/// <summary>Determines if the call to action bar should have the "sticky" behavior or not.</summary>
-	var scrollPos = window.scrollY,
-			windowheight = window.innerHeight,
-			scrollbottom = scrollPos + windowheight,
-			ctabarheight = $cta_bar.height(),
-			footertop = $help_content.position().top;
-
-	if (scrollbottom >= footertop + ctabarheight) {
-		// Remove the call to action bar's sticky behavior
-		MakeCtaBarAbsolute(absoluteClassName, footertop);
-	}
-	else {
-		MakeCtaBarSticky(absoluteClassName);
-	}
-}
-
-function MakeCtaBarSticky(absoluteClassName) {
-	if ($cta_bar.hasClass(absoluteClassName)) {
-		// Add the sticky behavior to the call to action bar
-		$cta_bar.removeClass(absoluteClassName).css({
-			"top": "auto"
-		});
-	}
-}
-
-function MakeCtaBarAbsolute(absoluteClassName, footertop) {
-	// Remove the call to action bar's sticky behavior
-	if (!$cta_bar.hasClass(absoluteClassName)) {
-		$cta_bar.addClass(absoluteClassName).css({
-			"top": footertop + "px"
-		});
-	}
+	$btncreateaddress.toggleContainer({
+		content_element: $default_address_wrapper,
+		toggle_self: false
+	}).toggleContainer({
+		content_element: $new_address
+	});
 }
