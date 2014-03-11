@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html>
 <head>
     <title>Hair Direct Checkout</title>
@@ -31,18 +31,21 @@
                         Do you want to use your default shipping address?
                     </p>
                     <div class="defaultaddress">
-                        <ul class="address-item readonly selected">
-                            <li>
-                                <p>Selected address</p>
-                                <span class="name">Mike Koser</span>
-                                <span class="company">HairDirect</span>
-                                <span class="street">765 Test Rd</span>,
-                                <span class="city">Lancaster</span>
-                                <span class="state">PA</span>
-                                <span class="zip">17603</span>
-                                <span class="country">United States</span>
-                                <span class="phone">+1-555-5555</span>
-                            </li>
+                        <ul class="grid readonly selected address-item">
+                            <li class="grid__item one-whole desk-one-half address-item readonly">
+                                <input type="radio" name="select-address" id="address0" value="address0" checked>
+                                <label for="address0">
+                                    Select this address
+                                    <span class="name">Ethan Koser</span>
+                                    <span class="street">123 A street</span>,
+                                    <span class="city">Mobile</span>
+                                    <span class="state">AK</span>
+                                    <span class="zip">88739</span>
+                                    <span class="country">United States</span>
+                                    <span class="phone">+1-222-333-4567</span>
+
+                                    <button id="thebutton">Edit</button>
+                                </label>
                         </ul>
                     </div>
                 </div>
@@ -60,7 +63,10 @@
                                 <span class="zip">88739</span>
                                 <span class="country">United States</span>
                                 <span class="phone">+1-222-333-4567</span>
+
+                                    <button id="thebutton">Edit</button>
                             </label>
+
                         </li>
                         <li class="grid__item one-third address-item readonly">
                             <input type="radio" name="select-address" id="address2" value="address2">
@@ -73,6 +79,8 @@
                                 <span class="zip">59519</span>
                                 <span class="country">Germany</span>
                                 <span class="phone">+49-555-555-5555</span>
+
+                                    <button id="thebutton">Edit</button>
                             </label>
                         </li>
                         <li class="grid__item one-third address-item readonly">
@@ -87,6 +95,8 @@
                                 <span class="zip">17603</span>
                                 <span class="country">United States</span>
                                 <span class="phone">+1-555-555-5555</span>
+
+                                    <button id="thebutton">Edit</button>
                             </label>
                         </li>
                     </ul>

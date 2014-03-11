@@ -1,4 +1,4 @@
-﻿//#region -- PLUGINS --
+//#region -- PLUGINS --
 
 (function ($) {
 	$.fn.toggleContainer = function (options) {
@@ -89,7 +89,7 @@ function WireEvents() {
 function ToggleShippingInstructionText() {
 	var defaultText = $shipping_address_instructions.attr("data-text"),
 		altText = $shipping_address_instructions.attr("data-alt-text");
-	
+
 	$shipping_address_instructions.text(($shipping_address_instructions.text().trim() == defaultText ? altText : defaultText));
 }
 
