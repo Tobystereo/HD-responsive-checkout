@@ -15,7 +15,7 @@
 			this.on(settings.firing_events, function () {
 				var content_height;
 				if (settings.content_element.hasClass(settings.show_class)) {
-					settings.content_element.removeClass(settings.show_class).addClass(setting.hide_class);
+					settings.content_element.removeClass(settings.show_class).addClass(settings.hide_class);
 				}
 				else {
 					content_height = settings.content_element.height();
