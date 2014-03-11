@@ -1,4 +1,4 @@
-﻿// Global Variables
+// Global Variables
 var $cta_bar,
 	$help_content,
 	$btnchangeaddress,
@@ -27,7 +27,10 @@ function WireEvents() {
 		UpdateCtaBar();
 	});
 	$btnchangeaddress.on("click", function () {
-		$additional_addresses.removeClass("hidden");
+        var additional_addresses_height = $additional_addresses.height();
+		$additional_addresses.addClass("show");
+        $additional_addresses.delay(5000).css("height", additional_addresses_height + "px");
+
 		UpdateCtaBar();
 	});
 	$btnchangeaddress.on("click", function () {
@@ -43,7 +46,7 @@ function UpdateCtaBar() {
 			ctabarheight = $cta_bar.height(),
 			footertop = $help_content.position().top;
 
-	if (scrollbottom >= footertop) {
+	if (scrollbottom >= footertop+ctabarheight) {
 		// Remove the call to action bar's sticky behavior
 		if (!$cta_bar.hasClass(absoluteClassName)) {
 			$cta_bar.addClass(absoluteClassName).css({

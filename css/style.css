@@ -1,4 +1,5 @@
-﻿/*------------------------------------*\
+@charset "UTF-8";
+/*------------------------------------*\
     STYLE.CSS
 \*------------------------------------*/
 /*
@@ -15,7 +16,7 @@
     VARS.SCSS
 \*------------------------------------*/
 /**
- * Any variables you find set in inuit.cssâ€™ `_vars.scss` that you do not wish to
+ * Any variables you find set in inuit.css’ `_vars.scss` that you do not wish to
  * keep, simply redefine here. This means that if inuit.css, for example, sets
  * your `$base-font-size` at 16px and you wish it to be 14px, simply redeclare
  * that variable in this file. inuit.css ignores its own variables in favour of
@@ -26,7 +27,7 @@
     $OBJECTS-AND-ABSTRACTIONS
 \*------------------------------------*/
 /**
- * All of inuit.cssâ€™ objects and abstractions are initially turned off by
+ * All of inuit.css’ objects and abstractions are initially turned off by
  * default. This means that you start any project with as little as possible,
  * and introducing objects and abstractions is as simple as switching the
  * following variables to `true`.
@@ -35,7 +36,7 @@
     $OVERRIDES
 \*------------------------------------*/
 /**
- * Place any variables that should override inuit.cssâ€™ defaults here.
+ * Place any variables that should override inuit.css’ defaults here.
  */
 /*------------------------------------*\
     $CUSTOM
@@ -44,6 +45,7 @@
  * Place any of your own variables that sit on top of inuit.css here.
  */
 /* MEDIA QUERIES */
+/* Animations and Transitions */
 /*------------------------------------*\
     INUIT.CSS
 \*------------------------------------*/
@@ -98,7 +100,7 @@
     $CONTENTS
 \*------------------------------------*/
 /**
- * CONTENTS............Youâ€™re reading it!
+ * CONTENTS............You’re reading it!
  * WARNING.............Here be dragons!
  * IMPORTS.............Begin importing the sections below
  *
@@ -176,7 +178,7 @@
     $DEFAULTS
 \*------------------------------------*/
 /**
- * inuit.cssâ€™ default variables. Redefine these in your `_vars.scss` file (found
+ * inuit.css’ default variables. Redefine these in your `_vars.scss` file (found
  * in the inuit.css-web-template) to override them.
  */
 /*------------------------------------*\
@@ -203,7 +205,7 @@
  * Base font-family.
  */
 /**
- * Default colour for objectsâ€™ borders etc.
+ * Default colour for objects’ borders etc.
  */
 /*------------------------------------*\
     $RESPONSIVE
@@ -241,7 +243,7 @@
  * English quote marks?
  */
 /**
- * If you want English quotes then please do not edit these; theyâ€™re only here
+ * If you want English quotes then please do not edit these; they’re only here
  * because Sass needs them.
  */
 /**
@@ -360,11 +362,11 @@
 /**
  * Media query mixin.
  *
- * Itâ€™s not great practice to define solid breakpoints up-front, preferring to
- * modify your design when it needs it, rather than assuming youâ€™ll want a
- * change at â€˜mobileâ€™. However, as inuit.css is required to take a hands off
+ * It’s not great practice to define solid breakpoints up-front, preferring to
+ * modify your design when it needs it, rather than assuming you’ll want a
+ * change at ‘mobile’. However, as inuit.css is required to take a hands off
  * approach to design decisions, this is the closest we can get to baked-in
- * responsiveness. Itâ€™s flexible enough to allow you to set your own breakpoints
+ * responsiveness. It’s flexible enough to allow you to set your own breakpoints
  * but solid enough to be frameworkified.
  *
  * We define some broad breakpoints in our vars file that are picked up here
@@ -390,13 +392,26 @@
 /*
  * Correct `block` display not defined in IE 8/9.
  */
-article, aside, details, figcaption, figure, footer, header, hgroup, main, nav, section, summary {
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+main,
+nav,
+section,
+summary {
   display: block; }
 
 /*
  * Correct `inline-block` display not defined in IE 8/9.
  */
-audio, canvas, video {
+audio,
+canvas,
+video {
   display: inline-block; }
 
 /*
@@ -447,7 +462,8 @@ a:focus {
 /*
  * Improve readability when focused and also mouse hovered in all browsers.
  */
-a:active, a:hover {
+a:active,
+a:hover {
   outline: 0; }
 
 /* ==========================================================================
@@ -470,7 +486,8 @@ abbr[title] {
 /*
  * Address style set to `bolder` in Firefox 4+, Safari 5, and Chrome.
  */
-b, strong {
+b,
+strong {
   font-weight: bold; }
 
 /*
@@ -497,7 +514,10 @@ mark {
 /*
  * Correct font family set oddly in Safari 5 and Chrome.
  */
-code, kbd, pre, samp {
+code,
+kbd,
+pre,
+samp {
   font-family: monospace, serif;
   font-size: 1em; }
 
@@ -522,7 +542,8 @@ small {
 /*
  * Prevent `sub` and `sup` affecting `line-height` in all browsers.
  */
-sub, sup {
+sub,
+sup {
   font-size: 75%;
   line-height: 0;
   position: relative;
@@ -584,7 +605,10 @@ legend {
  * 2. Correct font size not being inherited in all browsers.
  * 3. Address margins set differently in Firefox 4+, Safari 5, and Chrome.
  */
-button, input, select, textarea {
+button,
+input,
+select,
+textarea {
   font-family: inherit;
   /* 1 */
   font-size: 100%;
@@ -596,7 +620,8 @@ button, input, select, textarea {
  * Address Firefox 4+ setting `line-height` on `input` using `!important` in
  * the UA stylesheet.
  */
-button, input {
+button,
+input {
   line-height: normal; }
 
 /*
@@ -605,7 +630,8 @@ button, input {
  * Correct `button` style inheritance in Chrome, Safari 5+, and IE 8+.
  * Correct `select` style inheritance in Firefox 4+ and Opera.
  */
-button, select {
+button,
+select {
   text-transform: none; }
 
 /*
@@ -615,7 +641,10 @@ button, select {
  * 3. Improve usability and consistency of cursor style between image-type
  *    `input` and others.
  */
-button, html input[type="button"], input[type="reset"], input[type="submit"] {
+button,
+html input[type="button"],
+input[type="reset"],
+input[type="submit"] {
   -webkit-appearance: button;
   /* 2 */
   cursor: pointer;
@@ -624,14 +653,16 @@ button, html input[type="button"], input[type="reset"], input[type="submit"] {
 /*
  * Re-set default cursor for disabled elements.
  */
-button[disabled], html input[disabled] {
+button[disabled],
+html input[disabled] {
   cursor: default; }
 
 /*
  * 1. Address box sizing set to `content-box` in IE 8/9.
  * 2. Remove excess padding in IE 8/9.
  */
-input[type="checkbox"], input[type="radio"] {
+input[type="checkbox"],
+input[type="radio"] {
   box-sizing: border-box;
   /* 1 */
   padding: 0;
@@ -654,13 +685,15 @@ input[type="search"] {
  * Remove inner padding and search cancel button in Safari 5 and Chrome
  * on OS X.
  */
-input[type="search"]::-webkit-search-cancel-button, input[type="search"]::-webkit-search-decoration {
+input[type="search"]::-webkit-search-cancel-button,
+input[type="search"]::-webkit-search-decoration {
   -webkit-appearance: none; }
 
 /*
  * Remove inner padding and border in Firefox 4+.
  */
-button::-moz-focus-inner, input::-moz-focus-inner {
+button::-moz-focus-inner,
+input::-moz-focus-inner {
   border: 0;
   padding: 0; }
 
@@ -692,8 +725,8 @@ table {
  * As per: csswizardry.com/2011/10/reset-restarted
  */
 /**
-    * Letâ€™s make the box model all nice, shall we...?
-    */
+* Let’s make the box model all nice, shall we...?
+*/
 *, *:before, *:after {
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
@@ -704,7 +737,12 @@ table {
 /**
  * The usual...
  */
-h1, h2, h3, h4, h5, h6, p, blockquote, pre, dl, dd, ol, ul, form, fieldset, legend, table, th, td, caption, hr {
+h1, h2, h3, h4, h5, h6,
+p, blockquote, pre,
+dl, dd, ol, ul,
+form, fieldset, legend,
+table, th, td, caption,
+hr {
   margin: 0;
   padding: 0; }
 
@@ -727,7 +765,7 @@ ins {
   border-bottom: 1px solid; }
 
 /**
- * So that `alt` text is visually offset if images donâ€™t load.
+ * So that `alt` text is visually offset if images don’t load.
  */
 img {
   font-style: italic; }
@@ -735,10 +773,18 @@ img {
 /**
  * Give form elements some cursor interactions...
  */
-label, input, textarea, button, select, option {
+label,
+input,
+textarea,
+button,
+select,
+option {
   cursor: pointer; }
 
-.text-input:active, .text-input:focus, textarea:active, textarea:focus {
+.text-input:active,
+.text-input:focus,
+textarea:active,
+textarea:focus {
   cursor: text;
   outline: none; }
 
@@ -750,7 +796,8 @@ label, input, textarea, button, select, option {
  * Extend the clearfix class with Sass to avoid the `.cf` class appearing over
  * and over in your markup.
  */
-.cf:after, .nav:after, .media:after, .island:after, .islet:after, .matrix:after, .multi-list:after, .stat-group:after {
+.cf:after, .nav:after, .media:after, .island:after,
+.islet:after, .matrix:after, .multi-list:after, .stat-group:after {
   content: "";
   display: table;
   clear: both; }
@@ -766,10 +813,27 @@ label, input, textarea, button, select, option {
 /**
  * Base elements
  */
-.form-fields > li {
+h1, h2, h3, h4, h5, h6, hgroup,
+ul, ol, dl,
+blockquote, p, address,
+table,
+fieldset, figure,
+pre,
+.form-fields > li,
+.media,
+.island,
+.islet {
   margin-bottom: 24px;
   margin-bottom: 1.5rem; }
-  .islet .form-fields > li {
+  .islet h1, .islet h2, .islet h3, .islet h4, .islet h5, .islet h6, .islet hgroup, .islet
+  ul, .islet ol, .islet dl, .islet
+  blockquote, .islet p, .islet address, .islet
+  table, .islet
+  fieldset, .islet figure, .islet
+  pre, .islet .form-fields > li, .islet
+  .media, .islet
+  .island, .islet
+  .islet {
     margin-bottom: 12px;
     margin-bottom: 0.75rem; }
 
@@ -857,7 +921,6 @@ h6, .zeta {
    </hgroup>
  *
  */
-
 hgroup .hN {
   margin-bottom: 0; }
 
@@ -887,7 +950,8 @@ hgroup .hN {
  * The `.lede` class is used to make the introductory text (usually a paragraph)
  * of a document slightly larger.
  */
-.lede, .lead {
+.lede,
+.lead {
   font-size: 18px;
   font-size: 1.125rem;
   line-height: 1.33333; }
@@ -898,7 +962,8 @@ hgroup .hN {
 /**
  * A series of classes for setting tiny type; for use in smallprint etc.
  */
-.smallprint, .milli {
+.smallprint,
+.milli {
   font-size: 12px;
   font-size: 0.75rem;
   line-height: 2; }
@@ -964,8 +1029,8 @@ blockquote {
  */
 blockquote {
   /**
-     * .4em is roughly equal to the width of the opening â€œ that we wish to hang.
-     */
+   * .4em is roughly equal to the width of the opening “ that we wish to hang.
+   */
   text-indent: -0.41em; }
   blockquote p:last-of-type {
     margin-bottom: 0; }
@@ -998,8 +1063,8 @@ pre mark {
  */
 .code-comment {
   /**
-     * Override this setting in your theme stylesheet
-     */
+   * Override this setting in your theme stylesheet
+   */
   opacity: 0.75;
   filter: alpha(opacity=75); }
 
@@ -1022,7 +1087,7 @@ pre mark {
  *
  * 1. Make the list look like code.
  * 2. Give the list flush numbers with a leading zero.
- * 3. Make sure lines of code donâ€™t wrap.
+ * 3. Make sure lines of code don’t wrap.
  * 4. Give the code form by forcing the `code` to honour white-space.
  */
 .line-numbers {
@@ -1055,7 +1120,8 @@ img {
 /**
  * Non-fluid images if you specify `width` and/or `height` attributes.
  */
-img[width], img[height] {
+img[width],
+img[height] {
   max-width: none; }
 
 /**
@@ -1110,7 +1176,8 @@ figure > img {
 /**
  * Remove vertical spacing from nested lists.
  */
-li > ul, li > ol {
+li > ul,
+li > ol {
   margin-bottom: 0; }
 
 /**
@@ -1180,11 +1247,13 @@ li > ul, li > ol {
 table {
   width: 100%; }
 
-th, td {
+th,
+td {
   padding: 6px;
   text-align: left; }
   @media screen and (min-width: 480px) {
-    th, td {
+    th,
+    td {
       padding: 12px; } }
 
 /**
@@ -1298,9 +1367,11 @@ th, td {
 /**
  * Bordered tables
  */
-.table--bordered th, .table--bordered td {
-  border: 1px solid #ccc; }
-  .table--bordered th:empty, .table--bordered td:empty {
+.table--bordered th,
+.table--bordered td {
+  border: 1px solid #cccccc; }
+  .table--bordered th:empty,
+  .table--bordered td:empty {
     border: none; }
 .table--bordered thead tr:last-child th {
   border-bottom-width: 2px; }
@@ -1341,6 +1412,11 @@ fieldset {
    <input type=password class=text-input>
  *
  */
+.text-input,
+textarea {
+  /**
+   * Style these via your theme stylesheet.
+   */ }
 
 /**
  * Group sets of form fields in a list, e.g.:
@@ -1364,7 +1440,6 @@ fieldset {
 .form-fields {
   list-style: none;
   margin: 0; }
-
 
 .form-fields > li:last-child {
   margin-bottom: 0; }
@@ -1395,15 +1470,16 @@ fieldset {
    </li>
  *
  */
-label, .label {
+label,
+.label {
   display: block; }
 
 /**
-     * Extra help text in `label`s, e.g.:
-     *
-       <label>Card number <small class=additional>No spaces</small></label>
-     *
-     */
+ * Extra help text in `label`s, e.g.:
+ *
+   <label>Card number <small class=additional>No spaces</small></label>
+ *
+ */
 .additional {
   display: block;
   font-weight: normal; }
@@ -1428,9 +1504,11 @@ label, .label {
   margin: 0; }
 
 /*
-     * Labels in check-lists
-     */
-.check-label, .check-list label, .check-list .label {
+ * Labels in check-lists
+ */
+.check-label,
+.check-list label,
+.check-list .label {
   display: inline-block; }
 
 /**
@@ -1460,7 +1538,7 @@ label, .label {
    <small class=extra-help>.edu emails only</small>
  *
  * We leave the help text in the document flow and merely set it to
- * `visibility:hidden;`. This means that it wonâ€™t interfere with anything once
+ * `visibility:hidden;`. This means that it won’t interfere with anything once
  * it reappears.
  *
  */
@@ -1469,7 +1547,8 @@ label, .label {
   display: inline-block;
   visibility: hidden; }
 
-.text-input:active + .extra-help, .text-input:focus + .extra-help {
+.text-input:active + .extra-help,
+.text-input:focus + .extra-help {
   visibility: visible; }
 
 /**
@@ -1517,14 +1596,14 @@ label, .label {
   margin-bottom: 0; }
 
 /**
-     * Very infrequently occuring grid wrappers as children of grid wrappers.
-     */
+ * Very infrequently occuring grid wrappers as children of grid wrappers.
+ */
 .grid > .grid {
   margin-left: 0; }
 
 /**
-     * Grid
-     */
+ * Grid
+ */
 .grid__item {
   display: inline-block;
   width: 100%;
@@ -1560,7 +1639,7 @@ label, .label {
        </div>
    </div>
  *
- * Itâ€™s pretty poorly named Iâ€™m afraid, but it works...
+ * It’s pretty poorly named I’m afraid, but it works...
  *
  * Demo: jsfiddle.net/inuitcss/ufUh2
  *
@@ -1647,7 +1726,8 @@ html.flexbox {
 .nav {
   list-style: none;
   margin-left: 0; }
-  .nav > li, .nav > li > a {
+  .nav > li,
+  .nav > li > a {
     display: inline-block;
     *display: inline;
     zoom: 1; }
@@ -1696,15 +1776,15 @@ html.flexbox {
 .nav--block, .options {
   line-height: 1;
   /**
-     * Remove whitespace caused by `inline-block`.
-     */
+   * Remove whitespace caused by `inline-block`.
+   */
   letter-spacing: -0.31em;
   word-spacing: -0.43em;
   white-space: nowrap; }
-  .nav--block > li, .nav--block > .options {
+  .nav--block > li, .options > li {
     letter-spacing: normal;
     word-spacing: normal; }
-    .nav--block > li > a, .nav--block > li > .options {
+    .nav--block > li > a, .options > li > a {
       padding: 12px; }
 
 /**
@@ -1744,7 +1824,7 @@ html.flexbox {
 \*------------------------------------*/
 /**
  * Link-group nav, used for displaying related options. Extends `.nav--block`
- * but could also extend `.nav--fit`. Extend with colours and â€˜current statesâ€™
+ * but could also extend `.nav--fit`. Extend with colours and ‘current states’
  * in your theme stylesheet.
  *
   <ul class="nav  options">
@@ -1758,7 +1838,7 @@ html.flexbox {
  *
  */
 .options > li > a {
-  border: 0 solid #ccc;
+  border: 0 solid #cccccc;
   border-width: 1px;
   border-left-width: 0; }
 .options > li:first-child > a {
@@ -1795,8 +1875,8 @@ html.flexbox {
 .pagination {
   text-align: center;
   /**
-     * Remove whitespace caused by `inline-block`.
-     */
+   * Remove whitespace caused by `inline-block`.
+   */
   letter-spacing: -0.31em;
   word-spacing: -0.43em; }
 
@@ -1893,24 +1973,26 @@ html.flexbox {
   margin-right: 24px; }
 
 /**
-     * Reversed image location (right instead of left).
-     */
+ * Reversed image location (right instead of left).
+ */
 .media__img--rev {
   float: right;
   margin-left: 24px; }
 
-.media__img img, .media__img--rev img {
+.media__img img,
+.media__img--rev img {
   display: block; }
 
 .media__body {
   overflow: hidden; }
 
-.media__body, .media__body > :last-child {
+.media__body,
+.media__body > :last-child {
   margin-bottom: 0; }
 
 /**
-     * `.img`s in `.islet`s need an appropriately sized margin.
-     */
+ * `.img`s in `.islet`s need an appropriately sized margin.
+ */
 .islet .media__img {
   margin-right: 12px; }
 
@@ -1938,26 +2020,29 @@ html.flexbox {
   line-height: 2; }
 
 /**
- * Wait for a certain breakpoint to trigger â€˜proper' marginalia. Up to this point,
+ * Wait for a certain breakpoint to trigger ‘proper' marginalia. Up to this point,
  * marginalia are inline with the other text.
  */
 @media (min-width: 1024px) {
-  /**
-     * Align marginalia to the right of the text.
-     */
   .marginalia {
     position: relative; }
-  .marginalia__body, .marginalia__body--right {
+
+  .marginalia__body,
+  .marginalia__body--right {
     position: absolute; }
+
   .marginalia__body {
     right: 100%;
     padding-right: 24px;
     text-align: right; }
+
+  /**
+   * Align marginalia to the right of the text.
+   */
   .marginalia__body--right {
     left: 100%;
     padding-left: 24px;
     text-align: left; } }
-
 /*------------------------------------*\
     $ISLAND
 \*------------------------------------*/
@@ -1972,13 +2057,15 @@ html.flexbox {
  * Demo: jsfiddle.net/inuitcss/u8pV3
  *
  */
-.island, .islet {
+.island,
+.islet {
   display: block; }
 
 .island {
   padding: 24px; }
 
-.island > :last-child, .islet > :last-child {
+.island > :last-child,
+.islet > :last-child {
   margin-bottom: 0; }
 
 /**
@@ -2005,14 +2092,16 @@ html.flexbox {
  * Demo: jsfiddle.net/inuitcss/hR57q
  *
  */
-.block-list, .matrix, .block-list > li, .block-list > .matrix {
-  border: 0 solid #ccc; }
+.block-list, .matrix,
+.block-list > li,
+.matrix > li {
+  border: 0 solid #cccccc; }
 
 .block-list, .matrix {
   list-style: none;
   margin-left: 0;
   border-top-width: 1px; }
-  .block-list > li, .block-list > .matrix {
+  .block-list > li, .matrix > li {
     border-bottom-width: 1px;
     padding: 12px; }
 
@@ -2046,7 +2135,6 @@ html.flexbox {
     float: left;
     border-right-width: 1px; }
 
-
 /**
  * The `.multi-list` object is a lot like the `.matrix` object only without the
  * blocky borders and padding.
@@ -2069,9 +2157,9 @@ html.flexbox {
   float: left; }
 
 /**
-     * Apply these classes alongside the `.matrix` or `.multi-list` classes on
-     * lists to determine how wide their columns are.
-     */
+ * Apply these classes alongside the `.matrix` or `.multi-list` classes on
+ * lists to determine how wide their columns are.
+ */
 .two-cols > li {
   width: 50%; }
 
@@ -2085,10 +2173,11 @@ html.flexbox {
   width: 20%; }
 
 /**
-     * Unfortunately we have to qualify this selector in order to bring its
-     * specificity above the `.[number]-cols > li` selectors above.
-     */
-.matrix > .all-cols, .multi-list > .all-cols {
+ * Unfortunately we have to qualify this selector in order to bring its
+ * specificity above the `.[number]-cols > li` selectors above.
+ */
+.matrix > .all-cols,
+.multi-list > .all-cols {
   width: 100%; }
 
 /*------------------------------------*\
@@ -2111,7 +2200,7 @@ html.flexbox {
        <li class=first><b class=split__title>1st place</b> Bob</li>
        <li class=second><b class=split__title>2nd place</b> Lilly</li>
        <li class=third><b class=split__title>3rd place</b> Ted</li>
-   </ol>â€‹
+   </ol>​
  *
  * Demo: jsfiddle.net/inuitcss/9gZW7
  *
@@ -2155,7 +2244,8 @@ html.flexbox {
   width: 100%;
   text-align: center; }
 
-.this-or-this__this, .this-or-this__or {
+.this-or-this__this,
+.this-or-this__or {
   display: table-cell;
   vertical-align: middle; }
 
@@ -2176,10 +2266,15 @@ html.flexbox {
  * Demo: jsfiddle.net/inuitcss/rt9M3
  *
  */
-.link-complex, .link-complex:hover, .link-complex:active, .link-complex:focus {
+.link-complex,
+.link-complex:hover,
+.link-complex:active,
+.link-complex:focus {
   text-decoration: none; }
 
-.link-complex:hover .link-complex__target, .link-complex:active .link-complex__target, .link-complex:focus .link-complex__target {
+.link-complex:hover .link-complex__target,
+.link-complex:active .link-complex__target,
+.link-complex:focus .link-complex__target {
   text-decoration: underline; }
 
 /*------------------------------------*\
@@ -2202,36 +2297,38 @@ html.flexbox {
  * Demo: jsfiddle.net/inuitcss/B52HG
  *
  */
-.flyout, .flyout--alt {
+.flyout,
+.flyout--alt {
   position: relative;
   overflow: hidden; }
 
 .flyout__content {
   /**
-         * Position the flyouts off-screen. This is typically better than
-         * `display:none;`.
-         */
+   * Position the flyouts off-screen. This is typically better than
+   * `display:none;`.
+   */
   position: absolute;
   top: 100%;
   left: -99999px; }
 
 /**
-     * Bring the flyouts into view when you hover their parents.
-     * Two different types of flyout; â€˜regularâ€™ (`.flyout`) and â€˜alternativeâ€™
-     * (`.flyout--alt`).
-     */
-.flyout:hover, .flyout--alt:hover {
+ * Bring the flyouts into view when you hover their parents.
+ * Two different types of flyout; ‘regular’ (`.flyout`) and ‘alternative’
+ * (`.flyout--alt`).
+ */
+.flyout:hover,
+.flyout--alt:hover {
   overflow: visible; }
 
 /**
-     * Regular flyouts sit all the way from the top, flush left.
-     */
+ * Regular flyouts sit all the way from the top, flush left.
+ */
 .flyout:hover > .flyout__content {
   left: 0; }
 
 /**
-     * Alternative flyouts sit all the way from the left, flush top.
-     */
+ * Alternative flyouts sit all the way from the left, flush top.
+ */
 .flyout--alt:hover > .flyout__content {
   top: 0;
   left: 100%; }
@@ -2247,25 +2344,14 @@ html.flexbox {
 /**
  * Forms the basis for any/all CSS arrows.
  */
-
 /**
  * Define individual edges so we can combine what we need, when we need.
  */
-
-
-
-
-
-
-
-
-
-
 /*------------------------------------*\
     $SPRITE
 \*------------------------------------*/
 /**
- * Giving an element a class of `.sprite` will throw it into â€˜spriteâ€™ mode and apply
+ * Giving an element a class of `.sprite` will throw it into ‘sprite’ mode and apply
  * a background image e.g.:
  *
    <a class="sprite  sprite--question-mark">More info&hellip;</a>
@@ -2274,13 +2360,13 @@ html.flexbox {
  *
    <a href=#><i class="sprite  sprite--question-mark"></i> Help and FAQ</a>
  *
- * Giving an element a class of `.icon` will throw it into â€˜iconâ€™ mode and will
+ * Giving an element a class of `.icon` will throw it into ‘icon’ mode and will
  * not add a background, but should be used for icon fonts and is populated
  * through a `data-icon` attribute and the `:after` pseudo-element, e.g.:
  *
    <a href=#><i class=icon data-icon="&#xF000;"></i> View your favourites</a>
  *
- * Where â€˜&#xF000;â€™ might map to a star in your particular icon font.
+ * Where ‘&#xF000;’ might map to a star in your particular icon font.
  *
  * These all require extension in your theme stylesheet, e.g. in your own CSS:
  *
@@ -2293,33 +2379,34 @@ html.flexbox {
  * Demo: jsfiddle.net/inuitcss/6TKuS
  *
  */
-.sprite, .icon {
+.sprite,
+.icon {
   display: inline-block;
   line-height: 1;
   position: relative;
   vertical-align: middle;
   zoom: 1;
   /**
-     * So using `.icon` on certain elements doesnâ€™t make a visual difference.
-     */
+   * So using `.icon` on certain elements doesn’t make a visual difference.
+   */
   font-style: normal;
   font-weight: normal;
   /**
-     * So icons added using `.icon` sit in the centre of the element.
-     */
+   * So icons added using `.icon` sit in the centre of the element.
+   */
   text-align: center; }
 
 .sprite {
   /**
-     * The typical size of most icons. Override in your theme stylesheet.
-     */
+   * The typical size of most icons. Override in your theme stylesheet.
+   */
   width: 16px;
   height: 16px;
   top: -1px;
   /*
-     * H5BP method image replacement:
-     * github.com/h5bp/html5-boilerplate/commit/adecc5da035d6d76b77e3fa95c6abde841073da2
-     */
+   * H5BP method image replacement:
+   * github.com/h5bp/html5-boilerplate/commit/adecc5da035d6d76b77e3fa95c6abde841073da2
+   */
   overflow: hidden;
   *text-indent: -9999px; }
   .sprite:before {
@@ -2334,8 +2421,8 @@ html.flexbox {
 .icon {
   font-size: 16px;
   /**
-     * Place the icon in a box the exact same dimensions as the icon itself.
-     */
+   * Place the icon in a box the exact same dimensions as the icon itself.
+   */
   width: 1em;
   height: 1em; }
   .icon:before {
@@ -2427,11 +2514,11 @@ html.flexbox {
  * 4. Make buttons inherit font styles.
  * 5. Force all elements using beautons to appear clickable.
  * 6. Normalise box model styles.
- * 7. If the buttonâ€™s text is 1em, and the button is (3 * font-size) tall, then
+ * 7. If the button’s text is 1em, and the button is (3 * font-size) tall, then
  *    there is 1em of space above and below that text. We therefore apply 1em
  *    of space to the left and right, as padding, to keep consistent spacing.
  * 8. Basic cosmetics for default buttons. Change or override at will.
- * 9. Donâ€™t allow buttons to have underlines; it kinda ruins the illusion.
+ * 9. Don’t allow buttons to have underlines; it kinda ruins the illusion.
  */
 .btn {
   display: inline-block;
@@ -2496,7 +2583,7 @@ html.flexbox {
 /**
  * These buttons will fill the entirety of their container.
  *
- * 1. Remove padding so that widths and paddings donâ€™t conflict.
+ * 1. Remove padding so that widths and paddings don’t conflict.
  */
 .btn--full {
   width: 100%;
@@ -2537,9 +2624,6 @@ html.flexbox {
 /**
  * Button function modifiers.
  */
-
-
-
 /**
  * Positive actions; e.g. sign in, purchase, submit, etc.
  */
@@ -2559,7 +2643,10 @@ html.flexbox {
  * 
  * 1. Make the button look like normal text when hovered.
  */
-.btn--inactive, .btn--inactive:hover, .btn--inactive:active, .btn--inactive:focus {
+.btn--inactive,
+.btn--inactive:hover,
+.btn--inactive:active,
+.btn--inactive:focus {
   background-color: #ddd;
   color: #777;
   cursor: text;
@@ -2598,23 +2685,23 @@ html.flexbox {
 .pill, .loz {
   display: inline-block;
   /**
-     * These numbers set in ems mean that, at its narrowest, a lozenge will be
-     * the same width as the `line-height` set on the `html` element.
-     * This allows us to use the `.loz` in almost any `font-size` we wish.
-     */
-  min-width: 1em;
+   * These numbers set in ems mean that, at its narrowest, a lozenge will be
+   * the same width as the `line-height` set on the `html` element.
+   * This allows us to use the `.loz` in almost any `font-size` we wish.
+   */
+  min-width: 1.0em;
   padding-right: 0.25em;
   padding-left: 0.25em;
   /* =1.50em */
   text-align: center;
-  background-color: #ccc;
+  background-color: #cccccc;
   color: #fff;
   /* Override this color in your theme stylesheet */
   /**
-     * Normally weâ€™d use border-radius:100%; but instead here we just use an
-     * overly large number; `border-radius:100%;` would create an oval on
-     * non-square elements whereas we just want to round the ends of an element.
-     */
+   * Normally we’d use border-radius:100%; but instead here we just use an
+   * overly large number; `border-radius:100%;` would create an oval on
+   * non-square elements whereas we just want to round the ends of an element.
+   */
   border-radius: 100px; }
 
 .loz {
@@ -2630,7 +2717,7 @@ html.flexbox {
  *
  */
 .rule {
-  color: #ccc;
+  color: #cccccc;
   border: none;
   border-bottom-width: 1px;
   border-bottom-style: solid;
@@ -2650,16 +2737,16 @@ html.flexbox {
   border-bottom-style: dashed; }
 
 /**
- * Ornamental rules. Places a Â§ over the rule.
+ * Ornamental rules. Places a § over the rule.
  */
 .rule--ornament {
   position: relative;
   /**
-    * Pass in an arbitrary ornament though a data attribute, e.g.:
-    *
-      <hr class="rule  rule--ornament" data-ornament="!">
-    *
-    */ }
+  * Pass in an arbitrary ornament though a data attribute, e.g.:
+  *
+    <hr class="rule  rule--ornament" data-ornament="!">
+  *
+  */ }
   .rule--ornament:after {
     content: "\00A7";
     position: absolute;
@@ -2672,10 +2759,10 @@ html.flexbox {
     content: attr(data-ornament); }
 
 /*------------------------------------*\
-     $STATS
- \*------------------------------------*/
-/**
-  * Simple object to display keyâ€“value statistic-like information, e.g.:
+    $STATS
+\*------------------------------------*/
+ /**
+  * Simple object to display key–value statistic-like information, e.g.:
   *
     <div class=stat-group>
         <dl class=stat>
@@ -2749,13 +2836,14 @@ html.flexbox {
  * The beauty of combining the greyboxing with inuit.css objects is that any
  * prototyping can quickly be converted into/used as production code.
  *
- * For a more complete prototyping framework, consider Adam Whitcroftâ€™s Proto:
+ * For a more complete prototyping framework, consider Adam Whitcroft’s Proto:
  * adamwhitcroft.com/proto
  *
  * Demo: jsfiddle.net/inuitcss/qCXfh/
  *
  */
-.greybox, .graybox {
+.greybox,
+.graybox {
   font-size: 12px;
   font-size: 0.75rem;
   line-height: 2;
@@ -2764,27 +2852,33 @@ html.flexbox {
   background-color: rgba(0, 0, 0, 0.2);
   color: #fff; }
 
-.greybox a, .graybox a {
+.greybox a,
+.graybox a {
   color: #fff;
   text-decoration: underline; }
 
 /**
- * All greyboxes will occupy 100% of their parentâ€™s width, but to alter their
+ * All greyboxes will occupy 100% of their parent’s width, but to alter their
  * heights we apply incrementally larger line-heights:
  */
-.greybox--small, .graybox--small {
+.greybox--small,
+.graybox--small {
   line-height: 48px; }
 
-.greybox--medium, .graybox--medium {
+.greybox--medium,
+.graybox--medium {
   line-height: 96px; }
 
-.greybox--large, .graybox--large {
+.greybox--large,
+.graybox--large {
   line-height: 192px; }
 
-.greybox--huge, .graybox--huge {
+.greybox--huge,
+.graybox--huge {
   line-height: 384px; }
 
-.greybox--gigantic, .graybox--gigantic {
+.greybox--gigantic,
+.graybox--gigantic {
   line-height: 768px; }
 
 /**
@@ -2802,20 +2896,20 @@ html.flexbox {
  * variations.
  */
 /**
-    * Whole
-    */
+* Whole
+*/
 .one-whole {
   width: 100%; }
 
 /**
-    * Halves
-    */
+* Halves
+*/
 .one-half, .two-quarters, .three-sixths, .four-eighths, .five-tenths, .six-twelfths {
   width: 50%; }
 
 /**
-    * Thirds
-    */
+* Thirds
+*/
 .one-third, .two-sixths, .four-twelfths {
   width: 33.333%; }
 
@@ -2823,18 +2917,17 @@ html.flexbox {
   width: 66.666%; }
 
 /**
-    * Quarters
-    */
+* Quarters
+*/
 .one-quarter, .two-eighths, .three-twelfths {
   width: 25%; }
-
 
 .three-quarters, .six-eighths, .nine-twelfths {
   width: 75%; }
 
 /**
-    * Fifths
-    */
+* Fifths
+*/
 .one-fifth, .two-tenths {
   width: 20%; }
 
@@ -2848,478 +2941,570 @@ html.flexbox {
   width: 80%; }
 
 /**
-    * Sixths
-    */
+* Sixths
+*/
 .one-sixth, .two-twelfths {
   width: 16.666%; }
-
-
-
 
 .five-sixths, .ten-twelfths {
   width: 83.333%; }
 
 /**
-    * Eighths
-    */
+* Eighths
+*/
 .one-eighth {
   width: 12.5%; }
-
 
 .three-eighths {
   width: 37.5%; }
 
-
 .five-eighths {
   width: 62.5%; }
-
 
 .seven-eighths {
   width: 87.5%; }
 
 /**
-    * Tenths
-    */
+* Tenths
+*/
 .one-tenth {
   width: 10%; }
-
 
 .three-tenths {
   width: 30%; }
 
-
-
-
 .seven-tenths {
   width: 70%; }
-
 
 .nine-tenths {
   width: 90%; }
 
 /**
-    * Twelfths
-    */
+* Twelfths
+*/
 .one-twelfth {
   width: 8.333%; }
-
-
-
 
 .five-twelfths {
   width: 41.666%; }
 
-
 .seven-twelfths {
   width: 58.333%; }
-
-
-
 
 .eleven-twelfths {
   width: 91.666%; }
 
 /**
- * If you have set `$responsive` to â€˜trueâ€™ in `_vars.scss` then you now have
- * access to these classes. You can define at which breakpoint youâ€™d like an
+ * If you have set `$responsive` to ‘true’ in `_vars.scss` then you now have
+ * access to these classes. You can define at which breakpoint you’d like an
  * element to be a certain size, e.g.:
  *
  * `<div class="g  one-quarter  lap-one-half  palm-one-whole"> ... </div>`
  *
- * This would create a `div` that, at â€˜desktopâ€™ sizes, takes up a quarter of the
- * horizontal space, a half of that space at â€˜tabletâ€™ sizes, and goes full width
- * at â€˜mobileâ€™ sizes.
+ * This would create a `div` that, at ‘desktop’ sizes, takes up a quarter of the
+ * horizontal space, a half of that space at ‘tablet’ sizes, and goes full width
+ * at ‘mobile’ sizes.
  *
  * Demo: jsfiddle.net/inuitcss/WS4Ge
  *
  */
 @media only screen and (max-width: 480px) {
   /**
-    * Whole
-    */
-  /**
-    * Halves
-    */
-  /**
-    * Thirds
-    */
-  /**
-    * Quarters
-    */
-  /**
-    * Fifths
-    */
-  /**
-    * Sixths
-    */
-  /**
-    * Eighths
-    */
-  /**
-    * Tenths
-    */
-  /**
-    * Twelfths
-    */
+  * Whole
+  */
   .palm-one-whole {
     width: 100%; }
+
+  /**
+  * Halves
+  */
   .palm-one-half, .palm-two-quarters, .palm-three-sixths, .palm-four-eighths, .palm-five-tenths, .palm-six-twelfths {
     width: 50%; }
+
+  /**
+  * Thirds
+  */
   .palm-one-third, .palm-two-sixths, .palm-four-twelfths {
     width: 33.333%; }
+
   .palm-two-thirds, .palm-four-sixths, .palm-eight-twelfths {
     width: 66.666%; }
+
+  /**
+  * Quarters
+  */
   .palm-one-quarter, .palm-two-eighths, .palm-three-twelfths {
     width: 25%; }
+
   .palm-three-quarters, .palm-six-eighths, .palm-nine-twelfths {
     width: 75%; }
+
+  /**
+  * Fifths
+  */
   .palm-one-fifth, .palm-two-tenths {
     width: 20%; }
+
   .palm-two-fifths, .palm-four-tenths {
     width: 40%; }
+
   .palm-three-fifths, .palm-six-tenths {
     width: 60%; }
+
   .palm-four-fifths, .palm-eight-tenths {
     width: 80%; }
+
+  /**
+  * Sixths
+  */
   .palm-one-sixth, .palm-two-twelfths {
     width: 16.666%; }
+
   .palm-five-sixths, .palm-ten-twelfths {
     width: 83.333%; }
+
+  /**
+  * Eighths
+  */
   .palm-one-eighth {
     width: 12.5%; }
+
   .palm-three-eighths {
     width: 37.5%; }
+
   .palm-five-eighths {
     width: 62.5%; }
+
   .palm-seven-eighths {
     width: 87.5%; }
+
+  /**
+  * Tenths
+  */
   .palm-one-tenth {
     width: 10%; }
+
   .palm-three-tenths {
     width: 30%; }
+
   .palm-seven-tenths {
     width: 70%; }
+
   .palm-nine-tenths {
     width: 90%; }
+
+  /**
+  * Twelfths
+  */
   .palm-one-twelfth {
     width: 8.333%; }
+
   .palm-five-twelfths {
     width: 41.666%; }
+
   .palm-seven-twelfths {
     width: 58.333%; }
+
   .palm-eleven-twelfths {
     width: 91.666%; } }
-
 @media only screen and (min-width: 481px) and (max-width: 1023px) {
   /**
-    * Whole
-    */
-  /**
-    * Halves
-    */
-  /**
-    * Thirds
-    */
-  /**
-    * Quarters
-    */
-  /**
-    * Fifths
-    */
-  /**
-    * Sixths
-    */
-  /**
-    * Eighths
-    */
-  /**
-    * Tenths
-    */
-  /**
-    * Twelfths
-    */
+  * Whole
+  */
   .lap-one-whole {
     width: 100%; }
+
+  /**
+  * Halves
+  */
   .lap-one-half, .lap-two-quarters, .lap-three-sixths, .lap-four-eighths, .lap-five-tenths, .lap-six-twelfths {
     width: 50%; }
+
+  /**
+  * Thirds
+  */
   .lap-one-third, .lap-two-sixths, .lap-four-twelfths {
     width: 33.333%; }
+
   .lap-two-thirds, .lap-four-sixths, .lap-eight-twelfths {
     width: 66.666%; }
+
+  /**
+  * Quarters
+  */
   .lap-one-quarter, .lap-two-eighths, .lap-three-twelfths {
     width: 25%; }
+
   .lap-three-quarters, .lap-six-eighths, .lap-nine-twelfths {
     width: 75%; }
+
+  /**
+  * Fifths
+  */
   .lap-one-fifth, .lap-two-tenths {
     width: 20%; }
+
   .lap-two-fifths, .lap-four-tenths {
     width: 40%; }
+
   .lap-three-fifths, .lap-six-tenths {
     width: 60%; }
+
   .lap-four-fifths, .lap-eight-tenths {
     width: 80%; }
+
+  /**
+  * Sixths
+  */
   .lap-one-sixth, .lap-two-twelfths {
     width: 16.666%; }
+
   .lap-five-sixths, .lap-ten-twelfths {
     width: 83.333%; }
+
+  /**
+  * Eighths
+  */
   .lap-one-eighth {
     width: 12.5%; }
+
   .lap-three-eighths {
     width: 37.5%; }
+
   .lap-five-eighths {
     width: 62.5%; }
+
   .lap-seven-eighths {
     width: 87.5%; }
+
+  /**
+  * Tenths
+  */
   .lap-one-tenth {
     width: 10%; }
+
   .lap-three-tenths {
     width: 30%; }
+
   .lap-seven-tenths {
     width: 70%; }
+
   .lap-nine-tenths {
     width: 90%; }
+
+  /**
+  * Twelfths
+  */
   .lap-one-twelfth {
     width: 8.333%; }
+
   .lap-five-twelfths {
     width: 41.666%; }
+
   .lap-seven-twelfths {
     width: 58.333%; }
+
   .lap-eleven-twelfths {
     width: 91.666%; } }
-
 @media only screen and (min-width: 481px) {
   /**
-    * Whole
-    */
-  /**
-    * Halves
-    */
-  /**
-    * Thirds
-    */
-  /**
-    * Quarters
-    */
-  /**
-    * Fifths
-    */
-  /**
-    * Sixths
-    */
-  /**
-    * Eighths
-    */
-  /**
-    * Tenths
-    */
-  /**
-    * Twelfths
-    */
+  * Whole
+  */
   .lap-and-up-one-whole {
     width: 100%; }
+
+  /**
+  * Halves
+  */
   .lap-and-up-one-half, .lap-and-up-two-quarters, .lap-and-up-three-sixths, .lap-and-up-four-eighths, .lap-and-up-five-tenths, .lap-and-up-six-twelfths {
     width: 50%; }
+
+  /**
+  * Thirds
+  */
   .lap-and-up-one-third, .lap-and-up-two-sixths, .lap-and-up-four-twelfths {
     width: 33.333%; }
+
   .lap-and-up-two-thirds, .lap-and-up-four-sixths, .lap-and-up-eight-twelfths {
     width: 66.666%; }
+
+  /**
+  * Quarters
+  */
   .lap-and-up-one-quarter, .lap-and-up-two-eighths, .lap-and-up-three-twelfths {
     width: 25%; }
+
   .lap-and-up-three-quarters, .lap-and-up-six-eighths, .lap-and-up-nine-twelfths {
     width: 75%; }
+
+  /**
+  * Fifths
+  */
   .lap-and-up-one-fifth, .lap-and-up-two-tenths {
     width: 20%; }
+
   .lap-and-up-two-fifths, .lap-and-up-four-tenths {
     width: 40%; }
+
   .lap-and-up-three-fifths, .lap-and-up-six-tenths {
     width: 60%; }
+
   .lap-and-up-four-fifths, .lap-and-up-eight-tenths {
     width: 80%; }
+
+  /**
+  * Sixths
+  */
   .lap-and-up-one-sixth, .lap-and-up-two-twelfths {
     width: 16.666%; }
+
   .lap-and-up-five-sixths, .lap-and-up-ten-twelfths {
     width: 83.333%; }
+
+  /**
+  * Eighths
+  */
   .lap-and-up-one-eighth {
     width: 12.5%; }
+
   .lap-and-up-three-eighths {
     width: 37.5%; }
+
   .lap-and-up-five-eighths {
     width: 62.5%; }
+
   .lap-and-up-seven-eighths {
     width: 87.5%; }
+
+  /**
+  * Tenths
+  */
   .lap-and-up-one-tenth {
     width: 10%; }
+
   .lap-and-up-three-tenths {
     width: 30%; }
+
   .lap-and-up-seven-tenths {
     width: 70%; }
+
   .lap-and-up-nine-tenths {
     width: 90%; }
+
+  /**
+  * Twelfths
+  */
   .lap-and-up-one-twelfth {
     width: 8.333%; }
+
   .lap-and-up-five-twelfths {
     width: 41.666%; }
+
   .lap-and-up-seven-twelfths {
     width: 58.333%; }
+
   .lap-and-up-eleven-twelfths {
     width: 91.666%; } }
-
 @media only screen and (max-width: 1023px) {
   /**
-    * Whole
-    */
-  /**
-    * Halves
-    */
-  /**
-    * Thirds
-    */
-  /**
-    * Quarters
-    */
-  /**
-    * Fifths
-    */
-  /**
-    * Sixths
-    */
-  /**
-    * Eighths
-    */
-  /**
-    * Tenths
-    */
-  /**
-    * Twelfths
-    */
+  * Whole
+  */
   .portable-one-whole {
     width: 100%; }
+
+  /**
+  * Halves
+  */
   .portable-one-half, .portable-two-quarters, .portable-three-sixths, .portable-four-eighths, .portable-five-tenths, .portable-six-twelfths {
     width: 50%; }
+
+  /**
+  * Thirds
+  */
   .portable-one-third, .portable-two-sixths, .portable-four-twelfths {
     width: 33.333%; }
+
   .portable-two-thirds, .portable-four-sixths, .portable-eight-twelfths {
     width: 66.666%; }
+
+  /**
+  * Quarters
+  */
   .portable-one-quarter, .portable-two-eighths, .portable-three-twelfths {
     width: 25%; }
+
   .portable-three-quarters, .portable-six-eighths, .portable-nine-twelfths {
     width: 75%; }
+
+  /**
+  * Fifths
+  */
   .portable-one-fifth, .portable-two-tenths {
     width: 20%; }
+
   .portable-two-fifths, .portable-four-tenths {
     width: 40%; }
+
   .portable-three-fifths, .portable-six-tenths {
     width: 60%; }
+
   .portable-four-fifths, .portable-eight-tenths {
     width: 80%; }
+
+  /**
+  * Sixths
+  */
   .portable-one-sixth, .portable-two-twelfths {
     width: 16.666%; }
+
   .portable-five-sixths, .portable-ten-twelfths {
     width: 83.333%; }
+
+  /**
+  * Eighths
+  */
   .portable-one-eighth {
     width: 12.5%; }
+
   .portable-three-eighths {
     width: 37.5%; }
+
   .portable-five-eighths {
     width: 62.5%; }
+
   .portable-seven-eighths {
     width: 87.5%; }
+
+  /**
+  * Tenths
+  */
   .portable-one-tenth {
     width: 10%; }
+
   .portable-three-tenths {
     width: 30%; }
+
   .portable-seven-tenths {
     width: 70%; }
+
   .portable-nine-tenths {
     width: 90%; }
+
+  /**
+  * Twelfths
+  */
   .portable-one-twelfth {
     width: 8.333%; }
+
   .portable-five-twelfths {
     width: 41.666%; }
+
   .portable-seven-twelfths {
     width: 58.333%; }
+
   .portable-eleven-twelfths {
     width: 91.666%; } }
-
 @media only screen and (min-width: 1024px) {
   /**
-    * Whole
-    */
-  /**
-    * Halves
-    */
-  /**
-    * Thirds
-    */
-  /**
-    * Quarters
-    */
-  /**
-    * Fifths
-    */
-  /**
-    * Sixths
-    */
-  /**
-    * Eighths
-    */
-  /**
-    * Tenths
-    */
-  /**
-    * Twelfths
-    */
+  * Whole
+  */
   .desk-one-whole {
     width: 100%; }
+
+  /**
+  * Halves
+  */
   .desk-one-half, .desk-two-quarters, .desk-three-sixths, .desk-four-eighths, .desk-five-tenths, .desk-six-twelfths {
     width: 50%; }
+
+  /**
+  * Thirds
+  */
   .desk-one-third, .desk-two-sixths, .desk-four-twelfths {
     width: 33.333%; }
+
   .desk-two-thirds, .desk-four-sixths, .desk-eight-twelfths {
     width: 66.666%; }
+
+  /**
+  * Quarters
+  */
   .desk-one-quarter, .desk-two-eighths, .desk-three-twelfths {
     width: 25%; }
+
   .desk-three-quarters, .desk-six-eighths, .desk-nine-twelfths {
     width: 75%; }
+
+  /**
+  * Fifths
+  */
   .desk-one-fifth, .desk-two-tenths {
     width: 20%; }
+
   .desk-two-fifths, .desk-four-tenths {
     width: 40%; }
+
   .desk-three-fifths, .desk-six-tenths {
     width: 60%; }
+
   .desk-four-fifths, .desk-eight-tenths {
     width: 80%; }
+
+  /**
+  * Sixths
+  */
   .desk-one-sixth, .desk-two-twelfths {
     width: 16.666%; }
+
   .desk-five-sixths, .desk-ten-twelfths {
     width: 83.333%; }
+
+  /**
+  * Eighths
+  */
   .desk-one-eighth {
     width: 12.5%; }
+
   .desk-three-eighths {
     width: 37.5%; }
+
   .desk-five-eighths {
     width: 62.5%; }
+
   .desk-seven-eighths {
     width: 87.5%; }
+
+  /**
+  * Tenths
+  */
   .desk-one-tenth {
     width: 10%; }
+
   .desk-three-tenths {
     width: 30%; }
+
   .desk-seven-tenths {
     width: 70%; }
+
   .desk-nine-tenths {
     width: 90%; }
+
+  /**
+  * Twelfths
+  */
   .desk-one-twelfth {
     width: 8.333%; }
+
   .desk-five-twelfths {
     width: 41.666%; }
+
   .desk-seven-twelfths {
     width: 58.333%; }
+
   .desk-eleven-twelfths {
     width: 91.666%; } }
-
 /**
- * If you have set the additional `$responsive-extra` variable to â€˜trueâ€™ in
+ * If you have set the additional `$responsive-extra` variable to ‘true’ in
  * `_vars.scss` then you now have access to the following class available to
  * accomodate much larger screen resolutions.
  */
@@ -3350,7 +3535,8 @@ html.flexbox {
 .brand-face {
   font-family: "Helvetica Neue", sans-serif!important; }
 
-.brand-color, .brand-colour {
+.brand-color,
+.brand-colour {
   color: #4a8ec2!important; }
 
 /*------------------------------------*\
@@ -3358,7 +3544,7 @@ html.flexbox {
 \*------------------------------------*/
 /**
  * A series of helper classes to use arbitrarily. Only use a helper class if an
- * element/component doesnâ€™t already have a class to which you could apply this
+ * element/component doesn’t already have a class to which you could apply this
  * styling, e.g. if you need to float `.main-nav` left then add `float:left;` to
  * that ruleset as opposed to adding the `.float--left` class to the markup.
  *
@@ -3381,7 +3567,7 @@ html.flexbox {
  * Text alignment
  */
 .text--left {
-  text-align: left !important; }
+  text-align: left  !important; }
 
 .text--center {
   text-align: center !important; }
@@ -3597,7 +3783,8 @@ html.flexbox {
  * Hide content off-screen without resorting to `display:none;`, also provide
  * breakpoint specific hidden elements.
  */
-.accessibility, .visuallyhidden {
+.accessibility,
+.visuallyhidden {
   border: 0 !important;
   clip: rect(0 0 0 0) !important;
   height: 1px !important;
@@ -3608,7 +3795,8 @@ html.flexbox {
   width: 1px !important; }
 
 @media only screen and (max-width: 480px) {
-  .accessibility--palm, .visuallyhidden--palm {
+  .accessibility--palm,
+  .visuallyhidden--palm {
     border: 0 !important;
     clip: rect(0 0 0 0) !important;
     height: 1px !important;
@@ -3617,9 +3805,9 @@ html.flexbox {
     padding: 0 !important;
     position: absolute !important;
     width: 1px !important; } }
-
 @media only screen and (min-width: 481px) and (max-width: 1023px) {
-  .accessibility--lap, .visuallyhidden--lap {
+  .accessibility--lap,
+  .visuallyhidden--lap {
     border: 0 !important;
     clip: rect(0 0 0 0) !important;
     height: 1px !important;
@@ -3628,9 +3816,9 @@ html.flexbox {
     padding: 0 !important;
     position: absolute !important;
     width: 1px !important; } }
-
 @media only screen and (min-width: 481px) {
-  .accessibility--lap-and-up, .visuallyhidden--lap-and-up {
+  .accessibility--lap-and-up,
+  .visuallyhidden--lap-and-up {
     border: 0 !important;
     clip: rect(0 0 0 0) !important;
     height: 1px !important;
@@ -3639,9 +3827,9 @@ html.flexbox {
     padding: 0 !important;
     position: absolute !important;
     width: 1px !important; } }
-
 @media only screen and (max-width: 1023px) {
-  .accessibility--portable, .visuallyhidden--portable {
+  .accessibility--portable,
+  .visuallyhidden--portable {
     border: 0 !important;
     clip: rect(0 0 0 0) !important;
     height: 1px !important;
@@ -3650,9 +3838,9 @@ html.flexbox {
     padding: 0 !important;
     position: absolute !important;
     width: 1px !important; } }
-
 @media only screen and (min-width: 1024px) {
-  .accessibility--desk, .visuallyhidden--desk {
+  .accessibility--desk,
+  .visuallyhidden--desk {
     border: 0 !important;
     clip: rect(0 0 0 0) !important;
     height: 1px !important;
@@ -3661,9 +3849,9 @@ html.flexbox {
     padding: 0 !important;
     position: absolute !important;
     width: 1px !important; } }
-
 @media only screen and (min-width: 1200px) {
-  .accessibility--desk-wide, .visuallyhidden--desk-wide {
+  .accessibility--desk-wide,
+  .visuallyhidden--desk-wide {
     border: 0 !important;
     clip: rect(0 0 0 0) !important;
     height: 1px !important;
@@ -3672,18 +3860,31 @@ html.flexbox {
     padding: 0 !important;
     position: absolute !important;
     width: 1px !important; } }
-
 /* endif */
 /*
  * Custom Styles
  */
 .grid {
-  letter-spacing: -0.3em !important; }
+  letter-spacing: -.3em !important; }
   .grid .grid__item {
     letter-spacing: 0; }
 
-.hidden {
-  display: none; }
+.hide {
+  position: absolute;
+  clip: rect(0, 0, 0, 0);
+  overflow: hidden;
+  -webkit-transition: all 3s ease-in-out;
+  -moz-transition: all 3s ease-in-out;
+  transition: all 3s ease-in-out; }
+
+.show {
+  position: relative;
+  clip: auto;
+  height: 0;
+  overflow: hidden;
+  -webkit-transition: all 3s ease-in-out;
+  -moz-transition: all 3s ease-in-out;
+  transition: all 3s ease-in-out; }
 
 .checkout {
   display: block;
@@ -3708,12 +3909,20 @@ html.flexbox {
     font-size: 32px;
     font-size: 2rem;
     line-height: 80px;
-    line-height: 5rem; }
+    line-height: 5rem;
+    -webkit-transition: all 3s ease-in-out;
+    -moz-transition: all 3s ease-in-out;
+    transition: all 3s ease-in-out; }
+    .checkout .progress a:hover:before {
+      -webkit-transition: all 3s ease-in-out;
+      -moz-transition: all 3s ease-in-out;
+      transition: all 3s ease-in-out;
+      background: #e4f3e2; }
     .checkout .progress a.active {
       background-color: #4c4c4c; }
-    @media only screen and (min-width : 50em) {
+    @media only screen and (min-width: 50em) {
       .checkout .progress a {
-        background: #ffffff;
+        background: white;
         color: #4c4c4c;
         font-size: 16px;
         font-size: 1rem;
@@ -3734,11 +3943,11 @@ html.flexbox {
           margin-left: -60px;
           text-align: center; }
         .checkout .progress a.active {
-          background: #ffffff; }
+          background: white; }
           .checkout .progress a.active:before {
             background: #4c4c4c;
             color: #cbcbcb; } }
-  @media only screen and (min-width : 50em) {
+  @media only screen and (min-width: 50em) {
     .checkout .progress .shipping a:before {
       content: "1"; }
     .checkout .progress .billing a:before {
@@ -3773,7 +3982,7 @@ html.flexbox {
       height: 5rem; }
   .checkout .content {
     min-height: 1000px;
-    background-color: #ffffff; }
+    background-color: white; }
   .checkout #help-content, .checkout .privacy-policy, .checkout .shipping-policy {
     background-color: #4c4c4c; }
   .checkout #help-content {
@@ -3810,20 +4019,24 @@ html.flexbox {
     margin: 0 auto;
     width: 960px;
     max-width: 100%; }
+
   .main {
     flex: 2 0px; }
+
   .aside-1 {
     order: 1; }
+
   .main {
     order: 2; }
+
   .aside-2 {
     order: 3; }
+
   .footer {
     order: 4; } }
-
 /* Colors */
 .bg-lightest {
-  background-color: #ffffff; }
+  background-color: white; }
 
 .bg-lighter {
   background-color: white; }
@@ -3835,8 +4048,7 @@ html.flexbox {
   background-color: #4c4c4c; }
 
 .bg-darkest {
-  background-color: #000000; }
-
+  background-color: black; }
 
 /* Typography */
 a, a:link, a:hover, a:active, a:focus {
