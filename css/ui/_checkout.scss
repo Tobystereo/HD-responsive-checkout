@@ -1,7 +1,27 @@
+<<<<<<< HEAD
+.thetoggler_speaks_for_the_DOMS {
+    @include transition ($transition);
+    overflow: hidden;
+}
+
+.hide {
+    position: absolute;
+    clip: rect(0,0,0,0);
+}
+
+.show {
+    position: relative;
+    clip: auto;
+    height: 0;
+}
+
+
+=======
 .hide {
     display: none;
 }
 
+>>>>>>> FETCH_HEAD
 .checkout{
     display: block;
     display: -webkit-box;
