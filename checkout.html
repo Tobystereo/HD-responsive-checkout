@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html>
 <head>
     <title>Hair Direct Checkout</title>
@@ -27,7 +27,7 @@
             </div>
             <div id="shipping-address" class="grid__item one-whole">
                 <div class="defaultaddress-wrapper">
-                    <p>
+                    <p class="instructions" data-text="Do you want to use your default shipping address?" data-alt-text="Select a shipping address">
                         Do you want to use your default shipping address?
                     </p>
                     <div class="defaultaddress">
@@ -48,7 +48,6 @@
                 </div>
                 <button class="changeaddress btn taptarget">Use different address</button>
                 <div class="additional-addresses hide">
-                    <p>Select a shipping address</p>
                     <ul class="grid">
                         <li class="grid__item one-third address-item readonly">
                             <input type="radio" name="select-address" id="address1" value="address1">
@@ -91,8 +90,8 @@
                             </label>
                         </li>
                     </ul>
+                    <button class="createaddress btn taptarget">Create new address</button>
                 </div>
-                <button class="createaddress btn taptarget hide">Create new address</button>
                 <form action="#" class="new-address hide">
                     <ul class="add-edit-address form-fields one-whole">
                         <li class="field country">
@@ -125,92 +124,6 @@
                     </ul>
                 </form>
             </div>
-            <!--
-                    <div class="content grid__item one-whole greybox">
-                        <div id="shipping-address" class="">
-                            <div class="address-list grid__item one-whole">
-                                <div class="grid">
-                                    <ul class="address-item form-fields grid__item one-whole">
-                                        <li>
-                                            <ul class="data">
-                                                <li class="bold name">
-                                                    Mike Koser
-                                                </li>
-                                                <li class="address">
-                                                    765 Test Rd
-                                                </li>
-                                                <li class="city-state-postal">
-                                                    <span class="city">
-                                                        Lancaster,
-                                                    </span><span class="state">PA</span><span class="postal">17603</span>
-                                                </li>
-                                                <li class="country">
-                                                    United States
-                                                </li>
-                                                <li class="phone">
-                                                    8887776666
-                                                </li>
-                                            </ul>
-                                        </li>
-                                    </ul>
-                                    <ul class="address-item form-fields grid__item one-whole">
-                                        <li>
-                                            <ul class="data">
-                                                <li class="bold name">
-                                                    Ethan Koser
-                                                </li>
-                                                <li class="address">
-                                                    123 Another St
-                                                </li>
-                                                <li class="city-state-postal">
-                                                    <span class="city">
-                                                        Lancaster,
-                                                    </span><span class="state">PA</span><span class="postal">17603</span>
-                                                </li>
-                                                <li class="country">
-                                                    United States
-                                                </li>
-                                                <li class="phone">
-                                                    7778889999
-                                                </li>
-                                            </ul>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <form action="#" class="grid__item one-whole">
-                                <ul class="add-edit-address form-fields one-whole">
-                                    <li class="field country">
-                                        <label for="country-input">Country</label>
-                                        <select class="" id="country-input">
-                                            <option value="US">United States</option>
-                                            <option value="CA">Canada</option>
-                                        </select>
-                                    </li>
-                                    <li class="field name">
-                                        <label for="name-input">Name</label>
-                                        <input type="text" class="text-input" id="name-input">
-                                    </li>
-                                    <li class="field address">
-                                        <label for="address-input">Street Address</label>
-                                        <textarea class="text-input" id="address-input"></textarea>
-                                    </li>
-                                    <li class="field city">
-                                        <label for="city-input">City</label>
-                                        <input type="text" class="text-input" id="city-input">
-                                    </li>
-                                    <li class="field state">
-                                        <label for="state-input">State/Province</label>
-                                        <input type="text" class="text-input" id="state-input">
-                                    </li>
-                                    <li class="field postal-code">
-                                        <label for="postal-code-input">Postal Code</label>
-                                        <input type="text" class="text-input" id="postal-code-input">
-                                    </li>
-                                </ul>
-                            </form>
-                        </div>
-            -->
             <div id="shipping-method">
             </div>
             <div id="billing-information">
