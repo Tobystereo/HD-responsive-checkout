@@ -77,7 +77,6 @@ var $cta_bar,
 	$btncancel_address,
 	$btnsave_address,
 	$btnedit_Address,
-	$new_address_form,
 	$input_country,
 	$input_name,
 	$input_company,
@@ -125,15 +124,50 @@ function SetGlobalVariables() {
 
 function WireEvents() {
 	/// <summary>Wire up control events</summary>
+	Events_AdditionalAddressButton(false);
+	Events_AddAddressButton(false);
+	Events_EditAddressButton(false);
+	Events_CancelAddressButton(false);
+	Events_SaveAddressButton(false);
+	Events_AddressForm(false);
+}
+
+function ToggleShippingInstructionText() {
+	var defaultText = $shipping_address_instructions.attr("data-text"),
+		altText = $shipping_address_instructions.attr("data-alt-text");
+
+	$shipping_address_instructions.text(($shipping_address_instructions.text().trim() == defaultText ? altText : defaultText));
+}
+
+//#endregion -- FUNCTIONS --
+
+//#region -- EVENT HANDLERS --
+
+function Events_AdditionalAddressButton(refreshSelector) {
+	if (refreshSelector) {
+		$btnchangeaddress = $("'" + $btnchangeaddress.selector + "'");
+	}
 	$btnchangeaddress.toggleContainer({
 		content_element: $additional_addresses,
 		callback: ToggleShippingInstructionText,
 		self_toggle_delay_offset: -300
 	});
+}
+
+function Events_AddAddressButton(refreshSelector) {
+	if (refreshSelector) {
+		$btnadd_address = $("'" + $btnadd_address.selector + "'");
+	}
 	$btnadd_address.toggleContainer({
 		content_element: $new_address_form,
 		self_toggle_delay_offset: -300
 	});
+}
+
+function Events_EditAddressButton(refreshSelector) {
+	if (refreshSelector) {
+		$btnedit_address = $("'" + $btnedit_address.selector + "'");
+	}
 	$btnedit_address.on("click", function () {
 		// Select the address being edited
 		$(this).parent().trigger("click");
@@ -151,12 +185,16 @@ function WireEvents() {
 		$input_postal.val("Editing Postal Code");
 		$input_phone.val("Editing Phone");
 		// Display the address form
-		if (!$new_address_form.is(":visible")) {
-			$new_address_form.slideDown(300);
-		}
-		// Scroll to the address form
-		$new_address_form.animatedScroll();
+		$new_address_form.slideDown(300, function () {
+			$new_address_form.animatedScroll();
+		});
 	});
+}
+
+function Events_CancelAddressButton(refreshSelector) {
+	if (refreshSelector) {
+		$btncancel_address = $("'" + $btncancel_address.selector + "'");
+	}
 	$btncancel_address.toggleContainer({
 		content_element: $btnadd_address,
 		delay: 100,
@@ -177,6 +215,12 @@ function WireEvents() {
 			$progress_bar.animatedScroll();
 		}
 	});
+}
+
+function Events_SaveAddressButton(refreshSelector) {
+	if (refreshSelector) {
+		$btnsave_address = $("'" + $btnsave_address.selector + "'");
+	}
 	$btnsave_address.toggleContainer({
 		content_element: $btnadd_address,
 		delay: 100,
@@ -203,7 +247,8 @@ function WireEvents() {
 			mu += '</div></label></li>';
 			$newAddress = $(mu);
 			$additional_addresses_list.append($newAddress);
-			$newAddress.trigger("click");
+			Events_EditAddressButton(true);
+			$newAddress.find("input[type=radio]").trigger("click");
 		},
 		callback: function (element, event) {
 			$input_country.val("");
@@ -218,17 +263,16 @@ function WireEvents() {
 			$("input[type=radio]:checked").parent().animatedScroll();
 		}
 	});
-	$("form.new-address").on("submit", function (e) {
+}
+
+function Events_AddressForm(refreshSelector) {
+	if (refreshSelector) {
+		$new_address_form = $("'" + $new_address_form.selector + "'");
+	}
+	$new_address_form.on("submit", function (e) {
 		e.preventDefault();
 		// DO STUFF
 	});
 }
 
-function ToggleShippingInstructionText() {
-	var defaultText = $shipping_address_instructions.attr("data-text"),
-		altText = $shipping_address_instructions.attr("data-alt-text");
-
-	$shipping_address_instructions.text(($shipping_address_instructions.text().trim() == defaultText ? altText : defaultText));
-}
-
-//#endregion -- FUNCTIONS --
+//#endregion EVENT HANDLERS
