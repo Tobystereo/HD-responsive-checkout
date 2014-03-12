@@ -1,6 +1,8 @@
 ﻿//#region -- PLUGINS --
 
 (function ($) {
+	var $html_body = $('html, body');
+
 	$.fn.toggleContainer = function (options) {
 		// Default options
 		var $self = this,
@@ -41,6 +43,21 @@
 
 		return this;
 	};
+
+	$.fn.animatedScroll = function (options) {
+		// Default options
+		var settings = $.extend({
+				pre_logic: undefined,
+				callback: undefined,
+				delay: 300
+			}, options);
+
+		$html_body.animate({
+			scrollTop: this.offset().top
+		}, settings.delay);
+
+		return this;
+	};
 }(jQuery));
 
 //#endregion PLUGINS
@@ -49,6 +66,7 @@
 
 var $cta_bar,
 	$help_content,
+	$progress_bar,
 	$shipping_address_instructions,
 	$btnchangeaddress,
 	$btnadd_address,
@@ -84,6 +102,7 @@ function SetGlobalVariables() {
 	/// <summary>Gets DOM elements & other dynamic variable values.</summary>
 	$cta_bar = $(".cta_bar");
 	$help_content = $("#help-content");
+	$progress_bar = $("#progress-bar");
 	$shipping_address_instructions = $("#shipping-address .instructions");
 	$btnchangeaddress = $("button.changeaddress");
 	$btnadd_address = $("button.createaddress");
@@ -136,9 +155,7 @@ function WireEvents() {
 			$new_address_form.slideDown(300);
 		}
 		// Scroll to the address form
-		$('html, body').animate({
-			scrollTop: $new_address_form.offset().top
-		}, 300);
+		$new_address_form.animatedScroll();
 	});
 	$btncancel_address.toggleContainer({
 		content_element: $btnadd_address,
@@ -156,7 +173,8 @@ function WireEvents() {
 			$input_state.val("");
 			$input_postal.val("");
 			$input_phone.val("");
-			return false;
+			// Scroll to the progress bar
+			$progress_bar.animatedScroll();
 		}
 	});
 	$btnsave_address.toggleContainer({
@@ -167,21 +185,25 @@ function WireEvents() {
 		content_element: $new_address_form,
 		toggle_self: false,
 		pre_logic: function () {
-			var mu = '<li class="grid__item one-whole address-item readonly">';
+			var $newAddress,
+				mu = '<li class="grid__item one-whole address-item readonly">';
 			mu += '<input type="radio" name="select-address" id="address4" value="address4">';
 			mu += '<label for="address4">Select this address';
+			mu += '<span class="btn shiptothis primary">Ship to this address</span>';
+			mu += '<button class="btn edit seondary">Edit</button>';
+			mu += '<div class="address4">';
 			mu += '<span class="name">' + $input_name.val() + '</span>';
-			mu += ' <span class="company">' + $input_company.val() + '</span>';
+			mu += '<span class="company">' + $input_company.val() + '</span>';
 			mu += '<span class="street">' + $input_street.val() + '</span>,';
 			mu += '<span class="city">' + $input_city.val() + '</span>';
 			mu += '<span class="state">' + $input_state.val() + '</span>';
 			mu += '<span class="zip">' + $input_postal.val() + '</span>';
 			mu += '<span class="country">' + $input_country.val() + '</span>';
 			mu += '<span class="phone">' + $input_phone.val() + '</span>';
-			mu += '<button class="btn btn--small taptarget">Edit</button>';
-			mu += '</label>';
-			mu += '</li>';
-			$additional_addresses_list.append(mu);
+			mu += '</div></label></li>';
+			$newAddress = $(mu);
+			$additional_addresses_list.append($newAddress);
+			$newAddress.trigger("click");
 		},
 		callback: function (element, event) {
 			$input_country.val("");
@@ -192,6 +214,8 @@ function WireEvents() {
 			$input_state.val("");
 			$input_postal.val("");
 			$input_phone.val("");
+			// Scroll to the progress bar
+			$("input[type=radio]:checked").parent().animatedScroll();
 		}
 	});
 	$("form.new-address").on("submit", function (e) {
