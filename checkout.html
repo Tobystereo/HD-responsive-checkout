@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html>
 <head>
     <title>Hair Direct Checkout</title>
@@ -21,7 +21,7 @@
             </p>
 
         </div>
-        <div class="grid__item one-whole progress">
+        <div id="progress-bar" class="grid__item one-whole progress">
             <ul class="nav nav--fit">
                 <li class="shipping"><a href="#" class="active">Shipping</a></li>
                 <li class="billing"><a href="#">Billing</a></li>
@@ -110,7 +110,7 @@
                 </ul>
                 <button class="createaddress btn taptarget secondary">Create new address</button>
             </div>
-            <form action="#" class="new-address hide">
+            <form id="new-address-form" action="#" class="new-address hide">
                 <ul class="add-edit-address form-fields one-whole">
                     <li class="field country">
                         <label for="country-input">Country</label>
@@ -125,7 +125,7 @@
                         <input type="text" class="text-input" id="name-input">
                     </li>
                     <li class="field company">
-                        <label for="company-input">Name</label>
+                        <label for="company-input">Company</label>
                         <input type="text" class="text-input" id="company-input">
                     </li>
                     <li class="field address">
