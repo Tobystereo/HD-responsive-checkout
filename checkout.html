@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html>
 <head>
     <title>Hair Direct Checkout</title>
@@ -43,8 +43,7 @@
                                     <span class="zip">88739</span>
                                     <span class="country">United States</span>
                                     <span class="phone">+1-222-333-4567</span>
-
-                                    <button id="thebutton">Edit</button>
+                                    <button class="btn btn--small taptarget">Edit</button>
                                 </label>
                         </ul>
                     </div>
@@ -63,10 +62,8 @@
                                 <span class="zip">88739</span>
                                 <span class="country">United States</span>
                                 <span class="phone">+1-222-333-4567</span>
-
-                                    <button id="thebutton">Edit</button>
+                                <button class="btn btn--small taptarget">Edit</button>
                             </label>
-
                         </li>
                         <li class="grid__item one-third address-item readonly">
                             <input type="radio" name="select-address" id="address2" value="address2">
@@ -79,8 +76,7 @@
                                 <span class="zip">59519</span>
                                 <span class="country">Germany</span>
                                 <span class="phone">+49-555-555-5555</span>
-
-                                    <button id="thebutton">Edit</button>
+                                <button class="btn btn--small taptarget">Edit</button>
                             </label>
                         </li>
                         <li class="grid__item one-third address-item readonly">
@@ -95,8 +91,7 @@
                                 <span class="zip">17603</span>
                                 <span class="country">United States</span>
                                 <span class="phone">+1-555-555-5555</span>
-
-                                    <button id="thebutton">Edit</button>
+                                <button class="btn btn--small taptarget">Edit</button>
                             </label>
                         </li>
                     </ul>
@@ -107,6 +102,7 @@
                         <li class="field country">
                             <label for="country-input">Country</label>
                             <select class="" id="country-input">
+                                <option value="">Select A Country</option>
                                 <option value="US">United States</option>
                                 <option value="CA">Canada</option>
                             </select>
@@ -114,6 +110,10 @@
                         <li class="field name">
                             <label for="name-input">Name</label>
                             <input type="text" class="text-input" id="name-input">
+                        </li>
+                        <li class="field company">
+                            <label for="company-input">Name</label>
+                            <input type="text" class="text-input" id="company-input">
                         </li>
                         <li class="field address">
                             <label for="address-input">Street Address</label>
@@ -130,6 +130,14 @@
                         <li class="field postal-code">
                             <label for="postal-code-input">Postal Code</label>
                             <input type="text" class="text-input" id="postal-code-input">
+                        </li>
+                        <li class="field phone">
+                            <label for="phone-input">Phone</label>
+                            <input type="text" class="text-input" id="phone-input">
+                        </li>
+                        <li class="buttons">
+                            <button class="cancel btn btn--small taptarget">Cancel</button>
+                            <button class="save btn btn--small taptarget">Save Address</button>
                         </li>
                     </ul>
                 </form>
