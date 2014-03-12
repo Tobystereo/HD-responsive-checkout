@@ -67,7 +67,7 @@ $use-greybox:       true;
  */
 $rootfontsize: 16;
 $mintapheight: 3;
-$tapheight: 5;
+$tapheight: 4;
 $taptarget: $tapheight*$rootfontsize;
 
 // Colors
@@ -101,7 +101,7 @@ $dark-blue-darkest: darken($dark-blue, 75);
 
 /* MEDIA QUERIES */
 //$small: "only screen and (max-width : 20em)";
-$medium: "only screen and (min-width : 20em)";
+$medium: "only screen and (min-width : 30em)";
 $large: "only screen and (min-width : 50em)";
 $xlarge: "only screen and (min-width : 75em)";
 

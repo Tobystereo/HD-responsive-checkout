@@ -12,14 +12,14 @@
 </head>
 <body>
     <div class="checkout grid">
-        <div class="grid__item one-half lap-one-sixth logo taptarget">
+        <div class="grid__item one-third lap-one-sixth logo taptarget">
             <img src="images/logo.svg" />
         </div>
-        <div class="grid__item one-half lap-five-sixths help">
+        <div class="grid__item two-thirds lap-five-sixths help">
             <p>
-                <strong>Secure Transaction</strong>
+                <strong>Secure Transaction</strong><br><a href="#help-content">Need Help?</a>
             </p>
-            <a href="#help-content">Need Help?</a>
+
         </div>
         <div class="grid__item one-whole progress">
             <ul class="nav nav--fit">
@@ -29,35 +29,36 @@
             </ul>
         </div>
         <div id="shipping-address" class="grid__item one-whole">
-            <div class="defaultaddress-wrapper">
-                <h1 class="instructions" data-text="Select a shipping address" data-alt-text="Select a shipping address">
-                    Select a shipping address
-                </h1>
-                <div class="defaultaddress">
-                    <ul class="grid readonly selected address-item default">
-                        <li class="grid__item one-whole address-item readonly">
-                            <input type="radio" name="select-address" id="address0" value="address0" checked>
-                            <label for="address0">
-                                <span class="btn shiptothis primary">Ship to this address</span>
-                                <button class="btn edit secondary">Edit</button>
-                                <div class="address">
-                                    <span class="name">Ethan Koser</span>
-                                    <span class="street">123 A street</span>,
-                                    <span class="city">Mobile</span>
-                                    <span class="state">AK</span>
-                                    <span class="zip">88739</span>
-                                    <span class="country">United States</span>
-                                    <span class="phone">+1-222-333-4567</span>
-                                </div>
-                            </label>
-                        </li>
-                    </ul>
+            <h1 class="instructions" data-text="Select a shipping address" data-alt-text="Select a shipping address">
+                Select a shipping address
+            </h1>
+                <div class="defaultaddress-wrapper">
+                    <div class="defaultaddress">
+                        <ul class="grid readonly selected address-item default">
+                            <li class="grid__item one-whole desk-one-half address-item readonly">
+                                <input type="radio" name="select-address" id="address0" value="address0" checked>
+                                <label for="address0">
+                                    <span class="btn shiptothis primary">Ship to this address</span>
+                                    <button class="btn edit secondary">Edit</button>
+                                    <div class="address">
+                                        <span class="name">Ethan Koser</span>
+                                        <span class="street">123 A street</span>,
+                                        <span class="city">Mobile</span>
+                                        <span class="state">AK</span>
+                                        <span class="zip">88739</span>
+                                        <span class="country">United States</span>
+                                        <span class="phone">+1-222-333-4567</span>
+                                    </div>
+                                </label>
+                            </li>
+                        </ul>
+                    </div>
                 </div>
+                    <button class="changeaddress btn taptarget secondary">Use different address</button>
             </div>
-            <button class="changeaddress btn taptarget secondary">Use different address</button>
             <div class="additional-addresses hide">
                 <ul class="grid">
-                    <li class="grid__item one-whole address-item readonly">
+                    <li class="grid__item one-whole desk-one-half address-item readonly">
                         <input type="radio" name="select-address" id="address1" value="address1">
                         <label for="address1">
                             <span class="btn shiptothis primary">Ship to this address</span>
@@ -72,9 +73,8 @@
                                 <span class="phone">+49-555-555-5555</span>
                             </div>
                         </label>
-
                     </li>
-                    <li class="grid__item one-whole address-item readonly">
+                    <li class="grid__item one-whole desk-one-half address-item readonly">
                         <input type="radio" name="select-address" id="address2" value="address2">
                         <label for="address2">
                             <span class="btn shiptothis primary">Ship to this address</span>
@@ -90,7 +90,7 @@
                             </div>
                         </label>
                     </li>
-                    <li class="grid__item one-whole address-item readonly">
+                    <li class="grid__item one-whole desk-one-half address-item readonly">
                         <input type="radio" name="select-address" id="address3" value="address3">
                         <label for="address3">
                             <span class="btn shiptothis primary">Ship to this address</span>
