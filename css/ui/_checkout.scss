@@ -19,6 +19,16 @@ body {
     font-weight: normal;
     text-align: center;
 
+    h1 {
+        @include font(1,2);
+        font-weight: 500;
+        margin-top: 1em;
+
+        @media #{$large}{
+            @include font(2,2);
+        }
+    }
+
     & > * {
         flex: 1 row 100%;
 //        @include box($orient: horizontal, $pack: center, $align: stretch);
@@ -26,7 +36,6 @@ body {
 
 	.logo {
         background-color: $light-blue-lighter;
-        @include outline;
         max-height: $tapheight + em;
 		text-align: left;
         overflow: hidden;
@@ -54,6 +63,7 @@ body {
             @include font(1.5, $tapheight);
             @include line-height($tapheight);
             @include transition ($transition);
+            font-weight: 500;
 
             &:hover {
                 &:before {
@@ -132,23 +142,27 @@ body {
 
     .btn, .cta, button {
         @include rem-height($tapheight);
+        background-color: $light;
+        height: 2em;
 
         @include font(1, 2);
+        font-weight: 500;
+    }
 
-        @media #{$large} {
-            @include font(2.5, 5);
-        }
+    button.primary, .btn.primary, .cta.primary {
+        background-color: $light;
+        color: $dark;
+    }
 
+    button.secondary, .btn.secondary, .cta.secondary {
+        background-color: $lightest !important;
+        color: $light;
+        border: 1px solid $lighter !important;
     }
 
     .cta_bar {
         flex: 1 row 100%;
         left: 0;
-
-//        &.absolute {
-//            position: absolute;
-//            bottom: auto;
-//        }
 
         @include rem-height($tapheight);
         background-color: $light;
@@ -195,6 +209,13 @@ body {
     }
 }
 
+
+.changeaddress, .createaddress {
+    margin: 1em auto;
+    width: 100%;
+}
+
+
 .address-item.readonly {
     text-align: left;
 
@@ -208,40 +229,86 @@ body {
     }
 
     label {
-        padding: 1em 1em 1em 5em;
-        @include border();
+//        @include border();
+        border-bottom: 1px solid $light;
         background-color: $lighter;
-        flex: auto;
     }
+
+
 
     input[type=radio] {
         display: none;
+
+        & + label {
+
+            overflow: hidden;
+            padding: 1em;
+
+            button {
+                display: block;
+                height: 2em;
+            }
+
+            .shiptothis {
+                position: relative;
+                display: block;
+                height: 100%;
+                float: right;
+                margin-bottom: 1em;
+
+                @media #{$large} {
+                    float: left;
+                    margin-top: 3em;
+                    margin-bottom: 0;
+                }
+            }
+
+            .edit {
+                position: relative;
+                float: left;
+                @media #{$large}{
+                    float: right;
+                }
+            }
+
+            .address {
+                display: block;
+                float: left;
+
+                @media #{$large}{
+                    margin-left: 2em;
+                }
+            }
+
+        }
 
         &:checked + label {
             outline-color: green;
             background: $light-green;
 
-            &:before {
-                @include pseudo(2em, 6em, '\2714');
-                color: $green;
-                @include font-size(2);
-                @include line-height(6);
-                margin-left: -2em;
-                margin-bottom: -6em;
-                display: block;
+            .shiptothis {
+                background: $green;
+                color: $lightest;
+
+                @media #{$large} {
+                    &:before {
+                        @include pseudo(100%, 2em, '\2714');
+                        color: $green;
+                        @include font-size(2);
+                        @include line-height(4);
+                        text-align: center;
+                        margin-top: -2em;
+                        display: block;
+                    }
+                }
             }
         }
     }
 
 }
 
-//.selected {
-//    border: 1px solid $dark-green;
-//    background-color: $light-green;
-//}
-
 @media #{$large} {
-    #Content {
+    body {
         margin: 0 auto;
         max-width: 960px;
     }

@@ -71,11 +71,12 @@ $tapheight: 5;
 $taptarget: $tapheight*$rootfontsize;
 
 // Colors
-$lightest: #ffffff;
 $light: #cbcbcb;
-$lighter: lighten($light, 50);
-$dark: darken($light, 50);
-$darkest: #000000;
+$lighter: lighten($light, 15);
+$lightest: lighten($light, 50);
+$dark: darken($light, 35);
+$darker: darken($light, 70);
+$darkest: darken($light, 90);
 
 $green: #4a993d;
 $light-green: lighten($green, 50);
