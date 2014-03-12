@@ -1,9 +1,26 @@
 body {
     @include font(1,1.3);
+
+    @media #{$large} {
+        margin: 0 auto;
+        max-width: 60em;
+        overflow: hidden;
+    }
 }
+
 
 .hide {
     display: none;
+}
+
+.address-item.default {
+    &:before {
+        @include pseudo(7em, 1em, "Default");
+        color: $light;
+        line-height: 1em;
+        @include font-size(1);
+        @include outline;
+    }
 }
 
 .checkout{
@@ -30,12 +47,12 @@ body {
     }
 
     & > * {
-        flex: 1 row 100%;
+//        flex: 1 row 100%;
 //        @include box($orient: horizontal, $pack: center, $align: stretch);
     }
 
 	.logo {
-        background-color: $light-blue-lighter;
+        background-color: $lighter;
         max-height: $tapheight + em;
 		text-align: left;
         overflow: hidden;
@@ -44,7 +61,7 @@ body {
         img {
             height: 80%;
             max-height: $tapheight + em;
-            margin: 5px;
+            margin: 10px;
             display: block;
             max-width: 100%;
         }
@@ -52,36 +69,44 @@ body {
 	}
 
     .help {
-        background-color: $light-blue-lighter;
+        background-color: $lighter;
         max-height: $tapheight + em;
     }
 
     .progress {
+        @include outline;
+        background: $lighter;
+
         a {
-            border-bottom: none;
-            padding: 0;
-            @include font(1.5, $tapheight);
-            @include line-height($tapheight);
+//            border-bottom: none;
+            @include font(1, 3);
             @include transition ($transition);
             font-weight: 500;
+            color: $light;
 
             &:hover {
+                background: $light-green;
+
                 &:before {
-                    @include transition ($transition);
                     background: $light-green;
                 }
             }
 
             &.active {
-                background-color: $dark;
+                background-color: $light-blue;
+                color: $lightest;
+            }
+
+            &:visited {
+                background-color: $lighter;
             }
 
             @media #{$large} {
                 $pillsize: 40px;
 
-                background: $lightest;
+                @include font(1, 4);
+                background-color: $lightest;
                 color: $dark;
-                @include font-size(1);
                 font-weight: normal;
                 text-align: left;
                 padding-left: $pillsize * 1.5;
@@ -102,7 +127,6 @@ body {
                 }
 
                 &.active {
-                    background: $lightest;
 
                     &:before {
                         background: $dark;
@@ -128,7 +152,7 @@ body {
         }
 
         .nav {
-            margin: 0;
+            margin-bottom: 0;
         }
     }
 
@@ -205,6 +229,10 @@ body {
         @include taptarget();
         a, button {
             @include taptarget();
+        }
+
+        &.secondary {
+            @include taptarget(-2);
         }
     }
 }
@@ -307,18 +335,7 @@ body {
 
 }
 
-@media #{$large} {
-    body {
-        margin: 0 auto;
-        max-width: 960px;
-    }
 
-//    .main    { flex: 2 0px; }
-//    .aside-1 { order: 1; }
-//    .main    { order: 2; }
-//    .aside-2 { order: 3; }
-//    .footer  { order: 4; }
-}
 
 
 /* Colors */

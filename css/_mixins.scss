@@ -24,10 +24,10 @@
     height: $size + rem;
 }
 
-@mixin taptarget() {
-    @include rem-height($tapheight);
-    min-height: ($mintapheight * $rootfontsize) + px;
-    min-height: $mintapheight + rem;
+@mixin taptarget($adjust: 0) {
+    @include rem-height($tapheight+$adjust);
+    min-height: (($mintapheight+$adjust) * $rootfontsize) + px;
+    min-height: ($mintapheight+$adjust) + rem;
 }
 
 @mixin pseudo($width, $height, $content) {

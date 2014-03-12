@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html>
 <head>
     <title>Hair Direct Checkout</title>
@@ -12,11 +12,16 @@
 </head>
 <body>
     <div class="checkout grid">
-        <div class="grid__item one-third lap-one-sixth logo graybox taptarget">
+        <div class="grid__item one-half lap-one-sixth logo taptarget">
             <img src="images/logo.svg" />
         </div>
-        <div class="grid__item two-thirds lap-five-sixths help graybox"><p><strong>Secure Transaction</strong></p><a href="#help-content">Need Help?</a></div>
-        <div class="grid__item one-whole progress ">
+        <div class="grid__item one-half lap-five-sixths help">
+            <p>
+                <strong>Secure Transaction</strong>
+            </p>
+            <a href="#help-content">Need Help?</a>
+        </div>
+        <div class="grid__item one-whole progress">
             <ul class="nav nav--fit">
                 <li class="shipping"><a href="#" class="active">Shipping</a></li>
                 <li class="billing"><a href="#">Billing</a></li>
@@ -25,11 +30,11 @@
         </div>
         <div id="shipping-address" class="grid__item one-whole">
             <div class="defaultaddress-wrapper">
-                <h1 class="instructions" data-text="Do you want to use your default shipping address?" data-alt-text="Select a shipping address">
-                    Do you want to use your default shipping address?
+                <h1 class="instructions" data-text="Select a shipping address" data-alt-text="Select a shipping address">
+                    Select a shipping address
                 </h1>
                 <div class="defaultaddress">
-                    <ul class="grid readonly selected address-item">
+                    <ul class="grid readonly selected address-item default">
                         <li class="grid__item one-whole address-item readonly">
                             <input type="radio" name="select-address" id="address0" value="address0" checked>
                             <label for="address0">
@@ -57,7 +62,14 @@
                         <label for="address1">
                             <span class="btn shiptothis primary">Ship to this address</span>
                             <button class="btn edit secondary">Edit</button>
-                            <div class="address">
+                            <div class="address1">
+                                <span class="name">Toby Treppmann</span>
+                                <span class="company">Hair Direct</span>
+                                <span class="street">Herman-Katelhonser.46</span>,
+                                <span class="city">Wamel-Mohneseea</span>
+                                <span class="zip">59519</span>
+                                <span class="country">Germany</span>
+                                <span class="phone">+49-555-555-5555</span>
                         </label>
 
                     </li>
@@ -66,7 +78,7 @@
                         <label for="address2">
                             <span class="btn shiptothis primary">Ship to this address</span>
                             <button class="btn edit secondary">Edit</button>
-                            <div class="address">
+                            <div class="address2">
                                 <span class="name">Toby Treppmann</span>
                                 <span class="company">Hair Direct</span>
                                 <span class="street">Herman-Katelhonser.46</span>,
