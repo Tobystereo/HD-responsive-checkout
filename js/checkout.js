@@ -55,10 +55,11 @@ var $cta_bar,
 	$default_address_wrapper,
 	$additional_addresses,
 	$additional_addresses_list,
-	$edit_address,
+	$new_address_form,
 	$btncancel_address,
 	$btnsave_address,
 	$btnedit_Address,
+	$new_address_form,
 	$input_country,
 	$input_name,
 	$input_company,
@@ -89,10 +90,10 @@ function SetGlobalVariables() {
 	$default_address_wrapper = $("div.defaultaddress-wrapper");
 	$additional_addresses = $("div.additional-addresses");
 	$additional_addresses_list = $additional_addresses.find("ul.grid");
-	$edit_address = $("form.new-address");
+	$new_address_form = $("#new-address-form");
 	$btnedit_address = $(".address-item button");
-	$btncancel_address = $(".add-edit-address button.cancel"),
-	$btnsave_address = $(".add-edit-address button.save"),
+	$btncancel_address = $(".add-edit-address button.cancel");
+	$btnsave_address = $(".add-edit-address button.save");
 	$input_country = $("#country-input");
 	$input_name = $("#name-input");
 	$input_company = $("#company-input");
@@ -111,14 +112,17 @@ function WireEvents() {
 		self_toggle_delay_offset: -300
 	});
 	$btnadd_address.toggleContainer({
-		content_element: $edit_address,
+		content_element: $new_address_form,
 		self_toggle_delay_offset: -300
 	});
 	$btnedit_address.on("click", function () {
+		// Select the address being edited
 		$(this).parent().trigger("click");
+		// Hide the new address button
 		if ($btnadd_address.is(":visible")) {
 			$btnadd_address.slideUp(100);
 		}
+		// Set the input values
 		$input_country.val("CA");
 		$input_name.val("Editing Name");
 		$input_company.val("Editing Company");
@@ -127,16 +131,21 @@ function WireEvents() {
 		$input_state.val("Editing State");
 		$input_postal.val("Editing Postal Code");
 		$input_phone.val("Editing Phone");
-		if (!$edit_address.is(":visible")) {
-			$edit_address.slideDown(300);
+		// Display the address form
+		if (!$new_address_form.is(":visible")) {
+			$new_address_form.slideDown(300);
 		}
+		// Scroll to the address form
+		$('html, body').animate({
+			scrollTop: $new_address_form.offset().top
+		}, 300);
 	});
 	$btncancel_address.toggleContainer({
 		content_element: $btnadd_address,
 		delay: 100,
 		toggle_self: false
 	}).toggleContainer({
-		content_element: $edit_address,
+		content_element: $new_address_form,
 		toggle_self: false,
 		callback: function () {
 			$input_country.val("");
@@ -155,10 +164,10 @@ function WireEvents() {
 		delay: 100,
 		toggle_self: false
 	}).toggleContainer({
-		content_element: $edit_address,
+		content_element: $new_address_form,
 		toggle_self: false,
 		pre_logic: function () {
-			var mu = '<li class="grid__item one-third address-item readonly">';
+			var mu = '<li class="grid__item one-whole address-item readonly">';
 			mu += '<input type="radio" name="select-address" id="address4" value="address4">';
 			mu += '<label for="address4">Select this address';
 			mu += '<span class="name">' + $input_name.val() + '</span>';
