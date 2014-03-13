@@ -232,7 +232,7 @@ function Events_SaveAddressButton(refreshSelector) {
 		toggle_self: false,
 		pre_logic: function () {
 			var $newAddress,
-				mu = '<li class="additional-address hide grid__item one-whole desk-one-half address-item readonly">';
+				mu = '<li class="additional-address grid__item one-whole desk-one-half address-item readonly">';
 			mu += '<input type="radio" name="select-address" id="address4" value="address4">';
 			mu += '<label for="address4">Select this address';
 			mu += '<span class="btn shiptothis primary">Ship to this address</span>';
