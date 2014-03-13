@@ -8,15 +8,16 @@
     line-height: $size + rem;
 }
 
-@mixin font-family {
+@mixin font-family($font-weight: 300) {
     font-family: 'Helvetica Neue', Helvetica, sans-serif;
-    font-weight: 100;
+    font-weight: $font-weight;
+    letter-spacing: 0;
 }
 
-@mixin font($size, $line-height) {
+@mixin font($size: 1, $line-height: 1, $font-weight: 300) {
     @include font-size($size);
     @include line-height($line-height);
-    @include font-family;
+    @include font-family($font-weight);
 }
 
 @mixin rem-height($size) {

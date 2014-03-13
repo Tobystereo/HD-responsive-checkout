@@ -3876,39 +3876,15 @@ body {
   line-height: 20.8px;
   line-height: 1.3rem;
   font-family: 'Helvetica Neue', Helvetica, sans-serif;
-  font-weight: 100; }
+  font-weight: 300;
+  letter-spacing: 0; }
   @media only screen and (min-width: 50em) {
     body {
       margin: 0 auto;
       max-width: 60em;
       overflow: hidden; } }
 
-.nav--fit {
-  width: 101%; }
-
-.hide {
-  display: none; }
-
-.address-item.default:before {
-  display: inline-block;
-  position: relative;
-  content: "Default Address";
-  width: auto;
-  height: 2em;
-  color: #4a993d;
-  text-align: center;
-  padding: 5px 2em 0 3em;
-  font-size: 16px;
-  font-size: 1rem;
-  line-height: 32px;
-  line-height: 2rem;
-  font-family: 'Helvetica Neue', Helvetica, sans-serif;
-  font-weight: 100;
-  font-weight: 300;
-  letter-spacing: 0;
-  background-color: #e4f3e2; }
-
-.checkout {
+header {
   display: block;
   display: -webkit-box;
   display: -moz-box;
@@ -3918,192 +3894,222 @@ body {
   -webkit-flex-flow: row wrap;
   font-weight: normal;
   text-align: left; }
-  .checkout h1 {
-    font-size: 16px;
-    font-size: 1rem;
-    line-height: 32px;
-    line-height: 2rem;
-    font-family: 'Helvetica Neue', Helvetica, sans-serif;
-    font-weight: 100;
-    font-weight: 500;
-    margin-top: 1em; }
-    @media only screen and (min-width: 50em) {
-      .checkout h1 {
-        font-size: 32px;
-        font-size: 2rem;
-        line-height: 32px;
-        line-height: 2rem;
-        font-family: 'Helvetica Neue', Helvetica, sans-serif;
-        font-weight: 100; } }
-  .checkout .logo {
-    background-color: #cbcbcb;
-    max-height: 3em;
-    text-align: left;
-    overflow: hidden;
-    display: block; }
-    .checkout .logo img {
-      height: 80%;
-      max-height: 4em;
-      margin: 5px 0 0 10px;
-      display: block;
-      max-width: 100%; }
-  .checkout .help {
-    background-color: #cbcbcb;
-    max-height: 3em; }
-  .checkout .progress {
-    background: #f1f1f1;
-    text-align: center; }
-    .checkout .progress a {
-      border-bottom: 0;
-      font-size: 16px;
-      font-size: 1rem;
+
+@media only screen and (min-width: 30em) {
+  article {
+    width: 96%;
+    margin: 0 auto;
+    overflow: hidden; } }
+
+.nav--fit {
+  width: 101%; }
+
+.hide {
+  display: none; }
+
+.checkout h1 {
+  font-size: 16px;
+  font-size: 1rem;
+  line-height: 32px;
+  line-height: 2rem;
+  font-family: 'Helvetica Neue', Helvetica, sans-serif;
+  font-weight: 500;
+  letter-spacing: 0;
+  margin-top: 1em;
+  padding-left: 1em; }
+  @media only screen and (min-width: 30em) {
+    .checkout h1 {
+      font-size: 24px;
+      font-size: 1.5rem;
       line-height: 48px;
       line-height: 3rem;
       font-family: 'Helvetica Neue', Helvetica, sans-serif;
+      font-weight: 300;
+      letter-spacing: 0;
+      padding: 0; } }
+  @media only screen and (min-width: 50em) {
+    .checkout h1 {
+      font-size: 32px;
+      font-size: 2rem;
+      line-height: 64px;
+      line-height: 4rem;
+      font-family: 'Helvetica Neue', Helvetica, sans-serif;
       font-weight: 100;
-      -webkit-transition: all 0.3s ease-in-out;
-      -moz-transition: all 0.3s ease-in-out;
-      transition: all 0.3s ease-in-out;
-      font-weight: 500;
+      letter-spacing: 0; } }
+.checkout .logo {
+  background-color: #cbcbcb;
+  max-height: 3em;
+  text-align: left;
+  overflow: hidden;
+  display: block; }
+  .checkout .logo img {
+    height: 80%;
+    max-height: 4em;
+    margin: 5px 0 0 10px;
+    display: block;
+    max-width: 100%; }
+.checkout .help {
+  background-color: #cbcbcb;
+  max-height: 3em; }
+.checkout .progress {
+  background: #f1f1f1;
+  text-align: center; }
+  .checkout .progress a {
+    border-bottom: 0;
+    font-size: 16px;
+    font-size: 1rem;
+    line-height: 48px;
+    line-height: 3rem;
+    font-family: 'Helvetica Neue', Helvetica, sans-serif;
+    font-weight: 300;
+    letter-spacing: 0;
+    -webkit-transition: all 0.3s ease-in-out;
+    -moz-transition: all 0.3s ease-in-out;
+    transition: all 0.3s ease-in-out;
+    font-weight: 500;
+    color: #cbcbcb; }
+    .checkout .progress a:hover {
+      background: #3e6d9d; }
+      .checkout .progress a:hover:before {
+        background: #8aadd1;
+        color: white; }
+    .checkout .progress a.active {
+      background-color: #3e6d9d !important;
+      color: white !important; }
+    .checkout .progress a:visited {
+      background-color: #f1f1f1;
       color: #cbcbcb; }
-      .checkout .progress a:hover {
-        background: #3e6d9d; }
-        .checkout .progress a:hover:before {
-          background: #8aadd1;
-          color: white; }
-      .checkout .progress a.active {
-        background-color: #3e6d9d !important;
-        color: white !important; }
-      .checkout .progress a:visited {
-        background-color: #f1f1f1;
-        color: #cbcbcb; }
-      @media only screen and (min-width: 50em) {
-        .checkout .progress a {
+    @media only screen and (min-width: 50em) {
+      .checkout .progress a {
+        -webkit-transition: all 0.3s ease-in-out;
+        -moz-transition: all 0.3s ease-in-out;
+        transition: all 0.3s ease-in-out;
+        font-size: 16px;
+        font-size: 1rem;
+        line-height: 72px;
+        line-height: 4.5rem;
+        font-family: 'Helvetica Neue', Helvetica, sans-serif;
+        font-weight: 300;
+        letter-spacing: 0;
+        background-color: white !important;
+        color: #727272;
+        font-weight: normal;
+        text-align: left;
+        padding-left: 60px; }
+        .checkout .progress a:hover {
+          color: #8aadd1; }
+        .checkout .progress a:before {
           -webkit-transition: all 0.3s ease-in-out;
           -moz-transition: all 0.3s ease-in-out;
           transition: all 0.3s ease-in-out;
-          font-size: 16px;
-          font-size: 1rem;
-          line-height: 72px;
-          line-height: 4.5rem;
-          font-family: 'Helvetica Neue', Helvetica, sans-serif;
-          font-weight: 100;
-          background-color: white !important;
+          display: block;
+          width: 40px;
+          height: 40px;
+          content: "1";
+          background: #cbcbcb;
           color: #727272;
-          font-weight: normal;
-          text-align: left;
-          padding-left: 60px; }
-          .checkout .progress a:hover {
-            color: #8aadd1; }
-          .checkout .progress a:before {
-            -webkit-transition: all 0.3s ease-in-out;
-            -moz-transition: all 0.3s ease-in-out;
-            transition: all 0.3s ease-in-out;
-            display: block;
-            width: 40px;
-            height: 40px;
-            content: "1";
-            background: #cbcbcb;
-            color: #727272;
-            border-radius: 40px;
-            line-height: 40px;
-            position: absolute;
-            margin-top: 1em;
-            margin-left: -60px;
-            text-align: center; }
-          .checkout .progress a.active {
-            background-color: white !important;
-            color: #3e6d9d !important; }
-            .checkout .progress a.active:before {
-              background: #3e6d9d;
-              color: white !important; } }
-    @media only screen and (min-width: 50em) {
-      .checkout .progress .shipping a:before {
-        content: "1"; }
-      .checkout .progress .billing a:before {
-        content: "2"; }
-      .checkout .progress .review a:before {
-        content: "3"; } }
-    .checkout .progress .nav {
-      margin-bottom: 0; }
-  .checkout .cancel-order {
+          border-radius: 40px;
+          line-height: 40px;
+          position: absolute;
+          margin-top: 1em;
+          margin-left: -60px;
+          text-align: center; }
+        .checkout .progress a.active {
+          background-color: white !important;
+          color: #3e6d9d !important; }
+          .checkout .progress a.active:before {
+            background: #3e6d9d;
+            color: white !important; } }
+  @media only screen and (min-width: 50em) {
+    .checkout .progress .shipping a:before {
+      content: "1"; }
+    .checkout .progress .billing a:before {
+      content: "2"; }
+    .checkout .progress .review a:before {
+      content: "3"; } }
+  .checkout .progress .nav {
+    margin-bottom: 0; }
+.checkout .cancel-order {
+  height: 64px;
+  height: 4rem; }
+  .checkout .cancel-order button {
     height: 64px;
     height: 4rem; }
-    .checkout .cancel-order button {
-      height: 64px;
-      height: 4rem; }
-  .checkout .btn, .checkout .cta, .checkout button {
+.checkout .btn, .checkout .cta, .checkout button {
+  height: 64px;
+  height: 4rem;
+  background-color: #cbcbcb;
+  height: 2em;
+  font-size: 16px;
+  font-size: 1rem;
+  line-height: 32px;
+  line-height: 2rem;
+  font-family: 'Helvetica Neue', Helvetica, sans-serif;
+  font-weight: 300;
+  letter-spacing: 0;
+  font-weight: 500; }
+.checkout button.primary, .checkout .btn.primary, .checkout .cta.primary {
+  background-color: #cbcbcb;
+  color: #727272; }
+.checkout button.secondary, .checkout .btn.secondary, .checkout .cta.secondary {
+  background-color: white !important;
+  color: #cbcbcb;
+  border: 1px solid #f1f1f1 !important; }
+.checkout .cta_bar {
+  flex: 1 row 100%;
+  left: 0;
+  height: 64px;
+  height: 4rem;
+  background-color: #cbcbcb; }
+  .checkout .cta_bar .grid__item {
     height: 64px;
-    height: 4rem;
-    background-color: #cbcbcb;
-    height: 2em;
-    font-size: 16px;
-    font-size: 1rem;
-    line-height: 32px;
-    line-height: 2rem;
+    height: 4rem; }
+  .checkout .cta_bar .total {
+    font-size: 32px;
+    font-size: 2rem;
+    line-height: 80px;
+    line-height: 5rem;
     font-family: 'Helvetica Neue', Helvetica, sans-serif;
-    font-weight: 100;
-    font-weight: 500; }
-  .checkout button.primary, .checkout .btn.primary, .checkout .cta.primary {
-    background-color: #cbcbcb;
-    color: #727272; }
-  .checkout button.secondary, .checkout .btn.secondary, .checkout .cta.secondary {
-    background-color: white !important;
-    color: #cbcbcb;
-    border: 1px solid #f1f1f1 !important; }
-  .checkout .cta_bar {
-    flex: 1 row 100%;
-    left: 0;
-    height: 64px;
-    height: 4rem;
-    background-color: #cbcbcb; }
-    .checkout .cta_bar .grid__item {
-      height: 64px;
-      height: 4rem; }
-    .checkout .cta_bar .total {
-      font-size: 32px;
-      font-size: 2rem;
-      line-height: 80px;
-      line-height: 5rem;
-      font-family: 'Helvetica Neue', Helvetica, sans-serif;
-      font-weight: 100; }
-      @media only screen and (min-width: 50em) {
-        .checkout .cta_bar .total {
-          font-size: 40px;
-          font-size: 2.5rem;
-          line-height: 80px;
-          line-height: 5rem;
-          font-family: 'Helvetica Neue', Helvetica, sans-serif;
-          font-weight: 100; } }
-      .checkout .cta_bar .total:before {
-        display: inline-block;
-        position: relative;
-        content: "Total: ";
-        width: 6rem;
-        height: 1;
-        margin-right: .6em; }
-  .checkout #content {
-    min-height: 1000px;
-    background-color: white; }
-  .checkout #help-content, .checkout .privacy-policy, .checkout .shipping-policy {
-    background-color: #727272; }
-  .checkout #help-content {
-    padding-top: 96px; }
-  .checkout .taptarget {
+    font-weight: 300;
+    letter-spacing: 0; }
+    @media only screen and (min-width: 50em) {
+      .checkout .cta_bar .total {
+        font-size: 40px;
+        font-size: 2.5rem;
+        line-height: 80px;
+        line-height: 5rem;
+        font-family: 'Helvetica Neue', Helvetica, sans-serif;
+        font-weight: 300;
+        letter-spacing: 0; } }
+    .checkout .cta_bar .total:before {
+      display: inline-block;
+      position: relative;
+      content: "Total: ";
+      width: 6rem;
+      height: 1;
+      margin-right: .6em; }
+.checkout #content {
+  min-height: 1000px;
+  background-color: white; }
+.checkout #help-content, .checkout .privacy-policy, .checkout .shipping-policy {
+  background-color: #727272; }
+.checkout #help-content {
+  padding-top: 96px; }
+.checkout .taptarget {
+  height: 64px;
+  height: 4rem;
+  min-height: 48px;
+  min-height: 3rem; }
+  .checkout .taptarget a, .checkout .taptarget button {
     height: 64px;
     height: 4rem;
     min-height: 48px;
     min-height: 3rem; }
-    .checkout .taptarget a, .checkout .taptarget button {
-      height: 64px;
-      height: 4rem;
-      min-height: 48px;
-      min-height: 3rem; }
-    .checkout .taptarget.secondary {
-      height: 32px;
-      height: 2rem;
-      min-height: 16px;
-      min-height: 1rem; }
+  .checkout .taptarget.secondary {
+    height: 32px;
+    height: 2rem;
+    min-height: 16px;
+    min-height: 1rem; }
 
 .changeaddress, .createaddress {
   margin: 1em auto;

@@ -11,217 +11,224 @@
     <script src="js/jquery-1.11.0.min.js"></script>
 </head>
 <body>
-    <div class="checkout grid">
-        <div class="grid__item one-third lap-one-sixth logo taptarget">
-            <img src="images/logo.svg" />
-        </div>
-        <div class="grid__item two-thirds lap-five-sixths help">
-            <p>
-                <strong>Secure Transaction</strong><br><a href="#help-content">Need Help?</a>
-            </p>
-
-        </div>
-        <div id="progress-bar" class="grid__item one-whole progress">
-            <ul class="nav nav--fit">
-                <li class="shipping"><a href="#" class="active">Shipping</a></li>
-                <li class="billing"><a href="#">Billing</a></li>
-                <li class="review"><a href="#">Review</a></li>
-            </ul>
-        </div>
-        <div id="shipping-address" class="grid__item one-whole">
-            <h1 class="instructions" data-text="Select a shipping address" data-alt-text="Select a shipping address">
-                Select a shipping address
-            </h1>
-                <div class="defaultaddress-wrapper">
-                    <div class="defaultaddress">
-                        <ul class="grid readonly selected address-item default">
-                            <li class="grid__item one-whole desk-one-half address-item readonly">
-                                <input type="radio" name="select-address" id="address0" value="address0" checked>
-                                <label for="address0">
-                                    <span class="btn shiptothis primary">Ship to this address</span>
-                                    <button class="btn edit secondary">Edit</button>
-                                    <div class="address">
-                                        <span class="name">Ethan Koser</span>
-                                        <span class="street">123 A street</span>,
-                                        <span class="city">Mobile</span>
-                                        <span class="state">AK</span>
-                                        <span class="zip">88739</span>
-                                        <span class="country">United States</span>
-                                        <span class="phone">+1-222-333-4567</span>
-                                    </div>
-                                </label>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-                    <button class="changeaddress btn taptarget secondary">Use different address</button>
+    <div class="checkout">
+        <header class="grid">
+            <div class="grid__item one-third lap-one-sixth logo taptarget">
+                <img src="images/logo.svg" />
             </div>
-            <div class="additional-addresses hide">
-                <ul class="grid">
-                    <li class="grid__item one-whole desk-one-half address-item readonly">
-                        <input type="radio" name="select-address" id="address1" value="address1">
-                        <label for="address1">
-                            <span class="btn shiptothis primary">Ship to this address</span>
-                            <button class="btn edit secondary">Edit</button>
-                            <div class="address1">
-                                <span class="name">Toby Treppmann</span>
-                                <span class="company">Hair Direct</span>
-                                <span class="street">Herman-Katelhonser.46</span>,
-                                <span class="city">Wamel-Mohneseea</span>
-                                <span class="zip">59519</span>
-                                <span class="country">Germany</span>
-                                <span class="phone">+49-555-555-5555</span>
-                            </div>
-                        </label>
-                    </li>
-                    <li class="grid__item one-whole desk-one-half address-item readonly">
-                        <input type="radio" name="select-address" id="address2" value="address2">
-                        <label for="address2">
-                            <span class="btn shiptothis primary">Ship to this address</span>
-                            <button class="btn edit secondary">Edit</button>
-                            <div class="address2">
-                                <span class="name">Toby Treppmann</span>
-                                <span class="company">Hair Direct</span>
-                                <span class="street">Herman-Katelhonser.46</span>,
-                                <span class="city">Wamel-Mohneseea</span>
-                                <span class="zip">59519</span>
-                                <span class="country">Germany</span>
-                                <span class="phone">+49-555-555-5555</span>
-                            </div>
-                        </label>
-                    </li>
-                    <li class="grid__item one-whole desk-one-half address-item readonly">
-                        <input type="radio" name="select-address" id="address3" value="address3">
-                        <label for="address3">
-                            <span class="btn shiptothis primary">Ship to this address</span>
-                            <button class="btn edit secondary">Edit</button>
-                            <div class="address">
-                                <span class="name">Mike Koser</span>
-                                <span class="company">Hair Direct</span>
-                                <span class="street">765 Test Rd</span>,
-                                <span class="city">Lancaster</span>
-                                <span class="state">PA</span>
-                                <span class="zip">17603</span>
-                                <span class="country">United States</span>
-                                <span class="phone">+1-555-555-5555</span>
-                            </div>
-                        </label>
-                    </li>
-                </ul>
-                <button class="createaddress btn taptarget secondary">Create new address</button>
-            </div>
-            <form id="new-address-form" action="#" class="new-address hide">
-                <ul class="add-edit-address form-fields one-whole">
-                    <li class="field country">
-                        <label for="country-input">Country</label>
-                        <select class="" id="country-input">
-                            <option value="">Select A Country</option>
-                            <option value="US">United States</option>
-                            <option value="CA">Canada</option>
-                        </select>
-                    </li>
-                    <li class="field name">
-                        <label for="name-input">Name</label>
-                        <input type="text" class="text-input" id="name-input">
-                    </li>
-                    <li class="field company">
-                        <label for="company-input">Company</label>
-                        <input type="text" class="text-input" id="company-input">
-                    </li>
-                    <li class="field address">
-                        <label for="address-input">Street Address</label>
-                        <textarea class="text-input" id="address-input"></textarea>
-                    </li>
-                    <li class="field city">
-                        <label for="city-input">City</label>
-                        <input type="text" class="text-input" id="city-input">
-                    </li>
-                    <li class="field state">
-                        <label for="state-input">State/Province</label>
-                        <input type="text" class="text-input" id="state-input">
-                    </li>
-                    <li class="field postal-code">
-                        <label for="postal-code-input">Postal Code</label>
-                        <input type="text" class="text-input" id="postal-code-input">
-                    </li>
-                    <li class="field phone">
-                        <label for="phone-input">Phone</label>
-                        <input type="text" class="text-input" id="phone-input">
-                    </li>
-                    <li class="buttons">
-                        <button class="cancel btn btn--small taptarget">Cancel</button>
-                        <button class="save btn btn--small taptarget">Save Address</button>
-                    </li>
-                </ul>
-            </form>
-        </div>
-        <div id="shipping-method">
-        </div>
-        <div id="billing-information">
-        </div>
-        <div id="order-review">
-        </div>
-        <div id="order-confirmation">
-        </div>
-    </div>
-    <div class="cta_bar one-whole">
-        <div class="grid">
-            <div class="total grid__item three-quarters graybox">$99.99</div>
-            <button class="btn btn--positive grid__item one-quarter">Next</button>
-        </div>
-    </div>
-    <div id="help-content" class="help grid__item one-whole greybox">
-        <h3>Need Help?</h3>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse eu magna sed felis vehicula tristique sed id turpis. Sed mattis, libero sed volutpat laoreet, nunc ipsum egestas nisl, a ornare ligula massa at sem. Cras semper arcu eu turpis porttitor suscipit. Sed semper tortor a magna ornare porta. Donec hendrerit, tellus vitae ultricies auctor, enim erat auctor arcu, ut varius elit nunc non urna. Quisque sit amet leo ipsum, euismod feugiat ante. Aenean metus est, hendrerit cursus congue nec, accumsan at lectus. Aliquam nulla dui, varius vitae mattis bibendum, dictum hendrerit dui. Nullam enim risus, viverra eget euismod at, lacinia vitae purus. Vestibulum ipsum est, ultricies vitae congue at, ullamcorper vulputate dui. Quisque eget est nec tellus vehicula aliquet.</p>
-        <div class="grid">
-            <a href="tel:+15555555555" class="grid__item one-whole">Call us: +1 555-555-5555</a>
-            <a href="mailto:talk@hairdirect.com" class="grid__item one-whole">Email: talk@hairdirect.com</a>
-        </div>
-    </div>
-    <div class="privacy-policy grid__item one-whole greybox taptarget">
-        <a href="#privacy-policy-modal">Privacy Policy</a>
-    </div>
-    <div class="shipping-policy grid__item one-whole greybox taptarget">
-        <a href="#shipping-policy-modal">Shipping Policy</a>
-    </div>
-    <div class="cancel-order grid__item one-whole greybox">
-        <a class="btn btn--hard btn--small btn--negative btn--full" href="#cancel-order-modal">Cancel Order</a>
-    </div>
-    <!-- MODALS -->
-    <section class="semantic-content" id="privacy-policy-modal" tabindex="-1"
-             role="dialog" aria-labelledby="privacy-policy-modal-label" aria-hidden="true">
-        <div class="modal-inner">
-            <header id="privacy-policy-modal-label">Privacy Policy</header>
-            <div class="modal-content">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed convallis pharetra velit, ac ullamcorper turpis. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Proin tempor odio odio, egestas fringilla velit sagittis a. Curabitur non dignissim risus, ut iaculis ligula. Suspendisse laoreet, massa ut semper malesuada, felis massa varius tortor, et ultrices nunc ligula et dolor. Duis id lorem eu ligula elementum cursus. Maecenas eget quam est. Vestibulum purus mi, lacinia sit amet lacinia eu, viverra vel dui. Donec lobortis, magna a rhoncus auctor, ante lorem congue lectus, non dapibus diam ligula eget est. Cras volutpat metus.</div>
-        </div>
-        <a href="#!" class="modal-close" title="Close this modal" data-close="Close"
-           data-dismiss="modal">×</a>
-    </section>
-    <section class="semantic-content" id="shipping-policy-modal" tabindex="-1"
-             role="dialog" aria-labelledby="shipping-policy-modal-label" aria-hidden="true">
-        <div class="modal-inner">
-            <header id="shipping-policy-modal-label">Shipping Policy</header>
-            <div class="modal-content">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed convallis pharetra velit, ac ullamcorper turpis. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Proin tempor odio odio, egestas fringilla velit sagittis a. Curabitur non dignissim risus, ut iaculis ligula. Suspendisse laoreet, massa ut semper malesuada, felis massa varius tortor, et ultrices nunc ligula et dolor. Duis id lorem eu ligula elementum cursus. Maecenas eget quam est. Vestibulum purus mi, lacinia sit amet lacinia eu, viverra vel dui. Donec lobortis, magna a rhoncus auctor, ante lorem congue lectus, non dapibus diam ligula eget est. Cras volutpat metus.</div>
-        </div>
-        <a href="#!" class="modal-close" title="Close this modal" data-close="Close"
-           data-dismiss="modal">×</a>
-    </section>
-    <section class="semantic-content" id="cancel-order-modal" tabindex="-1"
-             role="dialog" aria-labelledby="cancel-order-modal-label" aria-hidden="true">
-        <div class="modal-inner">
-            <header id="cancel-order-modal-label">Cancel Order</header>
-            <div class="modal-content">
+            <div class="grid__item two-thirds lap-five-sixths help">
                 <p>
-                    Are you sure you want to cancel your order?
+                    <strong>Secure Transaction</strong><br><a href="#help-content">Need Help?</a>
                 </p>
-                <a href="#!" data-close="Close" data-dismiss="modal" class="leave taptarget">Yes, but keep my cart</a>
-                <a href="#!" data-close="Close" data-dismiss="modal" class="remove taptarget">Yes, and remove items in my cart</a>
-                <a href="#!" data-close="Close" data-dismiss="modal" class="cancel taptarget">No</a>
+
+            </div>
+            <div id="progress-bar" class="grid__item one-whole progress">
+                <ul class="nav nav--fit">
+                    <li class="shipping"><a href="#" class="active">Shipping</a></li>
+                    <li class="billing"><a href="#">Billing</a></li>
+                    <li class="review"><a href="#">Review</a></li>
+                </ul>
+            </div>
+        </header>
+        <article>
+            <div class="grid">
+                <div id="shipping-address" class="grid__item one-whole">
+                    <h1 class="instructions" data-text="Select a shipping address" data-alt-text="Select a shipping address">
+                        Select a shipping address
+                    </h1>
+                    <div class="defaultaddress-wrapper">
+                        <div class="defaultaddress">
+                            <ul class="grid readonly selected address-item default">
+                                <li class="grid__item one-whole desk-one-half address-item readonly">
+                                    <input type="radio" name="select-address" id="address0" value="address0" checked>
+                                    <label for="address0">
+                                        <span class="btn shiptothis primary">Ship to this address</span>
+                                        <button class="btn edit secondary">Edit</button>
+                                        <div class="address">
+                                            <span class="name">Ethan Koser</span>
+                                            <span class="street">123 A street</span>,
+                                            <span class="city">Mobile</span>
+                                            <span class="state">AK</span>
+                                            <span class="zip">88739</span>
+                                            <span class="country">United States</span>
+                                            <span class="phone">+1-222-333-4567</span>
+                                        </div>
+                                    </label>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <button class="changeaddress btn taptarget secondary">Use different address</button>
+                </div>
+                <div class="grid__item one-whole additional-addresses hide">
+                    <ul class="grid">
+                        <li class="grid__item one-whole desk-one-half address-item readonly">
+                            <input type="radio" name="select-address" id="address1" value="address1">
+                            <label for="address1">
+                                <span class="btn shiptothis primary">Ship to this address</span>
+                                <button class="btn edit secondary">Edit</button>
+                                <div class="address1">
+                                    <span class="name">Toby Treppmann</span>
+                                    <span class="company">Hair Direct</span>
+                                    <span class="street">Herman-Katelhonser.46</span>,
+                                    <span class="city">Wamel-Mohneseea</span>
+                                    <span class="zip">59519</span>
+                                    <span class="country">Germany</span>
+                                    <span class="phone">+49-555-555-5555</span>
+                                </div>
+                            </label>
+                        </li>
+                        <li class="grid__item one-whole desk-one-half address-item readonly">
+                            <input type="radio" name="select-address" id="address2" value="address2">
+                            <label for="address2">
+                                <span class="btn shiptothis primary">Ship to this address</span>
+                                <button class="btn edit secondary">Edit</button>
+                                <div class="address2">
+                                    <span class="name">Toby Treppmann</span>
+                                    <span class="company">Hair Direct</span>
+                                    <span class="street">Herman-Katelhonser.46</span>,
+                                    <span class="city">Wamel-Mohneseea</span>
+                                    <span class="zip">59519</span>
+                                    <span class="country">Germany</span>
+                                    <span class="phone">+49-555-555-5555</span>
+                                </div>
+                            </label>
+                        </li>
+                        <li class="grid__item one-whole desk-one-half address-item readonly">
+                            <input type="radio" name="select-address" id="address3" value="address3">
+                            <label for="address3">
+                                <span class="btn shiptothis primary">Ship to this address</span>
+                                <button class="btn edit secondary">Edit</button>
+                                <div class="address">
+                                    <span class="name">Mike Koser</span>
+                                    <span class="company">Hair Direct</span>
+                                    <span class="street">765 Test Rd</span>,
+                                    <span class="city">Lancaster</span>
+                                    <span class="state">PA</span>
+                                    <span class="zip">17603</span>
+                                    <span class="country">United States</span>
+                                    <span class="phone">+1-555-555-5555</span>
+                                </div>
+                            </label>
+                        </li>
+                    </ul>
+                    <button class="createaddress btn taptarget secondary">Create new address</button>
+                </div>
+                <form id="new-address-form" action="#" class="new-address hide">
+                    <ul class="add-edit-address form-fields one-whole">
+                        <li class="field country">
+                            <label for="country-input">Country</label>
+                            <select class="" id="country-input">
+                                <option value="">Select A Country</option>
+                                <option value="US">United States</option>
+                                <option value="CA">Canada</option>
+                            </select>
+                        </li>
+                        <li class="field name">
+                            <label for="name-input">Name</label>
+                            <input type="text" class="text-input" id="name-input">
+                        </li>
+                        <li class="field company">
+                            <label for="company-input">Company</label>
+                            <input type="text" class="text-input" id="company-input">
+                        </li>
+                        <li class="field address">
+                            <label for="address-input">Street Address</label>
+                            <textarea class="text-input" id="address-input"></textarea>
+                        </li>
+                        <li class="field city">
+                            <label for="city-input">City</label>
+                            <input type="text" class="text-input" id="city-input">
+                        </li>
+                        <li class="field state">
+                            <label for="state-input">State/Province</label>
+                            <input type="text" class="text-input" id="state-input">
+                        </li>
+                        <li class="field postal-code">
+                            <label for="postal-code-input">Postal Code</label>
+                            <input type="text" class="text-input" id="postal-code-input">
+                        </li>
+                        <li class="field phone">
+                            <label for="phone-input">Phone</label>
+                            <input type="text" class="text-input" id="phone-input">
+                        </li>
+                        <li class="buttons">
+                            <button class="cancel btn btn--small taptarget">Cancel</button>
+                            <button class="save btn btn--small taptarget">Save Address</button>
+                        </li>
+                    </ul>
+                </form>
+            </div>
+            <div id="shipping-method">
+            </div>
+            <div id="billing-information">
+            </div>
+            <div id="order-review">
+            </div>
+            <div id="order-confirmation">
             </div>
         </div>
-        <a href="#!" class="modal-close" title="Close this modal" data-close="Close" data-dismiss="modal">×</a>
-    </section>
-
+    </div>
+    </article>
+    <footer class="grid">
+        <div class="cta_bar one-whole">
+            <div class="grid">
+                <div class="total grid__item three-quarters graybox">$99.99</div>
+                <button class="btn btn--positive grid__item one-quarter">Next</button>
+            </div>
+        </div>
+        <div id="help-content" class="help grid__item one-whole greybox">
+            <h3>Need Help?</h3>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse eu magna sed felis vehicula tristique sed id turpis. Sed mattis, libero sed volutpat laoreet, nunc ipsum egestas nisl, a ornare ligula massa at sem. Cras semper arcu eu turpis porttitor suscipit. Sed semper tortor a magna ornare porta. Donec hendrerit, tellus vitae ultricies auctor, enim erat auctor arcu, ut varius elit nunc non urna. Quisque sit amet leo ipsum, euismod feugiat ante. Aenean metus est, hendrerit cursus congue nec, accumsan at lectus. Aliquam nulla dui, varius vitae mattis bibendum, dictum hendrerit dui. Nullam enim risus, viverra eget euismod at, lacinia vitae purus. Vestibulum ipsum est, ultricies vitae congue at, ullamcorper vulputate dui. Quisque eget est nec tellus vehicula aliquet.</p>
+            <div class="grid">
+                <a href="tel:+15555555555" class="grid__item one-whole">Call us: +1 555-555-5555</a>
+                <a href="mailto:talk@hairdirect.com" class="grid__item one-whole">Email: talk@hairdirect.com</a>
+            </div>
+        </div>
+        <div class="privacy-policy grid__item one-whole greybox taptarget">
+            <a href="#privacy-policy-modal">Privacy Policy</a>
+        </div>
+        <div class="shipping-policy grid__item one-whole greybox taptarget">
+            <a href="#shipping-policy-modal">Shipping Policy</a>
+        </div>
+        <div class="cancel-order grid__item one-whole greybox">
+            <a class="btn btn--hard btn--small btn--negative btn--full" href="#cancel-order-modal">Cancel Order</a>
+        </div>
+        <!-- MODALS -->
+        <section class="semantic-content" id="privacy-policy-modal" tabindex="-1"
+                 role="dialog" aria-labelledby="privacy-policy-modal-label" aria-hidden="true">
+            <div class="modal-inner">
+                <header id="privacy-policy-modal-label">Privacy Policy</header>
+                <div class="modal-content">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed convallis pharetra velit, ac ullamcorper turpis. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Proin tempor odio odio, egestas fringilla velit sagittis a. Curabitur non dignissim risus, ut iaculis ligula. Suspendisse laoreet, massa ut semper malesuada, felis massa varius tortor, et ultrices nunc ligula et dolor. Duis id lorem eu ligula elementum cursus. Maecenas eget quam est. Vestibulum purus mi, lacinia sit amet lacinia eu, viverra vel dui. Donec lobortis, magna a rhoncus auctor, ante lorem congue lectus, non dapibus diam ligula eget est. Cras volutpat metus.</div>
+            </div>
+            <a href="#!" class="modal-close" title="Close this modal" data-close="Close"
+               data-dismiss="modal">×</a>
+        </section>
+        <section class="semantic-content" id="shipping-policy-modal" tabindex="-1"
+                 role="dialog" aria-labelledby="shipping-policy-modal-label" aria-hidden="true">
+            <div class="modal-inner">
+                <header id="shipping-policy-modal-label">Shipping Policy</header>
+                <div class="modal-content">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed convallis pharetra velit, ac ullamcorper turpis. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Proin tempor odio odio, egestas fringilla velit sagittis a. Curabitur non dignissim risus, ut iaculis ligula. Suspendisse laoreet, massa ut semper malesuada, felis massa varius tortor, et ultrices nunc ligula et dolor. Duis id lorem eu ligula elementum cursus. Maecenas eget quam est. Vestibulum purus mi, lacinia sit amet lacinia eu, viverra vel dui. Donec lobortis, magna a rhoncus auctor, ante lorem congue lectus, non dapibus diam ligula eget est. Cras volutpat metus.</div>
+            </div>
+            <a href="#!" class="modal-close" title="Close this modal" data-close="Close"
+               data-dismiss="modal">×</a>
+        </section>
+        <section class="semantic-content" id="cancel-order-modal" tabindex="-1"
+                 role="dialog" aria-labelledby="cancel-order-modal-label" aria-hidden="true">
+            <div class="modal-inner">
+                <header id="cancel-order-modal-label">Cancel Order</header>
+                <div class="modal-content">
+                    <p>
+                        Are you sure you want to cancel your order?
+                    </p>
+                    <a href="#!" data-close="Close" data-dismiss="modal" class="leave taptarget">Yes, but keep my cart</a>
+                    <a href="#!" data-close="Close" data-dismiss="modal" class="remove taptarget">Yes, and remove items in my cart</a>
+                    <a href="#!" data-close="Close" data-dismiss="modal" class="cancel taptarget">No</a>
+                </div>
+            </div>
+            <a href="#!" class="modal-close" title="Close this modal" data-close="Close" data-dismiss="modal">×</a>
+        </section>
+    </footer>
     <!-- SCRIPTS -->
     <script src="js/modal.js"></script>
     <script src="js/checkout.js"></script>
