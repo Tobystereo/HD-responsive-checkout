@@ -3909,7 +3909,7 @@ header {
   width: 101%; }
 
 .hide {
-  display: none; }
+  display: none !important; }
 
 .address-wrapper {
   list-style: none; }
