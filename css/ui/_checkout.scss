@@ -44,7 +44,11 @@ article {
 
 
 .hide {
-    display: none !important;
+//    display: none !important;
+//    clip: rect(0,0,0,0);
+    visibility: hidden;
+    height: 0;
+    overflow: hidden;
 }
 
 .address-wrapper {

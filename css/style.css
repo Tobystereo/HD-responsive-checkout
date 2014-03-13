@@ -3909,7 +3909,9 @@ header {
   width: 101%; }
 
 .hide {
-  display: none !important; }
+  visibility: hidden;
+  height: 0;
+  overflow: hidden; }
 
 .address-wrapper {
   list-style: none; }
