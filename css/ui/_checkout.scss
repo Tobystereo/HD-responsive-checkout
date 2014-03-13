@@ -204,11 +204,17 @@ article {
     }
 
     button.primary, .btn.primary, .cta.primary {
+        background-color: $green;
+        color: $lightest;
+    }
+
+
+    button.secondary, .btn.secondary, .cta.secondary {
         background-color: $light;
         color: $dark;
     }
 
-    button.secondary, .btn.secondary, .cta.secondary {
+    button.tertiary, .btn.tertiary, .cta.tertiary {
         background-color: $lightest !important;
         color: $light;
         border: 1px solid $lighter !important;
@@ -319,6 +325,10 @@ article {
                 float: right;
                 margin-bottom: 1em;
 
+                &:after {
+                    @include pseudo(100%, 2em, "Ship to this address");
+                }
+
                 @media #{$large} {
                     margin-top: 4.5em;
                     margin-bottom: 0;
@@ -353,8 +363,10 @@ article {
             background: $light-green;
 
             .shiptothis {
-                background: $green;
-                color: $lightest;
+
+                &:after {
+                    @include pseudo(100%, 2em, "Selected");
+                }
 
                 @media #{$large} {
                     &:before {
