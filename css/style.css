@@ -4146,7 +4146,7 @@ header {
         margin-bottom: 1em; }
         @media only screen and (min-width: 50em) {
           .address-item.readonly input[type=radio] + label .shiptothis {
-            margin-top: 3em;
+            margin-top: 4.5em;
             margin-bottom: 0; } }
       .address-item.readonly input[type=radio] + label .edit {
         position: relative;
@@ -4157,7 +4157,7 @@ header {
         margin-left: 0; }
         @media only screen and (min-width: 30em) {
           .address-item.readonly input[type=radio] + label .address {
-            margin-left: 2em; } }
+            margin-top: 1em; } }
     .address-item.readonly input[type=radio]:checked + label {
       outline-color: green;
       background: #e4f3e2; }
