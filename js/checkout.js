@@ -126,12 +126,12 @@ function SetGlobalVariables() {
 
 function WireEvents() {
 	/// <summary>Wire up control events</summary>
-	Events_AdditionalAddressButton(false);
-	Events_AddAddressButton(false);
-	Events_EditAddressButton(false);
-	Events_CancelAddressButton(false);
-	Events_SaveAddressButton(false);
-	Events_AddressForm(false);
+	BindEvents_AdditionalAddressButton(false);
+	BindEvents_AddAddressButton(false);
+	BindEvents_EditAddressButton(false);
+	BindEvents_CancelAddressButton(false);
+	BindEvents_SaveAddressButton(false);
+	BindEvents_AddressForm(false);
 }
 
 function ToggleShippingInstructionText() {
@@ -145,7 +145,7 @@ function ToggleShippingInstructionText() {
 
 //#region -- EVENT HANDLERS --
 
-function Events_AdditionalAddressButton(refreshSelector) {
+function BindEvents_AdditionalAddressButton(refreshSelector) {
 	if (refreshSelector) {
 		$btnchangeaddress = $("'" + $btnchangeaddress.selector + "'");
 	}
@@ -156,7 +156,7 @@ function Events_AdditionalAddressButton(refreshSelector) {
 	});
 }
 
-function Events_AddAddressButton(refreshSelector) {
+function BindEvents_AddAddressButton(refreshSelector) {
 	if (refreshSelector) {
 		$btnadd_address = $($btnadd_address.selector);
 	}
@@ -166,7 +166,7 @@ function Events_AddAddressButton(refreshSelector) {
 	});
 }
 
-function Events_EditAddressButton(refreshSelector) {
+function BindEvents_EditAddressButton(refreshSelector) {
 	if (refreshSelector) {
 		$btnedit_address = $($btnedit_address.selector);
 	}
@@ -193,7 +193,7 @@ function Events_EditAddressButton(refreshSelector) {
 	});
 }
 
-function Events_CancelAddressButton(refreshSelector) {
+function BindEvents_CancelAddressButton(refreshSelector) {
 	if (refreshSelector) {
 		$btncancel_address = $($btncancel_address.selector);
 	}
@@ -219,7 +219,7 @@ function Events_CancelAddressButton(refreshSelector) {
 	});
 }
 
-function Events_SaveAddressButton(refreshSelector) {
+function BindEvents_SaveAddressButton(refreshSelector) {
 	if (refreshSelector) {
 		$btnsave_address = $($btnsave_address.selector);
 	}
@@ -249,7 +249,7 @@ function Events_SaveAddressButton(refreshSelector) {
 			mu += '</div></label></li>';
 			$newAddress = $(mu);
 			$address_list.append($newAddress);
-			Events_EditAddressButton(true);
+			BindEvents_EditAddressButton(true);
 			$newAddress.find("input[type=radio]").trigger("click");
 		},
 		callback: function (element, event) {
@@ -267,7 +267,7 @@ function Events_SaveAddressButton(refreshSelector) {
 	});
 }
 
-function Events_AddressForm(refreshSelector) {
+function BindEvents_AddressForm(refreshSelector) {
 	if (refreshSelector) {
 		$new_address_form = $($new_address_form.selector);
 	}
