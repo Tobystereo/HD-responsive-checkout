@@ -29,6 +29,36 @@ header {
 
 }
 
+
+.trust-asset {
+    width: auto;
+    height: 2em;
+    display: block;
+    float: right;
+    margin: 5px 1em 0 0;
+    line-height: 2em;
+
+
+    @media #{$medium} {
+        &:before {
+            @include pseudo(10em, 1em, "Secure Transaction");
+            color: $lighter;
+            text-align: right;
+            margin-right: 1em;
+            line-height: 1em;
+        }
+    }
+
+    .trust-asset-lock {
+        width: 2em;
+        height: 2em;
+
+        .lock {
+            fill: $lighter;
+        }
+    }
+}
+
 article {
 
     @media #{$medium} {
@@ -44,8 +74,6 @@ article {
 
 
 .hide {
-//    display: none !important;
-//    clip: rect(0,0,0,0);
     visibility: hidden;
     height: 0;
     overflow: hidden;

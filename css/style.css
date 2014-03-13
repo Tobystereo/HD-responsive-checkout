@@ -3900,6 +3900,30 @@ header {
   font-weight: normal;
   text-align: left; }
 
+.trust-asset {
+  width: auto;
+  height: 2em;
+  display: block;
+  float: right;
+  margin: 5px 1em 0 0;
+  line-height: 2em; }
+  @media only screen and (min-width: 30em) {
+    .trust-asset:before {
+      display: inline-block;
+      position: relative;
+      content: "Secure Transaction";
+      width: 10em;
+      height: 1em;
+      color: #f1f1f1;
+      text-align: right;
+      margin-right: 1em;
+      line-height: 1em; } }
+  .trust-asset .trust-asset-lock {
+    width: 2em;
+    height: 2em; }
+    .trust-asset .trust-asset-lock .lock {
+      fill: #f1f1f1; }
+
 @media only screen and (min-width: 30em) {
   article {
     width: 96%;
