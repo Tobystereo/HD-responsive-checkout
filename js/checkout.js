@@ -70,9 +70,10 @@ var $cta_bar,
 	$shipping_address_instructions,
 	$btnchangeaddress,
 	$btnadd_address,
+	$address_wrapper,
+	$address_list,
 	$default_address,
 	$additional_addresses,
-	$address_wrapper,
 	$new_address_form,
 	$btncancel_address,
 	$btnsave_address,
@@ -106,8 +107,9 @@ function SetGlobalVariables() {
 	$btnchangeaddress = $("button.changeaddress");
 	$btnadd_address = $("button.createaddress");
 	$address_wrapper = $(".address-wrapper");
-	$default_address = $address_wrapper.find(".defaultaddress");
-	$additional_addresses = $address_wrapper.find(".additional-address");
+	$address_list = $address_wrapper.find(".address-list");
+	$default_address = $address_list.find(".default");
+	$additional_addresses = $address_list.find(".additional-address");
 	$new_address_form = $("#new-address-form");
 	$btnedit_address = $(".address-item button");
 	$btncancel_address = $(".add-edit-address button.cancel");
@@ -156,7 +158,7 @@ function Events_AdditionalAddressButton(refreshSelector) {
 
 function Events_AddAddressButton(refreshSelector) {
 	if (refreshSelector) {
-		$btnadd_address = $("'" + $btnadd_address.selector + "'");
+		$btnadd_address = $($btnadd_address.selector);
 	}
 	$btnadd_address.toggleContainer({
 		content_element: $new_address_form,
@@ -166,7 +168,7 @@ function Events_AddAddressButton(refreshSelector) {
 
 function Events_EditAddressButton(refreshSelector) {
 	if (refreshSelector) {
-		$btnedit_address = $("'" + $btnedit_address.selector + "'");
+		$btnedit_address = $($btnedit_address.selector);
 	}
 	$btnedit_address.on("click", function () {
 		// Select the address being edited
@@ -193,7 +195,7 @@ function Events_EditAddressButton(refreshSelector) {
 
 function Events_CancelAddressButton(refreshSelector) {
 	if (refreshSelector) {
-		$btncancel_address = $("'" + $btncancel_address.selector + "'");
+		$btncancel_address = $($btncancel_address.selector);
 	}
 	$btncancel_address.toggleContainer({
 		content_element: $btnadd_address,
@@ -219,7 +221,7 @@ function Events_CancelAddressButton(refreshSelector) {
 
 function Events_SaveAddressButton(refreshSelector) {
 	if (refreshSelector) {
-		$btnsave_address = $("'" + $btnsave_address.selector + "'");
+		$btnsave_address = $($btnsave_address.selector);
 	}
 	$btnsave_address.toggleContainer({
 		content_element: $btnadd_address,
@@ -230,7 +232,7 @@ function Events_SaveAddressButton(refreshSelector) {
 		toggle_self: false,
 		pre_logic: function () {
 			var $newAddress,
-				mu = '<li class="grid__item one-whole address-item readonly">';
+				mu = '<li class="additional-address hide grid__item one-whole desk-one-half address-item readonly">';
 			mu += '<input type="radio" name="select-address" id="address4" value="address4">';
 			mu += '<label for="address4">Select this address';
 			mu += '<span class="btn shiptothis primary">Ship to this address</span>';
@@ -246,7 +248,7 @@ function Events_SaveAddressButton(refreshSelector) {
 			mu += '<span class="phone">' + $input_phone.val() + '</span>';
 			mu += '</div></label></li>';
 			$newAddress = $(mu);
-			$address_wrapper.append($newAddress);
+			$address_list.append($newAddress);
 			Events_EditAddressButton(true);
 			$newAddress.find("input[type=radio]").trigger("click");
 		},
@@ -267,7 +269,7 @@ function Events_SaveAddressButton(refreshSelector) {
 
 function Events_AddressForm(refreshSelector) {
 	if (refreshSelector) {
-		$new_address_form = $("'" + $new_address_form.selector + "'");
+		$new_address_form = $($new_address_form.selector);
 	}
 	$new_address_form.on("submit", function (e) {
 		e.preventDefault();
