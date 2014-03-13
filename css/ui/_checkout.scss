@@ -8,6 +8,12 @@ body {
     }
 }
 
+*, *:before, *:after {
+    box-sizing: border-box !important;
+    -moz-box-sizing: border-box !important;
+    -webkit-box-sizing: border-box !important;
+}
+
 header {
     display: block;
     display: -webkit-box;
@@ -28,7 +34,7 @@ article {
     @media #{$medium} {
         width: 96%;
         margin: 0 auto;
-        overflow: hidden;
+//        overflow: hidden;
     }
 }
 
@@ -41,16 +47,13 @@ article {
     display: none;
 }
 
-.address-item.default {
-//    &:before {
-//        @include pseudo(auto, 2em, "Default Address");
-//        background-color: $light-green;
-//        color: $green;
-//        text-align: center;
-//        padding: 5px 2em 0 3em;
-//        @include font(1,2);
-//
-//    }
+.address-wrapper {
+    list-style: none;
+
+    li {
+        display: block;
+        float: left;
+    }
 }
 
 .checkout{
@@ -286,7 +289,7 @@ article {
 }
 
 
-.address-item.readonly {
+.address-item {
     text-align: left;
 
     span {
@@ -298,11 +301,6 @@ article {
         clear: both;
     }
 
-    label {
-        border-bottom: 1px solid $light;
-        background-color: $lighter;
-    }
-
 
 
     input[type=radio] {
@@ -312,6 +310,18 @@ article {
 
             overflow: hidden;
             padding: 1em;
+            box-shadow: 2px 2px 10px rgba(0,0,0,0.1);
+            margin-bottom: 2em;
+            @include transition;
+            @include border($lineweight,$linetype,transparentize($green, 1));
+            background-color: $lighter;
+
+
+            &:hover {
+                -webkit-transform: scale(1.5);
+                -webkit-transform: translateY(-.5em);
+                background-color: lighten($lighter, 2%);
+            }
 
             button {
                 display: block;
@@ -323,16 +333,13 @@ article {
                 display: block;
                 height: 100%;
                 float: right;
-                margin-bottom: 1em;
+                margin-top: 0;
+                margin-bottom: 0;
 
                 &:after {
                     @include pseudo(100%, 2em, "Ship to this address");
                 }
 
-                @media #{$large} {
-                    margin-top: 4.5em;
-                    margin-bottom: 0;
-                }
             }
 
             .edit {
@@ -344,15 +351,17 @@ article {
                 display: block;
                 float: left;
                 margin-left: 0;
+                margin-top: 1em;
 
                 @media #{$medium}{
-//                    margin-top: 1em;
+                    margin-top: 0;
                     margin-left: 1.5em;
                 }
 
                 @media #{$large}{
                     margin-top: 1em;
                     margin-left: 0;
+                    clear: both;
                 }
             }
 
@@ -363,25 +372,34 @@ article {
             outline-color: green;
             background: $light-green;
 
+            &:hover {
+                -webkit-transform: translateY(0);
+            }
+
+
             .shiptothis {
                 background: none;
+                margin-top: 0.5em;
+
+                @media #{$large}{
+                    margin-top: 1em;
+                }
 
                 &:after {
                     @include pseudo(100%, 1em, "Selected");
                     color: $green;
                 }
 
-                @media #{$large} {
-                    &:before {
-                        @include pseudo(100%, 2em, '\2714');
-                        color: $green;
-                        @include font-size(2);
-                        @include line-height(4);
-                        text-align: center;
-                        margin-top: -2em;
-                        display: block;
-                    }
+                &:before {
+                    @include pseudo(100%, 2em, '\2714');
+                    color: $green;
+                    @include font-size(2);
+                    @include line-height(4);
+                    text-align: center;
+                    margin-bottom: -2.5em;
+                    display: block;
                 }
+
             }
         }
     }
