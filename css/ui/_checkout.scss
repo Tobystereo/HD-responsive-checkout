@@ -359,13 +359,16 @@ article {
         }
 
         &:checked + label {
+            @include transition;
             outline-color: green;
             background: $light-green;
 
             .shiptothis {
+                background: none;
 
                 &:after {
-                    @include pseudo(100%, 2em, "Selected");
+                    @include pseudo(100%, 1em, "Selected");
+                    color: $green;
                 }
 
                 @media #{$large} {

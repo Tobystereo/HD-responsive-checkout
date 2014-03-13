@@ -4172,29 +4172,35 @@ header {
             margin-top: 1em;
             margin-left: 0; } }
     .address-item.readonly input[type=radio]:checked + label {
+      -webkit-transition: all 0.15s ease-out 0;
+      -moz-transition: all 0.15s ease-out 0;
+      transition: all 0.15s ease-out 0;
       outline-color: green;
       background: #e4f3e2; }
-      .address-item.readonly input[type=radio]:checked + label .shiptothis:after {
-        display: inline-block;
-        position: relative;
-        content: "Selected";
-        width: 100%;
-        height: 2em; }
-      @media only screen and (min-width: 50em) {
-        .address-item.readonly input[type=radio]:checked + label .shiptothis:before {
+      .address-item.readonly input[type=radio]:checked + label .shiptothis {
+        background: none; }
+        .address-item.readonly input[type=radio]:checked + label .shiptothis:after {
           display: inline-block;
           position: relative;
-          content: "\2714";
+          content: "Selected";
           width: 100%;
-          height: 2em;
-          color: #4a993d;
-          font-size: 32px;
-          font-size: 2rem;
-          line-height: 64px;
-          line-height: 4rem;
-          text-align: center;
-          margin-top: -2em;
-          display: block; } }
+          height: 1em;
+          color: #4a993d; }
+        @media only screen and (min-width: 50em) {
+          .address-item.readonly input[type=radio]:checked + label .shiptothis:before {
+            display: inline-block;
+            position: relative;
+            content: "\2714";
+            width: 100%;
+            height: 2em;
+            color: #4a993d;
+            font-size: 32px;
+            font-size: 2rem;
+            line-height: 64px;
+            line-height: 4rem;
+            text-align: center;
+            margin-top: -2em;
+            display: block; } }
 
 /* Colors */
 .bg-lightest {
