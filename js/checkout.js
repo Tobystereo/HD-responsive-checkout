@@ -70,9 +70,9 @@ var $cta_bar,
 	$shipping_address_instructions,
 	$btnchangeaddress,
 	$btnadd_address,
-	$default_address_wrapper,
+	$default_address,
 	$additional_addresses,
-	$additional_addresses_list,
+	$address_wrapper,
 	$new_address_form,
 	$btncancel_address,
 	$btnsave_address,
@@ -105,9 +105,9 @@ function SetGlobalVariables() {
 	$shipping_address_instructions = $("#shipping-address .instructions");
 	$btnchangeaddress = $("button.changeaddress");
 	$btnadd_address = $("button.createaddress");
-	$default_address_wrapper = $("div.defaultaddress-wrapper");
-	$additional_addresses = $("div.additional-addresses");
-	$additional_addresses_list = $additional_addresses.find("ul.grid");
+	$address_wrapper = $(".address-wrapper");
+	$default_address = $address_wrapper.find(".defaultaddress");
+	$additional_addresses = $address_wrapper.find(".additional-address");
 	$new_address_form = $("#new-address-form");
 	$btnedit_address = $(".address-item button");
 	$btncancel_address = $(".add-edit-address button.cancel");
@@ -246,7 +246,7 @@ function Events_SaveAddressButton(refreshSelector) {
 			mu += '<span class="phone">' + $input_phone.val() + '</span>';
 			mu += '</div></label></li>';
 			$newAddress = $(mu);
-			$additional_addresses_list.append($newAddress);
+			$address_wrapper.append($newAddress);
 			Events_EditAddressButton(true);
 			$newAddress.find("input[type=radio]").trigger("click");
 		},
