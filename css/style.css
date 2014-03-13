@@ -4157,7 +4157,11 @@ header {
         margin-left: 0; }
         @media only screen and (min-width: 30em) {
           .address-item.readonly input[type=radio] + label .address {
-            margin-top: 1em; } }
+            margin-left: 1.5em; } }
+        @media only screen and (min-width: 50em) {
+          .address-item.readonly input[type=radio] + label .address {
+            margin-top: 1em;
+            margin-left: 0; } }
     .address-item.readonly input[type=radio]:checked + label {
       outline-color: green;
       background: #e4f3e2; }
