@@ -50,7 +50,7 @@
                         <ul class="grid address-list">
                             <li class="default grid__item one-whole desk-one-half address-item">
                                 <input type="radio" name="select-address" id="address0" value="address0" checked>
-                                <label for="address0">
+                                <label for="address0" class="card">
                                     <span class="btn shiptothis secondary"></span>
                                     <button class="btn edit tertiary">Edit</button>
                                     <div class="address">
@@ -66,7 +66,7 @@
                             </li>
                             <li class="additional-address grid__item one-whole desk-one-half address-item" style="display:none;">
                                 <input type="radio" name="select-address" id="address1" value="address1">
-                                <label for="address1">
+                                <label for="address1" class="card">
                                     <span class="btn shiptothis secondary"></span>
                                     <button class="btn edit tertiary">Edit</button>
                                     <div class="address">
@@ -82,7 +82,7 @@
                             </li>
                             <li class="additional-address grid__item one-whole desk-one-half address-item" style="display: none;">
                                 <input type="radio" name="select-address" id="address2" value="address2">
-                                <label for="address2">
+                                <label for="address2" class="card">
                                     <span class="btn shiptothis secondary"></span>
                                     <button class="btn edit tertiary">Edit</button>
                                     <div class="address">
@@ -98,7 +98,7 @@
                             </li>
                             <li class="additional-address grid__item one-whole desk-one-half address-item" style="display: none;">
                                 <input type="radio" name="select-address" id="address3" value="address3">
-                                <label for="address3">
+                                <label for="address3" class="card">
                                     <span class="btn shiptothis secondary"></span>
                                     <button class="btn edit tertiary">Edit</button>
                                     <div class="address">
@@ -114,8 +114,12 @@
                                 </label>
                             </li>
                         </ul>
-                        <button class="changeaddress btn taptarget tertiary">Use different address</button>
-                        <button class="createaddress btn taptarget tertiary" style="display: none;">Create new address</button>
+                        <div class="grid">
+                            <div class="buttons grid__item one-whole desk-one-half">
+                                <button class="changeaddress btn taptarget tertiary">Use different address</button>
+                                <button class="createaddress btn taptarget tertiary" style="display: none;">Create new address</button>
+                            </div>
+                        </div>
                     </div>
                     <form id="new-address-form" action="#" class="new-address" style="display: none;">
                         <ul class="add-edit-address form-fields one-whole">
