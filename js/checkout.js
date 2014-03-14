@@ -29,7 +29,9 @@
 					$self.fadeToggle(settings.delay + settings.self_toggle_delay_offset);
 				}
 				// Toggle continer
-				settings.content_element.slideToggle(settings.delay);
+				settings.content_element.slideToggle(settings.delay, function () {
+					settings.content_element.removeAttr("style");
+				});
 				// Toggle self (after)
 				if (settings.toggle_self && settings.toggle_order == "after") {
 					$self.fadeToggle(settings.delay + settings.self_toggle_delay_offset);
