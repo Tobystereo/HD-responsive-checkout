@@ -3881,6 +3881,11 @@ xmp {
   padding: 1em;
   color: #3e6d9d; }
 
+.pattern {
+  padding-bottom: 3em;
+  margin-bottom: 3em;
+  border-bottom: 1px solid #f1f1f1; }
+
 body {
   font-size: 16px;
   font-size: 1rem;
@@ -4219,53 +4224,6 @@ h1 {
       margin-top: -1.3em;
       margin-right: 0; }
 
-/********************************
-
-    RADIO BUTTON CARD STYLE
-
-*********************************/
-input[type=radio] {
-  display: none; }
-  input[type=radio] + label.card {
-    overflow: hidden;
-    padding: 1em;
-    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
-    margin-bottom: 2em;
-    -webkit-transition: all 0.15s ease-out 0;
-    -moz-transition: all 0.15s ease-out 0;
-    transition: all 0.15s ease-out 0;
-    background-color: #f1f1f1; }
-    input[type=radio] + label.card:hover {
-      -webkit-transform: translateY(-0.25em);
-      background-color: #f6f6f6; }
-    input[type=radio] + label.card:active {
-      -webkit-transform: translateY(0em);
-      background-color: #ececec;
-      box-shadow: -2px -2px 10px rgba(0, 0, 0, 0.1); }
-  input[type=radio]:checked + label.card {
-    -webkit-transition: all 0.15s ease-out 0;
-    -moz-transition: all 0.15s ease-out 0;
-    transition: all 0.15s ease-out 0;
-    outline-color: green;
-    background: #e4f3e2;
-    box-shadow: none; }
-    input[type=radio]:checked + label.card:hover {
-      -webkit-transform: translateY(0); }
-    input[type=radio]:checked + label.card:before {
-      display: inline-block;
-      position: relative;
-      content: "\2714";
-      width: auto;
-      height: 0.5em;
-      float: right;
-      color: #4a993d;
-      font-size: 32px;
-      font-size: 2rem;
-      line-height: 16px;
-      line-height: 1rem;
-      text-align: center;
-      display: block; }
-
 /* Colors */
 .bg-lightest {
   background-color: white; }
@@ -4343,3 +4301,120 @@ a, a:link, a:hover, a:active, a:focus {
   background: none;
   color: #b2b2b2;
   border: 1px solid #b2b2b2 !important; }
+
+form input[type=text] {
+  height: 51.2px;
+  height: 3.2rem; }
+form input[type=text], form textarea {
+  width: 100%;
+  border: 1px solid #727272;
+  background: none;
+  position: relative;
+  top: 0;
+  left: 0;
+  z-index: 1;
+  padding: 1rem 1rem 0;
+  outline: 0;
+  background-color: white; }
+  form input[type=text]:valid, form textarea:valid {
+    background: white; }
+  form input[type=text]:focus, form textarea:focus {
+    border-color: #f06d06;
+    background-color: #f1f1f1; }
+  form input[type=text]:focus + label, form input[type=text]:focus + label.notempty, form textarea:focus + label, form textarea:focus + label.notempty {
+    padding: 0 1rem;
+    font-size: 9.6px;
+    font-size: 0.6rem;
+    line-height: 16px;
+    line-height: 1rem;
+    font-family: 'Helvetica Neue', Helvetica, sans-serif;
+    font-weight: 300;
+    letter-spacing: 0;
+    z-index: 2;
+    text-transform: uppercase;
+    margin-top: -3rem;
+    color: #727272;
+    letter-spacing: 1px; }
+form label {
+  -webkit-transition: all 0.15s ease-out 0;
+  -moz-transition: all 0.15s ease-out 0;
+  transition: all 0.15s ease-out 0;
+  position: absolute;
+  font-size: 16px;
+  font-size: 1rem;
+  line-height: 48px;
+  line-height: 3rem;
+  font-family: 'Helvetica Neue', Helvetica, sans-serif;
+  font-weight: 300;
+  letter-spacing: 0;
+  z-index: 99;
+  color: #727272;
+  padding: 0 1rem;
+  margin-top: -3rem;
+  letter-spacing: 0; }
+form textarea, form textarea.twolines {
+  height: 102.4px !important;
+  height: 6.4rem !important;
+  display: block;
+  resize: none;
+  padding-top: 1.5em; }
+  form textarea + label, form textarea.twolines + label {
+    margin-top: -6em; }
+  form textarea:focus + label, form textarea:focus + label.notempty, form textarea.twolines:focus + label, form textarea.twolines:focus + label.notempty {
+    margin-top: -6.2rem; }
+  form textarea.threelines, form textarea.twolines.threelines {
+    height: 153.6px !important;
+    height: 9.6rem !important; }
+  form textarea.fourlines, form textarea.twolines.fourlines {
+    height: 204.8px !important;
+    height: 12.8rem !important; }
+  form textarea.fivelines, form textarea.twolines.fivelines {
+    height: 256px !important;
+    height: 16rem !important; }
+
+/********************************
+
+RADIO BUTTON CARD STYLE
+
+*********************************/
+input[type=radio] {
+  display: none; }
+  input[type=radio] + label.card {
+    overflow: hidden;
+    padding: 1em;
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+    margin-bottom: 2em;
+    -webkit-transition: all 0.15s ease-out 0;
+    -moz-transition: all 0.15s ease-out 0;
+    transition: all 0.15s ease-out 0;
+    background-color: #f1f1f1; }
+    input[type=radio] + label.card:hover {
+      -webkit-transform: translateY(-0.25em);
+      background-color: #f6f6f6; }
+    input[type=radio] + label.card:active {
+      -webkit-transform: translateY(0em);
+      background-color: #ececec;
+      box-shadow: -2px -2px 10px rgba(0, 0, 0, 0.1); }
+  input[type=radio]:checked + label.card {
+    -webkit-transition: all 0.15s ease-out 0;
+    -moz-transition: all 0.15s ease-out 0;
+    transition: all 0.15s ease-out 0;
+    outline-color: green;
+    background: #e4f3e2;
+    box-shadow: none; }
+    input[type=radio]:checked + label.card:hover {
+      -webkit-transform: translateY(0); }
+    input[type=radio]:checked + label.card:before {
+      display: inline-block;
+      position: relative;
+      content: "\2714";
+      width: auto;
+      height: 0.5em;
+      float: right;
+      color: #4a993d;
+      font-size: 32px;
+      font-size: 2rem;
+      line-height: 16px;
+      line-height: 1rem;
+      text-align: center;
+      display: block; }

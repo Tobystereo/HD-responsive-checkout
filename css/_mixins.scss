@@ -20,9 +20,19 @@
     @include font-family($font-weight);
 }
 
-@mixin rem-height($size) {
-    height: ($size * $rootfontsize) + px;
-    height: $size + rem;
+@mixin rem-height($size, $important: null) {
+    @if $important == 'important' {
+        height: ($size * $rootfontsize) + px !important;
+        height: $size + rem !important;
+    }
+    @else if $important == '!important' {
+        height: ($size * $rootfontsize) + px !important;
+        height: $size + rem !important;
+    }
+    @else {
+        height: ($size * $rootfontsize) + px;
+        height: $size + rem;
+    }
 }
 
 @mixin taptarget($adjust: 0) {
@@ -43,6 +53,15 @@
     outline: 1px solid red;
 }
 
-@mixin border($lineweight: $lineweight, $linetype: $linetype, $linecolor: $linecolor) {
-    border: $lineweight $linetype $linecolor;
+$borderstyle: $lineweight $linetype $linecolor;
+
+@mixin border($location: 'all', $lineweight: $lineweight, $linetype: $linetype, $linecolor: $linecolor) {
+    @if $location == 'all' {
+        border: $lineweight $linetype $linecolor;
+    } @else if $location == 'none' {
+        border: none;
+    } @else {
+        border-#{$location}: $lineweight $linetype $linecolor;
+    }
+
 }

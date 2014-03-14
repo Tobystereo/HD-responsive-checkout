@@ -121,50 +121,53 @@
                             </div>
                         </div>
                     </div>
-                    <form id="new-address-form" action="#" class="new-address" style="display: none;">
-                        <ul class="add-edit-address form-fields one-whole">
-                            <li class="field country">
-                                <label for="country-input">Country</label>
-                                <select class="" id="country-input">
-                                    <option value="">Select A Country</option>
-                                    <option value="US">United States</option>
-                                    <option value="CA">Canada</option>
-                                </select>
-                            </li>
-                            <li class="field name">
-                                <label for="name-input">Name</label>
-                                <input type="text" class="text-input" id="name-input">
-                            </li>
-                            <li class="field company">
-                                <label for="company-input">Company</label>
-                                <input type="text" class="text-input" id="company-input">
-                            </li>
-                            <li class="field address">
-                                <label for="address-input">Street Address</label>
-                                <textarea class="text-input" id="address-input"></textarea>
-                            </li>
-                            <li class="field city">
-                                <label for="city-input">City</label>
-                                <input type="text" class="text-input" id="city-input">
-                            </li>
-                            <li class="field state">
-                                <label for="state-input">State/Province</label>
-                                <input type="text" class="text-input" id="state-input">
-                            </li>
-                            <li class="field postal-code">
-                                <label for="postal-code-input">Postal Code</label>
-                                <input type="text" class="text-input" id="postal-code-input">
-                            </li>
-                            <li class="field phone">
-                                <label for="phone-input">Phone</label>
-                                <input type="text" class="text-input" id="phone-input">
-                            </li>
-                            <li class="buttons">
-                                <button class="cancel btn btn--small taptarget tertiary">Cancel</button>
-                                <button class="save btn btn--small taptarget secondary">Save Address</button>
-                            </li>
-                        </ul>
-                    </form>
+                    <div class="grid">
+                        <form id="new-address-form" action="#" class="new-address" style="display: none;">
+                            <ul class="grid__item add-edit-address form-fields one-whole">
+                                <li class="field country">
+                                    <label for="country-input">Country</label>
+                                    <select class="" id="country-input">
+                                        <option value="">Select A Country</option>
+                                        <option value="US">United States</option>
+                                        <option value="CA">Canada</option>
+                                    </select>
+                                </li>
+                                <li class="field name">
+                                    <input type="text" class="text-input" id="name-input" title="Name">
+                                    <label for="name-input">Name</label>
+                                </li>
+                                <li class="field company">
+                                    <input type="text" class="text-input" id="company-input">
+                                    <label for="company-input">Company</label>
+                                </li>
+                                <li class="field address">
+                                    <textarea class="text-input" id="address-input"></textarea>
+                                    <label for="address-input">Street Address</label>
+                                </li>
+                                <li class="field city">
+                                    <input type="text" class="text-input" id="city-input">
+                                    <label for="city-input">City</label>
+                                </li>
+                                <li class="field state">
+                                    <input type="text" class="text-input" id="state-input">
+                                    <label for="state-input">State/Province</label>
+                                </li>
+                                <li class="field postal-code">
+                                    <input type="text" class="text-input" id="postal-code-input">
+                                    <label for="postal-code-input">Postal Code</label>
+                                </li>
+                                <li class="field phone">
+                                    <input type="text" class="text-input" id="phone-input">
+                                    <label for="phone-input">Phone</label>
+                                </li>
+                                <li class="buttons">
+                                    <button class="cancel btn btn--small taptarget tertiary">Cancel</button>
+                                    <button class="save btn btn--small taptarget secondary">Save Address</button>
+                                </li>
+                            </ul>
+
+                        </form>
+                    </div>
                 </div>
                 <div id="shipping-method">
                 </div>
