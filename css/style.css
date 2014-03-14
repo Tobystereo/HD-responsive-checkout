@@ -4330,6 +4330,9 @@ a, a:link, a:hover, a:active, a:focus {
     background-color: #5fb950; }
   .primary:active {
     background-color: #38752e; }
+  .primary.small {
+    font-size: 16px;
+    font-size: 1rem; }
 
 .secondary {
   background-color: #cbcbcb;

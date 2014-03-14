@@ -36,6 +36,10 @@
     &:active {
         background-color: darken($green, 10%);
     }
+
+    &.small {
+        @include font-size(1);
+    }
 }
 
 
