@@ -1,0 +1,52 @@
+.btn, .cta, button {
+    @include taptarget();
+    background-color: $light;
+    height: 2em;
+    @inlcude transition;
+
+    @include font(1, 2, 500);
+
+    &.small {
+        @include taptarget(-2);
+    }
+
+    @media #{$medium} {
+        font-weight: 300;
+    }
+
+    &.small {
+        @include taptarget(-2);
+        margin: 0;
+    }
+}
+
+.primary {
+    background-color: $green;
+    color: $lightest;
+    @include font-size(1.5);
+
+    @media #{$large} {
+        @include font-size(2);
+    }
+
+    &:hover {
+        background-color: lighten($green, 10%);
+    }
+
+    &:active {
+        background-color: darken($green, 10%);
+    }
+}
+
+
+.secondary {
+    background-color: $light;
+    color: $darker;
+    font-weight: 500;
+}
+
+.tertiary {
+    background: none;
+    color: darken($light, 10%);
+    border: 1px solid darken($light, 10%) !important;
+}

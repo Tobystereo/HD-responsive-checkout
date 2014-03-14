@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html>
 <head>
     <title>Hair Direct Checkout</title>
@@ -13,21 +13,25 @@
 <body>
     <div class="checkout">
         <header class="grid">
-            <div class="grid__item one-third lap-one-sixth logo taptarget">
-                <img src="images/logo.svg" />
-            </div>
-            <div class="grid__item two-thirds lap-five-sixths help">
-                <div class="trust-asset">
-                    <svg version="1.1" id="trust-asset-lock" class="trust-asset-lock" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 99 120" enable-background="new 0 0 99 120" xml:space="preserve">
-                        <path class="lock" fill="#D8D8D8" d="M83,50V33C83,14.8,68.2,0,50,0S17,14.8,17,33v17H0v70h99V50H83z M40,102l6.3-22.5C43.8,78.4,42,75.9,42,73
-                                                             c0-3.9,3.1-7,7-7s7,3.1,7,7c0,2.9-1.8,5.4-4.3,6.5L58,102H40z M29,50V33c0-11.6,9.4-21,21-21s21,9.4,21,21v17H29z"/>
-                    </svg>
-                </div>
-                <p>
-                    <a class="need-help">Need Help?</a>
-                </p>
+            <nav class="global-nav grid__item one-whole">
+                <div class="grid">
+                    <div class="grid__item one-third lap-one-sixth desk-one-sixth logo taptarget">
+                        <img src="images/logo.svg" />
+                    </div>
+                    <div class="grid__item two-thirds lap-five-sixths desk-five-sixths help">
+                        <div class="trust-asset">
+                            <svg version="1.1" id="trust-asset-lock" class="trust-asset-lock" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 99 120" enable-background="new 0 0 99 120" xml:space="preserve">
+                                <path class="lock" fill="#D8D8D8" d="M83,50V33C83,14.8,68.2,0,50,0S17,14.8,17,33v17H0v70h99V50H83z M40,102l6.3-22.5C43.8,78.4,42,75.9,42,73
+                                                                     c0-3.9,3.1-7,7-7s7,3.1,7,7c0,2.9-1.8,5.4-4.3,6.5L58,102H40z M29,50V33c0-11.6,9.4-21,21-21s21,9.4,21,21v17H29z"/>
+                            </svg>
+                        </div>
+                        <p>
+                            <a class="need-help">Need Help?</a>
+                        </p>
 
-            </div>
+                    </div>
+                </div>
+            </nav>
             <div id="progress-bar" class="grid__item one-whole progress">
                 <ul class="nav nav--fit">
                     <li class="shipping"><a href="#" class="active">Shipping</a></li>
@@ -46,9 +50,9 @@
                         <ul class="grid address-list">
                             <li class="default grid__item one-whole desk-one-half address-item">
                                 <input type="radio" name="select-address" id="address0" value="address0" checked>
-                                <label for="address0">
-                                    <span class="btn shiptothis secondary"></span>
-                                    <button class="btn edit tertiary">Edit</button>
+                                <label for="address0" class="card">
+                                    <span class="btn shiptothis secondary small"></span>
+                                    <button class="btn edit tertiary small">Edit</button>
                                     <div class="address">
                                         <span class="name">Ethan Koser</span>
                                         <span class="street">123 A street</span>,
@@ -62,9 +66,9 @@
                             </li>
                             <li class="additional-address grid__item one-whole desk-one-half address-item" style="display:none;">
                                 <input type="radio" name="select-address" id="address1" value="address1">
-                                <label for="address1">
-                                    <span class="btn shiptothis secondary"></span>
-                                    <button class="btn edit tertiary">Edit</button>
+                                <label for="address1" class="card">
+                                    <span class="btn shiptothis secondary small"></span>
+                                    <button class="btn edit tertiary small">Edit</button>
                                     <div class="address">
                                         <span class="name">Toby Treppmann</span>
                                         <span class="company">Hair Direct</span>
@@ -78,9 +82,9 @@
                             </li>
                             <li class="additional-address grid__item one-whole desk-one-half address-item" style="display: none;">
                                 <input type="radio" name="select-address" id="address2" value="address2">
-                                <label for="address2">
-                                    <span class="btn shiptothis secondary"></span>
-                                    <button class="btn edit tertiary">Edit</button>
+                                <label for="address2" class="card">
+                                    <span class="btn shiptothis secondary small"></span>
+                                    <button class="btn edit tertiary small">Edit</button>
                                     <div class="address">
                                         <span class="name">Toby Treppmann</span>
                                         <span class="company">Hair Direct</span>
@@ -94,9 +98,9 @@
                             </li>
                             <li class="additional-address grid__item one-whole desk-one-half address-item" style="display: none;">
                                 <input type="radio" name="select-address" id="address3" value="address3">
-                                <label for="address3">
-                                    <span class="btn shiptothis secondary"></span>
-                                    <button class="btn edit tertiary">Edit</button>
+                                <label for="address3" class="card">
+                                    <span class="btn shiptothis secondary small"></span>
+                                    <button class="btn edit tertiary small">Edit</button>
                                     <div class="address">
                                         <span class="name">Mike Koser</span>
                                         <span class="company">Hair Direct</span>
@@ -110,8 +114,12 @@
                                 </label>
                             </li>
                         </ul>
-                        <button class="changeaddress btn taptarget tertiary">Use different address</button>
-                        <button class="createaddress btn taptarget tertiary" style="display: none;">Create new address</button>
+                        <div class="grid">
+                            <div class="buttons grid__item one-whole desk-one-half">
+                                <button class="changeaddress btn taptarget tertiary">Use different address</button>
+                                <button class="createaddress btn taptarget tertiary" style="display: none;">Create new address</button>
+                            </div>
+                        </div>
                     </div>
                     <form id="new-address-form" action="#" class="new-address" style="display: none;">
                         <ul class="add-edit-address form-fields one-whole">
@@ -171,7 +179,7 @@
         <footer class="grid">
             <div class="cta_bar one-whole">
                 <div class="grid">
-                    <div class="total grid__item three-quarters graybox">$99.99</div>
+                    <div class="total grid__item three-quarters">$99.99</div>
                     <button class="btn btn--positive grid__item one-quarter primary">Next</button>
                 </div>
             </div>
