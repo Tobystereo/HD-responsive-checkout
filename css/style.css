@@ -4315,11 +4315,31 @@ form input[type=text], form textarea {
   z-index: 1;
   padding: 1rem 1rem 0;
   outline: 0;
-  background-color: white; }
+  background-color: white;
+  -webkit-transition: all 0.15s ease-out 0;
+  -moz-transition: all 0.15s ease-out 0;
+  transition: all 0.15s ease-out 0; }
+  form input[type=text].required + label:after, form textarea.required + label:after {
+    display: inline-block;
+    position: relative;
+    content: "*";
+    width: auto;
+    height: 1em;
+    color: red;
+    margin-left: 4px; }
+  form input[type=text].valid, form textarea.valid {
+    background-color: #e4f3e2 !important;
+    border-color: #4a993d !important; }
+    form input[type=text].valid + label, form textarea.valid + label {
+      color: #4a993d !important; }
+  form input[type=text].error, form textarea.error {
+    background-color: #f3e2e2 !important;
+    border-color: #993d3d !important; }
+    form input[type=text].error + label, form textarea.error + label {
+      color: #993d3d !important; }
   form input[type=text]:valid, form textarea:valid {
     background: white; }
   form input[type=text]:focus, form textarea:focus {
-    border-color: #f06d06;
     background-color: #f1f1f1; }
   form input[type=text]:focus + label, form input[type=text]:focus + label.notempty, form textarea:focus + label, form textarea:focus + label.notempty {
     padding: 0 1rem;
@@ -4328,14 +4348,13 @@ form input[type=text], form textarea {
     line-height: 16px;
     line-height: 1rem;
     font-family: 'Helvetica Neue', Helvetica, sans-serif;
-    font-weight: 300;
+    font-weight: 500;
     letter-spacing: 0;
     z-index: 2;
     text-transform: uppercase;
     margin-top: -3rem;
-    color: #727272;
     letter-spacing: 1px; }
-form label {
+form input[type=text] + label, form textarea + label {
   -webkit-transition: all 0.15s ease-out 0;
   -moz-transition: all 0.15s ease-out 0;
   transition: all 0.15s ease-out 0;
