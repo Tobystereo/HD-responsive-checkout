@@ -1,4 +1,4 @@
-//#region -- PLUGINS -- aslkdjaskl dklasd jalks djaskld aksljd askldj lsk
+﻿//#region -- PLUGINS --lkasjdfhkjlahdsflkjhasdlfkjhasdlkjhfksadjfhlkajsdhflkjashdflkjhasdlkfjhalskdjfh
 
 (function ($) {
 	var $html_body = $('html, body');
@@ -279,7 +279,7 @@ function BindEvents_NeedHelp(refreshSelector) {
 	if (refreshSelector) {
 		$need_help = $($need_help.selector);
 	}
-	$need_help.on("click", function (){
+	$need_help.on("click", function (){ 
 		$help_content.animatedScroll();
 	});
 }
