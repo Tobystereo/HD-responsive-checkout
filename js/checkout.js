@@ -9,6 +9,7 @@
 			settings = $.extend({
 				content_element: undefined,
 				pre_logic: undefined,
+				post_toggle: undefined,
 				callback: undefined,
 				delay: 300,
 				show_class: "show",
@@ -30,7 +31,10 @@
 				}
 				// Toggle continer
 				settings.content_element.slideToggle(settings.delay, function () {
-					settings.content_element.removeAttr("style");
+					settings.content_element.css("overflow", "inherit");
+					if (settings.post_toggle !== undefined) {
+						settings.post_toggle(this);
+					}
 				});
 				// Toggle self (after)
 				if (settings.toggle_self && settings.toggle_order == "after") {
@@ -44,15 +48,15 @@
 		}
 
 		return this;
-	};
+		};
 
 	$.fn.animatedScroll = function (options) {
 		// Default options
 		var settings = $.extend({
-				pre_logic: undefined,
-				callback: undefined,
-				delay: 300
-			}, options);
+			pre_logic: undefined,
+			callback: undefined,
+			delay: easing
+		}, options);
 
 		$html_body.animate({
 			scrollTop: this.offset().top
@@ -79,7 +83,7 @@ var $cta_bar,
 	$new_address_form,
 	$btncancel_address,
 	$btnsave_address,
-	$btnedit_Address,
+	$btnedit_address,
 	$input_country,
 	$input_name,
 	$input_company,
@@ -89,6 +93,7 @@ var $cta_bar,
 	$input_postal,
 	$input_phone,
 	footertop,
+	easing = 300,
 	absoluteClassName = "absolute";
 
 //#endregion -- GLOBAL VARIABLES --
@@ -136,13 +141,6 @@ function WireEvents() {
 	BindEvents_AddressForm(false);
 }
 
-function ToggleShippingInstructionText() {
-	var defaultText = $shipping_address_instructions.attr("data-text"),
-		altText = $shipping_address_instructions.attr("data-alt-text");
-
-	$shipping_address_instructions.text(($shipping_address_instructions.text().trim() == defaultText ? altText : defaultText));
-}
-
 //#endregion -- FUNCTIONS --
 
 //#region -- EVENT HANDLERS --
@@ -153,8 +151,10 @@ function BindEvents_AdditionalAddressButton(refreshSelector) {
 	}
 	$btnchangeaddress.toggleContainer({
 		content_element: $additional_addresses,
-		callback: ToggleShippingInstructionText,
-		self_toggle_delay_offset: -300
+		self_toggle_delay_offset: -easing
+	}).toggleContainer({
+		content_element: $btnadd_address,
+		toggle_self: false
 	});
 }
 
@@ -164,7 +164,10 @@ function BindEvents_AddAddressButton(refreshSelector) {
 	}
 	$btnadd_address.toggleContainer({
 		content_element: $new_address_form,
-		self_toggle_delay_offset: -300
+		self_toggle_delay_offset: -easing,
+		post_toggle: function () {
+			$new_address_form.animatedScroll();
+		}
 	});
 }
 
@@ -189,7 +192,7 @@ function BindEvents_EditAddressButton(refreshSelector) {
 		$input_postal.val("Editing Postal Code");
 		$input_phone.val("Editing Phone");
 		// Display the address form
-		$new_address_form.slideDown(300, function () {
+		$new_address_form.slideDown(easing, function () {
 			$new_address_form.animatedScroll();
 		});
 	});
