@@ -26,7 +26,6 @@ header {
 
     font-weight: normal;
     text-align: left;
-
 }
 
 
@@ -38,23 +37,33 @@ header {
     margin: 5px 1em 0 0;
     line-height: 2em;
 
-
     @media #{$medium} {
         &:before {
             @include pseudo(10em, 1em, "Secure Transaction");
-            color: $lighter;
+            color: $light-blue;
             text-align: right;
             margin-right: 1em;
             line-height: 1em;
         }
     }
 
+    @media #{$large} {
+        &:before {
+            color: $lighter;
+        }
+    }
+
+
     .trust-asset-lock {
         width: 2em;
         height: 2em;
 
         .lock {
-            fill: $lighter;
+            fill: $light-blue;
+
+            @media #{$large} {
+                fill: $lighter;
+            }
         }
     }
 }
@@ -106,17 +115,24 @@ article {
         }
     }
 
-	.logo {
-        background-color: $light;
-        max-height: $tapheight - 1 + em;
-		text-align: left;
-        overflow: hidden;
+    .global-nav {
+        height: (($tapheight - 1) * $rootfontsize) + px;
+        height: ($tapheight - 1) + rem;
+        background-color: $light-blue-lighter;
         display: block;
+        overflow: hidden;
+
+        @media #{$large} {
+            background-color: $light;
+        }
+
+    }
+
+	.logo {
 
         img {
-            height: 80%;
-            max-height: $tapheight + em;
-            margin: 5px 0 0 10px;
+            height: $tapheight - 1.3 + em;
+            padding: 5px 0 0 1em;
             display: block;
             max-width: 100%;
         }
@@ -124,8 +140,9 @@ article {
 	}
 
     .help {
-        background-color: $light;
-        max-height: $tapheight - 1 + em;
+        height: ($tapheight - 1) + em;
+        text-align: center;
+        @include line-height(2.5);
     }
 
     .progress {
@@ -251,6 +268,7 @@ article {
     button.primary, .btn.primary, .cta.primary {
         background-color: $green;
         color: $lightest;
+        @include font-size(1.5);
 
         @media #{$large} {
             @include font-size(2);
@@ -280,8 +298,8 @@ article {
     }
 
     .cta_bar {
-        flex: 1 row 100%;
-        left: 0;
+//        flex: 1 row 100%;
+//        left: 0;
 
         @include rem-height($tapheight);
         background-color: $light;
@@ -291,7 +309,8 @@ article {
         }
 
         .total {
-            @include font(2, 5);
+            text-align: center;
+            @include font(1.5, 4);
 
             @media #{$large} {
                 @include font(2, 4, 100);
@@ -415,8 +434,10 @@ article {
                 float: left;
                 margin-left: 0;
                 margin-top: 1em;
+                clear: both;
 
                 @media #{$medium}{
+                    clear: none;
                     margin-top: 0;
                     margin-left: 1.5em;
                 }
