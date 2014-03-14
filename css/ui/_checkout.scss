@@ -459,6 +459,11 @@ article {
 }
 
 
+/********************************
+
+    RADIO BUTTON CARD STYLE
+
+*********************************/
 
 input[type=radio] {
     display: none;
@@ -479,8 +484,9 @@ input[type=radio] {
         }
 
         &:active {
-            -webkit-transform: translateY(.25em);
+            -webkit-transform: translateY(.0em);
             background-color: darken($lighter, 2%);
+            box-shadow: -2px -2px 10px rgba(0,0,0,.1);
         }
 
     }
@@ -489,13 +495,14 @@ input[type=radio] {
         @include transition;
         outline-color: green;
         background: $light-green;
+        box-shadow: none;
 
         &:hover {
             -webkit-transform: translateY(0);
         }
 
         &:before {
-            @include pseudo(auto, 1em, '\2714');
+            @include pseudo(auto, .5em, '\2714');
             float: right;
             color: $green;
             @include font-size(2);

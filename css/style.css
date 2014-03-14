@@ -4262,6 +4262,11 @@ header {
       margin-top: -1em;
       margin-right: 0; }
 
+/********************************
+
+    RADIO BUTTON CARD STYLE
+
+*********************************/
 input[type=radio] {
   display: none; }
   input[type=radio] + label.card {
@@ -4277,14 +4282,16 @@ input[type=radio] {
       -webkit-transform: translateY(-0.25em);
       background-color: #f6f6f6; }
     input[type=radio] + label.card:active {
-      -webkit-transform: translateY(0.25em);
-      background-color: #ececec; }
+      -webkit-transform: translateY(0em);
+      background-color: #ececec;
+      box-shadow: -2px -2px 10px rgba(0, 0, 0, 0.1); }
   input[type=radio]:checked + label.card {
     -webkit-transition: all 0.15s ease-out 0;
     -moz-transition: all 0.15s ease-out 0;
     transition: all 0.15s ease-out 0;
     outline-color: green;
-    background: #e4f3e2; }
+    background: #e4f3e2;
+    box-shadow: none; }
     input[type=radio]:checked + label.card:hover {
       -webkit-transform: translateY(0); }
     input[type=radio]:checked + label.card:before {
@@ -4292,7 +4299,7 @@ input[type=radio] {
       position: relative;
       content: "\2714";
       width: auto;
-      height: 1em;
+      height: 0.5em;
       float: right;
       color: #4a993d;
       font-size: 32px;
