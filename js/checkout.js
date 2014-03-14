@@ -1,4 +1,4 @@
-﻿//#region -- PLUGINS --lkasjdfhkjlahdsflkjhasdlfkjhasdlkjhfksadjfhlkajsdhflkjashdflkjhasdlkfjhalskdjfh
+﻿//#region -- PLUGINS --
 
 (function ($) {
 	var $html_body = $('html, body');
