@@ -54,7 +54,7 @@ form {
             background-color: $lighter
         }
 
-        &:focus + label, &:focus + label.notempty {
+        &:focus + label, &+ label.notempty {
             padding: 0 1rem;
             @include font(0.6, 1, 500);
             z-index: 2;
@@ -85,7 +85,7 @@ form {
             margin-top: -6em;
         }
 
-        &:focus + label, &:focus + label.notempty {
+        &:focus + label, &+ label.notempty {
             margin-top: -6.2rem;
         }
 

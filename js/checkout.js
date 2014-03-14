@@ -116,6 +116,7 @@ var $cta_bar,
 	$input_state,
 	$input_postal,
 	$input_phone,
+	$text_inputs,
 	$secondary_fields,
 	footertop,
 	easing = 300,
@@ -156,6 +157,7 @@ function SetGlobalVariables() {
 	$input_postal = $("#postal-code-input");
 	$input_phone = $("#phone-input");
 	$secondary_fields = $(".field__secondary");
+	$text_inputs = $("#new-address-form .field input[type=text], #new-address-form .field textarea");
 }
 
 function WireEvents() {
@@ -168,6 +170,7 @@ function WireEvents() {
 	BindEvents_SaveAddressButton(false);
 	BindEvents_AddressForm(false);
 	BindEvents_CountrySelect(false);
+	BindEvents_TextInputs(false);
 }
 
 //#endregion -- FUNCTIONS --
@@ -322,12 +325,30 @@ function BindEvents_AddressForm(refreshSelector) {
 }
 
 function BindEvents_CountrySelect(refreshSelector) {
+	if (refreshSelector) {
+		$input_country = $($input_country.selector);
+	}
 	$input_country.toggleContainer({
 		content_element: $secondary_fields,
 		firing_events: "change",
 		force_state: "show",
 		toggle_self: false
 	})
+}
+
+function BindEvents_TextInputs(refreshSelector) {
+	if (refreshSelector) {
+		$text_inputs = $($text_inputs.selector);
+	}
+	$text_inputs.on("change", function () {
+		var $this = $(this);
+		if ($this.val() != "") {
+			$this.siblings().addClass("notempty");
+		}
+		else {
+			$this.siblings().removeClass("notempty");
+		}
+	});
 }
 
 //#endregion EVENT HANDLERS
