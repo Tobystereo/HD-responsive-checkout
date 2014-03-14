@@ -1,4 +1,4 @@
-﻿//#region -- PLUGINS --
+//#region -- PLUGINS --
 
 (function ($) {
 	var $html_body = $('html, body');
@@ -12,13 +12,18 @@
 				post_toggle: undefined,
 				callback: undefined,
 				delay: 300,
-				show_class: "show",
-				hide_class: "hide",
+				force_state: "", /* show|hide */
 				firing_events: "click",
 				toggle_self: true,
 				toggle_order: "before", /* before|after */
 				self_toggle_delay_offset: 100
-			}, options);
+			}, options),
+			event_post_toggle = function (element) {
+				settings.content_element.css("overflow", "inherit");
+				if (settings.post_toggle !== undefined) {
+					settings.post_toggle(element);
+				}
+			};
 
 		if (settings.content_element !== undefined) {
 			this.on(settings.firing_events, function () {
@@ -29,13 +34,31 @@
 				if (settings.toggle_self && settings.toggle_order == "before") {
 					$self.fadeToggle(settings.delay + settings.self_toggle_delay_offset);
 				}
-				// Toggle continer
-				settings.content_element.slideToggle(settings.delay, function () {
-					settings.content_element.css("overflow", "inherit");
-					if (settings.post_toggle !== undefined) {
-						settings.post_toggle(this);
+				if (settings.force_state == "") {
+					// Toggle container
+					settings.content_element.slideToggle(settings.delay, function () {
+						event_post_toggle(this);
+					});
+				}
+				else {
+					// Slide-up container
+					if (settings.force_state == "show") {
+						settings.content_element.slideDown(settings.delay, function () {
+							event_post_toggle(this);
+						});
 					}
-				});
+					else if (settings.force_state == "hide") {
+						settings.content_element.slideUp(settings.delay, function () {
+							event_post_toggle(this);
+						});
+					}
+					else {
+						settings.content_element.slideToggle(settings.delay, function () {
+							event_post_toggle(this);
+						});
+					}
+					// Slide-down container
+				}
 				// Toggle self (after)
 				if (settings.toggle_self && settings.toggle_order == "after") {
 					$self.fadeToggle(settings.delay + settings.self_toggle_delay_offset);
@@ -93,6 +116,8 @@ var $cta_bar,
 	$input_state,
 	$input_postal,
 	$input_phone,
+	$text_inputs,
+	$secondary_fields,
 	footertop,
 	easing = 300,
 	absoluteClassName = "absolute";
@@ -131,6 +156,8 @@ function SetGlobalVariables() {
 	$input_state = $("#state-input");
 	$input_postal = $("#postal-code-input");
 	$input_phone = $("#phone-input");
+	$secondary_fields = $(".field__secondary");
+	$text_inputs = $("#new-address-form .field input[type=text], #new-address-form .field textarea");
 }
 
 function WireEvents() {
@@ -142,6 +169,8 @@ function WireEvents() {
 	BindEvents_CancelAddressButton(false);
 	BindEvents_SaveAddressButton(false);
 	BindEvents_AddressForm(false);
+	BindEvents_CountrySelect(false);
+	BindEvents_TextInputs(false);
 }
 
 //#endregion -- FUNCTIONS --
@@ -223,6 +252,7 @@ function BindEvents_CancelAddressButton(refreshSelector) {
 			$input_state.val("");
 			$input_postal.val("");
 			$input_phone.val("");
+			$secondary_fields.css("display", "none");
 			// Scroll to the progress bar
 			$progress_bar.animatedScroll();
 		}
@@ -281,7 +311,7 @@ function BindEvents_NeedHelp(refreshSelector) {
 	if (refreshSelector) {
 		$need_help = $($need_help.selector);
 	}
-	$need_help.on("click", function (){ 
+	$need_help.on("click", function (){
 		$help_content.animatedScroll();
 	});
 }
@@ -293,6 +323,33 @@ function BindEvents_AddressForm(refreshSelector) {
 	$new_address_form.on("submit", function (e) {
 		e.preventDefault();
 		// DO STUFF
+	});
+}
+
+function BindEvents_CountrySelect(refreshSelector) {
+	if (refreshSelector) {
+		$input_country = $($input_country.selector);
+	}
+	$input_country.toggleContainer({
+		content_element: $secondary_fields,
+		firing_events: "change",
+		force_state: "show",
+		toggle_self: false
+	})
+}
+
+function BindEvents_TextInputs(refreshSelector) {
+	if (refreshSelector) {
+		$text_inputs = $($text_inputs.selector);
+	}
+	$text_inputs.on("change", function () {
+		var $this = $(this);
+		if ($this.val() != "") {
+			$this.siblings().addClass("notempty");
+		}
+		else {
+			$this.siblings().removeClass("notempty");
+		}
 	});
 }
 

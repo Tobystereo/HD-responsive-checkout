@@ -4341,7 +4341,7 @@ form input[type=text], form textarea {
     background: white; }
   form input[type=text]:focus, form textarea:focus {
     background-color: #f1f1f1; }
-  form input[type=text]:focus + label, form input[type=text]:focus + label.notempty, form textarea:focus + label, form textarea:focus + label.notempty {
+  form input[type=text]:focus + label, form input[type=text] + label.notempty, form textarea:focus + label, form textarea + label.notempty {
     padding: 0 1rem;
     font-size: 9.6px;
     font-size: 0.6rem;
@@ -4381,7 +4381,7 @@ form textarea, form textarea.threelines {
   padding-top: 1.5em; }
   form textarea + label, form textarea.threelines + label {
     margin-top: -6em; }
-  form textarea:focus + label, form textarea:focus + label.notempty, form textarea.threelines:focus + label, form textarea.threelines:focus + label.notempty {
+  form textarea:focus + label, form textarea + label.notempty, form textarea.threelines:focus + label, form textarea.threelines + label.notempty {
     margin-top: -6.2rem; }
   form textarea.fourlines, form textarea.threelines.fourlines {
     height: 128px !important;
