@@ -71,6 +71,7 @@
 //#region -- GLOBAL VARIABLES --
 
 var $cta_bar,
+	$need_help,
 	$help_content,
 	$progress_bar,
 	$shipping_address_instructions,
@@ -108,6 +109,7 @@ $(document).ready(function () {
 function SetGlobalVariables() {
 	/// <summary>Gets DOM elements & other dynamic variable values.</summary>
 	$cta_bar = $(".cta_bar");
+	$need_help = $(".need-help");
 	$help_content = $("#help-content");
 	$progress_bar = $("#progress-bar");
 	$shipping_address_instructions = $("#shipping-address .instructions");
@@ -133,6 +135,7 @@ function SetGlobalVariables() {
 
 function WireEvents() {
 	/// <summary>Wire up control events</summary>
+	BindEvents_NeedHelp(false);
 	BindEvents_AdditionalAddressButton(false);
 	BindEvents_AddAddressButton(false);
 	BindEvents_EditAddressButton(false);
@@ -269,6 +272,15 @@ function BindEvents_SaveAddressButton(refreshSelector) {
 			// Scroll to the progress bar
 			$("input[type=radio]:checked").parent().animatedScroll();
 		}
+	});
+}
+
+function BindEvents_NeedHelp(refreshSelector) {
+	if (refreshSelector) {
+		$need_help = $($need_help.selector);
+	}
+	$need_help.on("click", function (){ 
+		$help_content.animatedScroll();
 	});
 }
 
