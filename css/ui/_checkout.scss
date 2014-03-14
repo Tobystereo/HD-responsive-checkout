@@ -1,3 +1,14 @@
+xmp {
+    list-style: none;
+    text-indent: 0;
+    @include font-size(.9);
+    margin: 0;
+    border-radius: 5px;
+    background: $lighter;
+    padding: 1em;
+    color: $light-blue;
+}
+
 body {
     @include font(1,1.3);
 
@@ -291,15 +302,12 @@ article {
     }
 
     button.tertiary, .btn.tertiary, .cta.tertiary {
-//        background-color: $lighter !important;
         background: none;
         color: darken($light, 10%);
         border: 1px solid darken($light, 10%) !important;
     }
 
     .cta_bar {
-//        flex: 1 row 100%;
-//        left: 0;
 
         @include rem-height($tapheight);
         background-color: $light;
@@ -420,10 +428,6 @@ article {
             }
         }
 
-
-
-
-
         button {
             display: block;
             height: 2em;
@@ -442,18 +446,13 @@ article {
             }
 
             &:after {
-                @include pseudo(100%, 1em, "Selected");
+                @include pseudo(auto, 1em, "Selected");
                 color: $green;
-            }
-
-            &:before {
-                @include pseudo(100%, 2em, '\2714');
-                color: $green;
-                @include font-size(2);
-                @include line-height(4);
-                text-align: center;
-                margin-bottom: -2.5em;
+                position: relative;
                 display: block;
+                float: right;
+                margin-top: -1em;
+                margin-right: 0;
             }
         }
     }
@@ -493,6 +492,16 @@ input[type=radio] {
 
         &:hover {
             -webkit-transform: translateY(0);
+        }
+
+        &:before {
+            @include pseudo(auto, 1em, '\2714');
+            float: right;
+            color: $green;
+            @include font-size(2);
+            @include line-height(1);
+            text-align: center;
+            display: block;
         }
 
     }
