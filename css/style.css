@@ -4330,11 +4330,15 @@ form input[type=text], form textarea {
   form input[type=text].valid, form textarea.valid {
     background-color: #e4f3e2 !important;
     border-color: #4a993d !important; }
+    form input[type=text].valid:focus, form textarea.valid:focus {
+      background-color: #c3e5bd !important; }
     form input[type=text].valid + label, form textarea.valid + label {
       color: #4a993d !important; }
   form input[type=text].error, form textarea.error {
     background-color: #f3e2e2 !important;
     border-color: #993d3d !important; }
+    form input[type=text].error:focus, form textarea.error:focus {
+      background-color: #e5bdbd !important; }
     form input[type=text].error + label, form textarea.error + label {
       color: #993d3d !important; }
   form input[type=text]:valid, form textarea:valid {

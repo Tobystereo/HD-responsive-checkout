@@ -29,8 +29,12 @@ form {
         }
 
         &.valid {
-            background-color: $light-green !important;
+            background-color: $lighter-green !important;
             border-color: $green !important;
+
+			&:focus {
+				background-color: $light-green !important;
+			}
 
             & + label {
                 color: $green !important;
@@ -38,8 +42,12 @@ form {
         }
 
         &.error {
-            background-color: $light-red !important;
+            background-color: $lighter-red !important;
             border-color: $red !important;
+
+			&:focus {
+				background-color: $light-red !important;
+			}
 
             & + label {
                 color: $red !important;
@@ -152,7 +160,7 @@ input[type=radio] {
     &:checked + label.card {
         @include transition;
         outline-color: green;
-        background: $light-green;
+        background: $lighter-green;
         box-shadow: none;
 
         &:hover {

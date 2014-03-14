@@ -79,11 +79,13 @@ $darker: darken($light, 70);
 $darkest: darken($light, 90);
 
 $green: #4a993d;
-$light-green: lighten($green, 50);
+$lighter-green: lighten($green, 50);
+$light-green: lighten($green, 40);
 $dark-green: darken($green, 50);
 
 $red: #993d3d;
-$light-red: lighten($red, 50);
+$lighter-red: lighten($red, 50);
+$light-red: lighten($red, 40);
 $dark-red: darken($red, 50);
 
 $light-blue: #3e6d9d;
