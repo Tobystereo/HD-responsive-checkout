@@ -12,13 +12,18 @@
 				post_toggle: undefined,
 				callback: undefined,
 				delay: 300,
-				show_class: "show",
-				hide_class: "hide",
+				force_state: "", /* show|hide */
 				firing_events: "click",
 				toggle_self: true,
 				toggle_order: "before", /* before|after */
 				self_toggle_delay_offset: 100
-			}, options);
+			}, options),
+			event_post_toggle = function (element) {
+				settings.content_element.css("overflow", "inherit");
+				if (settings.post_toggle !== undefined) {
+					settings.post_toggle(element);
+				}
+			};
 
 		if (settings.content_element !== undefined) {
 			this.on(settings.firing_events, function () {
@@ -29,13 +34,31 @@
 				if (settings.toggle_self && settings.toggle_order == "before") {
 					$self.fadeToggle(settings.delay + settings.self_toggle_delay_offset);
 				}
-				// Toggle continer
-				settings.content_element.slideToggle(settings.delay, function () {
-					settings.content_element.css("overflow", "inherit");
-					if (settings.post_toggle !== undefined) {
-						settings.post_toggle(this);
+				if (settings.force_state == "") {
+					// Toggle container
+					settings.content_element.slideToggle(settings.delay, function () {
+						event_post_toggle(this);
+					});
+				}
+				else {
+					// Slide-up container
+					if (settings.force_state == "show") {
+						settings.content_element.slideDown(settings.delay, function () {
+							event_post_toggle(this);
+						});
 					}
-				});
+					else if (settings.force_state == "hide") {
+						settings.content_element.slideUp(settings.delay, function () {
+							event_post_toggle(this);
+						});
+					}
+					else {
+						settings.content_element.slideToggle(settings.delay, function () {
+							event_post_toggle(this);
+						});
+					}
+					// Slide-down container
+				}
 				// Toggle self (after)
 				if (settings.toggle_self && settings.toggle_order == "after") {
 					$self.fadeToggle(settings.delay + settings.self_toggle_delay_offset);
@@ -93,6 +116,7 @@ var $cta_bar,
 	$input_state,
 	$input_postal,
 	$input_phone,
+	$secondary_fields,
 	footertop,
 	easing = 300,
 	absoluteClassName = "absolute";
@@ -131,6 +155,7 @@ function SetGlobalVariables() {
 	$input_state = $("#state-input");
 	$input_postal = $("#postal-code-input");
 	$input_phone = $("#phone-input");
+	$secondary_fields = $(".field__secondary");
 }
 
 function WireEvents() {
@@ -142,6 +167,7 @@ function WireEvents() {
 	BindEvents_CancelAddressButton(false);
 	BindEvents_SaveAddressButton(false);
 	BindEvents_AddressForm(false);
+	BindEvents_CountrySelect(false);
 }
 
 //#endregion -- FUNCTIONS --
@@ -221,6 +247,7 @@ function BindEvents_CancelAddressButton(refreshSelector) {
 			$input_state.val("");
 			$input_postal.val("");
 			$input_phone.val("");
+			$secondary_fields.css("display", "none");
 			// Scroll to the progress bar
 			$progress_bar.animatedScroll();
 		}
@@ -292,6 +319,15 @@ function BindEvents_AddressForm(refreshSelector) {
 		e.preventDefault();
 		// DO STUFF
 	});
+}
+
+function BindEvents_CountrySelect(refreshSelector) {
+	$input_country.toggleContainer({
+		content_element: $secondary_fields,
+		firing_events: "change",
+		force_state: "show",
+		toggle_self: false
+	})
 }
 
 //#endregion EVENT HANDLERS
