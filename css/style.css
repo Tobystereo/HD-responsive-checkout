@@ -3960,7 +3960,7 @@ header {
     display: block;
     float: left; }
 
-.checkout h1 {
+h1 {
   font-size: 16px;
   font-size: 1rem;
   line-height: 32px;
@@ -3971,7 +3971,7 @@ header {
   margin-top: 1em;
   padding-left: 1em; }
   @media only screen and (min-width: 30em) {
-    .checkout h1 {
+    h1 {
       font-size: 24px;
       font-size: 1.5rem;
       line-height: 48px;
@@ -3981,7 +3981,7 @@ header {
       letter-spacing: 0;
       padding: 0; } }
   @media only screen and (min-width: 50em) {
-    .checkout h1 {
+    h1 {
       font-size: 32px;
       font-size: 2rem;
       line-height: 64px;
@@ -3989,34 +3989,38 @@ header {
       font-family: 'Helvetica Neue', Helvetica, sans-serif;
       font-weight: 100;
       letter-spacing: 0; } }
-.checkout .global-nav {
+
+.global-nav {
   height: 48px;
   height: 3rem;
   background-color: #e5edf5;
   display: block;
   overflow: hidden; }
   @media only screen and (min-width: 50em) {
-    .checkout .global-nav {
+    .global-nav {
       background-color: #cbcbcb; } }
-.checkout .logo img {
+
+.logo img {
   height: 2.7em;
   padding: 5px 0 0 1em;
   display: block;
   max-width: 100%; }
-.checkout .help {
+
+.help {
   height: 3em;
   text-align: center;
   line-height: 40px;
   line-height: 2.5rem; }
-.checkout .progress {
+
+.progress {
   background: #f1f1f1;
   text-align: center; }
   @media only screen and (min-width: 50em) {
-    .checkout .progress {
+    .progress {
       background: none;
       width: 96%;
       margin: 0 auto; } }
-  .checkout .progress a {
+  .progress a {
     border-bottom: 0;
     font-size: 16px;
     font-size: 1rem;
@@ -4030,19 +4034,19 @@ header {
     transition: all 0.3s ease-in-out;
     font-weight: 500;
     color: #cbcbcb; }
-    .checkout .progress a:hover {
+    .progress a:hover {
       background: #3e6d9d; }
-      .checkout .progress a:hover:before {
+      .progress a:hover:before {
         background: #8aadd1;
         color: white; }
-    .checkout .progress a.active {
+    .progress a.active {
       background-color: #3e6d9d !important;
       color: white !important; }
-    .checkout .progress a:visited {
+    .progress a:visited {
       background-color: #f1f1f1;
       color: #cbcbcb; }
     @media only screen and (min-width: 50em) {
-      .checkout .progress a {
+      .progress a {
         -webkit-transition: all 0.3s ease-in-out;
         -moz-transition: all 0.3s ease-in-out;
         transition: all 0.3s ease-in-out;
@@ -4058,9 +4062,9 @@ header {
         font-weight: normal;
         text-align: left;
         padding-left: 60px; }
-        .checkout .progress a:hover {
+        .progress a:hover {
           color: #8aadd1; }
-        .checkout .progress a:before {
+        .progress a:before {
           -webkit-transition: all 0.3s ease-in-out;
           -moz-transition: all 0.3s ease-in-out;
           transition: all 0.3s ease-in-out;
@@ -4076,72 +4080,37 @@ header {
           margin-top: 1em;
           margin-left: -60px;
           text-align: center; }
-        .checkout .progress a.active {
+        .progress a.active {
           background-color: white !important;
           color: #3e6d9d !important; }
-          .checkout .progress a.active:before {
+          .progress a.active:before {
             background: #3e6d9d;
             color: white !important; } }
   @media only screen and (min-width: 50em) {
-    .checkout .progress .shipping a:before {
+    .progress .shipping a:before {
       content: "1"; }
-    .checkout .progress .billing a:before {
+    .progress .billing a:before {
       content: "2"; }
-    .checkout .progress .review a:before {
+    .progress .review a:before {
       content: "3"; } }
-  .checkout .progress .nav {
+  .progress .nav {
     margin-bottom: 0; }
-.checkout .cancel-order {
+
+.cancel-order {
   height: 64px;
   height: 4rem; }
-  .checkout .cancel-order button {
+  .cancel-order button {
     height: 64px;
     height: 4rem; }
-.checkout .btn, .checkout .cta, .checkout button {
-  height: 64px;
-  height: 4rem;
-  background-color: #cbcbcb;
-  height: 2em;
-  @inlcude transition;
-  font-size: 16px;
-  font-size: 1rem;
-  line-height: 32px;
-  line-height: 2rem;
-  font-family: 'Helvetica Neue', Helvetica, sans-serif;
-  font-weight: 500;
-  letter-spacing: 0; }
-  @media only screen and (min-width: 30em) {
-    .checkout .btn, .checkout .cta, .checkout button {
-      font-weight: 300; } }
-.checkout button.primary, .checkout .btn.primary, .checkout .cta.primary {
-  background-color: #4a993d;
-  color: white;
-  font-size: 24px;
-  font-size: 1.5rem; }
-  @media only screen and (min-width: 50em) {
-    .checkout button.primary, .checkout .btn.primary, .checkout .cta.primary {
-      font-size: 32px;
-      font-size: 2rem; } }
-  .checkout button.primary:hover, .checkout .btn.primary:hover, .checkout .cta.primary:hover {
-    background-color: #5fb950; }
-  .checkout button.primary:active, .checkout .btn.primary:active, .checkout .cta.primary:active {
-    background-color: #38752e; }
-.checkout button.secondary, .checkout .btn.secondary, .checkout .cta.secondary {
-  background-color: #cbcbcb;
-  color: #191919;
-  font-weight: 500; }
-.checkout button.tertiary, .checkout .btn.tertiary, .checkout .cta.tertiary {
-  background: none;
-  color: #b2b2b2;
-  border: 1px solid #b2b2b2 !important; }
-.checkout .cta_bar {
+
+.cta_bar {
   height: 64px;
   height: 4rem;
   background-color: #cbcbcb; }
-  .checkout .cta_bar .grid__item {
+  .cta_bar .grid__item {
     height: 64px;
     height: 4rem; }
-  .checkout .cta_bar .total {
+  .cta_bar .total {
     text-align: center;
     font-size: 24px;
     font-size: 1.5rem;
@@ -4151,7 +4120,7 @@ header {
     font-weight: 300;
     letter-spacing: 0; }
     @media only screen and (min-width: 50em) {
-      .checkout .cta_bar .total {
+      .cta_bar .total {
         font-size: 32px;
         font-size: 2rem;
         line-height: 64px;
@@ -4159,35 +4128,23 @@ header {
         font-family: 'Helvetica Neue', Helvetica, sans-serif;
         font-weight: 100;
         letter-spacing: 0; } }
-    .checkout .cta_bar .total:before {
+    .cta_bar .total:before {
       display: inline-block;
       position: relative;
       content: "Total: ";
       width: 6rem;
       height: 1;
       margin-right: .6em; }
-.checkout #content {
+
+#content {
   min-height: 1000px;
   background-color: white; }
-.checkout #help-content, .checkout .privacy-policy, .checkout .shipping-policy {
+
+#help-content, .privacy-policy, .shipping-policy {
   background-color: #727272; }
-.checkout #help-content {
+
+#help-content {
   padding-top: 96px; }
-.checkout .taptarget {
-  height: 64px;
-  height: 4rem;
-  min-height: 48px;
-  min-height: 3rem; }
-  .checkout .taptarget a, .checkout .taptarget button {
-    height: 64px;
-    height: 4rem;
-    min-height: 48px;
-    min-height: 3rem; }
-  .checkout .taptarget.secondary {
-    height: 32px;
-    height: 2rem;
-    min-height: 16px;
-    min-height: 1rem; }
 
 .changeaddress, .createaddress {
   margin: 1em auto;
@@ -4259,7 +4216,7 @@ header {
       position: relative;
       display: block;
       float: right;
-      margin-top: -1em;
+      margin-top: -1.3em;
       margin-right: 0; }
 
 /********************************
@@ -4329,3 +4286,57 @@ input[type=radio] {
 a, a:link, a:hover, a:active, a:focus {
   text-decoration: none;
   border-bottom: 1px solid; }
+
+.btn, .cta, button {
+  height: 64px;
+  height: 4rem;
+  min-height: 48px;
+  min-height: 3rem;
+  background-color: #cbcbcb;
+  height: 2em;
+  @inlcude transition;
+  font-size: 16px;
+  font-size: 1rem;
+  line-height: 32px;
+  line-height: 2rem;
+  font-family: 'Helvetica Neue', Helvetica, sans-serif;
+  font-weight: 500;
+  letter-spacing: 0; }
+  .btn.small, .cta.small, button.small {
+    height: 32px;
+    height: 2rem;
+    min-height: 16px;
+    min-height: 1rem; }
+  @media only screen and (min-width: 30em) {
+    .btn, .cta, button {
+      font-weight: 300; } }
+  .btn.small, .cta.small, button.small {
+    height: 32px;
+    height: 2rem;
+    min-height: 16px;
+    min-height: 1rem;
+    margin: 0; }
+
+.primary {
+  background-color: #4a993d;
+  color: white;
+  font-size: 24px;
+  font-size: 1.5rem; }
+  @media only screen and (min-width: 50em) {
+    .primary {
+      font-size: 32px;
+      font-size: 2rem; } }
+  .primary:hover {
+    background-color: #5fb950; }
+  .primary:active {
+    background-color: #38752e; }
+
+.secondary {
+  background-color: #cbcbcb;
+  color: #191919;
+  font-weight: 500; }
+
+.tertiary {
+  background: none;
+  color: #b2b2b2;
+  border: 1px solid #b2b2b2 !important; }
