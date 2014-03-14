@@ -4371,25 +4371,28 @@ form input[type=text] + label, form textarea + label {
   padding: 0 1rem;
   margin-top: -3rem;
   letter-spacing: 0; }
-form textarea, form textarea.twolines {
+form textarea, form textarea.threelines {
   height: 102.4px !important;
   height: 6.4rem !important;
+  line-height: 24px;
+  line-height: 1.5rem;
   display: block;
   resize: none;
   padding-top: 1.5em; }
-  form textarea + label, form textarea.twolines + label {
+  form textarea + label, form textarea.threelines + label {
     margin-top: -6em; }
-  form textarea:focus + label, form textarea:focus + label.notempty, form textarea.twolines:focus + label, form textarea.twolines:focus + label.notempty {
+  form textarea:focus + label, form textarea:focus + label.notempty, form textarea.threelines:focus + label, form textarea.threelines:focus + label.notempty {
     margin-top: -6.2rem; }
-  form textarea.threelines, form textarea.twolines.threelines {
+  form textarea.fourlines, form textarea.threelines.fourlines {
+    height: 128px !important;
+    height: 8rem !important; }
+    form textarea.fourlines:focus + label, form textarea.fourlines:focus + label.notempty, form textarea.threelines.fourlines:focus + label, form textarea.threelines.fourlines:focus + label.notempty {
+      margin-top: -7.2rem; }
+  form textarea.fivelines, form textarea.threelines.fivelines {
     height: 153.6px !important;
     height: 9.6rem !important; }
-  form textarea.fourlines, form textarea.twolines.fourlines {
-    height: 204.8px !important;
-    height: 12.8rem !important; }
-  form textarea.fivelines, form textarea.twolines.fivelines {
-    height: 256px !important;
-    height: 16rem !important; }
+    form textarea.fivelines:focus + label, form textarea.fivelines:focus + label.notempty, form textarea.threelines.fivelines:focus + label, form textarea.threelines.fivelines:focus + label.notempty {
+      margin-top: -8.2rem; }
 
 /********************************
 

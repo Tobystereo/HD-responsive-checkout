@@ -74,9 +74,10 @@ form {
         margin-top: -3rem;
         letter-spacing: 0;
     }
-    textarea, textarea.twolines {
+    textarea, textarea.threelines {
 //        Standard size is 2x the standard text field height
         @include rem-height($formfieldheight * 2, important);
+        @include line-height(1.5);
         display: block;
         resize: none;
         padding-top: 1.5em;
@@ -89,17 +90,22 @@ form {
             margin-top: -6.2rem;
         }
 
-        &.threelines {
-            @include rem-height($formfieldheight * 3, important);
-        }
-
         &.fourlines {
-            @include rem-height($formfieldheight * 4, important);
+            @include rem-height($formfieldheight * 2.5, important);
+
+            &:focus + label, &:focus + label.notempty {
+                margin-top: -7.2rem;
+            }
         }
 
         &.fivelines {
-            @include rem-height($formfieldheight * 5, important);
+            @include rem-height($formfieldheight * 3, important);
+
+            &:focus + label, &:focus + label.notempty {
+                margin-top: -8.2rem;
+            }
         }
+
     }
 }
 
