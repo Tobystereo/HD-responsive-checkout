@@ -4340,7 +4340,6 @@ form input[type=text], form textarea {
   form input[type=text]:valid, form textarea:valid {
     background: white; }
   form input[type=text]:focus, form textarea:focus {
-    border-color: #3e6d9d;
     background-color: #f1f1f1; }
   form input[type=text]:focus + label, form input[type=text]:focus + label.notempty, form textarea:focus + label, form textarea:focus + label.notempty {
     padding: 0 1rem;
@@ -4354,7 +4353,6 @@ form input[type=text], form textarea {
     z-index: 2;
     text-transform: uppercase;
     margin-top: -3rem;
-    color: #3e6d9d;
     letter-spacing: 1px; }
 form input[type=text] + label, form textarea + label {
   -webkit-transition: all 0.15s ease-out 0;

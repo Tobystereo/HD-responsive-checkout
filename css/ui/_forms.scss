@@ -51,7 +51,6 @@ form {
             background: $lightest;
         }
         &:focus {
-            border-color: $light-blue;
             background-color: $lighter
         }
 
@@ -61,10 +60,10 @@ form {
             z-index: 2;
             text-transform: uppercase;
             margin-top: -3rem;
-            color: $light-blue;
             letter-spacing: 1px;
         }
     }
+
     input[type=text] + label, textarea + label {
         @include transition;
         position: absolute;
