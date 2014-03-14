@@ -223,6 +223,8 @@ function BindEvents_EditAddressButton(refreshSelector) {
 		$input_state.val("Editing State");
 		$input_postal.val("Editing Postal Code");
 		$input_phone.val("Editing Phone");
+		$text_inputs.trigger("change");
+		$secondary_fields.css("display", "");
 		// Display the address form
 		$new_address_form.slideDown(easing, function () {
 			$new_address_form.animatedScroll();
