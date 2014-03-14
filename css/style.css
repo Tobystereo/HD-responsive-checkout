@@ -4386,13 +4386,17 @@ form textarea, form textarea.threelines {
   form textarea.fourlines, form textarea.threelines.fourlines {
     height: 128px !important;
     height: 8rem !important; }
+    form textarea.fourlines + label, form textarea.threelines.fourlines + label {
+      margin-top: -7.5em; }
     form textarea.fourlines:focus + label, form textarea.fourlines:focus + label.notempty, form textarea.threelines.fourlines:focus + label, form textarea.threelines.fourlines:focus + label.notempty {
-      margin-top: -7.2rem; }
+      margin-top: -7.8rem; }
   form textarea.fivelines, form textarea.threelines.fivelines {
     height: 153.6px !important;
     height: 9.6rem !important; }
+    form textarea.fivelines + label, form textarea.threelines.fivelines + label {
+      margin-top: -9.1em; }
     form textarea.fivelines:focus + label, form textarea.fivelines:focus + label.notempty, form textarea.threelines.fivelines:focus + label, form textarea.threelines.fivelines:focus + label.notempty {
-      margin-top: -8.2rem; }
+      margin-top: -9.4rem; }
 
 /********************************
 
