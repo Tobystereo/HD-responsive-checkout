@@ -202,10 +202,10 @@ function BindEvents_CancelAddressButton(refreshSelector) {
 	if (refreshSelector) {
 		$btncancel_address = $($btncancel_address.selector);
 	}
-	$btncancel_address.toggleContainer({
-		content_element: $btnadd_address,
-		delay: 100,
-		toggle_self: false
+	$btncancel_address.on("click", function() {
+		if($additional_addresses.is(":visible")) {
+			$btnadd_address.slideDown(easing - 200);
+		}
 	}).toggleContainer({
 		content_element: $new_address_form,
 		toggle_self: false,
@@ -237,12 +237,12 @@ function BindEvents_SaveAddressButton(refreshSelector) {
 		toggle_self: false,
 		pre_logic: function () {
 			var $newAddress,
-				mu = '<li class="additional-address grid__item one-whole desk-one-half address-item readonly">';
+				mu = '<li class="additional-address grid__item one-whole desk-one-half address-item">';
 			mu += '<input type="radio" name="select-address" id="address4" value="address4">';
-			mu += '<label for="address4">Select this address';
-			mu += '<span class="btn shiptothis primary">Ship to this address</span>';
-			mu += '<button class="btn edit seondary">Edit</button>';
-			mu += '<div class="address4">';
+			mu += '<label for="address4">';
+			mu += '<span class="btn shiptothis secondary"></span>';
+			mu += '<button class="btn edit tertiary">Edit</button>';
+			mu += '<div class="address">';
 			mu += '<span class="name">' + $input_name.val() + '</span>';
 			mu += '<span class="company">' + $input_company.val() + '</span>';
 			mu += '<span class="street">' + $input_street.val() + '</span>,';
