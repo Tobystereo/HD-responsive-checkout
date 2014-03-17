@@ -3870,399 +3870,6 @@ html.flexbox {
   .grid .grid__item {
     letter-spacing: 0; }
 
-/* COLORS */
-.color_hair {
-  color: #3e6d9d; }
-
-.color_video {
-  color: #d22828; }
-
-.color_photo {
-  color: #0b9e92; }
-
-.color_store {
-  color: #8fb75d; }
-
-.color_community {
-  color: #8a4cae; }
-
-.color_about {
-  color: #ebba00; }
-
-.color_learn {
-  color: #eda133; }
-
-.color_gray {
-  color: #9f9f9f; }
-
-.color_emphasis {
-  background-color: rgba(254, 254, 187, 0.7); }
-
-.color_highlight {
-  color: #27bdeb; }
-
-.color_hdblue {
-  color: #496d91; }
-
-.color_cta_light {
-  color: #96d338; }
-
-.color_cta_dark {
-  color: #78a52e; }
-
-.color_cta_darker {
-  color: #537e08; }
-
-/* TYPOGRAPHY */
-/* FONT SIZES based on fibonacci + 13 */
-/* 13	14	15	16	18	21	26	34	47	68	102	157 */
-/*  PX to EM conversion:
-    http://www.pjmccormick.com/sweet-sass-function-convert-px-em
-
-    font-size: em(18px) // outputs 1.125 em
-*/
-/* @todo create font-size mixin that outputs px/rem */
-/* @todo create margin/padding mixin using baseline grid */
-/* FONTS */
-/****************************************
- FUTUREPROOF ENCAPSULATION
-
- this new layer of CSS styles will live
- inside of an element with the class
- ".futureproof" inside of the existing
- styles of HairDirect.com
-
-****************************************/
-body {
-  background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAICAYAAADA+m62AAAAGklEQVQYV2NkIBIwEqmOYXgp/PDhw39ifA4AmZcD2GiglqYAAAAASUVORK5CYII=); }
-
-/*
- * Remove text-shadow in selection highlight: h5bp.com/i
- * These selection rule sets have to be separate.
- * Customize the background color to match your design.
- */
-::-moz-selection {
-  background: rgba(254, 254, 187, 0.7);
-  text-shadow: none; }
-
-::selection {
-  background: rgba(254, 254, 187, 0.7);
-  text-shadow: none; }
-
-strong {
-  font-family: HelveticaNeueETW01-75Bd; }
-
-em {
-  background-color: rgba(254, 254, 187, 0.7); }
-
-a:link {
-  -webkit-transition: all 0.3s ease-out;
-  -moz-transition: all 0.3s ease-out;
-  transition: all 0.3s ease-out;
-  color: #496d91;
-  text-decoration: none;
-  border-bottom: 1px solid; }
-
-a:visited {
-  color: #496d91;
-  text-decoration: none; }
-
-a:hover {
-  color: #27bdeb;
-  text-decoration: none; }
-
-h1 a:link, h1 a:visited, h2 a:link, h2 a:visited, h3 a:link, h3 a:visited, h4 a:link, h4 a:visited, h5 a:link, h5 a:visited, h6 a:link, h6 a:visited {
-  text-decoration: none;
-  color: black;
-  border-bottom: none; }
-
-h1 a:hover, h2 a:hover, h3 a:hover, h4 a:hover, h5 a:hover, h6 a:hover {
-  color: #27bdeb;
-  text-decoration: none; }
-
-h1 {
-  font-size: 16px;
-  font-size: 1rem;
-  line-height: 1.33333px;
-  line-height: 1.33333rem;
-  font-family: 'Helvetica Neue', Helvetica, sans-serif;
-  font-weight: 500;
-  letter-spacing: 0;
-  margin: 8px 0 0px;
-  margin: 8rem 0 0rem;
-  font-family: HelveticaNeueW01-UltLt;
-  color: black;
-  letter-spacing: 1px; }
-  @media only screen and (min-width: 30em) {
-    h1 {
-      font-size: 16px;
-      font-size: 1rem;
-      line-height: 1.33333px;
-      line-height: 1.33333rem;
-      font-family: 'Helvetica Neue', Helvetica, sans-serif;
-      font-weight: 300;
-      letter-spacing: 0; } }
-  @media only screen and (min-width: 50em) {
-    h1 {
-      font-size: 16px;
-      font-size: 1rem;
-      line-height: 1.33333px;
-      line-height: 1.33333rem;
-      font-family: 'Helvetica Neue', Helvetica, sans-serif;
-      font-weight: 100;
-      letter-spacing: 0; } }
-
-h2 {
-  font-size: 16px;
-  font-size: 1rem;
-  line-height: 1.33333px;
-  line-height: 1.33333rem;
-  font-family: 'Helvetica Neue', Helvetica, sans-serif;
-  font-weight: 500;
-  letter-spacing: 0;
-  margin-top: 1em;
-  padding-left: 1em; }
-  @media only screen and (min-width: 30em) {
-    h2 {
-      font-size: 24px;
-      font-size: 1.5rem;
-      line-height: 8px;
-      line-height: 8rem;
-      font-family: 'Helvetica Neue', Helvetica, sans-serif;
-      font-weight: 300;
-      letter-spacing: 0;
-      padding: 0; } }
-  @media only screen and (min-width: 50em) {
-    h2 {
-      font-size: 32px;
-      font-size: 2rem;
-      line-height: 2.66667px;
-      line-height: 2.66667rem;
-      font-family: 'Helvetica Neue', Helvetica, sans-serif;
-      font-weight: 100;
-      letter-spacing: 0; } }
-
-.title {
-  margin-top: 0; }
-
-p {
-  margin-bottom: 16px;
-  margin-bottom: 1rem;
-  font-size: 16px;
-  font-size: 1rem;
-  line-height: 1.33333px;
-  line-height: 1.33333rem;
-  font-family: 'Helvetica Neue', Helvetica, sans-serif;
-  font-weight: 300;
-  letter-spacing: 0; }
-
-.intro {
-  font-size: 16px;
-  font-size: 1rem;
-  line-height: 1.33333px;
-  line-height: 1.33333rem;
-  font-family: 'Helvetica Neue', Helvetica, sans-serif;
-  font-weight: 300;
-  letter-spacing: 0; }
-
-.testimonial {
-  font-size: 16px;
-  font-size: 1rem;
-  line-height: 1.33333px;
-  line-height: 1.33333rem;
-  font-family: 'Helvetica Neue', Helvetica, sans-serif;
-  font-weight: 300;
-  letter-spacing: 0;
-  font-style: italic;
-  margin-bottom: 48px;
-  margin-bottom: 3rem; }
-  .testimonial:before {
-    display: inline-block;
-    position: relative;
-    width: 0.625em;
-    height: 0.5em;
-    color: #27bdeb;
-    font-family: HelveticaNeueETW01-46Lt;
-    font-size: 2.5em;
-    margin-right: 0.2em;
-    margin-left: -0.825em;
-    margin-bottom: -0.125em;
-    content: "\201C";
-    text-align: right; }
-  .testimonial:after {
-    display: inline-block;
-    position: relative;
-    width: 0.625em;
-    height: 0.5em;
-    color: #27bdeb;
-    font-family: HelveticaNeueETW01-46Lt;
-    font-size: 2.5em;
-    margin-left: 0.125em;
-    margin-right: -1em;
-    margin-bottom: -0.425em;
-    content: "\201D";
-    text-align: left; }
-
-blockquote, q {
-  display: block;
-  clear: both;
-  font-size: 64px;
-  font-size: 4rem;
-  line-height: 5.33333px;
-  line-height: 5.33333rem;
-  font-family: 'Helvetica Neue', Helvetica, sans-serif;
-  font-weight: 300;
-  letter-spacing: 0;
-  margin-bottom: 32px;
-  margin-bottom: 2rem; }
-  blockquote:before, q:before {
-    display: inline-block;
-    position: relative;
-    width: 0.625em;
-    height: 0.5em;
-    color: #27bdeb;
-    font-family: HelveticaNeueETW01-46Lt;
-    font-size: 2.5em;
-    margin-right: 0.2em;
-    margin-left: -0.825em;
-    margin-bottom: -0.125em;
-    content: "\201C";
-    text-align: right; }
-  blockquote:after, q:after {
-    display: inline-block;
-    position: relative;
-    width: 0.625em;
-    height: 0.5em;
-    color: #27bdeb;
-    font-family: HelveticaNeueETW01-46Lt;
-    font-size: 2.5em;
-    margin-left: 0.125em;
-    margin-right: -1em;
-    margin-bottom: -0.425em;
-    content: "\201D";
-    text-align: left; }
-
-blockquote {
-  padding: 0 2em; }
-
-q {
-  padding: 0 2em 1em; }
-  q footer {
-    font-size: 16px;
-    font-size: 1rem;
-    line-height: 1.33333px;
-    line-height: 1.33333rem;
-    font-family: 'Helvetica Neue', Helvetica, sans-serif;
-    font-weight: 300;
-    letter-spacing: 0;
-    position: absolute;
-    text-align: right;
-    overflow: visible; }
-    q footer:before {
-      display: block;
-      width: 1em;
-      height: 2em;
-      position: relative;
-      content: "\2014";
-      float: left;
-      margin-right: 0.625em; }
-
-.subheading {
-  font-size: 16px;
-  font-size: 1rem;
-  line-height: 1.33333px;
-  line-height: 1.33333rem;
-  font-family: 'Helvetica Neue', Helvetica, sans-serif;
-  font-weight: 300;
-  letter-spacing: 0; }
-
-blockquote.callout {
-  font-size: 16px;
-  font-size: 1rem;
-  line-height: 1.33333px;
-  line-height: 1.33333rem;
-  font-family: 'Helvetica Neue', Helvetica, sans-serif;
-  font-weight: 300;
-  letter-spacing: 0; }
-
-.callout {
-  font-size: 16px;
-  font-size: 1rem;
-  line-height: 1.33333px;
-  line-height: 1.33333rem;
-  font-family: 'Helvetica Neue', Helvetica, sans-serif;
-  font-weight: 300;
-  letter-spacing: 0;
-  text-transform: uppercase;
-  letter-spacing: 0px;
-  color: black; }
-
-.callout2 {
-  font-size: 16px;
-  font-size: 1rem;
-  line-height: 1.33333px;
-  line-height: 1.33333rem;
-  font-family: 'Helvetica Neue', Helvetica, sans-serif;
-  font-weight: 300;
-  letter-spacing: 0; }
-
-.small {
-  font-size: 16px;
-  font-size: 1rem;
-  line-height: 1.33333px;
-  line-height: 1.33333rem;
-  font-family: 'Helvetica Neue', Helvetica, sans-serif;
-  font-weight: 300;
-  letter-spacing: 0; }
-
-.fineprint {
-  font-size: 16px;
-  font-size: 1rem;
-  line-height: 1.33333px;
-  line-height: 1.33333rem;
-  font-family: 'Helvetica Neue', Helvetica, sans-serif;
-  font-weight: 300;
-  letter-spacing: 0;
-  letter-spacing: 1px;
-  margin-bottom: 128px;
-  margin-bottom: 8rem; }
-  .fineprint a:link, .fineprint a:visited {
-    color: #868686;
-    border-bottom: none;
-    text-decoration: underline; }
-  .fineprint a:hover {
-    color: #27bdeb; }
-
-.box_callout {
-  border: 1px solid #eaf1f5;
-  border-radius: 10px;
-  background-color: #f3f6f7;
-  padding: 128px;
-  padding: 8rem; }
-
-/*
-	Paragraph Styles
-*/
-.intro {
-  font-size: 16px;
-  font-size: 1rem;
-  line-height: 1.33333px;
-  line-height: 1.33333rem;
-  font-family: 'Helvetica Neue', Helvetica, sans-serif;
-  font-weight: "thin";
-  letter-spacing: 0;
-  margin: 0 0 8px; }
-  .intro strong {
-    font-family: 'Helvetica Neue', Helvetica, sans-serif;
-    font-weight: "regular";
-    letter-spacing: 0;
-    font-size: inherit; }
-  .intro em {
-    font-family: 'Helvetica Neue', Helvetica, sans-serif;
-    font-weight: "thinitalic";
-    letter-spacing: 0;
-    font-size: inherit; }
-
 xmp {
   list-style: none;
   text-indent: 0;
@@ -4282,8 +3889,8 @@ xmp {
 body {
   font-size: 16px;
   font-size: 1rem;
-  line-height: 1.33333px;
-  line-height: 1.33333rem;
+  line-height: 20.8px;
+  line-height: 1.3rem;
   font-family: 'Helvetica Neue', Helvetica, sans-serif;
   font-weight: 300;
   letter-spacing: 0; }
@@ -4358,6 +3965,36 @@ header {
     display: block;
     float: left; }
 
+h1 {
+  font-size: 16px;
+  font-size: 1rem;
+  line-height: 32px;
+  line-height: 2rem;
+  font-family: 'Helvetica Neue', Helvetica, sans-serif;
+  font-weight: 500;
+  letter-spacing: 0;
+  margin-top: 1em;
+  padding-left: 1em; }
+  @media only screen and (min-width: 30em) {
+    h1 {
+      font-size: 24px;
+      font-size: 1.5rem;
+      line-height: 48px;
+      line-height: 3rem;
+      font-family: 'Helvetica Neue', Helvetica, sans-serif;
+      font-weight: 300;
+      letter-spacing: 0;
+      padding: 0; } }
+  @media only screen and (min-width: 50em) {
+    h1 {
+      font-size: 32px;
+      font-size: 2rem;
+      line-height: 64px;
+      line-height: 4rem;
+      font-family: 'Helvetica Neue', Helvetica, sans-serif;
+      font-weight: 100;
+      letter-spacing: 0; } }
+
 .global-nav {
   height: 48px;
   height: 3rem;
@@ -4377,8 +4014,8 @@ header {
 .help {
   height: 3em;
   text-align: center;
-  line-height: 3.33333px;
-  line-height: 3.33333rem; }
+  line-height: 40px;
+  line-height: 2.5rem; }
 
 .progress {
   background: #f1f1f1;
@@ -4392,8 +4029,8 @@ header {
     border-bottom: 0;
     font-size: 16px;
     font-size: 1rem;
-    line-height: 1.33333px;
-    line-height: 1.33333rem;
+    line-height: 48px;
+    line-height: 3rem;
     font-family: 'Helvetica Neue', Helvetica, sans-serif;
     font-weight: 300;
     letter-spacing: 0;
@@ -4420,8 +4057,8 @@ header {
         transition: all 0.3s ease-in-out;
         font-size: 16px;
         font-size: 1rem;
-        line-height: 1.33333px;
-        line-height: 1.33333rem;
+        line-height: 72px;
+        line-height: 4.5rem;
         font-family: 'Helvetica Neue', Helvetica, sans-serif;
         font-weight: 300;
         letter-spacing: 0;
@@ -4465,25 +4102,25 @@ header {
     margin-bottom: 0; }
 
 .cancel-order {
-  height: 128px;
-  height: 8rem; }
+  height: 64px;
+  height: 4rem; }
   .cancel-order button {
-    height: 128px;
-    height: 8rem; }
+    height: 64px;
+    height: 4rem; }
 
 .cta_bar {
-  height: 128px;
-  height: 8rem;
+  height: 64px;
+  height: 4rem;
   background-color: #cbcbcb; }
   .cta_bar .grid__item {
-    height: 128px;
-    height: 8rem; }
+    height: 64px;
+    height: 4rem; }
   .cta_bar .total {
     text-align: center;
     font-size: 24px;
     font-size: 1.5rem;
-    line-height: 8px;
-    line-height: 8rem;
+    line-height: 64px;
+    line-height: 4rem;
     font-family: 'Helvetica Neue', Helvetica, sans-serif;
     font-weight: 300;
     letter-spacing: 0; }
@@ -4491,8 +4128,8 @@ header {
       .cta_bar .total {
         font-size: 32px;
         font-size: 2rem;
-        line-height: 2.66667px;
-        line-height: 2.66667rem;
+        line-height: 64px;
+        line-height: 4rem;
         font-family: 'Helvetica Neue', Helvetica, sans-serif;
         font-weight: 100;
         letter-spacing: 0; } }
@@ -4587,17 +4224,6 @@ header {
       margin-top: -1.3em;
       margin-right: 0; }
 
-.buttons button {
-  margin: 0 1em 1em 0; }
-
-.country {
-  text-align: center; }
-  .country .country-input {
-    display: block;
-    font-size: 2em !important;
-    margin-bottom: 2em;
-    outline: 1px solid red; }
-
 /* Colors */
 .bg-lightest {
   background-color: white; }
@@ -4620,8 +4246,8 @@ a, a:link, a:hover, a:active, a:focus {
   border-bottom: 1px solid; }
 
 .btn, .cta, button {
-  height: 128px;
-  height: 8rem;
+  height: 64px;
+  height: 4rem;
   min-height: 48px;
   min-height: 3rem;
   background-color: #cbcbcb;
@@ -4629,22 +4255,22 @@ a, a:link, a:hover, a:active, a:focus {
   @inlcude transition;
   font-size: 16px;
   font-size: 1rem;
-  line-height: 1.33333px;
-  line-height: 1.33333rem;
+  line-height: 32px;
+  line-height: 2rem;
   font-family: 'Helvetica Neue', Helvetica, sans-serif;
   font-weight: 500;
   letter-spacing: 0; }
   .btn.small, .cta.small, button.small {
-    height: 128px;
-    height: 8rem;
+    height: 32px;
+    height: 2rem;
     min-height: 16px;
     min-height: 1rem; }
   @media only screen and (min-width: 30em) {
     .btn, .cta, button {
       font-weight: 300; } }
   .btn.small, .cta.small, button.small {
-    height: 128px;
-    height: 8rem;
+    height: 32px;
+    height: 2rem;
     min-height: 16px;
     min-height: 1rem;
     margin: 0; }
@@ -4653,32 +4279,7 @@ a, a:link, a:hover, a:active, a:focus {
   background-color: #4a993d;
   color: white;
   font-size: 24px;
-  font-size: 1.5rem;
-  padding: 128px;
-  padding: 8rem;
-  font-size: 16px;
-  font-size: 1rem;
-  line-height: 1.33333px;
-  line-height: 1.33333rem;
-  font-family: 'Helvetica Neue', Helvetica, sans-serif;
-  font-weight: 300;
-  letter-spacing: 0;
-  text-shadow: 0 1px 0 rgba(0, 0, 0, 0.56);
-  border: 1px solid #537e08;
-  border-bottom: 1px solid #537e08 !important;
-  background-clip: border-box !important;
-  background-color: #78a52e;
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.43);
-  background-image: -webkit-linear-gradient( #96d338 0%, #78a52e 100%);
-  background-image: linear-gradient( #96d338 0%, #78a52e 100%);
-  border-radius: 6px; }
-  .primary:hover, .primary:focus {
-    background-image: -webkit-linear-gradient( #a1d84d 0%, #87b934 100%);
-    background-image: linear-gradient( #a1d84d 0%, #87b934 100%); }
-  .primary:active {
-    background-image: -webkit-linear-gradient( #78a52e 0%, #96d338 100%);
-    background-image: linear-gradient( #78a52e 0%, #96d338 100%);
-    border-color: #824e26; }
+  font-size: 1.5rem; }
   @media only screen and (min-width: 50em) {
     .primary {
       font-size: 32px;
@@ -4702,8 +4303,8 @@ a, a:link, a:hover, a:active, a:focus {
   border: 1px solid #b2b2b2 !important; }
 
 form input[type=text] {
-  height: 128px;
-  height: 8rem; }
+  height: 51.2px;
+  height: 3.2rem; }
 form input[type=text], form textarea {
   width: 100%;
   border: 1px solid #727272;
@@ -4748,8 +4349,8 @@ form input[type=text], form textarea {
     padding: 0 1rem;
     font-size: 9.6px;
     font-size: 0.6rem;
-    line-height: 0.8px;
-    line-height: 0.8rem;
+    line-height: 16px;
+    line-height: 1rem;
     font-family: 'Helvetica Neue', Helvetica, sans-serif;
     font-weight: 500;
     letter-spacing: 0;
@@ -4764,8 +4365,8 @@ form input[type=text] + label, form textarea + label {
   position: absolute;
   font-size: 16px;
   font-size: 1rem;
-  line-height: 1.33333px;
-  line-height: 1.33333rem;
+  line-height: 48px;
+  line-height: 3rem;
   font-family: 'Helvetica Neue', Helvetica, sans-serif;
   font-weight: 300;
   letter-spacing: 0;
@@ -4775,10 +4376,10 @@ form input[type=text] + label, form textarea + label {
   margin-top: -3rem;
   letter-spacing: 0; }
 form textarea, form textarea.threelines {
-  height: 128px !important;
-  height: 8rem !important;
-  line-height: 8px;
-  line-height: 8rem;
+  height: 102.4px !important;
+  height: 6.4rem !important;
+  line-height: 24px;
+  line-height: 1.5rem;
   display: block;
   resize: none;
   padding-top: 1.5em; }
@@ -4794,8 +4395,8 @@ form textarea, form textarea.threelines {
     form textarea.fourlines:focus + label, form textarea.fourlines:focus + label.notempty, form textarea.threelines.fourlines:focus + label, form textarea.threelines.fourlines:focus + label.notempty {
       margin-top: -7.8rem; }
   form textarea.fivelines, form textarea.threelines.fivelines {
-    height: 256px !important;
-    height: 16rem !important; }
+    height: 153.6px !important;
+    height: 9.6rem !important; }
     form textarea.fivelines + label, form textarea.threelines.fivelines + label {
       margin-top: -9.1em; }
     form textarea.fivelines:focus + label, form textarea.fivelines:focus + label.notempty, form textarea.threelines.fivelines:focus + label, form textarea.threelines.fivelines:focus + label.notempty {
@@ -4843,7 +4444,7 @@ input[type=radio] {
       color: #4a993d;
       font-size: 32px;
       font-size: 2rem;
-      line-height: 1.33333px;
-      line-height: 1.33333rem;
+      line-height: 16px;
+      line-height: 1rem;
       text-align: center;
       display: block; }

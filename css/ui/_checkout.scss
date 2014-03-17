@@ -118,6 +118,21 @@ article {
 
 }
 
+    h1 {
+        @include font(1, 2, 500);
+        margin-top: 1em;
+        padding-left: 1em;
+
+        @media #{$medium}{
+            @include font(1.5, 3);
+            padding: 0;
+        }
+
+        @media #{$large} {
+            @include font(2,4, 100)
+        }
+    }
+
     .global-nav {
         height: (($tapheight - 1) * $rootfontsize) + px;
         height: ($tapheight - 1) + rem;
@@ -399,24 +414,10 @@ article {
 
 
 
-.buttons {
-	button {
-		margin: 0 1em 1em 0;
-	}
 
-}
 
-.country {
-	text-align: center;
 
-	.country-input {
-		display: block;
-		font-size: 2em !important;
-		margin-bottom: 2em;
-		@include outline;
-	}
 
-}
 
 /* Colors */
 .bg-lightest { background-color: $lightest; }
