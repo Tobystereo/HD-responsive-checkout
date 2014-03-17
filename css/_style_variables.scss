@@ -1,0 +1,466 @@
+.swatch_primarycolor { @include color_swatch($primarycolor); }
+.swatch_secondarycolor { @include color_swatch($secondarycolor); }
+.swatch_tertiarycolor { @include color_swatch($tertiarycolor); }
+.swatch_calltoactioncolor { @include color_swatch($calltoactioncolor); }
+.swatch_neutralcolor { @include color_swatch($neutralcolor); }
+.swatch_highlightcolor { @include color_swatch($highlightcolor); }
+
+.swatch_haircolor { @include color_swatch($haircolor);}
+.swatch_videocolor { @include color_swatch($videocolor);}
+.swatch_photoscolor { @include color_swatch($photoscolor);}
+.swatch_storecolor { @include color_swatch($storecolor);}
+.swatch_learncolor { @include color_swatch($learncolor);}
+.swatch_communitycolor { @include color_swatch($communitycolor);}
+.swatch_aboutcolor { @include color_swatch($aboutcolor);}
+
+.swatch_alertcolor { @include color_swatch($alertcolor);}
+.swatch_warningcolor { @include color_swatch($warningcolor);}
+.swatch_successcolor { @include color_swatch($successcolor);}
+
+.primarycolor { color: $primarycolor; }
+.secondarycolor { color: $secondarycolor; }
+.tertiarycolor { color: $tertiarycolor; }
+.calltoactioncolor { color: $calltoactioncolor; }
+.neutralcolor { color: $neutralcolor; }
+.highlightcolor { color: $highlightcolor; }
+
+.haircolor { color: $haircolor;}
+.videocolor { color: $videocolor;}
+.photoscolor { color: $photoscolor;}
+.storecolor { color: $storecolor;}
+.learncolor { color: $learncolor;}
+.communitycolor { color: $communitycolor;}
+.aboutcolor { color: $aboutcolor;}
+
+.alertcolor { color: $alertcolor;}
+.warningcolor { color: $warningcolor;}
+.successcolor { color: $successcolor;}
+
+$black 							: rgb(0,0,0);
+$white 							: rgb(255,255,255);
+$gray                           : lighten($neutralcolor, 50);
+$lightgray                      : lighten($neutralcolor, 70);
+
+.blackcolor { color: $black; }
+.whitecolor { color: $white; }
+.graycolor  { color: $gray; }
+
+
+.primarybackgroundcolor { background-color: $primarycolor; }
+.secondarybackgroundcolor { background-color: $secondarycolor; }
+.tertiarybackgroundcolor { background-color: $tertiarycolor; }
+.calltoactionbackgroundcolor { background-color: $calltoactioncolor; }
+.neutralbackgroundcolor { background-color: $neutralcolor; }
+.highlightbackgroundcolor { background-color: $highlightcolor; }
+
+.hairbackgroundcolor { background-color: $haircolor;}
+.videobackgroundcolor { background-color: $videocolor;}
+.photosbackgroundcolor { background-color: $photoscolor;}
+.storebackgroundcolor { background-color: $storecolor;}
+.learnbackgroundcolor { background-color: $learncolor;}
+.communitybackgroundcolor { background-color: $communitycolor;}
+.aboutbackgroundcolor { background-color: $aboutcolor;}
+
+.alertbackgroundcolor { background-color: $alertcolor;}
+.warningbackgroundcolor { background-color: $warningcolor;}
+.successbackgroundcolor { background-color: $successcolor;}
+
+.blackbackgroundcolor { background-color: $black; }
+.whitebackgroundcolor { background-color: $white; }
+.graybackgroundcolor { background-color: $gray; }
+.lightgraybackgroundcolor { background-color: $lightgray; }
+
+// Now define your design’s typography by setting a base typeface and size
+//$fontweight_ultralight          : 'HelveticaNeueW01-UltLt';
+//$fontweight_thin                : 'HelveticaNeueW01-Thin';
+//$fontweight_light               : 'HelveticaNeueETW01-45Lt';
+//$fontweight_lightitalic         : 'HelveticaNeueETW01-46Lt';
+//$fontweight_regular             : 'HelveticaNeueETW01-55Rg';
+//$fontweight_italic              : 'HelveticaNeueETW01-56It';
+//$fontweight_medium              : 'HelveticaNeueETW01-65Md';
+//$fontweight_mediumitalic        : 'HelveticaNeueETW01-66Md';
+//$fontweight_bold                : 'HelveticaNeueETW01-75Bd';
+//$fontweight_bolditalic          : 'HelveticaNeueETW01-76Bd';
+
+.ultralight{
+    @include font-family('ultralight');
+}
+
+.thin{
+    @include font-family('thin');
+}
+
+.light{
+    @include font-family('light');
+}
+
+.lightitalic{
+    @include font-family('lightitalic');
+}
+
+.regular{
+    @include font-family('regular');
+}
+
+.italic{
+    @include font-family('italic');
+}
+
+.medium{
+    @include font-family('medium');
+}
+
+.mediumitalic{
+    @include font-family('mediumitalic');
+}
+
+.bold{
+    @include font-family('bold');
+}
+
+.bolditalic{
+    @include font-family('bolditalic');
+}
+
+* {
+    @include font-size($basefontsize);
+    @include font-family('light');
+}
+
+
+h6, .h6 {
+    @include font-size($basefontsize);
+    @include line-height($basefontsize);
+    @include font-family('medium');
+    margin: adjust_to_baseline_grid($basefontsize)+px 0;
+}
+
+h5, .h5 {
+    @include font-size($headline_5_fontsize);
+    @include line-height($headline_5_fontsize);
+    @include font-family('regular');
+    @include paragraph-margin($headline_5_fontsize);
+}
+
+h4, .h4 {
+    @include font-size($headline_4_fontsize);
+    @include line-height($headline_4_fontsize);
+    @include font-family('light');
+    @include paragraph-margin($headline_4_fontsize);
+}
+
+h3, .h3 {
+    @include font-size($headline_3_fontsize);
+    @include line-height($headline_3_fontsize);
+    @include font-family('light');
+    @include paragraph-margin($headline_3_fontsize);
+}
+
+h2, .h2 {
+    @include font-size($headline_2_fontsize);
+    @include line-height($headline_2_fontsize);
+    @include font-family('thin');
+    @include paragraph-margin($headline_2_fontsize);
+    letter-spacing: 3px;
+}
+
+h1, .h1 {
+    @include font-size($headline_1_fontsize);
+    @include line-height($headline_1_fontsize);
+    @include font-family('ultralight');
+    letter-spacing: 2;
+    @include paragraph-margin($headline_1_fontsize);
+    color: $neutralcolor;
+    margin-top:0;
+}
+
+.title {
+    @include font-size($titlefontsize);
+    @include line-height($titlefontsize);
+    @include font-family('ultralight');
+    text-align:center;
+    @include paragraph-margin($titlefontsize);
+    letter-spacing: 2;
+}
+
+hgroup{
+    @for $i from 1 through 6 {
+        h#{$i}:first-child{
+            margin-bottom:0;
+            padding-bottom: 0;
+
+            @for $j from 1 through 6{
+                & + h#{$j} {
+                    margin-top:0;
+                    padding-top: 0;
+                }
+            }
+        }
+    }
+
+}
+
+hgroup .title {
+    margin: 0;
+//    padding: 0;
+}
+
+.nomargin {
+    margin: 0;
+}
+
+.nopadding {
+    padding: 0;
+}
+
+// a subheading removes the top margin from the element
+.subheading {
+    margin-top: 0;
+    padding: 0;
+}
+
+//@todo nest strong and em to each h class//
+h6 strong {
+    font-size:inherit;
+    @include font-family('bold');
+}
+
+h5 strong {
+    font-size:inherit;
+    @include font-family('bold');
+    letter-spacing: 0;
+}
+
+h4 strong {
+    font-size:inherit;
+    @include font-family('medium');
+//    letter-spacing:0;
+}
+
+h3 strong {
+    font-size:inherit;
+    @include font-family('medium');
+    letter-spacing: 0;
+}
+
+h2 strong {
+    font-size:inherit;
+    @include font-family('regular');
+    letter-spacing: 0;
+}
+
+
+h1 strong {
+    font-size:inherit;
+    @include font-family('thin');
+    letter-spacing: 1px;
+}
+
+
+h6 em {
+    font-size:inherit;
+    @include font-family('mediumitalic');
+}
+
+h5 em {
+    font-size:inherit;
+    @include font-family('italic');
+}
+
+h4 em {
+    font-size:inherit;
+    @include font-family('lightitalic');
+}
+
+h3 em {
+    font-size:inherit;
+    @include font-family('lightitalic');
+}
+
+
+
+/* @todo add <hgroup> classes and combine with subheading classes */
+
+
+// Your headings may inherit the base typeface, or you may set a different font stack
+$baseheadingfont 				: inherit;
+
+// Choose between normal, bold or set a font-weight number (eg: 700) for your headings
+$baseheadingfontweight 			: bold;
+
+// Your headings may inherit the $textcolor, or you may set a different colour
+$baseheadingfontcolor 			: inherit;
+
+// Often you’ll use an alternative typeface (eg: for buttons, form inputs and tables)
+$altfontfamily 					: 'HelveticaNeueETW01-55Rg', "Helvetica Neue", Helvetica, Arial, sans-serif;
+$altlineheight 					: 1.35em;
+
+// You can choose a special typeface just for ampersands too
+$ampfontfamily 					: local('Georgia'), local('Garamond'), local('Palatino'), local('Book Antiqua');
+
+//  And if your site’s for geeks, you’ll need a font for code too
+$codefont 						: Monaco, Courier New, monospace;
+
+strong{
+    @include font-family('medium');
+    font-size: inherit;
+    letter-spacing: -1;
+    font-weight: normal;
+    font-style: normal;
+}
+
+em{
+    @include font-family('lightitalic');
+    font-size: inherit;
+    font-style: normal;
+}
+
+p, li, dl {
+    @include font-size($basefontsize);
+    @include line-height($basefontsize);
+    margin: 0 0 adjust_to_baseline_grid($basefontsize)+px;
+
+    & strong{
+        @include font-family('medium');
+        font-size: inherit;
+    }
+
+    & em{
+        @include font-family('lightitalic');
+        font-size: inherit;
+    }
+}
+
+
+
+.secondary {
+    @include font-size($secondaryfontsize);
+    @include line-height($secondaryfontsize);
+    margin: 0 0 adjust_to_baseline_grid($secondaryfontsize)+px;
+
+    & strong{
+        @include font-family('bold');
+        font-size: inherit;
+    }
+}
+
+.tertiary {
+    @include font-size($tertiaryfontsize);
+    @include line-height($tertiaryfontsize);
+    letter-spacing: 1.5px;
+    text-transform:uppercase;
+    margin: 0 0 adjust_to_baseline_grid($tertiaryfontsize)+px;
+
+    & strong{
+        @include font-family('bold');
+        font-size: inherit;
+    }
+}
+
+
+// STEP THREE: COLOUR ================================================
+
+
+// Define your design’s palette by choosing three main colours
+//$primarycolor 					: rgb(146,154,0);
+//$secondarycolor 				: rgb(164,50,21);
+//$tertiarycolor 					: rgb(41,47,54);
+//
+//// Now set a neutral colour for borders etc.
+//$neutralcolor 					: rgb(71,63,63);
+//$midneutralcolor 				: darken($neutralcolor,25%);
+//$darkneutralcolor 				: darken($neutralcolor,50%);
+//$lightneutralcolor 				: lighten($neutralcolor,25%);
+//$lighterneutralcolor 			: lighten($neutralcolor,50%);
+//$lightestneutralcolor 			: lighten($neutralcolor,70%);
+
+// Sometimes you may want $black and $white to be ‘almost black’ and ’off-white’
+
+//
+//// Choose a colour for your hyperlinks. Often this will be the $primarycolor
+//$linkcolor 		    			: $primarycolor;
+//$linkcolorhover 				: darken($linkcolor, 10);
+//$linkcolorvisited   			: darken($linkcolorhover, 10);
+//$linkcolorfocus 				: darken($linkcolorvisited, 10);
+//
+//// Now define another set of colours. These will be used to style alerts and buttons
+//$alertcolor 					: rgb(218,79,73);
+//$errorcolor 					: rgb(176,20,0);
+//$infocolor 						: rgb(216,220,162);
+//$inversecolor 					: rgb(65,65,65);
+//$successcolor 					: rgb(188,212,222);
+//$warningcolor 					: $errorcolor;
+
+
+// HELPER CLASSES ====================================================
+
+@for $i from 1 through $baselinegrid*2 {
+    .margin-bottom-#{$i} {
+        margin-bottom: ($baselinegrid * $i)+px;
+    }
+}
+
+@for $j from 1 through $baselinegrid*2 {
+    .margin-top-#{$j} {
+        margin-top: ($baselinegrid * $j)+px;
+    }
+}
+
+
+// STEP FOUR: TEXTURE ================================================
+
+// Next set variables for your design’s borders.
+// These will be inherited by many Rock Hammer elements below
+
+//$bordercolor    				: $lighterneutralcolor;
+$borderstyle					: solid;
+$borderwidth 					: 1px;
+$borderradius 					: 4px;
+
+
+// STEP FIVE: ROCK HAMMER ================================================
+
+// 1. NAVIGATION
+//    Site navigation
+//    Basic navbar
+//    Breadcrumbs
+//    Pagination
+//    Pager
+
+// 2. MODULES
+//    Hero
+//    Alerts
+//    Wells
+
+// 3. FORMS
+//    Inputs
+//    Help
+//    Buttons
+
+//.cta{
+//    // @todo define cta button
+//}
+//
+//.cta_secondary{
+//    display: block;
+//    padding: $baselinegrid;
+//    background-color: lighten($neutralcolor,30);
+//}
+// 4. TABLES
+// 5. MISC
+//    Tooltip
+
+.row img{
+    width: auto;
+}
+
+// @todo create intelligent column classes that are informed by their parent column
+@for $columns from 1 through 12 {
+    .columns-#{$columns} {
+        @include columns($columns);
+        @include column-gap(30px);
+    }
+}
+
+
+

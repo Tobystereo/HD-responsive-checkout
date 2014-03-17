@@ -1,0 +1,282 @@
+@import "functions";
+
+.cta
+{
+	@include transition($transition);
+	display: inline-block;
+	width: auto;
+	padding: $baselinegrid+px $baselinegrid*2+px;
+	color: #fefefe !important;
+	@include font-size($headline_4_fontsize);
+	@include line-height($headline_4_fontsize);
+	text-shadow: 0 2px 0 transparentize($black, .5);
+	border: 1px solid #537e08;
+	border-bottom: 1px solid #537e08 !important;
+	background-clip: border-box;
+	background-color: $calltoactioncolor;
+	@include box-shadow(inset 0 1px 0 transparentize($white, .43));
+	@include linear-gradient(lighten($calltoactioncolor, 10) 0%, darken($calltoactioncolor, 10) 100%);
+	border-radius: 6px;
+	overflow: hidden;
+    text-decoration: none;
+    @include font-family("medium");
+
+    &:hover, &:focus
+	{
+		@include linear-gradient(lighten($calltoactioncolor, 15) 0%, darken($calltoactioncolor, 5) 100%);
+	}
+	/* line 353, ../scss/futureproof.scss */
+	&:active
+	{
+		@include linear-gradient(darken($calltoactioncolor, 10) 0%, lighten($calltoactioncolor, 10) 100%);
+		border-color: #824e26;
+	}
+}
+
+.cta_secondary {
+    @include transition($transition);
+	display: inline-block;
+	width: auto;
+	padding: $baselinegrid+px $baselinegrid*2+px;
+	color: $white !important;
+	@include font-size($headline_5_fontsize);
+	@include line-height($headline_5_fontsize);
+	text-shadow: 0 2px 0 transparentize($neutralcolor, .5);
+	border: 1px solid lighten($neutralcolor, 50);
+	border-bottom: 1px solid lighten($neutralcolor, 30) !important;
+	background-clip: border-box;
+	background-color: $neutralcolor;
+	@include box-shadow(inset 0 1px 0 transparentize($white, .43));
+	@include linear-gradient(lighten($neutralcolor, 40) 0%, lighten($neutralcolor, 15) 100%);
+	border-radius: 6px;
+	overflow: hidden;
+    text-decoration: none;
+    @include font-family("medium");
+
+    &:hover, &:focus {
+        @include linear-gradient(lighten($neutralcolor, 45) 0%, lighten($neutralcolor, 25) 100%);
+    }
+
+    &:active {
+        @include linear-gradient(lighten($neutralcolor, 5) 0%, lighten($neutralcolor, 30) 100%);
+    }
+}
+
+.cta_alternate {
+    @include transition($transition);
+	display: inline-block;
+	width: auto;
+	padding: $baselinegrid+px $baselinegrid*2+px;
+	color: $white !important;
+	@include font-size($headline_5_fontsize);
+	@include line-height($headline_5_fontsize);
+	text-shadow: 0 2px 0 transparentize($neutralcolor, .5);
+	border: 1px solid lighten($neutralcolor, 50);
+	border-bottom: 1px solid lighten($neutralcolor, 30) !important;
+	background-clip: border-box;
+	background-color: $neutralcolor;
+	@include box-shadow(inset 0 1px 0 transparentize($white, .43));
+	@include linear-gradient(lighten($highlightcolor, 0) 0%, darken($highlightcolor, 20) 100%);
+	border-radius: 6px;
+	overflow: hidden;
+    text-decoration: none;
+    @include font-family("medium");
+
+    &:hover, &:focus {
+        @include linear-gradient(lighten($highlightcolor, 5) 0%, darken($highlightcolor, 15) 100%);
+    }
+
+    &:active {
+        @include linear-gradient(darken($highlightcolor, 20) 0%, lighten($highlightcolor, 0) 100%);
+    }
+}
+
+.left { text-align: left;}
+.center { text-align: center;}
+.right { text-align: right;}
+
+.centerelement {
+    clear: both;
+    margin-left: auto !important;
+    margin-right: auto !important;
+}
+
+blockquote {
+
+    margin: $baselinegrid*3+px 0;
+    padding: $baselinegrid+px $baselinegrid*2+px !important;
+    border: none !important;
+
+    & p {
+        @include font-family("lightitalic");
+        @include font-size($basefontsize);
+        @include line-height($basefontsize);
+        margin: 0 auto $baselinegrid+px;
+        padding: 0;
+    }
+
+    & p:before
+	{
+		display: inline-block;
+		position: absolute;
+		width: 0.625em;
+		color: $highlightcolor;
+		@include font-family("light");
+		font-size: $baselinegrid*8+px;
+  		height: 0.5em;
+        line-height:.7em;
+		margin-right: 0;
+		margin-left: -45px;
+		margin-top: -5px;
+		content: "\201C";
+		text-align: right;
+	}
+
+	& p:after
+	{
+		display: inline-block;
+		position: absolute;
+		width: 0.625em;
+		height: 0.5em;
+		color: $highlightcolor;
+	    @include font-family("light");
+		font-size: $baselinegrid*8+px;
+		margin-left: 0.125em;
+		margin-right: -1em;
+        margin-top: .30em;
+		margin-bottom: 0;
+		content: "\201D";
+		text-align: left;
+	}
+
+    &.left p:after {
+        margin-left: 2px;
+    }
+
+    &.right p:after {
+        margin-left: 3px;
+    }
+
+    & cite {
+        display:block;
+
+        &:before {
+            display:inline;
+            width: 1.5em;
+            height: 1em;
+            position:relative;
+            margin-right: .3em;
+            content: "\2014";
+        }
+    }
+}
+
+
+
+figure {
+    width: auto;
+    padding: 0;
+    margin: 0;
+}
+
+.trademark {
+    &:after {
+     display: inline;
+     width: 1.5em;
+     height: 1em;
+     content: "\2122";
+     position: absolute;
+     text-align:left;
+     font-size: .5em;
+     line-height: 2em;
+ }
+}
+
+//* @todo change hr to Marcos line seperator (img based) not text
+
+
+hr {
+    display:block;
+    position: relative;
+    height: $baselinegrid*9+px;
+    width: 100%;
+    height: 144px;
+    border: none;
+    clear:both;
+    overflow:visible;
+//    outline: 1px solid red;
+
+    &:before {
+        display:block;
+        position:absolute;
+        width: 100%;
+        height: 35px;
+        content: "\ ";
+        left: 0;
+        top: 42px;
+        z-index: 10;
+        @include linear-gradient(top, #ffffff 0%,#ffffff 90%,#f6f6f6 90%, #f6f6f6 99%, #ffffff 99%, #ffffff 100%);
+        box-shadow: inset 50px 5px 32px 0 #FFFFFF, inset -50px 5px 32px 0px #FFFFFF;
+    }
+
+    &:after {
+        display:block;
+        content: "\ ";
+        position:absolute;
+        width: 100%;
+        height: 77px;
+        z-index: 11;
+        left: 0;
+        top: 77px;
+        background: #E9E9E9;
+        box-shadow: inset 75px -75px 32px 0px #FFFFFF, inset -75px -75px 32px 0px #FFFFFF;
+//    outline: 1px solid green;
+    }
+}
+
+
+
+a, a:link {
+    color: $primarycolor;
+    @include transition($transition);
+    text-decoration: none;
+    border-bottom: 1px solid;
+}
+
+a:hover {
+    color: $highlightcolor;
+}
+
+a:visited {
+    color: $neutralcolor;
+}
+
+.linkarrowright {
+    &:after {
+     content: "\232A";
+     display: inline-block;
+     text-align: right;
+     padding: 0 0 0 5px;
+     margin-right: -10px;
+ }
+
+}
+
+
+li {
+    padding: 0;
+    list-style: none;
+
+        &:before {
+         content: "\2013";
+         margin-left: -15px;
+            display:block;
+            float:left;
+     }
+}
+
+
+//apply to ul tag
+.opticallist {
+    padding: 0;
+}

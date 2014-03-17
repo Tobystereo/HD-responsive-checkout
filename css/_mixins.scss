@@ -3,9 +3,14 @@
     font-size: $size + rem;
 }
 
-@mixin line-height($size) {
-    line-height: ($size * $rootfontsize) + px;
-    line-height: $size + rem;
+//@mixin line-height($size) {
+//    line-height: ($size * $rootfontsize) + px;
+//    line-height: $size + rem;
+//}
+
+@mixin font-sizing($size, $line-height: null){
+	@include font-size($size);
+
 }
 
 @mixin font-family($font-weight: 300) {
@@ -16,11 +21,12 @@
 
 @mixin font($size: 1, $line-height: 1, $font-weight: 300) {
     @include font-size($size);
-    @include line-height($line-height);
+    @include line-height($size);
     @include font-family($font-weight);
 }
 
 @mixin rem-height($size, $important: null) {
+	$size: adjust_to_baseline_grid(round($size));
     @if $important == 'important' {
         height: ($size * $rootfontsize) + px !important;
         height: $size + rem !important;
@@ -64,4 +70,50 @@ $borderstyle: $lineweight $linetype $linecolor;
         border-#{$location}: $lineweight $linetype $linecolor;
     }
 
+}
+
+@mixin line-height($fontsize) {
+    $target-lineheight: line-height-calc($fontsize);
+    line-height: adjust_to_baseline_grid($target_lineheight)+px;
+    line-height: adjust_to_baseline_grid($target_lineheight) + rem;
+}
+
+@function line-height-calc($fontsize) {
+//    $fontsize: round($fontsize);
+	$fontsize: $fontsize;
+    $lineheight_ratio: $ratio; //try .6
+//    $target_lineheight: round($fontsize / $ratio);
+	$target_lineheight: $fontsize / $ratio;
+
+    @return $target_lineheight;
+}
+
+@function adjust_to_baseline_grid($size) {
+    $return_size: $size;
+
+    @if $size % $baselinegrid == 0 {
+        $return_size: $size;
+    } @else {
+        @for $i from 1 through $baselinegrid {
+            @if ($size+$i) % $baselinegrid == 0 {
+                $return_size: $return_size+$i;
+            }
+        }
+    }
+
+    @return $return_size;
+}
+
+@mixin paragraph-margin($fontsize) {
+    // following the ratio the top margin will be 3/4 of the font-size
+    // the bottom margin will be 1/4 of the font size, all adjusted to fit the baseline grid
+    $top-margin: adjust_to_baseline_grid(round($fontsize*$ratio));
+    $bottom-margin: adjust_to_baseline_grid(round($fontsize*.25));
+    margin: $top-margin + px 0 $bottom-margin + px;
+    margin: $top-margin + rem 0 $bottom-margin + rem;
+}
+
+@mixin rem-attribute($attribute, $size) {
+	#{$attribute}: $size * $rootfontsize + px;
+	#{$attribute}: $size + rem;
 }

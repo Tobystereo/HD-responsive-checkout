@@ -1,0 +1,431 @@
+//@import "compass/css3";
+//@import "hint/hint.scss";
+/* TYPOGRAPHY */
+/* FONT SIZES based on fibonacci + 13 */
+/* 13	14	15	16	18	21	26	34	47	68	102	157 */
+
+
+/*  PX to EM conversion:
+    http://www.pjmccormick.com/sweet-sass-function-convert-px-em
+
+    font-size: em(18px) // outputs 1.125 em
+*/
+
+// STEP ONE: BASICS ================================================
+
+// Define the proportional ratio you would like to apply 0.75 leads to a 3x4 aspect ratio and can be applied in font-sizing
+$ratio                          : 0.75; //
+
+
+
+// Start the ‘atmosphere’ of your design by defining the colours of your pages and text
+
+$bodycolor 						: rgb(255,255,255);
+$textcolor 						: rgb(71,63,63);
+
+$primarycolor                   : rgb(62, 109, 157);
+$secondarycolor                 : rgb(41, 53, 92);
+$tertiarycolor                  : rgb(73, 109, 145);
+$neutralcolor                   : rgb(68, 68, 68);
+$calltoactioncolor              : rgb(120, 165, 46);
+$highlightcolor                 : rgb(48, 196, 240);
+
+$haircolor                      : rgb(62, 109, 157);
+$videocolor                     : rgb(210, 40, 40);
+$photoscolor                    : rgb(11, 158, 146);
+$storecolor                     : rgb(143, 183, 93);
+$learncolor                     : rgb(237, 161, 51);
+$communitycolor                 : rgb(138, 76, 174);
+$aboutcolor                     : rgb(235, 186, 0);
+
+$alertcolor: rgb(184, 32, 37);
+$alertbackgroundcolor: lighten($alertcolor, 20);
+$warningcolor: rgb(254, 249, 0);
+$warningbackgroundcolor:lighten($warningcolor, 20);
+$successcolor: $calltoactioncolor;
+$successbackgroundcolor: lighten($calltoactioncolor, 20);
+
+$base-font-size: 16px;
+
+@function rem($target, $context: $base-font-size) {
+   @if $target == 0 { @return 0 }
+   @return $target / $context + 0rem;
+}
+
+/* @todo create font-size mixin that outputs px/rem */
+/* @todo create margin/padding mixin using baseline grid */
+
+$fontweight-regular: 300;
+
+$basefontfamily 				: $fontweight-regular, "Helvetica Neue", Helvetica, Arial, sans-serif;
+$basefontsize 					: 1; // 16px
+$baselinegrid                   : 8;
+
+$headline_5_fontsize            : round($basefontsize / $ratio); // 21
+$headline_4_fontsize            : round($headline_5_fontsize / $ratio); // 28
+$headline_3_fontsize            : round($headline_4_fontsize / $ratio); // 38
+$headline_2_fontsize            : round($headline_3_fontsize / $ratio); // 51
+$headline_1_fontsize            : round($headline_2_fontsize / $ratio); // 67
+$titlefontsize                  : round($headline_1_fontsize / $ratio); // 90
+
+$primaryfontsize 				: $basefontsize; // 16px
+$secondaryfontsize              : round($basefontsize * $ratio); // 12
+$tertiaryfontsize               : round($secondaryfontsize * $ratio); // 9
+
+/* FONTS */
+
+/****************************************
+ FUTUREPROOF ENCAPSULATION
+
+ this new layer of CSS styles will live
+ inside of an element with the class
+ ".futureproof" inside of the existing
+ styles of HairDirect.com
+
+****************************************/
+body {
+        background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAICAYAAADA+m62AAAAGklEQVQYV2NkIBIwEqmOYXgp/PDhw39ifA4AmZcD2GiglqYAAAAASUVORK5CYII=);
+     }
+
+    /*
+     * Remove text-shadow in selection highlight: h5bp.com/i
+     * These selection rule sets have to be separate.
+     * Customize the background color to match your design.
+     */
+
+    ::-moz-selection {
+        background: $color_emphasis;
+        text-shadow: none;
+    }
+
+    ::selection {
+        background: $color_emphasis;
+        text-shadow: none;
+    }
+
+
+    strong {
+        font-family: HelveticaNeueETW01-75Bd;
+    }
+
+    em {
+        background-color: $color_emphasis;
+    }
+
+
+    a:link {
+        @include transition(all 0.3s ease-out);
+        color: $color_HD_blue;
+        text-decoration: none;
+        border-bottom: 1px solid;
+    }
+
+
+    a:visited {
+        color: $color_HD_blue;
+        text-decoration: none;
+    }
+
+
+    a:hover {
+        color: $color_highlight;
+        text-decoration: none;
+    }
+
+
+
+
+    h1 a:link, h1 a:visited, h2 a:link, h2 a:visited, h3 a:link, h3 a:visited, h4 a:link, h4 a:visited, h5 a:link, h5 a:visited, h6 a:link, h6 a:visited {
+        text-decoration: none;
+        color: $color_text;
+        border-bottom: none;
+    }
+
+
+    h1 a:hover, h2 a:hover, h3 a:hover, h4 a:hover, h5 a:hover, h6 a:hover {
+        color: $color_highlight;
+        text-decoration: none;
+    }
+
+//font-samily:"HelveticaNeueW01-UltLt";
+//font-family:"HelveticaNeueW01-Thin";
+//font-family:"HelveticaNeueETW01-45Lt";
+//font-family:"HelveticaNeueETW01-46Lt";
+//font-family:"HelveticaNeueETW01-55Rg";
+//font-family:"HelveticaNeueETW01-56It";
+//font-family:"HelveticaNeueETW01-65Md";
+//font-family:"HelveticaNeueETW01-66Md";
+//font-family:"HelveticaNeueETW01-75Bd";
+//font-family:"HelveticaNeueETW01-76Bd";
+
+
+    h1 {
+        @include font($headline_3_fontsize, $headline_1_fontsize, 500);
+		@include paragraph-margin($headline_1_fontsize);
+//        margin-top: $line_height5x;
+//        margin-bottom: $line_height1x;
+        font-family: HelveticaNeueW01-UltLt;
+        color: $color_text;
+        letter-spacing:1px;
+
+		@media #{$medium} {
+			@include font($headline_2_fontsize, $headline_2_fontsize, 300);
+		}
+
+		@media #{$large} {
+			@include font($headline_1_fontsize, $headline_1_fontsize, 100);
+		}
+    }
+
+//h1 {
+//	@include font(1, 2, 500);
+//	margin-top: 1em;
+//	padding-left: 1em;
+//
+//	@media #{$medium}{
+//		@include font(1.5, 3);
+//		padding: 0;
+//	}
+//
+//	@media #{$large} {
+//		@include font(2,4, 100)
+//	}
+//}
+
+h2 {
+	@include font(1, 1, 500);
+	margin-top: 1em;
+	padding-left: 1em;
+
+	@media #{$medium}{
+		@include font(1.5, 3);
+		padding: 0;
+	}
+
+	@media #{$large} {
+		@include font(2,4, 100)
+	}
+}
+
+    .title {
+         margin-top: 0;
+    }
+
+
+//    h2 {
+//        font-size: $font_size_9;
+//        line-height: $line_height4x;
+//        margin-bottom: $line_height2x;
+//        margin-top: $line_height4x;
+////        font-family: HelveticaNeueW01-Thin;
+//		@include font-family(200);
+//    }
+//
+//
+//    h3 {
+//        font-size: $font_size_8;
+//        line-height: $line_height4x;
+//        margin-bottom: $line_height1x;
+//        margin-top: $line_height1x;
+////        font-family: HelveticaNeueETW01-45Lt;
+//		@include font-family(300);
+//    }
+//
+//
+//    h4 {
+//        margin-top: $line_height1x;
+//        margin-bottom: $line_height1x;
+//        font-size: $font_size_7;
+////        font-family: HelveticaNeueETW01-55Rg;
+//		@include font-family(400);
+//        line-height: $line_height2x;
+//    }
+//
+//
+//    h5 {
+//        font-style: normal;
+//        font-weight: normal;
+//        font-size: $font-size_4;
+//        line-height: $line_height2x;
+//        margin-bottom: $line_height1x;
+//        margin-top: $line_height1x;
+//		@include font-family(500);
+////        font-family: HelveticaNeueETW01-65Md;
+//    }
+//
+//
+//    h6 {
+//        font-weight: normal;
+//        font-style: normal;
+//        font-size: $font-size_4;
+//        margin-bottom: $line_height1x;
+//        margin-top: $line_height1x;
+//		@include font-family(500);
+//		font-style: italic;
+////        font-family: HelveticaNeueETW01-66Md;
+//    }
+
+    p {
+		@include rem-attribute(margin-bottom, 1);
+        @include font(1);
+    }
+
+
+    .intro {
+		@include font($headline_3_fontsize);
+    }
+
+    @mixin quotation_marks {
+        &:before {
+            @include quotation_marks_left;
+        }
+
+        &:after {
+            @include quotation_marks_right;
+        }
+    }
+
+    @mixin quotation_mark_style {
+        display: inline-block;
+        position: relative;
+        width: 0.625em;
+        height: 0.5em;
+        color: $color_highlight;
+        font-family: HelveticaNeueETW01-46Lt;
+        font-size: 2.5em;
+    }
+
+    @mixin quotation_marks_left {
+        @include quotation_mark_style;
+        margin-right: 0.2em;
+        margin-left: -0.825em;
+        margin-bottom: -0.125em;
+        content: "\201C";
+        text-align: right;
+    }
+
+    @mixin quotation_marks_right {
+        @include quotation_mark_style;
+        margin-left: 0.125em;
+        margin-right: -1em;
+        margin-bottom: -0.425em;
+        content: "\201D";
+        text-align: left;
+    }
+
+    .testimonial {
+		@include font($headline_3_fontsize);
+		font-style: italic;
+		@include quotation_marks;
+        @include rem-attribute(margin-bottom, 3);
+    }
+
+    blockquote, q {
+        display: block;
+        clear: both;
+		@include font(4, 4, 300);
+		@include rem-attribute(margin-bottom, 2);
+
+
+         @include quotation_marks;
+    }
+
+    blockquote {
+        padding: 0 2em;
+    }
+
+    q {
+        padding: 0 2em 1em;
+
+         & footer {
+            @include font($secondaryfontsize);
+            position: absolute;
+            text-align: right;
+            overflow: visible;
+
+            &:before {
+                display: block;
+                width: 1em;
+                height: 2em;
+                position: relative;
+                content: "\2014";
+                float: left;
+                margin-right: 0.625em;
+            }
+        }
+     }
+
+    .subheading {
+        @include font($headline_3_fontsize);
+    }
+
+
+    blockquote.callout {
+     @include font($headline_2_fontsize);
+ }
+
+    .callout {
+        @include font($headline_2_fontsize);
+        text-transform: uppercase;
+        letter-spacing: 0px;
+        color: $color_text;
+    }
+
+    .callout2 {
+        @include font($headline_3_fontsize);
+    }
+
+
+    .small {
+        @include font($secondaryfontsize);
+    }
+
+
+    .fineprint {
+		@include font($tertiaryfontsize);
+        letter-spacing: 1px;
+		@include rem-attribute(margin-bottom, $baselinegrid);
+
+        & a:link, & a:visited {
+            color: darken($color_gray, 10%);
+            border-bottom: none;
+            text-decoration: underline;
+        }
+
+        & a:hover {
+            color: $color_highlight;
+        }
+    }
+
+
+
+
+    // gray box with stroke
+    .box_callout {
+        border: 1px solid #eaf1f5;
+        border-radius: 10px;
+        background-color: #f3f6f7;
+		@include rem-attribute(padding, $baselinegrid);
+    }
+
+
+/*
+	Paragraph Styles
+*/
+
+.intro {
+    @include font-size($headline_5_fontsize);
+    @include line-height($headline_5_fontsize);
+    @include font-family('thin');
+    margin: 0 0 adjust_to_baseline_grid($headline_5_fontsize)+px;
+
+    & strong{
+        @include font-family('regular');
+        font-size: inherit;
+    }
+
+     & em{
+        @include font-family('thinitalic');
+        font-size: inherit;
+    }
+}
