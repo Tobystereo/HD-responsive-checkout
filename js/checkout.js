@@ -274,9 +274,9 @@ function BindEvents_SaveAddressButton(refreshSelector) {
 			var $newAddress,
 				mu = '<li class="additional-address grid__item one-whole desk-one-half address-item">';
 			mu += '<input type="radio" name="select-address" id="address4" value="address4">';
-			mu += '<label for="address4" class="card">';
-			mu += '<span class="btn shiptothis secondary small"></span>';
-			mu += '<button class="btn edit tertiary small">Edit</button>';
+			mu += '<label for="address4">';
+			mu += '<span class="btn shiptothis secondary"></span>';
+			mu += '<button class="btn edit tertiary">Edit</button>';
 			mu += '<div class="address">';
 			mu += '<span class="name">' + $input_name.val() + '</span>';
 			mu += '<span class="company">' + $input_company.val() + '</span>';
