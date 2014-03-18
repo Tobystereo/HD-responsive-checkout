@@ -3,7 +3,10 @@
     font-size: $size + rem;
 }
 
-@mixin line-height($size) {
+@mixin line-height($size, $auto: false) {
+  @if $auto == false {
+    $size: $size * $baseline;
+  }
     line-height: ($size * $rootfontsize) + px;
     line-height: $size + rem;
 }
@@ -14,10 +17,15 @@
     letter-spacing: 0;
 }
 
-@mixin font($size: 1, $line-height: 1, $font-weight: 300) {
+@mixin font($size: 1, $font-weight: 300, $line-height: $size, $line-height-auto: false) {
     @include font-size($size);
-    @include line-height($line-height);
     @include font-family($font-weight);
+
+    @if $line-height != null {
+      @include line-height($line-height, false);
+    } @else {
+      @include line-height($line-height, $line-height-auto);
+    }
 }
 
 @mixin rem-height($size, $important: null) {
@@ -40,6 +48,11 @@
     min-height: (($mintapheight+$adjust) * $rootfontsize) + px;
     min-height: ($mintapheight+$adjust) + rem;
 }
+
+// PSEUDO ELEMENT
+//
+// quickly create the foundation of a pseudo element
+// e.g. SASS: @include pseudo(40px, 40px, "Your message here");
 
 @mixin pseudo($width, $height, $content) {
     display: inline-block;
@@ -64,4 +77,15 @@ $borderstyle: $lineweight $linetype $linecolor;
         border-#{$location}: $lineweight $linetype $linecolor;
     }
 
+}
+
+// REM ATTRIBUTE
+//
+// Set a rem value with pixel fallback for any element attribute
+// e.g. SASS: @include rem-attribute('margin-top', 2);
+// CSS: margin-top: 31px; margin-top: 2rem;
+
+@mixin rem-attribute($attribute, $value) {
+  #{$attribute}: $value * $basefontsize + px;
+  #{$attribute}: $value + rem;
 }

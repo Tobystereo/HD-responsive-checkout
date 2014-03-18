@@ -33,17 +33,18 @@
                 </div>
             </nav>
             <div id="progress-bar" class="grid__item one-whole progress">
-                <ul class="nav nav--fit">
-                    <li class="shipping"><a href="#" class="active">Shipping</a></li>
-                    <li class="billing"><a href="#">Billing</a></li>
-                    <li class="review"><a href="#">Review</a></li>
+                <ul class="">
+                    <li class="shipping active"><a href="#">Shipping Address</a></li>
+                    <li class="method "><a href="#">Shipping Method</a></li>
+                    <li class="billing "><a href="#">Billing</a></li>
+                    <li class="review "><a href="#">Review</a></li>
                 </ul>
             </div>
         </header>
         <article>
             <div class="grid">
                 <div id="shipping-address" class="grid__item one-whole">
-                    <h1 class="instructions" data-text="Select a shipping address" data-alt-text="Select a shipping address">
+                    <h1 class="instructions h2" data-text="Select a shipping address" data-alt-text="Select a shipping address">
                         Select a shipping address
                     </h1>
                     <div class="address-wrapper">
@@ -123,15 +124,17 @@
                     </div>
                     <div class="grid">
                         <form id="new-address-form" action="#" class="new-address" style="display: none;">
-                            <ul class="grid__item add-edit-address form-fields one-whole">
-                                <li class="field country">
-                                    <label for="country-input">Country</label>
+                            <ul class="grid__item add-edit-address form-fields one-whole card">
+                                <li class="field country ">
+                                    <h2>Create a new address</h2>
                                     <select class="" id="country-input">
-                                        <option value="">Select A Country</option>
-                                        <option value="US">United States</option>
-                                        <option value="CA">Canada</option>
+                                      <option value=""></option>
+                                      <option value="US">United States</option>
+                                      <option value="CA">Canada</option>
                                     </select>
+                                    <label for="country-input" class="dropdownlabel">Country</label>
                                 </li>
+                                <li class="required-field-message">required fields</li>
                                 <li class="field field__secondary name" style="display: none;">
                                     <input type="text" class="text-input required" id="name-input" title="Name">
                                     <label for="name-input">Name</label>
