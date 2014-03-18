@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html>
 <head>
     <title>Hair Direct Checkout</title>
@@ -9,6 +9,7 @@
     <link href="css/modal.css" rel="stylesheet" />
     <script src="js/modernizr-2.6.2.js"></script>
     <script src="js/jquery-1.11.0.min.js"></script>
+    <script src="js/jquery-migrate-1.2.1.js"></script>
 </head>
 <body>
     <div class="checkout">
@@ -21,8 +22,8 @@
                     <div class="grid__item two-thirds lap-five-sixths desk-five-sixths help">
                         <div class="trust-asset">
                             <svg version="1.1" id="trust-asset-lock" class="trust-asset-lock" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 99 120" enable-background="new 0 0 99 120" xml:space="preserve">
-                                <path class="lock" fill="#D8D8D8" d="M83,50V33C83,14.8,68.2,0,50,0S17,14.8,17,33v17H0v70h99V50H83z M40,102l6.3-22.5C43.8,78.4,42,75.9,42,73
-                                                                     c0-3.9,3.1-7,7-7s7,3.1,7,7c0,2.9-1.8,5.4-4.3,6.5L58,102H40z M29,50V33c0-11.6,9.4-21,21-21s21,9.4,21,21v17H29z"/>
+                            <path class="lock" fill="#D8D8D8" d="M83,50V33C83,14.8,68.2,0,50,0S17,14.8,17,33v17H0v70h99V50H83z M40,102l6.3-22.5C43.8,78.4,42,75.9,42,73
+                                                                     c0-3.9,3.1-7,7-7s7,3.1,7,7c0,2.9-1.8,5.4-4.3,6.5L58,102H40z M29,50V33c0-11.6,9.4-21,21-21s21,9.4,21,21v17H29z" />
                             </svg>
                         </div>
                         <p>
@@ -169,13 +170,89 @@
                         </form>
                     </div>
                 </div>
-                <div id="shipping-method">
+                <div id="shipping-method" class="grid__item one-whole" style="display:none;">
+                    <h1 class="instructions">
+                        Select a shipping option
+                    </h1>
+                    <div class="shipping-option-wrapper">
+                        <div class="loading-panel">
+                            Loading Shipping Options...
+                        </div>
+                        <ul class="grid shipping-option-list" style="display:none;">
+                            <li class="default grid__item one-whole desk-one-half shipping-option-item">
+                                <input type="radio" name="select-shipping-option" id="option0" value="option0" checked>
+                                <label for="option0" class="card">
+                                    <div class="shipping-option">
+                                        <span class="carrier">USPS</span>
+                                        <span class="method">First-Class Mail® Parcel</span>
+                                        <span class="delivery-date">Friday March 21st - Tuesday March 25th</span>
+                                        <span class="price">$2.46</span>
+                                    </div>
+                                </label>
+                            </li>
+                            <li class="grid__item one-whole desk-one-half shipping-option-item">
+                                <input type="radio" name="select-shipping-option" id="option1" value="option1">
+                                <label for="option1" class="card">
+                                    <div class="shipping-option">
+                                        <span class="carrier">USPS</span>
+                                        <span class="method">Standard Post®</span>
+                                        <span class="delivery-date">Thursday March 20th - Friday March 28th</span>
+                                        <span class="price">$5.94</span>
+                                    </div>
+                                </label>
+                            </li>
+                            <li class="grid__item one-whole desk-one-half shipping-option-item">
+                                <input type="radio" name="select-shipping-option" id="option2" value="option2">
+                                <label for="option2" class="card">
+                                    <div class="shipping-option">
+                                        <span class="carrier">UPS</span>
+                                        <span class="method">Ground</span>
+                                        <span class="delivery-date">Wednesday March 19th - Tuesday March 25th</span>
+                                        <span class="price">$10.37</span>
+                                    </div>
+                                </label>
+                            </li>
+                            <li class="grid__item one-whole desk-one-half shipping-option-item">
+                                <input type="radio" name="select-shipping-option" id="option3" value="option3">
+                                <label for="option3" class="card">
+                                    <div class="shipping-option">
+                                        <span class="carrier">USPS</span>
+                                        <span class="method">Priority Mail Express 2-Day™</span>
+                                        <span class="delivery-date">Wednesday March 19th</span>
+                                        <span class="price">$17.97</span>
+                                    </div>
+                                </label>
+                            </li>
+                            <li class="grid__item one-whole desk-one-half shipping-option-item">
+                                <input type="radio" name="select-shipping-option" id="option4" value="option4">
+                                <label for="option4" class="card">
+                                    <div class="shipping-option">
+                                        <span class="carrier">UPS</span>
+                                        <span class="method">2nd Day Air</span>
+                                        <span class="delivery-date">Thursday March 20th</span>
+                                        <span class="price">$19.85</span>
+                                    </div>
+                                </label>
+                            </li>
+                            <li class="grid__item one-whole desk-one-half shipping-option-item">
+                                <input type="radio" name="select-shipping-option" id="option5" value="option5">
+                                <label for="option5" class="card">
+                                    <div class="shipping-option">
+                                        <span class="carrier">UPS</span>
+                                        <span class="method">Next Day Air</span>
+                                        <span class="delivery-date">Wednesday March 19th</span>
+                                        <span class="price">$32.21</span>
+                                    </div>
+                                </label>
+                            </li>
+                        </ul>
+                    </div>
                 </div>
-                <div id="billing-information">
+                <div id="billing-information" style="display:none;">
                 </div>
-                <div id="order-review">
+                <div id="order-review" style="display:none;">
                 </div>
-                <div id="order-confirmation">
+                <div id="order-confirmation" style="display:none;">
                 </div>
             </div>
         </article>
@@ -209,7 +286,7 @@
                 <div class="modal-inner">
                     <header id="privacy-policy-modal-label">Privacy Policy</header>
                     <div class="modal-content">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed convallis pharetra velit, ac ullamcorper turpis. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Proin tempor odio odio, egestas fringilla velit sagittis a. Curabitur non dignissim risus, ut iaculis ligula. Suspendisse laoreet, massa ut semper malesuada, felis massa varius tortor, et ultrices nunc ligula et dolor. Duis id lorem eu ligula elementum cursus. Maecenas eget quam est. Vestibulum purus mi, lacinia sit amet lacinia eu, viverra vel dui. Donec lobortis, magna a rhoncus auctor, ante lorem congue lectus, non dapibus diam ligula eget est. Cras volutpat metus.</div>
-                </div>
+                </div>  
                 <a href="#!" class="modal-close" title="Close this modal" data-close="Close"
                    data-dismiss="modal">×</a>
             </section>
@@ -241,6 +318,10 @@
     </div>
     <!-- SCRIPTS -->
     <script src="js/modal.js"></script>
+    <script src="js/jquery.ba-bbq.js"></script>
     <script src="js/checkout.js"></script>
+    <script type="text/javascript">
+        hd_checkout.Functions.Shared.Init();
+    </script>
 </body>
 </html>
