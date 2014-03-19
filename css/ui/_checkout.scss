@@ -16,7 +16,7 @@ xmp {
 }
 
 body {
-    @media #{$large} {
+    @media #{$desk} {
         margin: 0 auto;
         max-width: 60em;
         overflow: hidden;
@@ -41,7 +41,7 @@ header {
     margin: 5px 1em 0 0;
     line-height: 2em;
 
-    @media #{$medium} {
+    @media #{$lap} {
         &:before {
             @include pseudo(10em, 1em, "Secure Transaction");
             color: $light-blue;
@@ -51,7 +51,7 @@ header {
         }
     }
 
-    @media #{$large} {
+    @media #{$desk} {
         &:before {
             color: $lighter;
         }
@@ -65,7 +65,7 @@ header {
         .lock {
             fill: $light-blue;
 
-            @media #{$large} {
+            @media #{$desk} {
                 fill: $lighter;
             }
         }
@@ -74,7 +74,7 @@ header {
 
 article {
 
-    @media #{$medium} {
+    @media #{$lap} {
         width: 96%;
         margin: 0 auto;
 //        overflow: hidden;
@@ -112,7 +112,7 @@ article {
         display: block;
         overflow: hidden;
 
-        @media #{$large} {
+        @media #{$desk} {
             background-color: $light;
         }
 
@@ -139,7 +139,7 @@ article {
         background: $lighter;
         text-align: center;
 
-        @media #{$large} {
+        @media #{$desk} {
             background: none;
             width: 96%;
             margin: 0 auto;
@@ -157,7 +157,7 @@ article {
           margin: 0;
           width: 25%;
 
-          @media #{$large} {
+          @media #{$desk} {
               $pillsize: 40px;
               @include transition($transition);
               @include font(1, 300, 4);
@@ -231,12 +231,12 @@ article {
 
               }
 
-              @media #{$medium} {
+              @media #{$lap} {
                 height: 3em;
                 line-height: 3em !important;
               }
 
-              @media #{$large} {
+              @media #{$desk} {
                 display: inline;
               }
 
@@ -272,7 +272,7 @@ article {
 
 
 
-        @media #{$large} {
+        @media #{$desk} {
             .shipping:before {
                 content: "1";
             }
@@ -318,7 +318,7 @@ article {
             text-align: center;
             @include font(1.5, 300, 3.25);
 
-            @media #{$large} {
+            @media #{$desk} {
                 @include font(2, 100, 3.25);
             }
 
@@ -352,7 +352,7 @@ article {
 }
 
 .changeaddress {
-    @media #{$medium} {
+    @media #{$lap} {
         margin-top: 0;
     }
 }
@@ -383,13 +383,13 @@ article {
         margin-top: 1em;
         clear: both;
 
-        @media #{$medium}{
+        @media #{$lap}{
             clear: none;
             margin-top: 0;
             margin-left: 1.5em;
         }
 
-        @media #{$large}{
+        @media #{$desk}{
             margin-top: 1em;
             margin-left: 0;
             clear: both;
@@ -423,7 +423,7 @@ article {
             background: none;
             margin-top: 0.5em;
 
-            @media #{$large}{
+            @media #{$desk}{
                 margin-top: 1em;
             }
 
@@ -436,7 +436,7 @@ article {
                 margin-top: -.7em;
                 margin-right: 0;
 
-                @media #{$large} {
+                @media #{$desk} {
                   margin-top: -1.125em;
                 }
             }
@@ -467,6 +467,156 @@ article {
   margin-bottom: 1em;
 }
 
+.shipping-option-item {
+  .shipping-option {
+    span {
+      display: block;
+      width: 100%;
+      float: left;
+      margin: 0;
+      @include font-size(0.8);
+
+      @media #{$lap} {
+        @include font(1, 300, 2);
+      }
+    }
+
+    .carrier {
+      width: 30%;
+      font-weight: 500;
+      text-align: right;
+      padding-right: 10px;
+
+      @media #{$lap} {
+        width: 18%;
+      }
+
+      @media #{$desk} {
+        width: 12%;
+      }
+
+      &:before {
+        @include pseudo(2em, 2em, "\ ");
+        margin: 5px 1em 0 0;
+        display: block;
+        float: left;
+        position: absolute;
+
+        background-size: contain;
+        background-repeat: no-repeat;
+      }
+
+      &.ups:before {
+        background-image: url('../images/United_Parcel_Service_logo.svg');
+        margin-top: -2px;
+
+        @media #{$desk} {
+          margin-top: 5px;
+        }
+      }
+
+      &.usps:before {
+        background-image: url('../images/United_States_Postal_Service_Logo_Icon.svg');
+
+        margin-top: 2px;
+
+        @media #{$desk} {
+          margin-top: 10px;
+        }
+      }
+    }
+
+    .method {
+      width: 60%;
+      font-style: italic;
+
+      @media #{$desk} {
+        width: 30%;
+      }
+    }
+
+
+    .delivery-date {
+
+      &:before {
+        @include pseudo(27.5%, 1em, "Arrives: ");
+        @include font(0.8, 500, 0.7);
+        margin-right: 0.7em;
+        text-align: right;
+
+        @media #{$lap} {
+          @include font(1, 500);
+          width: 16%;
+        }
+
+        @media #{$desk} {
+          display: none;
+        }
+      }
+
+      @media #{$desk} {
+        width: 42%;
+      }
+    }
+
+    .price {
+      font-weight: 700;
+      line-height: 1.2em;
+      @media #{$desk} {
+        width: 10%;
+        @include line-height(2);
+      }
+
+      &:before {
+        @include pseudo(27.5%, 1em, "Price: ");
+        @include font(0.8, 500, 0.7);
+        margin-right: 0.7em;
+        text-align: right;
+
+        @media #{$lap} {
+          width: 16%;
+          @include font(1, 500);
+        }
+
+        @media #{$desk} {
+          display: none;
+        }
+      }
+    }
+
+    &.labels {
+      display: none;
+
+      @media #{$desk} {
+        display: block;
+        padding: 1em;
+        span {
+          margin: 0;
+          padding: 0;
+          font-weight: 500;
+          text-align: left;
+          font-style: normal;
+
+          &.carrier {
+            &:before {
+              display: none;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+.shipping-method {
+  p {
+    margin-left: 1em;
+
+    @media #{$desk} {
+      margin-left: 0;
+    }
+  }
+}
 
 /* Colors */
 .bg-lightest { background-color: $lightest; }
