@@ -85,3 +85,160 @@
   background: $lighter-green;
   box-shadow: none;
 }
+
+
+.loading-panel {
+  width: 200px;
+  height: 100px;
+  padding-top: 20px;
+  margin: 0 auto;
+  text-align: center;
+
+  p {
+    display: block;
+    clear: both;
+    margin: 2em auto 4em;
+    text-align: center;
+
+    -webkit-animation: grey 2s infinite ease-in-out;
+    -moz-animation: grey 2s infinite ease-in-out;
+    animation: grey 2s infinite ease-in-out;
+  }
+}
+
+.ball {
+  display: block;
+  float: left;
+  width: 10px;
+  height: 10px;
+  margin: 10px 5px 40px;
+  border-radius: 50px;
+  }
+    .ball:nth-child(1) {
+      background: $light-blue;
+      -webkit-animation: right 1s infinite ease-in-out, blue 4s infinite ease-in-out;
+      -moz-animation: right 1s infinite ease-in-out, blue 4s infinite ease-in-out;
+      animation: right 1s infinite ease-in-out, blue 4s infinite ease-in-out;
+      margin-left: 25px;
+    }
+
+    .ball:nth-child(2) {
+      background: $dark-blue;
+      -webkit-animation: right 1.05s infinite ease-in-out, blue 4s infinite ease-in-out;
+      -moz-animation: right 1s infinite ease-in-out, blue 4s infinite ease-in-out;
+      animation: right 1s infinite ease-in-out, blue 4s infinite ease-in-out;
+    }
+
+    .ball:nth-child(3) {
+      background: $light-blue-light;
+      -webkit-animation: right 1.15s infinite ease-in-out, blue 3s infinite ease-in-out;
+      -moz-animation: right 1s infinite ease-in-out, blue 3s infinite ease-in-out;
+      animation: right 1s infinite ease-in-out, blue 3s infinite ease-in-out;
+    }
+
+    .ball:nth-child(4) {
+      background: $dark-blue-light;
+      -webkit-animation: right 1s infinite ease-in-out, blue 4s infinite ease-in-out;
+      -moz-animation: right 1s infinite ease-in-out, blue 4s infinite ease-in-out;
+      animation: right 1s infinite ease-in-out, blue 4s infinite ease-in-out;
+     }
+
+    .ball:nth-child(5) {
+      background: $light-blue-lighter;
+      -webkit-animation: right 1.15s infinite ease-in-out, blue 5s infinite ease-in-out;
+      -moz-animation: right 1s infinite ease-in-out, blue 5s infinite ease-in-out;
+      animation: right 1s infinite ease-in-out, blue 5s infinite ease-in-out;
+    }
+
+    .ball:nth-child(6) {
+      background: $green;
+      -webkit-animation: right 1.05s infinite ease-in-out, blue 4s infinite ease-in-out;
+      -moz-animation: right 1.05s infinite ease-in-out, blue 4s infinite ease-in-out;
+      animation: right 1.05s infinite ease-in-out, blue 4s infinite ease-in-out;
+     }
+
+    .ball:nth-child(7) {
+      background: $light-blue;
+      -webkit-animation: right 1s infinite ease-in-out, blue 4s infinite ease-in-out;
+      -moz-animation: right 1s infinite ease-in-out, blue 4s infinite ease-in-out;
+      animation: right 1s infinite ease-in-out, blue 4s infinite ease-in-out;
+    }
+
+
+@-webkit-keyframes right {
+  0%   { -webkit-transform: translateY(-15px);   }
+  50%  { -webkit-transform: translateY(15px);    }
+  100% { -webkit-transform: translateY(-15px);   }
+}
+
+@-webkit-keyframes left {
+  0%   { -webkit-transform: translateY(15px);    }
+  50%  { -webkit-transform: translateY(-15px);   }
+  100% { -webkit-transform: translateY(15px);    }
+}
+
+@-webkit-keyframes blue {
+  0%   { background: $light-blue;   }
+  25%  { background: $dark-blue;    }
+  50%  { background: $green;        }
+  75%  { background: $light-green;          }
+  100% { background: $light-blue;   }
+}
+
+@-webkit-keyframes grey {
+  0%   { color: $dark;   }
+  50%  { color: $lighter;    }
+  100% { color: $dark;   }
+}
+
+@-moz-keyframes right {
+  0%   { -moz-transform: translateY(-15px);   }
+  50%  { -moz-transform: translateY(15px);    }
+  100% { -moz-transform: translateY(-15px);   }
+}
+
+@-moz-keyframes left {
+  0%   { -moz-transform: translateY(15px);    }
+  50%  { -moz-transform: translateY(-15px);   }
+  100% { -moz-transform: translateY(15px);    }
+}
+
+@-moz-keyframes blue {
+  0%   { background: $light-blue;   }
+  25%  { background: $dark-blue;    }
+  50%  { background: $green;        }
+  75%  { background: $red;          }
+  100% { background: $light-blue;   }
+}
+
+@-moz-keyframes grey {
+  0%   { color: $dark;   }
+  50%  { color: $lighter;    }
+  100% { color: $dark;   }
+}
+
+@keyframes right {
+  0%   { transform: translateY(-15px);  }
+  50%  { transform: translateY(15px);   }
+  100% { transform: translateY(-15px);  }
+}
+
+@keyframes left {
+  0%   { transform: translateY(15px);   }
+  50%  { transform: translateY(-15px);  }
+  100% { transform: translateY(15px);   }
+}
+
+@keyframes blue {
+  0%   { background: $light-blue;   }
+  25%  { background: $dark-blue;    }
+  50%  { background: $green;        }
+  75%  { background: $red;          }
+  100% { background: $light-blue;   }
+}
+
+@keyframes grey {
+  0%   { color: $dark;   }
+  50%  { color: $lighter;    }
+  100% { color: $dark;   }
+}
