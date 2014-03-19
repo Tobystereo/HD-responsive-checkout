@@ -1,3 +1,5 @@
+﻿/// <reference path="jquery.ba-bbq.js"/>
+
 //#region -- PLUGINS --
 
 (function ($) {
@@ -78,7 +80,7 @@
 		var settings = $.extend({
 			pre_logic: undefined,
 			callback: undefined,
-			delay: easing
+			delay: 300
 		}, options);
 
 		$html_body.animate({
@@ -91,266 +93,352 @@
 
 //#endregion PLUGINS
 
-//#region -- GLOBAL VARIABLES --
-
-var $cta_bar,
-	$need_help,
-	$help_content,
-	$progress_bar,
-	$shipping_address_instructions,
-	$btnchangeaddress,
-	$btnadd_address,
-	$address_wrapper,
-	$address_list,
-	$default_address,
-	$additional_addresses,
-	$new_address_form,
-	$btncancel_address,
-	$btnsave_address,
-	$btnedit_address,
-	$input_country,
-	$input_name,
-	$input_company,
-	$input_street,
-	$input_city,
-	$input_state,
-	$input_postal,
-	$input_phone,
-	$text_inputs,
-	$secondary_fields,
-	footertop,
-	easing = 300,
-	absoluteClassName = "absolute";
-
-//#endregion -- GLOBAL VARIABLES --
-
-//#region -- FUNCTIONS --
-
-$(document).ready(function () {
-	SetGlobalVariables();
-	WireEvents();
-});
-
-function SetGlobalVariables() {
-	/// <summary>Gets DOM elements & other dynamic variable values.</summary>
-	$cta_bar = $(".cta_bar");
-	$need_help = $(".need-help");
-	$help_content = $("#help-content");
-	$progress_bar = $("#progress-bar");
-	$shipping_address_instructions = $("#shipping-address .instructions");
-	$btnchangeaddress = $("button.changeaddress");
-	$btnadd_address = $("button.createaddress");
-	$address_wrapper = $(".address-wrapper");
-	$address_list = $address_wrapper.find(".address-list");
-	$default_address = $address_list.find(".default");
-	$additional_addresses = $address_list.find(".additional-address");
-	$new_address_form = $("#new-address-form");
-	$btnedit_address = $(".address-item button");
-	$btncancel_address = $(".add-edit-address button.cancel");
-	$btnsave_address = $(".add-edit-address button.save");
-	$input_country = $("#country-input");
-	$input_name = $("#name-input");
-	$input_company = $("#company-input");
-	$input_street = $("#address-input");
-	$input_city = $("#city-input");
-	$input_state = $("#state-input");
-	$input_postal = $("#postal-code-input");
-	$input_phone = $("#phone-input");
-	$secondary_fields = $(".field__secondary");
-	$text_inputs = $("#new-address-form .field input[type=text], #new-address-form .field textarea");
-}
-
-function WireEvents() {
-	/// <summary>Wire up control events</summary>
-	BindEvents_NeedHelp(false);
-	BindEvents_AdditionalAddressButton(false);
-	BindEvents_AddAddressButton(false);
-	BindEvents_EditAddressButton(false);
-	BindEvents_CancelAddressButton(false);
-	BindEvents_SaveAddressButton(false);
-	BindEvents_AddressForm(false);
-	BindEvents_CountrySelect(false);
-	BindEvents_TextInputs(false);
-}
-
-//#endregion -- FUNCTIONS --
-
-//#region -- EVENT HANDLERS --
-
-function BindEvents_AdditionalAddressButton(refreshSelector) {
-	if (refreshSelector) {
-		$btnchangeaddress = $("'" + $btnchangeaddress.selector + "'");
-	}
-	$btnchangeaddress.toggleContainer({
-		content_element: $additional_addresses,
-		self_toggle_delay_offset: -easing
-	}).toggleContainer({
-		content_element: $btnadd_address,
-		toggle_self: false
-	});
-}
-
-function BindEvents_AddAddressButton(refreshSelector) {
-	if (refreshSelector) {
-		$btnadd_address = $($btnadd_address.selector);
-	}
-	$btnadd_address.toggleContainer({
-		content_element: $new_address_form,
-		self_toggle_delay_offset: -easing,
-		post_toggle: function () {
-			$new_address_form.animatedScroll();
-		}
-	});
-}
-
-function BindEvents_EditAddressButton(refreshSelector) {
-	if (refreshSelector) {
-		$btnedit_address = $($btnedit_address.selector);
-	}
-	$btnedit_address.on("click", function () {
-		// Select the address being edited
-		$(this).parent().trigger("click");
-		// Hide the new address button
-		if ($btnadd_address.is(":visible")) {
-			$btnadd_address.slideUp(100);
-		}
-		// Set the input values
-		$input_country.val("CA");
-		$input_name.val("Editing Name");
-		$input_company.val("Editing Company");
-		$input_street.val("Editing Street Address");
-		$input_city.val("Editing City");
-		$input_state.val("Editing State");
-		$input_postal.val("Editing Postal Code");
-		$input_phone.val("Editing Phone");
-		$text_inputs.trigger("change");
-		$secondary_fields.css("display", "");
-		// Display the address form
-		$new_address_form.slideDown(easing, function () {
-			$new_address_form.animatedScroll();
-		});
-	});
-}
-
-function BindEvents_CancelAddressButton(refreshSelector) {
-	if (refreshSelector) {
-		$btncancel_address = $($btncancel_address.selector);
-	}
-	$btncancel_address.on("click", function() {
-		if($additional_addresses.is(":visible")) {
-			$btnadd_address.slideDown(easing - 200);
-		}
-	}).toggleContainer({
-		content_element: $new_address_form,
-		toggle_self: false,
-		callback: function () {
-			$input_country.val("");
-			$input_name.val("");
-			$input_company.val("");
-			$input_street.val("");
-			$input_city.val("");
-			$input_state.val("");
-			$input_postal.val("");
-			$input_phone.val("");
-			$secondary_fields.css("display", "none");
-			// Scroll to the progress bar
-			$progress_bar.animatedScroll();
-		}
-	});
-}
-
-function BindEvents_SaveAddressButton(refreshSelector) {
-	if (refreshSelector) {
-		$btnsave_address = $($btnsave_address.selector);
-	}
-	$btnsave_address.toggleContainer({
-		content_element: $btnadd_address,
-		delay: 100,
-		toggle_self: false
-	}).toggleContainer({
-		content_element: $new_address_form,
-		toggle_self: false,
-		pre_logic: function () {
-			var $newAddress,
-				mu = '<li class="additional-address grid__item one-whole desk-one-half address-item">';
-			mu += '<input type="radio" name="select-address" id="address4" value="address4">';
-			mu += '<label for="address4" class="card">';
-			mu += '<span class="btn shiptothis secondary small"></span>';
-			mu += '<button class="btn edit tertiary small">Edit</button>';
-			mu += '<div class="address">';
-			mu += '<span class="name">' + $input_name.val() + '</span>';
-			mu += '<span class="company">' + $input_company.val() + '</span>';
-			mu += '<span class="street">' + $input_street.val() + '</span>,';
-			mu += '<span class="city">' + $input_city.val() + '</span>';
-			mu += '<span class="state">' + $input_state.val() + '</span>';
-			mu += '<span class="zip">' + $input_postal.val() + '</span>';
-			mu += '<span class="country">' + $input_country.val() + '</span>';
-			mu += '<span class="phone">' + $input_phone.val() + '</span>';
-			mu += '</div></label></li>';
-			$newAddress = $(mu);
-			$address_list.append($newAddress);
-			BindEvents_EditAddressButton(true);
-			$newAddress.find("input[type=radio]").trigger("click");
+var hd_checkout = {
+	"Fields": {
+		"Shared": {
+			"$cta_bar": undefined,
+			"$btn_next": undefined,
+			"$need_help": undefined,
+			"$help_content": undefined,
+			"$progress_bar": undefined,
+			"$step_shipping_address": undefined,
+			"$step_shipping_option": undefined,
+			"$step_billing": undefined,
+			"$step_review": undefined,
+			"$step_confirmation": undefined,
+			"$step_current": undefined,
+			"$step_next": undefined,
+			"$step_previous": undefined
 		},
-		callback: function (element, event) {
-			$input_country.val("");
-			$input_name.val("");
-			$input_company.val("");
-			$input_street.val("");
-			$input_city.val("");
-			$input_state.val("");
-			$input_postal.val("");
-			$input_phone.val("");
-			// Scroll to the progress bar
-			$("input[type=radio]:checked").parent().animatedScroll();
+		"ShippingAddress": {
+			"$shipping_address_instructions": undefined,
+			"$btnchangeaddress": undefined,
+			"$btnadd_address": undefined,
+			"$address_wrapper": undefined,
+			"$address_list": undefined,
+			"$default_address": undefined,
+			"$additional_addresses": undefined,
+			"$new_address_form": undefined,
+			"$btncancel_address": undefined,
+			"$btnsave_address": undefined,
+			"$btnedit_address": undefined,
+			"$input_country": undefined,
+			"$input_name": undefined,
+			"$input_company": undefined,
+			"$input_street": undefined,
+			"$input_city": undefined,
+			"$input_state": undefined,
+			"$input_postal": undefined,
+			"$input_phone": undefined,
+			"$text_inputs": undefined,
+			"$secondary_fields": undefined
 		}
-	});
-}
-
-function BindEvents_NeedHelp(refreshSelector) {
-	if (refreshSelector) {
-		$need_help = $($need_help.selector);
-	}
-	$need_help.on("click", function (){
-		$help_content.animatedScroll();
-	});
-}
-
-function BindEvents_AddressForm(refreshSelector) {
-	if (refreshSelector) {
-		$new_address_form = $($new_address_form.selector);
-	}
-	$new_address_form.on("submit", function (e) {
-		e.preventDefault();
-		// DO STUFF
-	});
-}
-
-function BindEvents_CountrySelect(refreshSelector) {
-	if (refreshSelector) {
-		$input_country = $($input_country.selector);
-	}
-	$input_country.toggleContainer({
-		content_element: $secondary_fields,
-		firing_events: "change",
-		force_state: "show",
-		toggle_self: false
-	})
-}
-
-function BindEvents_TextInputs(refreshSelector) {
-	if (refreshSelector) {
-		$text_inputs = $($text_inputs.selector);
-	}
-	$text_inputs.on("change", function () {
-		var $this = $(this);
-		if ($this.val() != "") {
-			$this.siblings().addClass("notempty");
+	},
+	"Settings": {
+		"Shared": {
+			"footertop": undefined,
+			"easing": 300,
+			"absoluteClassName": "absolute",
+			"shipping_address_step_id": "shipping-address",
+			"shipping_option_step_id": "shipping-method",
+			"billing_step_id": "billing-information",
+			"review_step_id": "order-review",
+			"confirmation_step_id": "order-confirmation",
+			"steps": []
 		}
-		else {
-			$this.siblings().removeClass("notempty");
-		}
-	});
-}
+	},
+	"Functions": {
+		"Shared": {
+			"Init": function () {
+				hd_checkout.Settings.Shared.steps =  [hd_checkout.Settings.Shared.shipping_address_step_id, hd_checkout.Settings.Shared.shipping_option_step_id, hd_checkout.Settings.Shared.billing_step_id, hd_checkout.Settings.Shared.review_step_id, hd_checkout.Settings.Shared.confirmation_step_id]
+				$(window).bind('hashchange', function (e) {
+					var step = e.fragment.replace('checkout-', ''),
+						previousStep = e.originalEvent !== undefined ? jQuery.param.fragment(e.originalEvent.oldURL).replace('checkout-', '') : undefined,
+						stepNumber = jQuery.inArray(step, hd_checkout.Settings.Shared.steps);
+					
+					// Check if the hash is a step
+					if (stepNumber > -1) {
+						hd_checkout.Fields.Shared.$step_previous = previousStep !== undefined ? $("#" + previousStep) : undefined;
+						hd_checkout.Fields.Shared.$step_current = $("#" + step);
+						hd_checkout.Functions.Shared.InitCurrentStep(step);
+					}
+				});
+				$(document).ready(function () {
+					hd_checkout.Functions.Shared.SetGlobalVariables();
+					hd_checkout.Functions.Shared.WireEvents();
+					jQuery.bbq.pushState("#checkout-" + hd_checkout.Fields.Shared.$step_current.attr("id"), 2);
+					$(window).trigger('hashchange');
+				});
+			},
+			"SetGlobalVariables": function() {
+				/// <summary>Gets DOM elements & other dynamic variable values.</summary>
+				hd_checkout.Fields.Shared.$cta_bar = $(".cta_bar");
+				hd_checkout.Fields.Shared.$btn_next = hd_checkout.Fields.Shared.$cta_bar.find("button");
+				hd_checkout.Fields.Shared.$need_help = $(".need-help");
+				hd_checkout.Fields.Shared.$help_content = $("#help-content");
+				hd_checkout.Fields.Shared.$progress_bar = $("#progress-bar");
+				hd_checkout.Fields.Shared.$step_shipping_address = $("#" + hd_checkout.Settings.Shared.shipping_address_step_id);
+				hd_checkout.Fields.Shared.$step_shipping_option = $("#" + hd_checkout.Settings.Shared.shipping_option_step_id);
+				hd_checkout.Fields.Shared.$step_billing = $("#" + hd_checkout.Settings.Shared.billing_step_id);
+				hd_checkout.Fields.Shared.$step_review = $("#" + hd_checkout.Settings.Shared.billing_step_id);
+				hd_checkout.Fields.Shared.$step_confirmation = $("#" + hd_checkout.Settings.Shared.confirmation_step_id);
+				hd_checkout.Fields.Shared.$step_current = hd_checkout.Fields.Shared.$step_shipping_address;
+				hd_checkout.Fields.Shared.$step_next = hd_checkout.Fields.Shared.$step_shipping_option;
+				hd_checkout.Fields.ShippingAddress.$shipping_address_instructions = $("#shipping-address .instructions");
+				hd_checkout.Fields.ShippingAddress.$btnchangeaddress = $("button.changeaddress");
+				hd_checkout.Fields.ShippingAddress.$btnadd_address = $("button.createaddress");
+				hd_checkout.Fields.ShippingAddress.$address_wrapper = $(".address-wrapper");
+				hd_checkout.Fields.ShippingAddress.$address_list = hd_checkout.Fields.ShippingAddress.$address_wrapper.find(".address-list");
+				hd_checkout.Fields.ShippingAddress.$default_address = hd_checkout.Fields.ShippingAddress.$address_list.find(".default");
+				hd_checkout.Fields.ShippingAddress.$additional_addresses = hd_checkout.Fields.ShippingAddress.$address_list.find(".additional-address");
+				hd_checkout.Fields.ShippingAddress.$new_address_form = $("#new-address-form");
+				hd_checkout.Fields.ShippingAddress.$btnedit_address = $(".address-item button");
+				hd_checkout.Fields.ShippingAddress.$btncancel_address = $(".add-edit-address button.cancel");
+				hd_checkout.Fields.ShippingAddress.$btnsave_address = $(".add-edit-address button.save");
+				hd_checkout.Fields.ShippingAddress.$input_country = $("#country-input");
+				hd_checkout.Fields.ShippingAddress.$input_name = $("#name-input");
+				hd_checkout.Fields.ShippingAddress.$input_company = $("#company-input");
+				hd_checkout.Fields.ShippingAddress.$input_street = $("#address-input");
+				hd_checkout.Fields.ShippingAddress.$input_city = $("#city-input");
+				hd_checkout.Fields.ShippingAddress.$input_state = $("#state-input");
+				hd_checkout.Fields.ShippingAddress.$input_postal = $("#postal-code-input");
+				hd_checkout.Fields.ShippingAddress.$input_phone = $("#phone-input");
+				hd_checkout.Fields.ShippingAddress.$secondary_fields = $(".field__secondary");
+				hd_checkout.Fields.ShippingAddress.$text_inputs = $("#new-address-form .field input[type=text], #new-address-form .field textarea");
+			},
+			"InitCurrentStep": function (step_name) {
+				if (hd_checkout.Fields.Shared.$step_previous !== undefined) {
+					hd_checkout.Fields.Shared.$step_previous.slideUp(300);
+				}
+				hd_checkout.Fields.Shared.$step_current.slideDown(300);
+				switch (step_name) {
+					case hd_checkout.Settings.Shared.shipping_address_step_id:
+						break;
+					case hd_checkout.Settings.Shared.shipping_option_step_id:
+						break;
+					case hd_checkout.Settings.Shared.billing_step_id:
+						break;
+					case hd_checkout.Settings.Shared.review_step_id:
+						break;
+					case hd_checkout.Settings.Shared.confirmation_step_id:
+						break;
+				}
+				
+			},
+			"BindEvents_NeedHelp": function (refreshSelector) {
+				if (refreshSelector) {
+					hd_checkout.Fields.Shared.$need_help = $(hd_checkout.Fields.Shared.$need_help.selector);
+				}
+				hd_checkout.Fields.Shared.$need_help.on("click", function () {
+					hd_checkout.Fields.Shared.$help_content.animatedScroll();
+				});
+			},
+			"BindEvents_NextButton": function (refreshSelector) {
+				if (refreshSelector) {
+					hd_checkout.Fields.Shared.$btn_next = $(hd_checkout.Fields.Shared.$btn_next.selector);
+				}
 
-//#endregion EVENT HANDLERS
+				hd_checkout.Fields.Shared.$btn_next.on("click", function () {
+					//hd_checkout.Fields.Shared.$step_previous = $("#" + jQuery.param.fragment().replace("checkout-", ""));
+					jQuery.bbq.pushState("#checkout-" + hd_checkout.Fields.Shared.$step_current.next().attr("id"), 2);
+				});
+
+				//hd_checkout.Fields.Shared.$btn_next.toggleContainer({
+				//	pre_logic: function () {
+				//		hd_checkout.Fields.Shared.$step_previous = hd_checkout.Fields.Shared.$step_current;
+				//		hd_checkout.Fields.Shared.$step_current = hd_checkout.Fields.Shared.$step_next;
+				//		hd_checkout.Fields.Shared.$step_next = hd_checkout.Fields.Shared.$step_current.next();
+				//	},
+				//	content_element: hd_checkout.Fields.Shared.$step_previous,
+				//	force_state: "hide",
+				//	toggle_self: false
+				//}).toggleContainer({
+				//	content_element: hd_checkout.Fields.Shared.$step_current,
+				//	force_state: "show",
+				//	toggle_self: false,
+				//	callback: function () {
+				//		/// <summary>Adds the new hash state to the history stack.</summary>
+				//		jQuery.bbq.pushState(hd_checkout.Fields.Shared.$step_current.selector, 2);
+				//	}
+				//});
+			},
+			"WireEvents": function () {
+				/// <summary>Wire up control events</summary>
+				hd_checkout.Functions.Shared.BindEvents_NeedHelp(false);
+				hd_checkout.Functions.Shared.BindEvents_NextButton(false);
+				hd_checkout.Functions.ShippingAddress.BindEvents_AdditionalAddressButton(false);
+				hd_checkout.Functions.ShippingAddress.BindEvents_AddAddressButton(false);
+				hd_checkout.Functions.ShippingAddress.BindEvents_EditAddressButton(false);
+				hd_checkout.Functions.ShippingAddress.BindEvents_CancelAddressButton(false);
+				hd_checkout.Functions.ShippingAddress.BindEvents_SaveAddressButton(false);
+				hd_checkout.Functions.ShippingAddress.BindEvents_AddressForm(false);
+				hd_checkout.Functions.ShippingAddress.BindEvents_CountrySelect(false);
+				hd_checkout.Functions.ShippingAddress.BindEvents_TextInputs(false);
+			}
+		},
+		"ShippingAddress": {
+			"BindEvents_AdditionalAddressButton": function (refreshSelector) {
+				if (refreshSelector) {
+					hd_checkout.Fields.ShippingAddress.$btnchangeaddress = $("'" + hd_checkout.Fields.ShippingAddress.$btnchangeaddress.selector + "'");
+				}
+				hd_checkout.Fields.ShippingAddress.$btnchangeaddress.toggleContainer({
+					content_element: hd_checkout.Fields.ShippingAddress.$additional_addresses,
+					self_toggle_delay_offset: -hd_checkout.Settings.Shared.easing
+				}).toggleContainer({
+					content_element: hd_checkout.Fields.ShippingAddress.$btnadd_address,
+					toggle_self: false
+				});
+			},
+			"BindEvents_AddAddressButton": function (refreshSelector) {
+				if (refreshSelector) {
+					hd_checkout.Fields.ShippingAddress.$btnadd_address = $(hd_checkout.Fields.ShippingAddress.$btnadd_address.selector);
+				}
+				hd_checkout.Fields.ShippingAddress.$btnadd_address.toggleContainer({
+					content_element: hd_checkout.Fields.ShippingAddress.$new_address_form,
+					self_toggle_delay_offset: -hd_checkout.Settings.Shared.easing,
+					post_toggle: function () {
+						hd_checkout.Fields.ShippingAddress.$new_address_form.animatedScroll();
+					}
+				});
+			},
+			"BindEvents_EditAddressButton": function (refreshSelector) {
+				if (refreshSelector) {
+					hd_checkout.Fields.ShippingAddress.$btnedit_address = $(hd_checkout.Fields.ShippingAddress.$btnedit_address.selector);
+				}
+				hd_checkout.Fields.ShippingAddress.$btnedit_address.on("click", function () {
+					// Select the address being edited
+					$(this).parent().trigger("click");
+					// Hide the new address button
+					if (hd_checkout.Fields.ShippingAddress.$btnadd_address.is(":visible")) {
+						hd_checkout.Fields.ShippingAddress.$btnadd_address.slideUp(hd_checkout.Settings.Shared.easing - 200);
+					}
+					// Set the input values
+					hd_checkout.Fields.ShippingAddress.$input_country.val("CA");
+					hd_checkout.Fields.ShippingAddress.$input_name.val("Editing Name");
+					hd_checkout.Fields.ShippingAddress.$input_company.val("Editing Company");
+					hd_checkout.Fields.ShippingAddress.$input_street.val("Editing Street Address");
+					hd_checkout.Fields.ShippingAddress.$input_city.val("Editing City");
+					hd_checkout.Fields.ShippingAddress.$input_state.val("Editing State");
+					hd_checkout.Fields.ShippingAddress.$input_postal.val("Editing Postal Code");
+					hd_checkout.Fields.ShippingAddress.$input_phone.val("Editing Phone");
+					hd_checkout.Fields.ShippingAddress.$text_inputs.trigger("change");
+					hd_checkout.Fields.ShippingAddress.$secondary_fields.css("display", "");
+					// Display the address form
+					hd_checkout.Fields.ShippingAddress.$new_address_form.slideDown(hd_checkout.Settings.Shared.easing, function () {
+						hd_checkout.Fields.ShippingAddress.$new_address_form.animatedScroll();
+					});
+				});
+			},
+			"BindEvents_CancelAddressButton": function (refreshSelector) {
+				if (refreshSelector) {
+					hd_checkout.Fields.ShippingAddress.$btncancel_address = $(hd_checkout.Fields.ShippingAddress.$btncancel_address.selector);
+				}
+				hd_checkout.Fields.ShippingAddress.$btncancel_address.on("click", function () {
+					if (hd_checkout.Fields.ShippingAddress.$additional_addresses.is(":visible")) {
+						hd_checkout.Fields.ShippingAddress.$btnadd_address.slideDown(hd_checkout.Settings.Shared.easing - 200);
+					}
+				}).toggleContainer({
+					content_element: hd_checkout.Fields.ShippingAddress.$new_address_form,
+					toggle_self: false,
+					callback: function () {
+						hd_checkout.Fields.ShippingAddress.$input_country.val("");
+						hd_checkout.Fields.ShippingAddress.$input_name.val("");
+						hd_checkout.Fields.ShippingAddress.$input_company.val("");
+						hd_checkout.Fields.ShippingAddress.$input_street.val("");
+						hd_checkout.Fields.ShippingAddress.$input_city.val("");
+						hd_checkout.Fields.ShippingAddress.$input_state.val("");
+						hd_checkout.Fields.ShippingAddress.$input_postal.val("");
+						hd_checkout.Fields.ShippingAddress.$input_phone.val("");
+						hd_checkout.Fields.ShippingAddress.$secondary_fields.css("display", "none");
+						// Scroll to the progress bar
+						hd_checkout.Fields.Shared.$progress_bar.animatedScroll();
+					}
+				});
+			},
+			"BindEvents_SaveAddressButton": function (refreshSelector) {
+				if (refreshSelector) {
+					hd_checkout.Fields.ShippingAddress.$btnsave_address = $(hd_checkout.Fields.ShippingAddress.$btnsave_address.selector);
+				}
+				hd_checkout.Fields.ShippingAddress.$btnsave_address.toggleContainer({
+					content_element: hd_checkout.Fields.ShippingAddress.$btnadd_address,
+					delay: hd_checkout.Settings.Shared.easing - 200,
+					toggle_self: false
+				}).toggleContainer({
+					content_element: hd_checkout.Fields.ShippingAddress.$new_address_form,
+					toggle_self: false,
+					pre_logic: function () {
+						var $newAddress,
+							mu = '<li class="additional-address grid__item one-whole desk-one-half address-item">';
+						mu += '<input type="radio" name="select-address" id="address4" value="address4">';
+						mu += '<label for="address4" class="card">';
+						mu += '<span class="btn shiptothis secondary small"></span>';
+						mu += '<button class="btn edit tertiary small">Edit</button>';
+						mu += '<div class="address">';
+						mu += '<span class="name">' + hd_checkout.Fields.ShippingAddress.$input_name.val() + '</span>';
+						mu += '<span class="company">' + hd_checkout.Fields.ShippingAddress.$input_company.val() + '</span>';
+						mu += '<span class="street">' + hd_checkout.Fields.ShippingAddress.$input_street.val() + '</span>,';
+						mu += '<span class="city">' + hd_checkout.Fields.ShippingAddress.$input_city.val() + '</span>';
+						mu += '<span class="state">' + hd_checkout.Fields.ShippingAddress.$input_state.val() + '</span>';
+						mu += '<span class="zip">' + hd_checkout.Fields.ShippingAddress.$input_postal.val() + '</span>';
+						mu += '<span class="country">' + hd_checkout.Fields.ShippingAddress.$input_country.val() + '</span>';
+						mu += '<span class="phone">' + hd_checkout.Fields.ShippingAddress.$input_phone.val() + '</span>';
+						mu += '</div></label></li>';
+						$newAddress = $(mu);
+						hd_checkout.Fields.ShippingAddress.$address_list.append($newAddress);
+						hd_checkout.Functions.ShippingAddress.BindEvents_EditAddressButton(true);
+						$newAddress.find("input[type=radio]").trigger("click");
+					},
+					callback: function (element, event) {
+						hd_checkout.Fields.ShippingAddress.$input_country.val("");
+						hd_checkout.Fields.ShippingAddress.$input_name.val("");
+						hd_checkout.Fields.ShippingAddress.$input_company.val("");
+						hd_checkout.Fields.ShippingAddress.$input_street.val("");
+						hd_checkout.Fields.ShippingAddress.$input_city.val("");
+						hd_checkout.Fields.ShippingAddress.$input_state.val("");
+						hd_checkout.Fields.ShippingAddress.$input_postal.val("");
+						hd_checkout.Fields.ShippingAddress.$input_phone.val("");
+						// Scroll to the new address
+						hd_checkout.Fields.ShippingAddress.$address_list.find("input[type=radio]:checked").parent().animatedScroll();
+					}
+				});
+			},
+			"BindEvents_AddressForm": function (refreshSelector) {
+				if (refreshSelector) {
+					hd_checkout.Fields.ShippingAddress.$new_address_form = $(hd_checkout.Fields.ShippingAddress.$new_address_form.selector);
+				}
+				hd_checkout.Fields.ShippingAddress.$new_address_form.on("submit", function (e) {
+					e.preventDefault();
+					// DO STUFF
+				});
+			},
+			"BindEvents_CountrySelect": function (refreshSelector) {
+				if (refreshSelector) {
+					hd_checkout.Fields.ShippingAddress.$input_country = $(hd_checkout.Fields.ShippingAddress.$input_country.selector);
+				}
+				hd_checkout.Fields.ShippingAddress.$input_country.toggleContainer({
+					content_element: hd_checkout.Fields.ShippingAddress.$secondary_fields,
+					firing_events: "change",
+					force_state: "show",
+					toggle_self: false
+				})
+			},
+			"BindEvents_TextInputs": function (refreshSelector) {
+				if (refreshSelector) {
+					hd_checkout.Fields.ShippingAddress.$text_inputs = $(hd_checkout.Fields.ShippingAddress.$text_inputs.selector);
+				}
+				hd_checkout.Fields.ShippingAddress.$text_inputs.on("change", function () {
+					var $this = $(this);
+					if ($this.val() != "") {
+						$this.siblings().addClass("notempty");
+					}
+					else {
+						$this.siblings().removeClass("notempty");
+					}
+				});
+			}
+		},
+		"ShippingOption": {
+			
+		}
+	}
+}
