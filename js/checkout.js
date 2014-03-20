@@ -217,11 +217,28 @@ var hd_checkout = {
 				hd_checkout.Fields.ShippingMethod.$loading_panel = $(".loading-panel");
 				hd_checkout.Fields.ShippingMethod.$shipping_option_list = $(".shipping-option-list");
 			},
+			"WireEvents": function () {
+				/// <summary>Wire up control events</summary>
+				hd_checkout.Functions.Shared.BindEvents_NeedHelp(false);
+				hd_checkout.Functions.Shared.BindEvents_NextButton(false);
+				hd_checkout.Functions.Shared.BindEvents_FormInputs(false);
+				hd_checkout.Functions.Shared.BindEvents_ProgressBarItems(false);
+				hd_checkout.Functions.ShippingAddress.BindEvents_AdditionalAddressButton(false);
+				hd_checkout.Functions.ShippingAddress.BindEvents_AddAddressButton(false);
+				hd_checkout.Functions.ShippingAddress.BindEvents_EditAddressButton(false);
+				hd_checkout.Functions.ShippingAddress.BindEvents_CancelAddressButton(false);
+				hd_checkout.Functions.ShippingAddress.BindEvents_SaveAddressButton(false);
+				hd_checkout.Functions.ShippingAddress.BindEvents_AddressForm(false);
+				hd_checkout.Functions.ShippingAddress.BindEvents_CountrySelect(false);
+			},
 			"InitCurrentStep": function (step_name) {
+				var $currentProgressBarItem = $("a[href=#" + hd_checkout.Settings.Shared.step_url_prefix + hd_checkout.Fields.Shared.$step_current.attr("id") + "]").parent();
+
 				if (hd_checkout.Fields.Shared.$step_previous !== undefined) {
 					hd_checkout.Fields.Shared.$step_previous.slideUp(hd_checkout.Settings.Shared.easing);
 				}
 				hd_checkout.Fields.Shared.$step_current.slideDown(hd_checkout.Settings.Shared.easing);
+				hd_checkout.Functions.Shared.SetActiveProgressBarItem($currentProgressBarItem);
 				switch (step_name) {
 					case hd_checkout.Settings.Shared.shipping_address_step_id:
 						hd_checkout.Fields.ShippingMethod.$loading_panel.show();
@@ -230,7 +247,9 @@ var hd_checkout = {
 					case hd_checkout.Settings.Shared.shipping_option_step_id:
 						setTimeout(function () {
 							hd_checkout.Fields.ShippingMethod.$loading_panel.fadeOut(hd_checkout.Settings.Shared.easing - 200, function () {
-								hd_checkout.Fields.ShippingMethod.$shipping_option_list.slideDown(hd_checkout.Settings.Shared.easing);
+								hd_checkout.Fields.ShippingMethod.$shipping_option_list.slideDown(hd_checkout.Settings.Shared.easing, function () {
+									$(this).animatedScroll();
+								});
 							});
 						}, 3000);
 						break;
@@ -242,6 +261,9 @@ var hd_checkout = {
 						break;
 				}
 
+			},
+			"SetActiveProgressBarItem": function ($activeItem) {
+				$activeItem.addClass(hd_checkout.Settings.Shared.active_class).siblings().removeClass(hd_checkout.Settings.Shared.active_class);
 			},
 			"BindEvents_FormInputs": function (refreshSelector) {
 				if (refreshSelector) {
@@ -280,24 +302,9 @@ var hd_checkout = {
 				}
 
 				hd_checkout.Fields.Shared.$progress_bar_items.on("click", function () {
-					var $this = $(this),
-						$parent = $this.parent();
-					$parent.addClass(hd_checkout.Settings.Shared.active_class).siblings().removeClass(hd_checkout.Settings.Shared.active_class);
+					var $parent = $(this).parent();
+					hd_checkout.Functions.Shared.SetActiveProgressBarItem($parent);
 				});
-			},
-			"WireEvents": function () {
-				/// <summary>Wire up control events</summary>
-				hd_checkout.Functions.Shared.BindEvents_NeedHelp(false);
-				hd_checkout.Functions.Shared.BindEvents_NextButton(false);
-				hd_checkout.Functions.Shared.BindEvents_FormInputs(false);
-				hd_checkout.Functions.Shared.BindEvents_ProgressBarItems(false);
-				hd_checkout.Functions.ShippingAddress.BindEvents_AdditionalAddressButton(false);
-				hd_checkout.Functions.ShippingAddress.BindEvents_AddAddressButton(false);
-				hd_checkout.Functions.ShippingAddress.BindEvents_EditAddressButton(false);
-				hd_checkout.Functions.ShippingAddress.BindEvents_CancelAddressButton(false);
-				hd_checkout.Functions.ShippingAddress.BindEvents_SaveAddressButton(false);
-				hd_checkout.Functions.ShippingAddress.BindEvents_AddressForm(false);
-				hd_checkout.Functions.ShippingAddress.BindEvents_CountrySelect(false);
 			}
 		},
 		"ShippingAddress": {
@@ -374,6 +381,7 @@ var hd_checkout = {
 						hd_checkout.Fields.ShippingAddress.$input_postal.val("");
 						hd_checkout.Fields.ShippingAddress.$input_phone.val("");
 						hd_checkout.Fields.ShippingAddress.$secondary_fields.css("display", "none");
+						hd_checkout.Fields.Shared.$form_inputs.trigger("change");
 						// Scroll to the progress bar
 						hd_checkout.Fields.Shared.$progress_bar.animatedScroll();
 					}
@@ -421,6 +429,7 @@ var hd_checkout = {
 						hd_checkout.Fields.ShippingAddress.$input_state.val("");
 						hd_checkout.Fields.ShippingAddress.$input_postal.val("");
 						hd_checkout.Fields.ShippingAddress.$input_phone.val("");
+						hd_checkout.Fields.Shared.$form_inputs.trigger("change");
 						// Scroll to the new address
 						hd_checkout.Fields.ShippingAddress.$address_list.find("input[type=radio]:checked").parent().animatedScroll();
 					}
