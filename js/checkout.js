@@ -83,9 +83,14 @@
 			delay: 300
 		}, options);
 
-		$html_body.animate({
-			scrollTop: this.offset().top
-		}, settings.delay);
+		$.scrollTo(this.offset().top, {
+			"axis": "y",
+			"duration": settings.delay,
+			"easing": "linear"
+		});
+		//$html_body.animate({
+		//	scrollTop: this.offset().top
+		//}, settings.delay);
 
 		return this;
 	};
