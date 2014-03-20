@@ -3837,9 +3837,6 @@ xmp {
   -webkit-box-sizing: border-box !important; }
 
 
-html, body {
-  -webkit-transform: translateZ(0); }
-
 .trust-asset {
   width: auto;
   height: 2em;
