@@ -108,7 +108,8 @@ var hd_checkout = {
 			"$step_confirmation": undefined,
 			"$step_current": undefined,
 			"$step_next": undefined,
-			"$step_previous": undefined
+			"$step_previous": undefined,
+			"$form_inputs": undefined,
 		},
 		"ShippingAddress": {
 			"$shipping_address_instructions": undefined,
@@ -130,7 +131,6 @@ var hd_checkout = {
 			"$input_state": undefined,
 			"$input_postal": undefined,
 			"$input_phone": undefined,
-			"$text_inputs": undefined,
 			"$secondary_fields": undefined
 		},
 		"ShippingMethod": {
@@ -210,7 +210,7 @@ var hd_checkout = {
 				hd_checkout.Fields.ShippingAddress.$input_postal = $("#postal-code-input");
 				hd_checkout.Fields.ShippingAddress.$input_phone = $("#phone-input");
 				hd_checkout.Fields.ShippingAddress.$secondary_fields = $(".field__secondary");
-				hd_checkout.Fields.ShippingAddress.$text_inputs = $("#new-address-form .field input[type=text], #new-address-form .field textarea");
+				hd_checkout.Fields.Shared.$form_inputs = $("input[type=text], textarea, #country-input");
 				hd_checkout.Fields.ShippingMethod.$loading_panel = $(".loading-panel");
 				hd_checkout.Fields.ShippingMethod.$shipping_option_list = $(".shipping-option-list");
 			},
@@ -240,6 +240,20 @@ var hd_checkout = {
 				}
 
 			},
+			"BindEvents_FormInputs": function (refreshSelector) {
+				if (refreshSelector) {
+					hd_checkout.Fields.Shared.$form_inputs = $(hd_checkout.Fields.Shared.$form_inputs.selector);
+				}
+				hd_checkout.Fields.Shared.$form_inputs.on("change", function () {
+					var $this = $(this);
+					if ($this.val() != "") {
+						$this.siblings().addClass("notempty");
+					}
+					else {
+						$this.siblings().removeClass("notempty");
+					}
+				});
+			},
 			"BindEvents_NeedHelp": function (refreshSelector) {
 				if (refreshSelector) {
 					hd_checkout.Fields.Shared.$need_help = $(hd_checkout.Fields.Shared.$need_help.selector);
@@ -261,6 +275,7 @@ var hd_checkout = {
 				/// <summary>Wire up control events</summary>
 				hd_checkout.Functions.Shared.BindEvents_NeedHelp(false);
 				hd_checkout.Functions.Shared.BindEvents_NextButton(false);
+				hd_checkout.Functions.Shared.BindEvents_FormInputs(false);
 				hd_checkout.Functions.ShippingAddress.BindEvents_AdditionalAddressButton(false);
 				hd_checkout.Functions.ShippingAddress.BindEvents_AddAddressButton(false);
 				hd_checkout.Functions.ShippingAddress.BindEvents_EditAddressButton(false);
@@ -268,7 +283,6 @@ var hd_checkout = {
 				hd_checkout.Functions.ShippingAddress.BindEvents_SaveAddressButton(false);
 				hd_checkout.Functions.ShippingAddress.BindEvents_AddressForm(false);
 				hd_checkout.Functions.ShippingAddress.BindEvents_CountrySelect(false);
-				hd_checkout.Functions.ShippingAddress.BindEvents_TextInputs(false);
 			}
 		},
 		"ShippingAddress": {
@@ -316,7 +330,7 @@ var hd_checkout = {
 					hd_checkout.Fields.ShippingAddress.$input_state.val("Editing State");
 					hd_checkout.Fields.ShippingAddress.$input_postal.val("Editing Postal Code");
 					hd_checkout.Fields.ShippingAddress.$input_phone.val("Editing Phone");
-					hd_checkout.Fields.ShippingAddress.$text_inputs.trigger("change");
+					hd_checkout.Fields.Shared.$form_inputs.trigger("change");
 					hd_checkout.Fields.ShippingAddress.$secondary_fields.css("display", "");
 					// Display the address form
 					hd_checkout.Fields.ShippingAddress.$new_address_form.slideDown(hd_checkout.Settings.Shared.easing, function () {
@@ -416,20 +430,6 @@ var hd_checkout = {
 					force_state: "show",
 					toggle_self: false
 				})
-			},
-			"BindEvents_TextInputs": function (refreshSelector) {
-				if (refreshSelector) {
-					hd_checkout.Fields.ShippingAddress.$text_inputs = $(hd_checkout.Fields.ShippingAddress.$text_inputs.selector);
-				}
-				hd_checkout.Fields.ShippingAddress.$text_inputs.on("change", function () {
-					var $this = $(this);
-					if ($this.val() != "") {
-						$this.siblings().addClass("notempty");
-					}
-					else {
-						$this.siblings().removeClass("notempty");
-					}
-				});
 			}
 		},
 		"ShippingOption": {
