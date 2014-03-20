@@ -101,6 +101,7 @@ var hd_checkout = {
 			"$need_help": undefined,
 			"$help_content": undefined,
 			"$progress_bar": undefined,
+			"$progress_bar_items": undefined,
 			"$step_shipping_address": undefined,
 			"$step_shipping_option": undefined,
 			"$step_billing": undefined,
@@ -149,6 +150,7 @@ var hd_checkout = {
 			"billing_step_id": "billing-information",
 			"review_step_id": "order-review",
 			"confirmation_step_id": "order-confirmation",
+			"active_class": "active",
 			"steps": []
 		}
 	},
@@ -182,6 +184,7 @@ var hd_checkout = {
 				hd_checkout.Fields.Shared.$need_help = $(".need-help");
 				hd_checkout.Fields.Shared.$help_content = $("#help-content");
 				hd_checkout.Fields.Shared.$progress_bar = $("#progress-bar");
+				hd_checkout.Fields.Shared.$progress_bar_items = hd_checkout.Fields.Shared.$progress_bar.find("a");
 				hd_checkout.Fields.Shared.$step_shipping_address = $("#" + hd_checkout.Settings.Shared.shipping_address_step_id);
 				hd_checkout.Fields.Shared.$step_shipping_option = $("#" + hd_checkout.Settings.Shared.shipping_option_step_id);
 				hd_checkout.Fields.Shared.$step_billing = $("#" + hd_checkout.Settings.Shared.billing_step_id);
@@ -271,11 +274,23 @@ var hd_checkout = {
 					jQuery.bbq.pushState("#" + hd_checkout.Settings.Shared.step_url_prefix + hd_checkout.Fields.Shared.$step_current.next().attr("id"), 2);
 				});
 			},
+			"BindEvents_ProgressBarItems": function (refreshSelector) {
+				if (refreshSelector) {
+					hd_checkout.Fields.Shared.$progress_bar_items = $(hd_checkout.Fields.Shared.$progress_bar_items.selector);
+				}
+
+				hd_checkout.Fields.Shared.$progress_bar_items.on("click", function () {
+					var $this = $(this),
+						$parent = $this.parent();
+					$parent.addClass(hd_checkout.Settings.Shared.active_class).siblings().removeClass(hd_checkout.Settings.Shared.active_class);
+				});
+			},
 			"WireEvents": function () {
 				/// <summary>Wire up control events</summary>
 				hd_checkout.Functions.Shared.BindEvents_NeedHelp(false);
 				hd_checkout.Functions.Shared.BindEvents_NextButton(false);
 				hd_checkout.Functions.Shared.BindEvents_FormInputs(false);
+				hd_checkout.Functions.Shared.BindEvents_ProgressBarItems(false);
 				hd_checkout.Functions.ShippingAddress.BindEvents_AdditionalAddressButton(false);
 				hd_checkout.Functions.ShippingAddress.BindEvents_AddAddressButton(false);
 				hd_checkout.Functions.ShippingAddress.BindEvents_EditAddressButton(false);
