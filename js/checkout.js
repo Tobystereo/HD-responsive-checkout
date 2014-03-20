@@ -73,7 +73,7 @@
 		}
 
 		return this;
-		};
+	};
 
 	$.fn.animatedScroll = function (options) {
 		// Default options
@@ -132,12 +132,17 @@ var hd_checkout = {
 			"$input_phone": undefined,
 			"$text_inputs": undefined,
 			"$secondary_fields": undefined
+		},
+		"ShippingMethod": {
+			"$loading_panel": undefined,
+			"$shipping_option_list": undefined
 		}
 	},
 	"Settings": {
 		"Shared": {
 			"footertop": undefined,
 			"easing": 300,
+			"step_url_prefix": "checkout-",
 			"absoluteClassName": "absolute",
 			"shipping_address_step_id": "shipping-address",
 			"shipping_option_step_id": "shipping-method",
@@ -150,12 +155,12 @@ var hd_checkout = {
 	"Functions": {
 		"Shared": {
 			"Init": function () {
-				hd_checkout.Settings.Shared.steps =  [hd_checkout.Settings.Shared.shipping_address_step_id, hd_checkout.Settings.Shared.shipping_option_step_id, hd_checkout.Settings.Shared.billing_step_id, hd_checkout.Settings.Shared.review_step_id, hd_checkout.Settings.Shared.confirmation_step_id]
+				hd_checkout.Settings.Shared.steps = [hd_checkout.Settings.Shared.shipping_address_step_id, hd_checkout.Settings.Shared.shipping_option_step_id, hd_checkout.Settings.Shared.billing_step_id, hd_checkout.Settings.Shared.review_step_id, hd_checkout.Settings.Shared.confirmation_step_id]
 				$(window).bind('hashchange', function (e) {
-					var step = e.fragment.replace('checkout-', ''),
-						previousStep = e.originalEvent !== undefined ? jQuery.param.fragment(e.originalEvent.oldURL).replace('checkout-', '') : undefined,
+					var step = e.fragment.replace(hd_checkout.Settings.Shared.step_url_prefix, ""),
+						previousStep = e.originalEvent !== undefined ? jQuery.param.fragment(e.originalEvent.oldURL).replace(hd_checkout.Settings.Shared.step_url_prefix, "") : undefined,
 						stepNumber = jQuery.inArray(step, hd_checkout.Settings.Shared.steps);
-					
+
 					// Check if the hash is a step
 					if (stepNumber > -1) {
 						hd_checkout.Fields.Shared.$step_previous = previousStep !== undefined ? $("#" + previousStep) : undefined;
@@ -166,11 +171,11 @@ var hd_checkout = {
 				$(document).ready(function () {
 					hd_checkout.Functions.Shared.SetGlobalVariables();
 					hd_checkout.Functions.Shared.WireEvents();
-					jQuery.bbq.pushState("#checkout-" + hd_checkout.Fields.Shared.$step_current.attr("id"), 2);
+					jQuery.bbq.pushState("#" + hd_checkout.Settings.Shared.step_url_prefix + hd_checkout.Fields.Shared.$step_current.attr("id"), 2);
 					$(window).trigger('hashchange');
 				});
 			},
-			"SetGlobalVariables": function() {
+			"SetGlobalVariables": function () {
 				/// <summary>Gets DOM elements & other dynamic variable values.</summary>
 				hd_checkout.Fields.Shared.$cta_bar = $(".cta_bar");
 				hd_checkout.Fields.Shared.$btn_next = hd_checkout.Fields.Shared.$cta_bar.find("button");
@@ -184,6 +189,7 @@ var hd_checkout = {
 				hd_checkout.Fields.Shared.$step_confirmation = $("#" + hd_checkout.Settings.Shared.confirmation_step_id);
 				hd_checkout.Fields.Shared.$step_current = hd_checkout.Fields.Shared.$step_shipping_address;
 				hd_checkout.Fields.Shared.$step_next = hd_checkout.Fields.Shared.$step_shipping_option;
+				hd_checkout.Fields.Shared.$step_previous = hd_checkout.Fields.Shared.$step_current.prev();
 				hd_checkout.Fields.ShippingAddress.$shipping_address_instructions = $("#shipping-address .instructions");
 				hd_checkout.Fields.ShippingAddress.$btnchangeaddress = $("button.changeaddress");
 				hd_checkout.Fields.ShippingAddress.$btnadd_address = $("button.createaddress");
@@ -205,16 +211,25 @@ var hd_checkout = {
 				hd_checkout.Fields.ShippingAddress.$input_phone = $("#phone-input");
 				hd_checkout.Fields.ShippingAddress.$secondary_fields = $(".field__secondary");
 				hd_checkout.Fields.ShippingAddress.$text_inputs = $("#new-address-form .field input[type=text], #new-address-form .field textarea");
+				hd_checkout.Fields.ShippingMethod.$loading_panel = $(".loading-panel");
+				hd_checkout.Fields.ShippingMethod.$shipping_option_list = $(".shipping-option-list");
 			},
 			"InitCurrentStep": function (step_name) {
 				if (hd_checkout.Fields.Shared.$step_previous !== undefined) {
-					hd_checkout.Fields.Shared.$step_previous.slideUp(300);
+					hd_checkout.Fields.Shared.$step_previous.slideUp(hd_checkout.Settings.Shared.easing);
 				}
-				hd_checkout.Fields.Shared.$step_current.slideDown(300);
+				hd_checkout.Fields.Shared.$step_current.slideDown(hd_checkout.Settings.Shared.easing);
 				switch (step_name) {
 					case hd_checkout.Settings.Shared.shipping_address_step_id:
+						hd_checkout.Fields.ShippingMethod.$loading_panel.show();
+						hd_checkout.Fields.ShippingMethod.$shipping_option_list.hide();
 						break;
 					case hd_checkout.Settings.Shared.shipping_option_step_id:
+						setTimeout(function () {
+							hd_checkout.Fields.ShippingMethod.$loading_panel.fadeOut(hd_checkout.Settings.Shared.easing - 200, function () {
+								hd_checkout.Fields.ShippingMethod.$shipping_option_list.slideDown(hd_checkout.Settings.Shared.easing);
+							});
+						}, 3000);
 						break;
 					case hd_checkout.Settings.Shared.billing_step_id:
 						break;
@@ -223,7 +238,7 @@ var hd_checkout = {
 					case hd_checkout.Settings.Shared.confirmation_step_id:
 						break;
 				}
-				
+
 			},
 			"BindEvents_NeedHelp": function (refreshSelector) {
 				if (refreshSelector) {
@@ -239,28 +254,8 @@ var hd_checkout = {
 				}
 
 				hd_checkout.Fields.Shared.$btn_next.on("click", function () {
-					//hd_checkout.Fields.Shared.$step_previous = $("#" + jQuery.param.fragment().replace("checkout-", ""));
-					jQuery.bbq.pushState("#checkout-" + hd_checkout.Fields.Shared.$step_current.next().attr("id"), 2);
+					jQuery.bbq.pushState("#" + hd_checkout.Settings.Shared.step_url_prefix + hd_checkout.Fields.Shared.$step_current.next().attr("id"), 2);
 				});
-
-				//hd_checkout.Fields.Shared.$btn_next.toggleContainer({
-				//	pre_logic: function () {
-				//		hd_checkout.Fields.Shared.$step_previous = hd_checkout.Fields.Shared.$step_current;
-				//		hd_checkout.Fields.Shared.$step_current = hd_checkout.Fields.Shared.$step_next;
-				//		hd_checkout.Fields.Shared.$step_next = hd_checkout.Fields.Shared.$step_current.next();
-				//	},
-				//	content_element: hd_checkout.Fields.Shared.$step_previous,
-				//	force_state: "hide",
-				//	toggle_self: false
-				//}).toggleContainer({
-				//	content_element: hd_checkout.Fields.Shared.$step_current,
-				//	force_state: "show",
-				//	toggle_self: false,
-				//	callback: function () {
-				//		/// <summary>Adds the new hash state to the history stack.</summary>
-				//		jQuery.bbq.pushState(hd_checkout.Fields.Shared.$step_current.selector, 2);
-				//	}
-				//});
 			},
 			"WireEvents": function () {
 				/// <summary>Wire up control events</summary>
@@ -438,7 +433,7 @@ var hd_checkout = {
 			}
 		},
 		"ShippingOption": {
-			
+
 		}
 	}
 }
