@@ -32,6 +32,10 @@ body {
 header {
 }
 
+html, body {
+	-webkit-transform: translateZ(0);
+}
+
 
 .trust-asset {
     width: auto;
