@@ -252,9 +252,7 @@ var hd_checkout = {
 					case hd_checkout.Settings.Shared.shipping_option_step_id:
 						setTimeout(function () {
 							hd_checkout.Fields.ShippingMethod.$loading_panel.fadeOut(hd_checkout.Settings.Shared.easing - 200, function () {
-								hd_checkout.Fields.ShippingMethod.$shipping_option_list.slideDown(hd_checkout.Settings.Shared.easing, function () {
-									$(this).animatedScroll();
-								});
+								hd_checkout.Fields.ShippingMethod.$shipping_option_list.slideDown(hd_checkout.Settings.Shared.easing).animatedScroll();
 							});
 						}, 3000);
 						break;
