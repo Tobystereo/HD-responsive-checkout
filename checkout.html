@@ -134,9 +134,9 @@
                                 <li class="field country ">
                                     <h2>Create a new address</h2>
                                     <select class="" id="country-input">
-                                      <option value=""></option>
-                                      <option value="US">United States</option>
-                                      <option value="CA">Canada</option>
+                                        <option value=""></option>
+                                        <option value="US">United States</option>
+                                        <option value="CA">Canada</option>
                                     </select>
                                     <label for="country-input" class="dropdownlabel">Country</label>
                                 </li>
@@ -178,28 +178,30 @@
                         </form>
                     </div>
                 </div>
-                <div id="shipping-method" class="grid__item one-whole shipping-method" style="display:none;">  <!--style="display:none;"-->
+                <div id="shipping-method" class="grid__item one-whole shipping-method" style="display:none;">
                     <h2 class="instructions">
                         Select a shipping method
                     </h2>
-                    <p>
-                      Your order will be shipped from our warehouse in <span data-us-shipping-origin="Lancaster, PA" data-eu-shipping-origin="Amsterdam, NL">Lancaster, PA</span>.</p>
-                    <p data-localization-visibility="intl">Prices shown do not include possible duties or import taxes your country may impose.<br><a href="#privacy-policy-modal">Learn more about our Shipping Policy.</a>
-                    </p>
-                    <div class="shipping-option-wrapper">
-                        <div class="loading-panel">
-                          <div class="ball"></div>
-                          <div class="ball"></div>
-                          <div class="ball"></div>
-                          <div class="ball"></div>
-                          <div class="ball"></div>
-                          <div class="ball"></div>
-                          <div class="ball"></div>
-                          <p>
+                    <div class="loading-panel">
+                        <div class="ball"></div>
+                        <div class="ball"></div>
+                        <div class="ball"></div>
+                        <div class="ball"></div>
+                        <div class="ball"></div>
+                        <div class="ball"></div>
+                        <div class="ball"></div>
+                        <p>
                             Loading Shipping Options...
-                          </p>
-                        </div>
-                        <ul class="grid shipping-option-list" style="display:none;">
+                        </p>
+                    </div>
+                    <div class="shipping-option-wrapper">
+                        <p>
+                            Your order will be shipped from our warehouse in <span data-us-shipping-origin="Lancaster, PA" data-eu-shipping-origin="Amsterdam, NL">Lancaster, PA</span>.
+                        </p>
+                        <p data-localization-visibility="intl">
+                            Prices shown do not include possible duties or import taxes your country may impose.<br><a href="#privacy-policy-modal">Learn more about our Shipping Policy.</a>
+                        </p>
+                        <ul class="grid shipping-option-list">
                             <li class="default grid__item one-whole shipping-option-item">
                                 <div for="option0" class="">
                                     <div class="shipping-option labels">

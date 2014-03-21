@@ -220,7 +220,7 @@ var hd_checkout = {
 				hd_checkout.Fields.ShippingAddress.$secondary_fields = $(".field__secondary");
 				hd_checkout.Fields.Shared.$form_inputs = $("input[type=text], textarea, #country-input");
 				hd_checkout.Fields.ShippingMethod.$loading_panel = $(".loading-panel");
-				hd_checkout.Fields.ShippingMethod.$shipping_option_list = $(".shipping-option-list");
+				hd_checkout.Fields.ShippingMethod.$shipping_option_wrapper = $(".shipping-option-wrapper");
 			},
 			"WireEvents": function () {
 				/// <summary>Wire up control events</summary>
@@ -255,7 +255,7 @@ var hd_checkout = {
 					case hd_checkout.Settings.Shared.shipping_option_step_id:
 						hd_checkout.Settings.ShippingMethod.loading_panel_timeout = setTimeout(function () {
 							hd_checkout.Fields.ShippingMethod.$loading_panel.fadeOut(hd_checkout.Settings.Shared.easing - 200, function () {
-								hd_checkout.Fields.ShippingMethod.$shipping_option_list.slideDown(hd_checkout.Settings.Shared.easing, function () {
+								hd_checkout.Fields.ShippingMethod.$shipping_option_wrapper.slideDown(hd_checkout.Settings.Shared.easing, function () {
 									hd_checkout.Fields.Shared.$step_shipping_option.animatedScroll();
 								});
 							});
@@ -279,7 +279,7 @@ var hd_checkout = {
 						break;
 					case hd_checkout.Settings.Shared.shipping_option_step_id:
 						hd_checkout.Fields.ShippingMethod.$loading_panel.show();
-						hd_checkout.Fields.ShippingMethod.$shipping_option_list.hide();
+						hd_checkout.Fields.ShippingMethod.$shipping_option_wrapper.hide();
 						clearTimeout(hd_checkout.Settings.ShippingMethod.loading_panel_timeout);
 						break;
 					case hd_checkout.Settings.Shared.billing_step_id:
