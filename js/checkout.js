@@ -78,13 +78,13 @@
 	$.fn.animatedScroll = function (options) {
 		// Default options
 		var settings = $.extend({
-			pre_logic: undefined,
 			callback: undefined,
-			delay: 300
+			delay: 300,
+			easing: "linear"
 		}, options);
 
 		this.animatescroll({
-			easing: "linear",
+			easing: settings.easing,
 			scrollSpeed: settings.delay,
 			afterScroll: settings.callback
 		});
@@ -239,8 +239,8 @@ var hd_checkout = {
 			"InitCurrentStep": function (step_name) {
 				var $currentProgressBarItem = $("a[href=#" + hd_checkout.Settings.Shared.step_url_prefix + hd_checkout.Fields.Shared.$step_current.attr("id") + "]").parent();
 				hd_checkout.Functions.Shared.SetActiveProgressBarItem($currentProgressBarItem);
-				hd_checkout.Fields.Shared.$progress_bar.animatedScroll();
 				if (hd_checkout.Fields.Shared.$step_previous !== undefined) {
+					hd_checkout.Fields.Shared.$progress_bar.animatedScroll();
 					hd_checkout.Fields.Shared.$step_previous.slideUp(hd_checkout.Settings.Shared.easing - 200, function () {
 						hd_checkout.Functions.Shared.RestoreStepDefaultView(hd_checkout.Fields.Shared.$step_previous.attr("id"));
 						hd_checkout.Fields.Shared.$step_current.slideDown(hd_checkout.Settings.Shared.easing);
