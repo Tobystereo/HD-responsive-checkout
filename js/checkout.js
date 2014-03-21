@@ -86,7 +86,13 @@
 		$.scrollTo(this.offset().top, {
 			"axis": "y",
 			"duration": settings.delay,
-			"easing": "linear"
+			"easing": "linear",
+			"onAfter": function () {
+				// Fire Callback
+				if (settings.callback !== undefined) {
+					settings.callback(this);
+				}
+			}
 		});
 
 		return this;
@@ -253,7 +259,9 @@ var hd_checkout = {
 					case hd_checkout.Settings.Shared.shipping_option_step_id:
 						hd_checkout.Settings.ShippingMethod.loading_panel_timeout = setTimeout(function () {
 							hd_checkout.Fields.ShippingMethod.$loading_panel.fadeOut(hd_checkout.Settings.Shared.easing - 200, function () {
-								hd_checkout.Fields.ShippingMethod.$shipping_option_list.slideDown(hd_checkout.Settings.Shared.easing).animatedScroll();
+								hd_checkout.Fields.ShippingMethod.$shipping_option_list.slideDown(hd_checkout.Settings.Shared.easing, function () {
+									hd_checkout.Fields.ShippingMethod.$shipping_option_list.animatedScroll();
+								});
 							});
 						}, 3000);
 						break;
