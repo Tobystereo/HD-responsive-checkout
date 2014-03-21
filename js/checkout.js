@@ -243,7 +243,9 @@ var hd_checkout = {
 					hd_checkout.Fields.Shared.$step_previous.slideUp(hd_checkout.Settings.Shared.easing);
 					hd_checkout.Functions.Shared.RestoreStepDefaultView(hd_checkout.Fields.Shared.$step_previous.attr("id"));
 				}
-				hd_checkout.Fields.Shared.$step_current.slideDown(hd_checkout.Settings.Shared.easing);
+				hd_checkout.Fields.Shared.$step_current.slideDown(hd_checkout.Settings.Shared.easing, function () {
+					hd_checkout.Fields.Shared.$progress_bar.animatedScroll();
+				});
 				hd_checkout.Functions.Shared.SetActiveProgressBarItem($currentProgressBarItem);
 				switch (step_name) {
 					case hd_checkout.Settings.Shared.shipping_address_step_id:
@@ -262,7 +264,6 @@ var hd_checkout = {
 					case hd_checkout.Settings.Shared.confirmation_step_id:
 						break;
 				}
-				hd_checkout.Fields.Shared.$progress_bar.animatedScroll();
 			},
 			"SetActiveProgressBarItem": function ($activeItem) {
 				$activeItem.addClass(hd_checkout.Settings.Shared.active_class).siblings().removeClass(hd_checkout.Settings.Shared.active_class);
