@@ -154,6 +154,9 @@ var hd_checkout = {
 			"confirmation_step_id": "order-confirmation",
 			"active_class": "active",
 			"steps": []
+		},
+		"ShippingMethod": {
+			"loading_panel_timeout": undefined
 		}
 	},
 	"Functions": {
@@ -238,16 +241,15 @@ var hd_checkout = {
 
 				if (hd_checkout.Fields.Shared.$step_previous !== undefined) {
 					hd_checkout.Fields.Shared.$step_previous.slideUp(hd_checkout.Settings.Shared.easing);
+					hd_checkout.Functions.Shared.RestoreStepDefaultView(hd_checkout.Fields.Shared.$step_previous.attr("id"));
 				}
 				hd_checkout.Fields.Shared.$step_current.slideDown(hd_checkout.Settings.Shared.easing);
 				hd_checkout.Functions.Shared.SetActiveProgressBarItem($currentProgressBarItem);
 				switch (step_name) {
 					case hd_checkout.Settings.Shared.shipping_address_step_id:
-						hd_checkout.Fields.ShippingMethod.$loading_panel.show();
-						hd_checkout.Fields.ShippingMethod.$shipping_option_list.hide();
 						break;
 					case hd_checkout.Settings.Shared.shipping_option_step_id:
-						setTimeout(function () {
+						hd_checkout.Settings.ShippingMethod.loading_panel_timeout = setTimeout(function () {
 							hd_checkout.Fields.ShippingMethod.$loading_panel.fadeOut(hd_checkout.Settings.Shared.easing - 200, function () {
 								hd_checkout.Fields.ShippingMethod.$shipping_option_list.slideDown(hd_checkout.Settings.Shared.easing).animatedScroll();
 							});
@@ -260,10 +262,28 @@ var hd_checkout = {
 					case hd_checkout.Settings.Shared.confirmation_step_id:
 						break;
 				}
-
+				hd_checkout.Fields.Shared.$progress_bar.animatedScroll();
 			},
 			"SetActiveProgressBarItem": function ($activeItem) {
 				$activeItem.addClass(hd_checkout.Settings.Shared.active_class).siblings().removeClass(hd_checkout.Settings.Shared.active_class);
+			},
+			"RestoreStepDefaultView": function (step_name) {
+				/// <summary>Restores the UI to the default view so that the next time the user visits the step the interaction works correctly.</summary>
+				switch (step_name) {
+					case hd_checkout.Settings.Shared.shipping_address_step_id:
+						break;
+					case hd_checkout.Settings.Shared.shipping_option_step_id:
+						hd_checkout.Fields.ShippingMethod.$loading_panel.show();
+						hd_checkout.Fields.ShippingMethod.$shipping_option_list.hide();
+						clearTimeout(hd_checkout.Settings.ShippingMethod.loading_panel_timeout);
+						break;
+					case hd_checkout.Settings.Shared.billing_step_id:
+						break;
+					case hd_checkout.Settings.Shared.review_step_id:
+						break;
+					case hd_checkout.Settings.Shared.confirmation_step_id:
+						break;
+				}
 			},
 			"BindEvents_FormInputs": function (refreshSelector) {
 				if (refreshSelector) {
