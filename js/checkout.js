@@ -242,7 +242,7 @@ var hd_checkout = {
 				hd_checkout.Fields.Shared.$progress_bar.animatedScroll({
 					callback: function () {
 						if (hd_checkout.Fields.Shared.$step_previous !== undefined) {
-							hd_checkout.Fields.Shared.$step_previous.slideUp(hd_checkout.Settings.Shared.easing, function () {
+							hd_checkout.Fields.Shared.$step_previous.slideUp(hd_checkout.Settings.Shared.easing - 200, function () {
 								hd_checkout.Functions.Shared.RestoreStepDefaultView(hd_checkout.Fields.Shared.$step_previous.attr("id"));
 								hd_checkout.Fields.Shared.$step_current.slideDown(hd_checkout.Settings.Shared.easing);
 							});
