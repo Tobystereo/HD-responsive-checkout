@@ -262,7 +262,7 @@ var hd_checkout = {
 								hd_checkout.Fields.ShippingMethod.$shipping_option_list.slideDown(hd_checkout.Settings.Shared.easing, function () {
 									setTimeout(function () {
 										hd_checkout.Fields.ShippingMethod.$shipping_option_list.animatedScroll();
-									}, 100);
+									}, 1000);
 								});
 							});
 						}, 3000);
