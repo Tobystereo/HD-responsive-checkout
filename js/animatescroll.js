@@ -149,20 +149,29 @@
             var offset = this.offset().top;
         
             // Scroll the page to the desired position
-            $(opts.element).stop().animate({ scrollTop: offset - opts.padding}, opts.scrollSpeed, opts.easing);
+            $(opts.element).stop().animate({ scrollTop: offset - opts.padding }, opts.scrollSpeed, opts.easing, function () {
+            	if (opts.afterScroll !== undefined) {
+            		opts.afterScroll();
+            	}
+            });
         }
         else {
             // Scroll the element to the desired position
-            $(opts.element).stop().animate({ scrollTop: this.offset().top - this.parent().offset().top + this.parent().scrollTop() - opts.padding}, opts.scrollSpeed, opts.easing);
+        	$(opts.element).stop().animate({ scrollTop: this.offset().top - this.parent().offset().top + this.parent().scrollTop() - opts.padding }, opts.scrollSpeed, opts.easing, function () {
+        		if (opts.afterScroll !== undefined) {
+        			opts.afterScroll();
+        		}
+        	});
         }
     };
     
     // default options
     $.fn.animatescroll.defaults = {        
-        easing:"swing",
-        scrollSpeed:800,
-        padding:0,
-        element:"html,body"
+    	easing:"swing",
+    	scrollSpeed:800,
+    	padding:0,
+    	element: "html,body",
+    	afterScroll: undefined
     };   
     
 }(jQuery));
