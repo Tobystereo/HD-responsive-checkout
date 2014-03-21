@@ -257,17 +257,13 @@ var hd_checkout = {
 					case hd_checkout.Settings.Shared.shipping_address_step_id:
 						break;
 					case hd_checkout.Settings.Shared.shipping_option_step_id:
-						//hd_checkout.Settings.ShippingMethod.loading_panel_timeout = setTimeout(function () {
-						//	hd_checkout.Fields.ShippingMethod.$loading_panel.fadeOut(hd_checkout.Settings.Shared.easing - 200, function () {
-						//		hd_checkout.Fields.ShippingMethod.$shipping_option_list.slideDown(hd_checkout.Settings.Shared.easing, function () {
-						//			hd_checkout.Fields.ShippingMethod.$shipping_option_list.animatedScroll();
-						//		});
-						//	});
-						//}, 3000);
-
 						hd_checkout.Settings.ShippingMethod.loading_panel_timeout = setTimeout(function () {
-							hd_checkout.Fields.ShippingMethod.$shipping_option_list.slideDown(hd_checkout.Settings.Shared.easing, function () {
-								hd_checkout.Fields.ShippingMethod.$shipping_option_list.animatedScroll();
+							hd_checkout.Fields.ShippingMethod.$loading_panel.fadeOut(hd_checkout.Settings.Shared.easing - 200, function () {
+								hd_checkout.Fields.ShippingMethod.$shipping_option_list.slideDown(hd_checkout.Settings.Shared.easing, function () {
+									setTimeout(function () {
+										hd_checkout.Fields.ShippingMethod.$shipping_option_list.animatedScroll();
+									}, 100);
+								});
 							});
 						}, 3000);
 						break;
