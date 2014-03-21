@@ -83,17 +83,7 @@
 			delay: 300
 		}, options);
 
-		$.scrollTo(this.offset().top, {
-			"axis": "y",
-			"duration": settings.delay,
-			"easing": "linear",
-			"onAfter": function () {
-				// Fire Callback
-				if (settings.callback !== undefined) {
-					settings.callback(this);
-				}
-			}
-		});
+		this.animatescroll();
 
 		return this;
 	};
@@ -260,9 +250,7 @@ var hd_checkout = {
 						hd_checkout.Settings.ShippingMethod.loading_panel_timeout = setTimeout(function () {
 							hd_checkout.Fields.ShippingMethod.$loading_panel.fadeOut(hd_checkout.Settings.Shared.easing - 200, function () {
 								hd_checkout.Fields.ShippingMethod.$shipping_option_list.slideDown(hd_checkout.Settings.Shared.easing, function () {
-									setTimeout(function () {
-										hd_checkout.Fields.ShippingMethod.$shipping_option_list.find("li").first().animatedScroll();
-									}, 1000);
+									hd_checkout.Fields.ShippingMethod.$shipping_option_list.animatedScroll();
 								});
 							});
 						}, 3000);
