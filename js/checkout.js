@@ -237,14 +237,17 @@ var hd_checkout = {
 			},
 			"InitCurrentStep": function (step_name) {
 				var $currentProgressBarItem = $("a[href=#" + hd_checkout.Settings.Shared.step_url_prefix + hd_checkout.Fields.Shared.$step_current.attr("id") + "]").parent();
+				hd_checkout.Fields.Shared.$progress_bar.animatedScroll();
 
 				if (hd_checkout.Fields.Shared.$step_previous !== undefined) {
-					hd_checkout.Fields.Shared.$step_previous.slideUp(hd_checkout.Settings.Shared.easing);
-					hd_checkout.Functions.Shared.RestoreStepDefaultView(hd_checkout.Fields.Shared.$step_previous.attr("id"));
+					hd_checkout.Fields.Shared.$step_previous.slideUp(hd_checkout.Settings.Shared.easing, function () {
+						hd_checkout.Functions.Shared.RestoreStepDefaultView(hd_checkout.Fields.Shared.$step_previous.attr("id"));
+						hd_checkout.Fields.Shared.$step_current.slideDown(hd_checkout.Settings.Shared.easing);
+					});
 				}
-				hd_checkout.Fields.Shared.$step_current.slideDown(hd_checkout.Settings.Shared.easing, function () {
-					hd_checkout.Fields.Shared.$progress_bar.animatedScroll();
-				});
+				else {
+					hd_checkout.Fields.Shared.$step_current.slideDown(hd_checkout.Settings.Shared.easing);
+				}
 				hd_checkout.Functions.Shared.SetActiveProgressBarItem($currentProgressBarItem);
 				switch (step_name) {
 					case hd_checkout.Settings.Shared.shipping_address_step_id:
@@ -253,7 +256,7 @@ var hd_checkout = {
 						hd_checkout.Settings.ShippingMethod.loading_panel_timeout = setTimeout(function () {
 							hd_checkout.Fields.ShippingMethod.$loading_panel.fadeOut(hd_checkout.Settings.Shared.easing - 200, function () {
 								hd_checkout.Fields.ShippingMethod.$shipping_option_list.slideDown(hd_checkout.Settings.Shared.easing, function () {
-									hd_checkout.Fields.ShippingMethod.$shipping_option_list.animatedScroll();
+									hd_checkout.Fields.Shared.$step_shipping_option.animatedScroll();
 								});
 							});
 						}, 3000);
