@@ -83,7 +83,10 @@
 			delay: 300
 		}, options);
 
-		this.animatescroll();
+		this.animatescroll({
+			easing: "linear",
+			scrollSpeed: settings.delay
+		});
 
 		return this;
 	};
