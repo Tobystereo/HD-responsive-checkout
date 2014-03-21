@@ -261,7 +261,7 @@ var hd_checkout = {
 							hd_checkout.Fields.ShippingMethod.$loading_panel.fadeOut(hd_checkout.Settings.Shared.easing - 200, function () {
 								hd_checkout.Fields.ShippingMethod.$shipping_option_list.slideDown(hd_checkout.Settings.Shared.easing, function () {
 									setTimeout(function () {
-										hd_checkout.Fields.ShippingMethod.$shipping_option_list.animatedScroll();
+										hd_checkout.Fields.ShippingMethod.$shipping_option_list.find("li").first().animatedScroll();
 									}, 1000);
 								});
 							});
