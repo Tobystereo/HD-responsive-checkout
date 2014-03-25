@@ -47,12 +47,9 @@
         <article>
             <div class="grid">
                 <div id="shipping-address" class="grid__item one-whole">
-                    <h2 class="instructions" data-text="Select a shipping address" data-alt-text="Select a shipping address">
+                    <h2 class="instructions">
                         Select a shipping address
                     </h2>
-                    <p>
-
-                    </p>
                     <div class="address-wrapper">
                         <ul class="grid address-list">
                             <li class="default grid__item one-whole desk-one-half address-item">
@@ -174,7 +171,6 @@
                                     <button class="save btn btn--small taptarget secondary">Save Address</button>
                                 </li>
                             </ul>
-
                         </form>
                     </div>
                 </div>
@@ -202,17 +198,7 @@
                             Prices shown do not include possible duties or import taxes your country may impose.<br><a href="#privacy-policy-modal">Learn more about our Shipping Policy.</a>
                         </p>
                         <ul class="grid shipping-option-list">
-                            <li class="default grid__item one-whole shipping-option-item">
-                                <div for="option0" class="">
-                                    <div class="shipping-option labels">
-                                        <span class="carrier">Carrier:</span>
-                                        <span class="method">Method:</span>
-                                        <span class="delivery-date">Delivery:</span>
-                                        <span class="price">Price:</span>
-                                    </div>
-                                </div>
-                            </li>
-                            <li class="default grid__item one-whole shipping-option-item">
+                            <li class="grid__item one-whole shipping-option-item">
                                 <input type="radio" name="select-shipping-option" id="option0" value="option0" checked>
                                 <label for="option0" class="card">
                                     <div class="shipping-option">
@@ -282,6 +268,246 @@
                     </div>
                 </div>
                 <div id="billing-information" style="display:none;">
+                    <h2 class="instructions">
+                        Enter billing information
+                    </h2>
+                    <div class="promo-code-container">
+                        <form id="promo-code-form" action="#">
+                            <ul class="grid__item form-fields one-whole card">
+                                <li class="promo-title"><h3>Enter Promo Code</h3></li>
+                                <li class="promo-error-message" style="display:none;"></li>
+                                <li class="field field__secondary promo-code">
+                                    <input type="text" class="text-input" id="promo-code-input" title="Promo Code">
+                                    <label for="promo-code-input">Promo Code</label>
+                                    <button class="apply btn btn--small taptarget secondary" data-text="Apply Code" data-text-alt="Remove Code">Apply Code</button>
+                                </li>
+                                <li class="promo-details" style="display:none;"></li>
+                            </ul>
+                        </form>
+                    </div>
+                    <h3>Choose a payment option</h3>
+                    <ul class="grid payment-option-list">
+                        <li class="grid__item one-whole desk-one-half payment-option-item">
+                            <input type="radio" name="select-payment-option" id="payment-option0" value="payment-option0" checked>
+                            <label for="payment-option0" class="card">
+                                <div class="payment-option">
+                                    Credit Card
+                                </div>
+                            </label>
+                        </li>
+                        <li class="grid__item one-whole desk-one-half payment-option-item">
+                            <input type="radio" name="select-payment-option" id="payment-option1" value="payment-option1">
+                            <label for="payment-option1" class="card">
+                                <div class="payment-option">
+                                    PayPal
+                                </div>
+                            </label>
+                        </li>
+                    </ul>
+                    <div class="credit-card-wrapper" style="display:none;">
+                        <ul class="grid credit-card-list">
+                            <li class="default grid__item one-whole desk-one-half credit-card-item">
+                                <input type="radio" name="select-credit-card" id="card0" value="card0" checked>
+                                <label for="card0" class="card">
+                                    <span class="btn paywiththis secondary small"></span>
+                                    <button class="btn edit tertiary small">Edit</button>
+                                    <div class="credit-card">
+                                        <span class="type visa"></span>
+                                        <span class="name">John T Doe</span>
+                                        <span class="masked-number">xxxx-xxxx-xxxx-8237</span>
+                                        <span class="expiration">Expires: 10/16</span>
+                                    </div>
+                                </label>
+                            </li>
+                            <li class="grid__item one-whole desk-one-half credit-card-item expired">
+                                <input type="radio" name="select-credit-card" id="card1" value="card1">
+                                <label for="card1" class="card">
+                                    <span class="btn paywiththis secondary small"></span>
+                                    <button class="btn edit tertiary small">Edit</button>
+                                    <div class="credit-card">
+                                        <span class="type mc"></span>
+                                        <span class="name">Jane C Doe</span>
+                                        <span class="masked-number">xxxx-xxxx-xxxx-7812</span>
+                                        <span class="expiration">Expires: 01/13</span>
+                                    </div>
+                                </label>
+                            </li>
+                            <li class="grid__item one-whole desk-one-half credit-card-item">
+                                <input type="radio" name="select-credit-card" id="card2" value="card2">
+                                <label for="card2" class="card">
+                                    <span class="btn paywiththis secondary small"></span>
+                                    <button class="btn edit tertiary small">Edit</button>
+                                    <div class="credit-card">
+                                        <span class="type mc"></span>
+                                        <span class="name">Leroy Jenkins</span>
+                                        <span class="masked-number">xxxx-xxxx-xxxx-2254</span>
+                                        <span class="expiration">Expires: 03/15</span>
+                                    </div>
+                                </label>
+                            </li>
+                        </ul>
+                        <div class="grid">
+                            <div class="buttons grid__item one-whole desk-one-half">
+                                <button class="createaddress btn taptarget tertiary" style="display: none;">Create new card</button>
+                            </div>
+                        </div>
+                        <div class="grid">
+                            <form id="new-credit-card-form" action="#" style="display: none;">
+                                <h2>Create new credit card</h2>
+                                <ul class="grid__item add-edit-credit-card form-fields one-whole card">
+                                    <li class="field field__secondary name">
+                                        <input type="text" class="text-input required" id="cc-name-input" title="Name">
+                                        <label for="cc-name-input">Name</label>
+                                    </li>
+                                    <li class="field field__secondary card-number">
+                                        <input type="text" class="text-input required" id="cc-number-input" title="Card Number">
+                                        <label for="cc-number-input">Card Number</label>
+                                        <span class="cc-number-masked" style="display: none;">xxxx-xxxx-xxxx-1234</span>
+                                    </li>
+                                    <li class="field field__secondary card-expiration">
+                                        <input type="text" class="text-input required" id="cc-expiration-input" title="Expiration">
+                                        <label for="cc-expiration-input">MM/YY</label>
+                                    </li>
+                                    <li class="field field__secondary card-security">
+                                        <input type="text" class="text-input required" id="cc-security-code-input" title="Security Code">
+                                        <label for="cc-security-code-input">Security Code</label>
+                                    </li>
+                                    <li class="field field__secondary card-wallet">
+                                        <input type="checkbox" class="checkbox-input" id="cc-wallet-input" title="Save this card to use again">
+                                        <label for="cc-wallet-input">Save this card to use again</label>
+                                    </li>
+                                </ul>
+                            </form>
+                        </div>
+
+                    </div>
+                    <div class="paypal-container" style="display:none;">
+                        <p>When you click Next, you’ll be taken to Paypal’s site. Follow Paypal’s instructions, then you’ll be sent right back here to review and confirm your order.</p>
+                    </div>
+                    <div class="billing-address-container" > <!--style="display: none;"-->
+                        <h3>Select a billing address</h3>
+                        <ul class="grid address-list">
+                            <li class="default grid__item one-whole desk-one-half address-item">
+                                <input type="radio" name="select-address" id="billing-address0" value="billing-address0" checked>
+                                <label for="billing-address0" class="card">
+                                    <span class="btn shiptothis secondary small"></span>
+                                    <button class="btn edit tertiary small">Edit</button>
+                                    <div class="address">
+                                        <span class="name">Ethan Koser</span>
+                                        <span class="street">123 A street</span>,
+                                        <span class="city">Mobile</span>
+                                        <span class="state">AK</span>
+                                        <span class="zip">88739</span>
+                                        <span class="country">United States</span>
+                                        <span class="phone">+1-222-333-4567</span>
+                                    </div>
+                                </label>
+                            </li>
+                            <li class="additional-address grid__item one-whole desk-one-half address-item" style="display:none;">
+                                <input type="radio" name="select-address" id="billing-address1" value="billing-address1">
+                                <label for="billing-address1" class="card">
+                                    <span class="btn shiptothis secondary small"></span>
+                                    <button class="btn edit tertiary small">Edit</button>
+                                    <div class="address">
+                                        <span class="name">Toby Treppmann</span>
+                                        <span class="company">Hair Direct</span>
+                                        <span class="street">Herman-Katelhonser.46</span>,
+                                        <span class="city">Wamel-Mohneseea</span>
+                                        <span class="zip">59519</span>
+                                        <span class="country">Germany</span>
+                                        <span class="phone">+49-555-555-5555</span>
+                                    </div>
+                                </label>
+                            </li>
+                            <li class="additional-address grid__item one-whole desk-one-half address-item" style="display:none;">
+                                <input type="radio" name="select-address" id="billing-address2" value="billing-address2">
+                                <label for="billing-address2" class="card">
+                                    <span class="btn shiptothis secondary small"></span>
+                                    <button class="btn edit tertiary small">Edit</button>
+                                    <div class="address">
+                                        <span class="name">Toby Treppmann</span>
+                                        <span class="company">Hair Direct</span>
+                                        <span class="street">Herman-Katelhonser.46</span>,
+                                        <span class="city">Wamel-Mohneseea</span>
+                                        <span class="zip">59519</span>
+                                        <span class="country">Germany</span>
+                                        <span class="phone">+49-555-555-5555</span>
+                                    </div>
+                                </label>
+                            </li>
+                            <li class="additional-address grid__item one-whole desk-one-half address-item" style="display:none;">
+                                <input type="radio" name="select-address" id="billing-address3" value="billing-address3">
+                                <label for="billing-address3" class="card">
+                                    <span class="btn shiptothis secondary small"></span>
+                                    <button class="btn edit tertiary small">Edit</button>
+                                    <div class="address">
+                                        <span class="name">Mike Koser</span>
+                                        <span class="company">Hair Direct</span>
+                                        <span class="street">765 Test Rd</span>,
+                                        <span class="city">Lancaster</span>
+                                        <span class="state">PA</span>
+                                        <span class="zip">17603</span>
+                                        <span class="country">United States</span>
+                                        <span class="phone">+1-555-555-5555</span>
+                                    </div>
+                                </label>
+                            </li>
+                        </ul>
+                        <div class="grid">
+                            <div class="buttons grid__item one-whole desk-one-half">
+                                <button class="changeaddress btn taptarget tertiary">Use different address</button>
+                                <button class="createaddress btn taptarget tertiary" style="display: none;">Create new address</button>
+                            </div>
+                        </div>
+                        <div class="grid">
+                            <form id="new-billing-address-form" action="#" style="display: none;">
+                                <ul class="grid__item add-edit-address form-fields one-whole card">
+                                    <li class="field country ">
+                                        <h3>Create a new address</h3>
+                                        <select class="" id="country-input">
+                                            <option value=""></option>
+                                            <option value="US">United States</option>
+                                            <option value="CA">Canada</option>
+                                        </select>
+                                        <label for="country-input" class="dropdownlabel">Country</label>
+                                    </li>
+                                    <li class="required-field-message">required fields</li>
+                                    <li class="field field__secondary name" style="display: none;">
+                                        <input type="text" class="text-input required" id="name-input" title="Name">
+                                        <label for="name-input">Name</label>
+                                    </li>
+                                    <li class="field field__secondary company" style="display: none;">
+                                        <input type="text" class="text-input valid" id="company-input">
+                                        <label for="company-input">Company</label>
+                                    </li>
+                                    <li class="field field__secondary address" style="display: none;">
+                                        <textarea class="text-input error" id="address-input"></textarea>
+                                        <label for="address-input">Street Address</label>
+                                    </li>
+                                    <li class="field field__secondary city" style="display: none;">
+                                        <input type="text" class="text-input  required" id="city-input">
+                                        <label for="city-input">City</label>
+                                    </li>
+                                    <li class="field field__secondary state" style="display: none;">
+                                        <input type="text" class="text-input" id="state-input">
+                                        <label for="state-input">State/Province</label>
+                                    </li>
+                                    <li class="field field__secondary postal-code" style="display: none;">
+                                        <input type="text" class="text-input required" id="postal-code-input">
+                                        <label for="postal-code-input">Postal Code</label>
+                                    </li>
+                                    <li class="field field__secondary phone" style="display: none;">
+                                        <input type="text" class="text-input required" id="phone-input">
+                                        <label for="phone-input">Phone</label>
+                                    </li>
+                                    <li class="field__secondary buttons" style="display: none;">
+                                        <button class="cancel btn btn--small taptarget tertiary">Cancel</button>
+                                        <button class="save btn btn--small taptarget secondary">Save Address</button>
+                                    </li>
+                                </ul>
+                            </form>
+                        </div>
+                    </div>
                 </div>
                 <div id="order-review" style="display:none;">
                 </div>

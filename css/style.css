@@ -3806,7 +3806,7 @@ html.flexbox {
  */
 .grid {
   letter-spacing: -0.3em !important; }
-  .grid .grid__item {
+  .grid * {
     letter-spacing: 0; }
 
 xmp {
