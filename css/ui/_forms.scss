@@ -157,25 +157,31 @@ input[type=radio] {
 
     &:checked + label.card {
         @include transition;
-        outline-color: green;
-        background: $lighter-green;
-        box-shadow: none;
+        @extend .card.selected;
 
         &:hover {
             -webkit-transform: translateY(0);
         }
 
-        &:before {
-            @include pseudo(auto, .5em, '\2714');
-            float: right;
-            color: $green;
-            @include font-size(2);
-            @include line-height(1);
-            text-align: center;
-            display: block;
-        }
+
 
     }
+}
+
+.card.selected {
+  outline-color: green;
+  background: $lighter-green;
+  box-shadow: none;
+
+  &:before {
+      @include pseudo(auto, .5em, '\2714');
+      float: right;
+      color: $green;
+      @include font-size(2);
+      @include line-height(1);
+      text-align: center;
+      display: block;
+  }
 }
 
 /********************************

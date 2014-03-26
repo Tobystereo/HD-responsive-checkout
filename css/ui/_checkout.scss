@@ -357,18 +357,17 @@ article {
     }
 }
 
-.address-item {
+.address-item, .credit-card {
     text-align: left;
 
     span {
         display: inline-block;
         text-align: left;
     }
-    .name, .company, .country {
+    .name, .company, .country, .type, .masked-number, .expiration {
         display: block;
         clear: both;
     }
-
 
 
     .edit {
