@@ -5742,34 +5742,55 @@ xmp {
   }
 }
 
-/* Colors */
 /* line 625, ui/_checkout.scss */
+.default-payment .card, .default-payment input[type=radio] + label.card {
+  margin-top: 0;
+  padding-top: 1em;
+}
+
+/* line 631, ui/_checkout.scss */
+.type {
+  display: block;
+  width: 60px;
+  height: 38px;
+  background: url("../images/Credit_Card_Icons.svg") 0 0;
+  background-size: 60px auto;
+  background-repeat: no-repeat;
+  margin-bottom: 1em;
+}
+/* line 643, ui/_checkout.scss */
+.type.visa {
+  background-position: 0 -40px;
+}
+
+/* Colors */
+/* line 649, ui/_checkout.scss */
 .bg-lightest {
   background-color: white;
 }
 
-/* line 626, ui/_checkout.scss */
+/* line 650, ui/_checkout.scss */
 .bg-lighter {
   background-color: #f1f1f1;
 }
 
-/* line 627, ui/_checkout.scss */
+/* line 651, ui/_checkout.scss */
 .bg-light {
   background-color: #cbcbcb;
 }
 
-/* line 628, ui/_checkout.scss */
+/* line 652, ui/_checkout.scss */
 .bg-dark {
   background-color: #727272;
 }
 
-/* line 629, ui/_checkout.scss */
+/* line 653, ui/_checkout.scss */
 .bg-darkest {
   background-color: black;
 }
 
 /* Typography */
-/* line 636, ui/_checkout.scss */
+/* line 660, ui/_checkout.scss */
 a, a:link, a:hover, a:active, a:focus {
   text-decoration: none;
   border-bottom: 1px solid;

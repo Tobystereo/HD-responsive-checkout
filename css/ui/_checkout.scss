@@ -621,6 +621,30 @@ article {
   // width: 85%;
 }
 
+.default-payment {
+  .card {
+    margin-top: 0;
+    padding-top: 1em;
+  }
+}
+
+.type {
+  display: block;
+  // position: absolute;
+  // margin-top: -5px;
+  // margin-left: 200px;
+  width: 60px;
+  height: 38px;
+  background: url("../images/Credit_Card_Icons.svg") 0 0 ;
+  background-size: 60px auto;
+  background-repeat: no-repeat;
+  margin-bottom: 1em;
+
+  &.visa {
+    background-position: 0 -40px;
+  }
+}
+
 /* Colors */
 .bg-lightest { background-color: $lightest; }
 .bg-lighter { background-color: $lighter; }
