@@ -149,7 +149,11 @@ var hd_checkout = {
 			"$payment_option_paypal": undefined,
 			"$payment_option_default": undefined,
 			"$credit_card_wrapper": undefined,
-			"$paypal_container": undefined
+			"$paypal_container": undefined,
+			"$btncreate_credit_card": undefined,
+			"$credit_card_form": undefined,
+			"$btnsave_credit_card": undefined,
+			"$btncancel_credit_card": undefined
 		}
 	},
 	"Settings": {
@@ -209,29 +213,29 @@ var hd_checkout = {
 				hd_checkout.Fields.Shared.$step_current = hd_checkout.Fields.Shared.$step_shipping_address;
 				hd_checkout.Fields.Shared.$step_next = hd_checkout.Fields.Shared.$step_shipping_option;
 				hd_checkout.Fields.Shared.$step_previous = hd_checkout.Fields.Shared.$step_current.prev();
-				hd_checkout.Fields.ShippingAddress.$shipping_address_instructions = $("#shipping-address .instructions");
-				hd_checkout.Fields.ShippingAddress.$btnchangeaddress = $("button.changeaddress");
-				hd_checkout.Fields.ShippingAddress.$btnadd_address = $("button.createaddress");
-				hd_checkout.Fields.ShippingAddress.$address_wrapper = $(".address-wrapper");
+				hd_checkout.Fields.Shared.$form_inputs = $("input[type=text], textarea, #country-input");
+				hd_checkout.Fields.ShippingAddress.$shipping_address_instructions = hd_checkout.Fields.Shared.$step_shipping_address.find(".instructions");
+				hd_checkout.Fields.ShippingAddress.$btnchangeaddress = hd_checkout.Fields.Shared.$step_shipping_address.find("button.changeaddress");
+				hd_checkout.Fields.ShippingAddress.$btnadd_address = hd_checkout.Fields.Shared.$step_shipping_address.find("button.createaddress");
+				hd_checkout.Fields.ShippingAddress.$address_wrapper = hd_checkout.Fields.Shared.$step_shipping_address.find(".address-wrapper");
 				hd_checkout.Fields.ShippingAddress.$address_list = hd_checkout.Fields.ShippingAddress.$address_wrapper.find(".address-list");
 				hd_checkout.Fields.ShippingAddress.$default_address = hd_checkout.Fields.ShippingAddress.$address_list.find(".default");
 				hd_checkout.Fields.ShippingAddress.$additional_addresses = hd_checkout.Fields.ShippingAddress.$address_list.find(".additional-address");
-				hd_checkout.Fields.ShippingAddress.$new_address_form = $("#new-address-form");
-				hd_checkout.Fields.ShippingAddress.$btnedit_address = $(".address-item button");
-				hd_checkout.Fields.ShippingAddress.$btncancel_address = $(".add-edit-address button.cancel");
-				hd_checkout.Fields.ShippingAddress.$btnsave_address = $(".add-edit-address button.save");
-				hd_checkout.Fields.ShippingAddress.$input_country = $("#country-input");
-				hd_checkout.Fields.ShippingAddress.$input_name = $("#name-input");
-				hd_checkout.Fields.ShippingAddress.$input_company = $("#company-input");
-				hd_checkout.Fields.ShippingAddress.$input_street = $("#address-input");
-				hd_checkout.Fields.ShippingAddress.$input_city = $("#city-input");
-				hd_checkout.Fields.ShippingAddress.$input_state = $("#state-input");
-				hd_checkout.Fields.ShippingAddress.$input_postal = $("#postal-code-input");
-				hd_checkout.Fields.ShippingAddress.$input_phone = $("#phone-input");
-				hd_checkout.Fields.ShippingAddress.$secondary_fields = $(".field__secondary");
-				hd_checkout.Fields.Shared.$form_inputs = $("input[type=text], textarea, #country-input");
-				hd_checkout.Fields.ShippingMethod.$loading_panel = $(".loading-panel");
-				hd_checkout.Fields.ShippingMethod.$shipping_option_wrapper = $(".shipping-option-wrapper");
+				hd_checkout.Fields.ShippingAddress.$new_address_form = hd_checkout.Fields.Shared.$step_shipping_address.find("#new-address-form");
+				hd_checkout.Fields.ShippingAddress.$btnedit_address = hd_checkout.Fields.Shared.$step_shipping_address.find(".address-item button");
+				hd_checkout.Fields.ShippingAddress.$btncancel_address = hd_checkout.Fields.Shared.$step_shipping_address.find(".add-edit-address button.cancel");
+				hd_checkout.Fields.ShippingAddress.$btnsave_address = hd_checkout.Fields.Shared.$step_shipping_address.find(".add-edit-address button.save");
+				hd_checkout.Fields.ShippingAddress.$input_country = hd_checkout.Fields.Shared.$step_shipping_address.find("#country-input");
+				hd_checkout.Fields.ShippingAddress.$input_name = hd_checkout.Fields.Shared.$step_shipping_address.find("#name-input");
+				hd_checkout.Fields.ShippingAddress.$input_company = hd_checkout.Fields.Shared.$step_shipping_address.find("#company-input");
+				hd_checkout.Fields.ShippingAddress.$input_street = hd_checkout.Fields.Shared.$step_shipping_address.find("#address-input");
+				hd_checkout.Fields.ShippingAddress.$input_city = hd_checkout.Fields.Shared.$step_shipping_address.find("#city-input");
+				hd_checkout.Fields.ShippingAddress.$input_state = hd_checkout.Fields.Shared.$step_shipping_address.find("#state-input");
+				hd_checkout.Fields.ShippingAddress.$input_postal = hd_checkout.Fields.Shared.$step_shipping_address.find("#postal-code-input");
+				hd_checkout.Fields.ShippingAddress.$input_phone = hd_checkout.Fields.Shared.$step_shipping_address.find("#phone-input");
+				hd_checkout.Fields.ShippingAddress.$secondary_fields = hd_checkout.Fields.Shared.$step_shipping_address.find(".field__secondary");
+				hd_checkout.Fields.ShippingMethod.$loading_panel = hd_checkout.Fields.Shared.$step_shipping_option.find(".loading-panel");
+				hd_checkout.Fields.ShippingMethod.$shipping_option_wrapper = hd_checkout.Fields.Shared.$step_shipping_option.find(".shipping-option-wrapper");
 				hd_checkout.Fields.BillingInfo.$btnchange_payment_option = hd_checkout.Fields.Shared.$step_billing.find("button.change-payment-option");
 				hd_checkout.Fields.BillingInfo.$default_payment_container = hd_checkout.Fields.Shared.$step_billing.find("div.default-payment");
 				hd_checkout.Fields.BillingInfo.$payment_wrapper = hd_checkout.Fields.Shared.$step_billing.find("div.payment-wrapper");
@@ -241,6 +245,10 @@ var hd_checkout = {
 				hd_checkout.Fields.BillingInfo.$payment_option_default = hd_checkout.Fields.BillingInfo.$payment_option_list.find("#payment-option-default");
 				hd_checkout.Fields.BillingInfo.$credit_card_wrapper = hd_checkout.Fields.Shared.$step_billing.find(".credit-card-wrapper");
 				hd_checkout.Fields.BillingInfo.$paypal_container = hd_checkout.Fields.Shared.$step_billing.find(".paypal-container");
+				hd_checkout.Fields.BillingInfo.$btncreate_credit_card = hd_checkout.Fields.BillingInfo.$credit_card_wrapper.find(".create-credit-card");
+				hd_checkout.Fields.BillingInfo.$credit_card_form = hd_checkout.Fields.BillingInfo.$credit_card_wrapper.find("#credit-card-form");
+				hd_checkout.Fields.BillingInfo.$btnsave_credit_card = hd_checkout.Fields.BillingInfo.$credit_card_form.find("button.save");
+				hd_checkout.Fields.BillingInfo.$btncancel_credit_card = hd_checkout.Fields.BillingInfo.$credit_card_form.find("button.cancel");
 			},
 			"WireEvents": function () {
 				/// <summary>Wire up control events</summary>
@@ -259,7 +267,10 @@ var hd_checkout = {
 				hd_checkout.Functions.BillingInfo.BindEvents_CreditCardOptionButton(false);
 				hd_checkout.Functions.BillingInfo.BindEvents_PayPalOptionButton(false);
 				hd_checkout.Functions.BillingInfo.BindEvents_DefaultOptionButton(false);
-
+				hd_checkout.Functions.BillingInfo.BindEvents_CreateCreditCardButton(false);
+				hd_checkout.Functions.BillingInfo.BindEvents_CreditCardForm(false);
+				hd_checkout.Functions.BillingInfo.BindEvents_SaveCreditCardButton(false);
+				hd_checkout.Functions.BillingInfo.BindEvents_CancelCreditCardButton(false);
 			},
 			"InitCurrentStep": function (step_name) {
 				var $currentProgressBarItem = $("a[href=#" + hd_checkout.Settings.Shared.step_url_prefix + hd_checkout.Fields.Shared.$step_current.attr("id") + "]").parent();
@@ -421,6 +432,10 @@ var hd_checkout = {
 				}).toggleContainer({
 					content_element: hd_checkout.Fields.ShippingAddress.$new_address_form,
 					toggle_self: false,
+					pre_logic: function () {
+						// Scroll to the progress bar
+						hd_checkout.Fields.Shared.$progress_bar.animatedScroll();
+					},
 					callback: function () {
 						hd_checkout.Fields.ShippingAddress.$input_country.val("");
 						hd_checkout.Fields.ShippingAddress.$input_name.val("");
@@ -432,8 +447,8 @@ var hd_checkout = {
 						hd_checkout.Fields.ShippingAddress.$input_phone.val("");
 						hd_checkout.Fields.ShippingAddress.$secondary_fields.css("display", "none");
 						hd_checkout.Fields.Shared.$form_inputs.trigger("change");
-						// Scroll to the progress bar
-						hd_checkout.Fields.Shared.$progress_bar.animatedScroll();
+						//// Scroll to the progress bar
+						//hd_checkout.Fields.Shared.$progress_bar.animatedScroll();
 					}
 				});
 			},
@@ -535,6 +550,10 @@ var hd_checkout = {
 					force_state: "hide",
 					toggle_self: false
 				}).toggleContainer({
+					content_element: hd_checkout.Fields.BillingInfo.$btncreate_credit_card,
+					force_state: "show",
+					toggle_self: false
+				}).toggleContainer({
 					content_element: hd_checkout.Fields.BillingInfo.$credit_card_wrapper,
 					force_state: "show",
 					toggle_self: false
@@ -579,7 +598,54 @@ var hd_checkout = {
 					force_state: "show",
 					toggle_self: false
 				});
-			}
+			},
+			"BindEvents_CreateCreditCardButton": function (refreshSelector) {
+				if (refreshSelector) {
+					hd_checkout.Fields.BillingInfo.$btncreate_credit_card = $("'" + hd_checkout.Fields.BillingInfo.$btncreate_credit_card.selector + "'");
+				}
+
+				hd_checkout.Fields.BillingInfo.$btncreate_credit_card.toggleContainer({
+					content_element: hd_checkout.Fields.BillingInfo.$credit_card_form,
+					self_toggle_delay_offset: -hd_checkout.Settings.Shared.easing
+				});
+			},
+			"BindEvents_SaveCreditCardButton": function (refreshSelector) {
+				if (refreshSelector) {
+					hd_checkout.Fields.BillingInfo.$btnsave_credit_card = $("'" + hd_checkout.Fields.BillingInfo.$btnsave_credit_card.selector + "'");
+				}
+
+				hd_checkout.Fields.BillingInfo.$btnsave_credit_card.toggleContainer({
+					content_element: hd_checkout.Fields.BillingInfo.$btncreate_credit_card,
+					toggle_self: false,
+					delay: hd_checkout.Settings.Shared.easing - 200
+				}).toggleContainer({
+					content_element: hd_checkout.Fields.BillingInfo.$credit_card_form,
+					toggle_self: false
+				});
+			},
+			"BindEvents_CancelCreditCardButton": function (refreshSelector) {
+				if (refreshSelector) {
+					hd_checkout.Fields.BillingInfo.$btncancel_credit_card = $("'" + hd_checkout.Fields.BillingInfo.$btncancel_credit_card.selector + "'");
+				}
+
+				hd_checkout.Fields.BillingInfo.$btncancel_credit_card.toggleContainer({
+					content_element: hd_checkout.Fields.BillingInfo.$btncreate_credit_card,
+					toggle_self: false,
+					delay: hd_checkout.Settings.Shared.easing - 200
+				}).toggleContainer({
+					content_element: hd_checkout.Fields.BillingInfo.$credit_card_form,
+					toggle_self: false
+				});
+			},
+			"BindEvents_CreditCardForm": function (refreshSelector) {
+				if (refreshSelector) {
+					hd_checkout.Fields.BillingInfo.$credit_card_form = $(hd_checkout.Fields.BillingInfo.$credit_card_form.selector);
+				}
+				hd_checkout.Fields.BillingInfo.$credit_card_form.on("submit", function (e) {
+					e.preventDefault();
+					// DO STUFF
+				});
+			},
 		}
 	}
 }

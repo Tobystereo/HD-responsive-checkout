@@ -409,12 +409,12 @@
                             </ul>
                             <div class="grid">
                                 <div class="buttons grid__item one-whole desk-one-half">
-                                    <button class="createaddress btn taptarget tertiary" style="display: none;">Create new card</button>
+                                    <button class="create-credit-card btn taptarget tertiary" style="display: none;">Enter new credit card</button>
                                 </div>
                             </div>
                             <div class="grid">
-                                <form id="new-credit-card-form" action="#" style="display: none;">
-                                    <h2>Create new credit card</h2>
+                                <form id="credit-card-form" action="#" style="display: none;">
+                                    <h2 data-new-text="Enter new credit card" data-edit-text="Edit credit card">Enter new credit card</h2>
                                     <ul class="grid__item add-edit-credit-card form-fields one-whole card">
                                         <li class="field field__secondary name">
                                             <input type="text" class="text-input required" id="cc-name-input" title="Name">
@@ -425,11 +425,11 @@
                                             <label for="cc-number-input">Card Number</label>
                                             <span class="cc-number-masked" style="display: none;">xxxx-xxxx-xxxx-1234</span>
                                         </li>
-                                        <li class="field field__secondary card-expiration">
+                                        <li class="field field__secondary one-half card-expiration">
                                             <input type="text" class="text-input required" id="cc-expiration-input" title="Expiration">
                                             <label for="cc-expiration-input">MM/YY</label>
                                         </li>
-                                        <li class="field field__secondary card-security">
+                                        <li class="field field__secondary one-half card-security">
                                             <input type="text" class="text-input required" id="cc-security-code-input" title="Security Code">
                                             <label for="cc-security-code-input">Security Code</label>
                                         </li>
@@ -437,10 +437,13 @@
                                             <input type="checkbox" class="checkbox-input" id="cc-wallet-input" title="Save this card to use again">
                                             <label for="cc-wallet-input">Save this card to use again</label>
                                         </li>
+                                        <li class="field__secondary buttons">
+                                            <button class="cancel btn btn--small taptarget tertiary">Cancel</button>
+                                            <button class="save btn btn--small taptarget secondary">Save Card</button>
+                                        </li>
                                     </ul>
                                 </form>
                             </div>
-
                         </div>
                         <div class="paypal-container" style="display:none;">
                             <p>When you click Next, you’ll be taken to Paypal’s site. Follow Paypal’s instructions, then you’ll be sent right back here to review and confirm your order.</p>
