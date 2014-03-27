@@ -287,7 +287,7 @@
                     </div>
                     <div class="grid default-payment">
                         <h3>Would you like to pay with your default billing information?</h3>
-                        <div class="default grid__item one-whole desk-one-half address-item">
+                        <div class="default grid__item one-whole">
                             <div class="billing-data card selected one-whole">
 
                                 <div class="credit-card">
@@ -343,21 +343,8 @@
                         </ul>
                         <div class="credit-card-wrapper" style="display:none;">
                             <ul class="grid credit-card-list">
-                                <li class="default grid__item one-whole desk-one-half credit-card-item">
-                                    <input type="radio" name="select-credit-card" id="card0" value="card0" checked>
-                                    <label for="card0" class="card">
-                                        <span class="btn paywiththis secondary small"></span>
-                                        <button class="btn edit tertiary small">Edit</button>
-                                        <div class="credit-card">
-                                            <span class="type visa"></span>
-                                            <span class="name">John T Doe</span>
-                                            <span class="masked-number">xxxx-xxxx-xxxx-8237</span>
-                                            <span class="expiration">Expires: 10/16</span>
-                                        </div>
-                                    </label>
-                                </li>
-                                <li class="grid__item one-whole desk-one-half credit-card-item expired">
-                                    <input type="radio" name="select-credit-card" id="card1" value="card1">
+                                <li class="grid__item one-whole desk-one-half credit-card-item">
+                                    <input type="radio" name="select-credit-card" id="card1" value="card1" checked>
                                     <label for="card1" class="card">
                                         <span class="btn paywiththis secondary small"></span>
                                         <button class="btn edit tertiary small">Edit</button>
@@ -367,9 +354,18 @@
                                             <span class="masked-number">xxxx-xxxx-xxxx-7812</span>
                                             <span class="expiration">Expires: 01/13</span>
                                         </div>
+                                        <div class="address">
+                                            <span class="name">Ethan Koser</span>
+                                            <span class="street">123 A street</span>,
+                                            <span class="city">Mobile</span>
+                                            <span class="state">AK</span>
+                                            <span class="zip">88739</span>
+                                            <span class="country">United States</span>
+                                            <span class="phone">+1-222-333-4567</span>
+                                        </div>
                                     </label>
                                 </li>
-                                <li class="grid__item one-whole desk-one-half credit-card-item">
+                                <li class="grid__item one-whole desk-one-half credit-card-item expired">
                                     <input type="radio" name="select-credit-card" id="card2" value="card2">
                                     <label for="card2" class="card">
                                         <span class="btn paywiththis secondary small"></span>
@@ -380,17 +376,48 @@
                                             <span class="masked-number">xxxx-xxxx-xxxx-2254</span>
                                             <span class="expiration">Expires: 03/15</span>
                                         </div>
+                                        <div class="address">
+                                            <span class="name">Ethan Koser</span>
+                                            <span class="street">123 A street</span>,
+                                            <span class="city">Mobile</span>
+                                            <span class="state">AK</span>
+                                            <span class="zip">88739</span>
+                                            <span class="country">United States</span>
+                                            <span class="phone">+1-222-333-4567</span>
+                                        </div>
+                                    </label>
+                                </li>
+                                <li class="default grid__item one-whole desk-one-half credit-card-item">
+                                    <input type="radio" name="select-credit-card" id="card0" value="card0">
+                                    <label for="card0" class="card">
+                                        <span class="btn paywiththis secondary small"></span>
+                                        <button class="btn edit tertiary small">Edit</button>
+                                        <div class="credit-card">
+                                            <span class="type visa"></span>
+                                            <span class="name">John T Doe</span>
+                                            <span class="masked-number">xxxx-xxxx-xxxx-8237</span>
+                                            <span class="expiration">Expires: 10/16</span>
+                                        </div>
+                                        <div class="address">
+                                            <span class="name">Ethan Koser</span>
+                                            <span class="street">123 A street</span>,
+                                            <span class="city">Mobile</span>
+                                            <span class="state">AK</span>
+                                            <span class="zip">88739</span>
+                                            <span class="country">United States</span>
+                                            <span class="phone">+1-222-333-4567</span>
+                                        </div>
                                     </label>
                                 </li>
                             </ul>
                             <div class="grid">
                                 <div class="buttons grid__item one-whole desk-one-half">
-                                    <button class="createaddress btn taptarget tertiary" style="display: none;">Create new card</button>
+                                    <button class="create-credit-card btn taptarget tertiary" style="display: none;">Enter new credit card</button>
                                 </div>
                             </div>
                             <div class="grid">
-                                <form id="new-credit-card-form" action="#" style="display: none;">
-                                    <h2>Create new credit card</h2>
+                                <form id="credit-card-form" action="#" style="display: none;">
+                                    <h2 data-new-text="Enter new credit card" data-edit-text="Edit credit card">Enter new credit card</h2>
                                     <ul class="grid__item add-edit-credit-card form-fields one-whole card">
                                         <li class="field field__secondary name">
                                             <input type="text" class="text-input required" id="cc-name-input" title="Name">
@@ -401,11 +428,11 @@
                                             <label for="cc-number-input">Card Number</label>
                                             <span class="cc-number-masked" style="display: none;">xxxx-xxxx-xxxx-1234</span>
                                         </li>
-                                        <li class="field field__secondary card-expiration">
+                                        <li class="field field__secondary one-half card-expiration">
                                             <input type="text" class="text-input required" id="cc-expiration-input" title="Expiration">
                                             <label for="cc-expiration-input">MM/YY</label>
                                         </li>
-                                        <li class="field field__secondary card-security">
+                                        <li class="field field__secondary one-half card-security">
                                             <input type="text" class="text-input required" id="cc-security-code-input" title="Security Code">
                                             <label for="cc-security-code-input">Security Code</label>
                                         </li>
@@ -413,10 +440,13 @@
                                             <input type="checkbox" class="checkbox-input" id="cc-wallet-input" title="Save this card to use again">
                                             <label for="cc-wallet-input">Save this card to use again</label>
                                         </li>
+                                        <li class="field__secondary buttons">
+                                            <button class="cancel btn btn--small taptarget tertiary">Cancel</button>
+                                            <button class="save btn btn--small taptarget secondary">Save Card</button>
+                                        </li>
                                     </ul>
                                 </form>
                             </div>
-
                         </div>
                         <div class="paypal-container" style="display:none;">
                             <p>When you click Next, you’ll be taken to Paypal’s site. Follow Paypal’s instructions, then you’ll be sent right back here to review and confirm your order.</p>
