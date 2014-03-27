@@ -357,18 +357,17 @@ article {
     }
 }
 
-.address-item {
+.address-item, .credit-card {
     text-align: left;
 
     span {
         display: inline-block;
         text-align: left;
     }
-    .name, .company, .country {
+    .name, .company, .country, .type, .masked-number, .expiration {
         display: block;
         clear: both;
     }
-
 
 
     .edit {
@@ -615,6 +614,35 @@ article {
     @media #{$desk} {
       margin-left: 0;
     }
+  }
+}
+
+.promo-code .text-input {
+  // width: 85%;
+}
+
+.default-payment {
+  .card {
+    margin-top: 0;
+    padding-top: 1em;
+    min-height: 150px;
+  }
+}
+
+.type {
+  display: block;
+  // position: absolute;
+  // margin-top: -5px;
+  // margin-left: 200px;
+  width: 60px;
+  height: 38px;
+  background: url("../images/Credit_Card_Icons.svg") 0 0 ;
+  background-size: 60px auto;
+  background-repeat: no-repeat;
+  margin-bottom: 1em;
+
+  &.visa {
+    background-position: 0 -40px;
   }
 }
 

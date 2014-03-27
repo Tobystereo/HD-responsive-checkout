@@ -274,12 +274,12 @@
                     <div class="promo-code-container grid">
                         <form id="promo-code-form" action="#">
                             <ul class="grid__item form-fields one-whole card">
-                                <li class="promo-title"><h3>Enter Promo Code</h3></li>
+                                <li class="promo-title">Enter Promo Code</li>
                                 <li class="promo-error-message" style="display:none;"></li>
                                 <li class="field field__secondary promo-code">
                                     <input type="text" class="text-input" id="promo-code-input" title="Promo Code">
                                     <label for="promo-code-input">Promo Code</label>
-                                    <button class="apply btn btn--small taptarget secondary" data-text="Apply Code" data-text-alt="Remove Code">Apply Code</button>
+                                    <button class="apply btn taptarget secondary" data-text="Apply Code" data-text-alt="Remove Code">Apply Code</button>
                                 </li>
                                 <li class="promo-details" style="display:none;"></li>
                             </ul>
@@ -288,7 +288,8 @@
                     <div class="grid default-payment">
                         <h3>Would you like to pay with your default billing information?</h3>
                         <div class="default grid__item one-whole desk-one-half credit-card-item">
-                            <div class="credit-card card">
+                          <h4>Payment Method</h4>
+                            <div class="credit-card card selected">
                                 <span class="type visa"></span>
                                 <span class="name">John T Doe</span>
                                 <span class="masked-number">xxxx-xxxx-xxxx-8237</span>
@@ -296,7 +297,8 @@
                             </div>
                         </div>
                         <div class="default grid__item one-whole desk-one-half address-item">
-                            <div class="address card">
+                          <h4>Billing Address</h4>
+                            <div class="address card selected one-whole">
                                 <span class="name">Ethan Koser</span>
                                 <span class="street">123 A street</span>,
                                 <span class="city">Mobile</span>
