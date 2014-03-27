@@ -6586,3 +6586,19 @@ body {
   line-height: 20.8px;
   line-height: 1.3rem;
 }
+
+/* Helpers */
+/* line 2, ui/_helpers.scss */
+.align_left {
+  text-align: left;
+}
+
+/* line 3, ui/_helpers.scss */
+.align_center {
+  text-align: center;
+}
+
+/* line 4, ui/_helpers.scss */
+.align_right {
+  text-align: right;
+}
