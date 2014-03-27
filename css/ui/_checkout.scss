@@ -617,32 +617,62 @@ article {
   }
 }
 
-.promo-code .text-input {
-  // width: 85%;
-}
-
 .default-payment {
   .card {
     margin-top: 0;
     padding-top: 1em;
-    min-height: 150px;
+    // min-height: 150px;
+  }
+}
+
+.billing-data {
+  .address {
+    color: $dark;
+    margin-top: 0;
+  }
+}
+
+.credit-card {
+  overflow: auto;
+
+  span, .name, .masked-number, .expiration {
+    clear: none;
+    float: left;
+    margin-right: 1em;
+    margin-top: 1em;
   }
 }
 
 .type {
   display: block;
-  // position: absolute;
-  // margin-top: -5px;
-  // margin-left: 200px;
-  width: 60px;
-  height: 38px;
-  background: url("../images/Credit_Card_Icons.svg") 0 0 ;
-  background-size: 60px auto;
+  width: 31px;
+  height: 20px;
+  overflow: hidden;
+  text-indent: 101%;
+  text-align:right !important;
+  background: url("../images/creditcards.svg") 0 0 ;
+  background-size: 31px auto;
   background-repeat: no-repeat;
   margin-bottom: 1em;
 
   &.visa {
-    background-position: 0 -40px;
+    background-position: 1px 0;
+  }
+
+  &.mastercard {
+    background-position: 1px -20px;
+  }
+
+  &.amex, &.americanexpress {
+    background-position: 1px -40px;
+  }
+
+  &.discover {
+    background-position: 1px -62px;
+  }
+
+  &.paypal {
+    background-position: 1px -80px;
   }
 }
 
