@@ -190,7 +190,7 @@
                             Loading Shipping Options...
                         </p>
                     </div>
-                    <div class="shipping-option-wrapper">
+                    <div class="shipping-option-wrapper" style="display:none;">
                         <p>
                             Your order will be shipped from our warehouse in <span data-us-shipping-origin="Lancaster, PA" data-eu-shipping-origin="Amsterdam, NL">Lancaster, PA</span>.
                         </p>
@@ -286,50 +286,54 @@
                         </form>
                     </div>
                     <div class="grid default-payment">
-                      <div class="grid__item one-whole">
-                        <h3 class="align_left">Would you like to pay with your default billing information?</h3>
-                      </div>
-                        <div class="default grid__item one-whole desk-one-half credit-card-item">
-                          <h4>Payment Method</h4>
-                            <div class="credit-card card selected">
-                                <span class="type visa"></span>
-                                <span class="name">John T Doe</span>
-                                <span class="masked-number">xxxx-xxxx-xxxx-8237</span>
-                                <span class="expiration">Expires: 10/16</span>
-                            </div>
-                        </div>
+                        <h3>Would you like to pay with your default billing information?</h3>
                         <div class="default grid__item one-whole desk-one-half address-item">
-                          <h4>Billing Address</h4>
-                            <div class="address card selected one-whole">
-                                <span class="name">Ethan Koser</span>
-                                <span class="street">123 A street</span>,
-                                <span class="city">Mobile</span>
-                                <span class="state">AK</span>
-                                <span class="zip">88739</span>
-                                <span class="country">United States</span>
-                                <span class="phone">+1-222-333-4567</span>
+                            <div class="billing-data card selected one-whole">
+                                <div class="credit-card">
+                                    <span class="type visa"></span>
+                                    <span class="name">John T Doe</span>
+                                    <span class="masked-number">xxxx-xxxx-xxxx-8237</span>
+                                    <span class="expiration">Expires: 10/16</span>
+                                </div>
+                                <div class="address">
+                                    <span class="name">Ethan Koser</span>
+                                    <span class="street">123 A street</span>,
+                                    <span class="city">Mobile</span>
+                                    <span class="state">AK</span>
+                                    <span class="zip">88739</span>
+                                    <span class="country">United States</span>
+                                    <span class="phone">+1-222-333-4567</span>
+                                </div>
                             </div>
                         </div>
                         <div class="buttons grid__item one-whole desk-one-half">
-                            <button class="changeaddress btn taptarget tertiary">Use different payment option</button>
+                            <button class="change-payment-option btn taptarget tertiary">Use different payment option</button>
                         </div>
                     </div>
                     <div class="payment-wrapper" style="display: none;">
                         <h3>Choose a payment option</h3>
                         <ul class="grid payment-option-list">
-                            <li class="grid__item one-whole desk-one-half payment-option-item">
-                                <input type="radio" name="select-payment-option" id="payment-option0" value="payment-option0" checked>
-                                <label for="payment-option0" class="card">
+                            <li class="grid__item one-whole desk-one-third payment-option-item">
+                                <input type="radio" name="select-payment-option" id="payment-option-credit-card" value="credit-card">
+                                <label for="payment-option-credit-card" class="card">
                                     <div class="payment-option">
                                         Credit Card
                                     </div>
                                 </label>
                             </li>
-                            <li class="grid__item one-whole desk-one-half payment-option-item">
-                                <input type="radio" name="select-payment-option" id="payment-option1" value="payment-option1">
-                                <label for="payment-option1" class="card">
+                            <li class="grid__item one-whole desk-one-third payment-option-item">
+                                <input type="radio" name="select-payment-option" id="payment-option-paypal" value="paypal">
+                                <label for="payment-option-paypal" class="card">
                                     <div class="payment-option">
                                         PayPal
+                                    </div>
+                                </label>
+                            </li>
+                            <li class="grid__item one-whole desk-one-third payment-option-item">
+                                <input type="radio" name="select-payment-option" id="payment-option-default" value="default">
+                                <label for="payment-option-default" class="card">
+                                    <div class="payment-option">
+                                        Default Payment Option
                                     </div>
                                 </label>
                             </li>
@@ -414,8 +418,7 @@
                         <div class="paypal-container" style="display:none;">
                             <p>When you click Next, you’ll be taken to Paypal’s site. Follow Paypal’s instructions, then you’ll be sent right back here to review and confirm your order.</p>
                         </div>
-                        <div class="billing-address-container">
-                            <!--style="display: none;"-->
+                        <div class="billing-address-container" style="display:none;">
                             <h3>Select a billing address</h3>
                             <ul class="grid address-list">
                                 <li class="default grid__item one-whole desk-one-half address-item">
