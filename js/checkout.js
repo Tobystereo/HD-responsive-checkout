@@ -139,6 +139,17 @@ var hd_checkout = {
 		"ShippingMethod": {
 			"$loading_panel": undefined,
 			"$shipping_option_list": undefined
+		},
+		"BillingInfo": {
+			"$default_payment_container": undefined,
+			"$btnchange_payment_option": undefined,
+			"$payment_wrapper": undefined,
+			"$payment_option_list": undefined,
+			"$payment_option_credit_card": undefined,
+			"$payment_option_paypal": undefined,
+			"$payment_option_default": undefined,
+			"$credit_card_wrapper": undefined,
+			"$paypal_container": undefined
 		}
 	},
 	"Settings": {
@@ -221,6 +232,15 @@ var hd_checkout = {
 				hd_checkout.Fields.Shared.$form_inputs = $("input[type=text], textarea, #country-input");
 				hd_checkout.Fields.ShippingMethod.$loading_panel = $(".loading-panel");
 				hd_checkout.Fields.ShippingMethod.$shipping_option_wrapper = $(".shipping-option-wrapper");
+				hd_checkout.Fields.BillingInfo.$btnchange_payment_option = hd_checkout.Fields.Shared.$step_billing.find("button.change-payment-option");
+				hd_checkout.Fields.BillingInfo.$default_payment_container = hd_checkout.Fields.Shared.$step_billing.find("div.default-payment");
+				hd_checkout.Fields.BillingInfo.$payment_wrapper = hd_checkout.Fields.Shared.$step_billing.find("div.payment-wrapper");
+				hd_checkout.Fields.BillingInfo.$payment_option_list = hd_checkout.Fields.BillingInfo.$payment_wrapper.find(".payment-option-list");
+				hd_checkout.Fields.BillingInfo.$payment_option_credit_card = hd_checkout.Fields.BillingInfo.$payment_option_list.find("#payment-option-credit-card");
+				hd_checkout.Fields.BillingInfo.$payment_option_paypal = hd_checkout.Fields.BillingInfo.$payment_option_list.find("#payment-option-paypal");
+				hd_checkout.Fields.BillingInfo.$payment_option_default = hd_checkout.Fields.BillingInfo.$payment_option_list.find("#payment-option-default");
+				hd_checkout.Fields.BillingInfo.$credit_card_wrapper = hd_checkout.Fields.Shared.$step_billing.find(".credit-card-wrapper");
+				hd_checkout.Fields.BillingInfo.$paypal_container = hd_checkout.Fields.Shared.$step_billing.find(".paypal-container");
 			},
 			"WireEvents": function () {
 				/// <summary>Wire up control events</summary>
@@ -235,6 +255,11 @@ var hd_checkout = {
 				hd_checkout.Functions.ShippingAddress.BindEvents_SaveAddressButton(false);
 				hd_checkout.Functions.ShippingAddress.BindEvents_AddressForm(false);
 				hd_checkout.Functions.ShippingAddress.BindEvents_CountrySelect(false);
+				hd_checkout.Functions.BillingInfo.BindEvents_ChangePaymentOptionButton(false);
+				hd_checkout.Functions.BillingInfo.BindEvents_CreditCardOptionButton(false);
+				hd_checkout.Functions.BillingInfo.BindEvents_PayPalOptionButton(false);
+				hd_checkout.Functions.BillingInfo.BindEvents_DefaultOptionButton(false);
+
 			},
 			"InitCurrentStep": function (step_name) {
 				var $currentProgressBarItem = $("a[href=#" + hd_checkout.Settings.Shared.step_url_prefix + hd_checkout.Fields.Shared.$step_current.attr("id") + "]").parent();
@@ -483,6 +508,78 @@ var hd_checkout = {
 		},
 		"ShippingOption": {
 
+		},
+		"BillingInfo": {
+			"BindEvents_ChangePaymentOptionButton": function (refreshSelector) {
+				if (refreshSelector) {
+					hd_checkout.Fields.BillingInfo.$btnchange_payment_option = $("'" + hd_checkout.Fields.BillingInfo.$btnchange_payment_option.selector + "'");
+				}
+				hd_checkout.Fields.BillingInfo.$btnchange_payment_option.toggleContainer({
+					content_element: hd_checkout.Fields.BillingInfo.$payment_wrapper,
+					self_toggle_delay_offset: -hd_checkout.Settings.Shared.easing
+				}).toggleContainer({
+					content_element: hd_checkout.Fields.BillingInfo.$default_payment_container,
+					toggle_self: false
+				});
+			},
+			"BindEvents_CreditCardOptionButton": function (refreshSelector) {
+				if (refreshSelector) {
+					hd_checkout.Fields.BillingInfo.$payment_option_credit_card = $("'" + hd_checkout.Fields.BillingInfo.$payment_option_credit_card.selector + "'");
+				}
+				hd_checkout.Fields.BillingInfo.$payment_option_credit_card.toggleContainer({
+					content_element: hd_checkout.Fields.BillingInfo.$default_payment_container,
+					force_state: "hide",
+					toggle_self: false
+				}).toggleContainer({
+					content_element: hd_checkout.Fields.BillingInfo.$paypal_container,
+					force_state: "hide",
+					toggle_self: false
+				}).toggleContainer({
+					content_element: hd_checkout.Fields.BillingInfo.$credit_card_wrapper,
+					force_state: "show",
+					toggle_self: false
+				});
+			},
+			"BindEvents_PayPalOptionButton": function (refreshSelector) {
+				if (refreshSelector) {
+					hd_checkout.Fields.BillingInfo.$payment_option_paypal = $("'" + hd_checkout.Fields.BillingInfo.$payment_option_paypal.selector + "'");
+				}
+				hd_checkout.Fields.BillingInfo.$payment_option_paypal.toggleContainer({
+					content_element: hd_checkout.Fields.BillingInfo.$default_payment_container,
+					force_state: "hide",
+					toggle_self: false
+				}).toggleContainer({
+					content_element: hd_checkout.Fields.BillingInfo.$credit_card_wrapper,
+					force_state: "hide",
+					toggle_self: false
+				}).toggleContainer({
+					content_element: hd_checkout.Fields.BillingInfo.$paypal_container,
+					force_state: "show",
+					toggle_self: false
+				});
+			},
+			"BindEvents_DefaultOptionButton": function (refreshSelector) {
+				if (refreshSelector) {
+					hd_checkout.Fields.BillingInfo.$payment_option_default = $("'" + hd_checkout.Fields.BillingInfo.$payment_option_default.selector + "'");
+				}
+
+				hd_checkout.Fields.BillingInfo.$payment_option_default.toggleContainer({
+					content_element: hd_checkout.Fields.BillingInfo.$credit_card_wrapper,
+					force_state: "hide",
+					pre_logic: function () {
+						hd_checkout.Fields.BillingInfo.$default_payment_container.insertAfter(hd_checkout.Fields.BillingInfo.$payment_option_list);
+					},
+					toggle_self: false
+				}).toggleContainer({
+					content_element: hd_checkout.Fields.BillingInfo.$paypal_container,
+					force_state: "hide",
+					toggle_self: false
+				}).toggleContainer({
+					content_element: hd_checkout.Fields.BillingInfo.$default_payment_container,
+					force_state: "show",
+					toggle_self: false
+				});
+			}
 		}
 	}
 }
