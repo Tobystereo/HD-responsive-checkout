@@ -190,7 +190,7 @@
                             Loading Shipping Options...
                         </p>
                     </div>
-                    <div class="shipping-option-wrapper">
+                    <div class="shipping-option-wrapper" style="display:none;">
                         <p>
                             Your order will be shipped from our warehouse in <span data-us-shipping-origin="Lancaster, PA" data-eu-shipping-origin="Amsterdam, NL">Lancaster, PA</span>.
                         </p>
@@ -307,23 +307,23 @@
                             </div>
                         </div>
                         <div class="buttons grid__item one-whole desk-one-half">
-                            <button class="changeaddress btn taptarget tertiary">Use different payment option</button>
+                            <button class="change-payment-option btn taptarget tertiary">Use different payment option</button>
                         </div>
                     </div>
                     <div class="payment-wrapper" style="display: none;">
                         <h3>Choose a payment option</h3>
                         <ul class="grid payment-option-list">
                             <li class="grid__item one-whole desk-one-half payment-option-item">
-                                <input type="radio" name="select-payment-option" id="payment-option0" value="payment-option0" checked>
-                                <label for="payment-option0" class="card">
+                                <input type="radio" name="select-payment-option" id="payment-option-credit-card" value="credit-card">
+                                <label for="payment-option-credit-card" class="card">
                                     <div class="payment-option">
                                         Credit Card
                                     </div>
                                 </label>
                             </li>
                             <li class="grid__item one-whole desk-one-half payment-option-item">
-                                <input type="radio" name="select-payment-option" id="payment-option1" value="payment-option1">
-                                <label for="payment-option1" class="card">
+                                <input type="radio" name="select-payment-option" id="payment-option-paypal" value="paypal">
+                                <label for="payment-option-paypal" class="card">
                                     <div class="payment-option">
                                         PayPal
                                     </div>
@@ -410,8 +410,7 @@
                         <div class="paypal-container" style="display:none;">
                             <p>When you click Next, you’ll be taken to Paypal’s site. Follow Paypal’s instructions, then you’ll be sent right back here to review and confirm your order.</p>
                         </div>
-                        <div class="billing-address-container">
-                            <!--style="display: none;"-->
+                        <div class="billing-address-container" style="display:none;">
                             <h3>Select a billing address</h3>
                             <ul class="grid address-list">
                                 <li class="default grid__item one-whole desk-one-half address-item">
