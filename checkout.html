@@ -289,9 +289,7 @@
                         <h3>Would you like to pay with your default billing information?</h3>
                         <div class="default grid__item one-whole">
                             <div class="billing-data card selected one-whole">
-
                                 <div class="credit-card">
-                                    <button class="btn edit tertiary small">Edit</button>
                                     <span class="type visa">Visa</span>
                                     <span class="masked-number">ending in: 8237</span>
                                     <span class="expiration">Expires: 10/16</span>
@@ -302,6 +300,7 @@
                                     <span class="city">Mobile</span>
                                     <span class="state">AK</span>
                                     <span class="zip">88739</span>
+                                    <span class="country">United States</span>
                                 </div>
                             </div>
                         </div>
@@ -317,6 +316,10 @@
                                 <label for="payment-option-credit-card" class="card">
                                     <div class="payment-option">
                                         Credit Card
+                                        <span class="type visa">Visa</span>
+                                        <span class="type mastercard">Mastercard</span>
+                                        <span class="type discover">Discover</span>
+                                        <span class="type amex">American Express</span>
                                     </div>
                                 </label>
                             </li>
@@ -325,6 +328,7 @@
                                 <label for="payment-option-paypal" class="card">
                                     <div class="payment-option">
                                         PayPal
+                                        <span class="type paypal">PayPal</span>
                                     </div>
                                 </label>
                             </li>
@@ -345,19 +349,17 @@
                                         <span class="btn paywiththis secondary small"></span>
                                         <button class="btn edit tertiary small">Edit</button>
                                         <div class="credit-card">
-                                            <span class="type mc"></span>
-                                            <span class="name">Jane C Doe</span>
-                                            <span class="masked-number">xxxx-xxxx-xxxx-7812</span>
+                                            <span class="type mastercard">Mastercard</span>
+                                            <span class="masked-number">ending in: 7812</span>
                                             <span class="expiration">Expires: 01/13</span>
                                         </div>
                                         <div class="address">
-                                            <span class="name">Ethan Koser</span>
+                                            Billing Address:
                                             <span class="street">123 A street</span>,
                                             <span class="city">Mobile</span>
                                             <span class="state">AK</span>
                                             <span class="zip">88739</span>
                                             <span class="country">United States</span>
-                                            <span class="phone">+1-222-333-4567</span>
                                         </div>
                                     </label>
                                 </li>
@@ -367,19 +369,17 @@
                                         <span class="btn paywiththis secondary small"></span>
                                         <button class="btn edit tertiary small">Edit</button>
                                         <div class="credit-card">
-                                            <span class="type mc"></span>
-                                            <span class="name">Leroy Jenkins</span>
-                                            <span class="masked-number">xxxx-xxxx-xxxx-2254</span>
+                                            <span class="type amex">American Express</span>
+                                            <span class="masked-number">ending in: 2254</span>
                                             <span class="expiration">Expires: 03/15</span>
                                         </div>
                                         <div class="address">
-                                            <span class="name">Ethan Koser</span>
+                                            Billing Address:
                                             <span class="street">123 A street</span>,
                                             <span class="city">Mobile</span>
                                             <span class="state">AK</span>
                                             <span class="zip">88739</span>
                                             <span class="country">United States</span>
-                                            <span class="phone">+1-222-333-4567</span>
                                         </div>
                                     </label>
                                 </li>
@@ -389,19 +389,17 @@
                                         <span class="btn paywiththis secondary small"></span>
                                         <button class="btn edit tertiary small">Edit</button>
                                         <div class="credit-card">
-                                            <span class="type visa"></span>
-                                            <span class="name">John T Doe</span>
-                                            <span class="masked-number">xxxx-xxxx-xxxx-8237</span>
+                                            <span class="type visa">Visa</span>
+                                            <span class="masked-number">ending in: 8237</span>
                                             <span class="expiration">Expires: 10/16</span>
                                         </div>
                                         <div class="address">
-                                            <span class="name">Ethan Koser</span>
+                                            Billing Address:
                                             <span class="street">123 A street</span>,
                                             <span class="city">Mobile</span>
                                             <span class="state">AK</span>
                                             <span class="zip">88739</span>
                                             <span class="country">United States</span>
-                                            <span class="phone">+1-222-333-4567</span>
                                         </div>
                                     </label>
                                 </li>
@@ -422,6 +420,7 @@
                                         <li class="field field__secondary card-number">
                                             <input type="text" class="text-input required" id="cc-number-input" title="Card Number">
                                             <label for="cc-number-input">Card Number</label>
+                                            <span class="type" style="display:none;"></span>
                                             <span class="cc-number-masked" style="display: none;">xxxx-xxxx-xxxx-1234</span>
                                         </li>
                                         <li class="field field__secondary one-half card-expiration">
