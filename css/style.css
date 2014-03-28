@@ -5808,65 +5808,91 @@ input[type=radio]:checked + label.card .shiptothis:after, input[type=radio]:chec
   text-indent: 101%;
   text-align: right !important;
   background: url("../images/creditcards.svg") 0 0;
-  background-size: 31px auto;
+  background-size: auto 20px;
   background-repeat: no-repeat;
   margin-bottom: 1em;
+  margin-left: 2px;
 }
-/* line 687, ui/_checkout.scss */
+/* line 688, ui/_checkout.scss */
 .type.visa {
-  background-position: 1px 0;
+  background-position: 0 0;
 }
-/* line 691, ui/_checkout.scss */
+/* line 692, ui/_checkout.scss */
 .type.mastercard {
-  background-position: 1px -20px;
+  background-position: -31px 0;
 }
-/* line 695, ui/_checkout.scss */
+/* line 696, ui/_checkout.scss */
 .type.amex, .type.americanexpress {
-  background-position: 1px -40px;
+  background-position: -63px 0;
 }
-/* line 699, ui/_checkout.scss */
+/* line 700, ui/_checkout.scss */
 .type.discover {
-  background-position: 1px -62px;
+  background-position: -93px 0;
 }
-/* line 703, ui/_checkout.scss */
+/* line 704, ui/_checkout.scss */
 .type.paypal {
   background-position: 1px -80px;
 }
 
-/* line 709, ui/_checkout.scss */
+/* line 710, ui/_checkout.scss */
 .promo-code-container form {
   margin: 0;
   padding: 0;
 }
 
+/* line 716, ui/_checkout.scss */
+#payment-option-credit-card + label .payment-option:after {
+  display: inline-block;
+  position: relative;
+  content: "\ ";
+  width: 125px;
+  height: 20px;
+  background: url("../images/creditcards.svg");
+  background-size: auto 20px;
+  margin-left: 1em;
+}
+
+/* line 723, ui/_checkout.scss */
+#payment-option-paypal + label .payment-option:after {
+  display: inline-block;
+  position: relative;
+  content: "\ ";
+  width: 30px;
+  height: 20px;
+  background: url("../images/creditcards.svg");
+  background-size: auto 20px;
+  background-position: -120px 0;
+  margin-left: 1em;
+}
+
 /* Colors */
-/* line 752, ui/_checkout.scss */
+/* line 768, ui/_checkout.scss */
 .bg-lightest {
   background-color: white;
 }
 
-/* line 753, ui/_checkout.scss */
+/* line 769, ui/_checkout.scss */
 .bg-lighter {
   background-color: #f1f1f1;
 }
 
-/* line 754, ui/_checkout.scss */
+/* line 770, ui/_checkout.scss */
 .bg-light {
   background-color: #cbcbcb;
 }
 
-/* line 755, ui/_checkout.scss */
+/* line 771, ui/_checkout.scss */
 .bg-dark {
   background-color: #727272;
 }
 
-/* line 756, ui/_checkout.scss */
+/* line 772, ui/_checkout.scss */
 .bg-darkest {
   background-color: black;
 }
 
 /* Typography */
-/* line 763, ui/_checkout.scss */
+/* line 779, ui/_checkout.scss */
 a, a:link, a:hover, a:active, a:focus {
   text-decoration: none;
   border-bottom: 1px solid;

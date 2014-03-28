@@ -680,24 +680,25 @@ input[type=radio]:checked + label.card {
   text-indent: 101%;
   text-align:right !important;
   background: url("../images/creditcards.svg") 0 0 ;
-  background-size: 31px auto;
+  background-size: auto 20px;
   background-repeat: no-repeat;
   margin-bottom: 1em;
+  margin-left: 2px;
 
   &.visa {
-    background-position: 1px 0;
+    background-position: 0 0;
   }
 
   &.mastercard {
-    background-position: 1px -20px;
+    background-position: -31px 0;
   }
 
   &.amex, &.americanexpress {
-    background-position: 1px -40px;
+    background-position: -63px 0;
   }
 
   &.discover {
-    background-position: 1px -62px;
+    background-position: -93px 0;
   }
 
   &.paypal {
@@ -710,6 +711,21 @@ input[type=radio]:checked + label.card {
     margin: 0;
     padding: 0;
   }
+}
+
+#payment-option-credit-card + label .payment-option:after {
+  @include pseudo(125px, 20px, "\ ");
+  background: url("../images/creditcards.svg");
+  background-size: auto 20px;
+  margin-left: 1em;
+}
+
+#payment-option-paypal + label .payment-option:after {
+  @include pseudo(30px, 20px, "\ ");
+  background: url("../images/creditcards.svg");
+  background-size: auto 20px;
+  background-position: -120px 0;
+  margin-left: 1em;
 }
 
 // .paywiththis {
