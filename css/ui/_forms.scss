@@ -182,6 +182,22 @@ input[type=radio] {
       text-align: center;
       display: block;
   }
+
+  &.label {
+    div:first-of-type:after {
+        @include pseudo(auto, 1em, "Selected");
+        color: $green;
+        position: relative;
+        display: block;
+        float: right;
+        margin-top: -.7em;
+        margin-right: 1em;
+
+        @media #{$desk} {
+          margin-top: -1.725em;
+        }
+    }
+  }
 }
 
 /********************************

@@ -395,49 +395,57 @@ article {
         }
     }
 
-    input[type=radio] + label.card {
-        .shiptothis {
-            position: relative;
-            display: block;
-            height: 100%;
-            float: right;
-            margin-top: 0;
-            margin-bottom: 0;
 
-            &:after {
-                @include pseudo(100%, 2em, "Ship to this address");
-            }
-        }
+}
 
-        button {
-            display: block;
-            height: 2em;
-        }
-
+input[type=radio] + label.card {
+    .shiptothis, .paywiththis {
+        position: relative;
+        display: block;
+        height: 100%;
+        float: right;
+        margin-top: 0;
+        margin-bottom: 0;
     }
 
-    input[type=radio]:checked + label.card {
+    .shiptothis:after {
+      @include pseudo(100%, 2em, "Ship to this address");
+    }
 
-        .shiptothis {
-            background: none;
-            margin-top: 0.5em;
+    .paywiththis {
+      &:after {
+        @include pseudo(100%, 2em, "Pay with this card");
+      }
+    }
 
-            @media #{$desk}{
-                margin-top: 1em;
-            }
+    button {
+        display: block;
+        height: 2em;
+    }
 
-            &:after {
-                @include pseudo(auto, 1em, "Selected");
-                color: $green;
-                position: relative;
-                display: block;
-                float: right;
-                margin-top: -.7em;
-                margin-right: 0;
+}
 
-                @media #{$desk} {
-                  margin-top: -1.125em;
-                }
+input[type=radio]:checked + label.card {
+
+    .shiptothis, .paywiththis {
+        background: none;
+        margin-top: 0.5em;
+
+        @media #{$desk}{
+            margin-top: 1em;
+        }
+
+        &:after {
+            @include pseudo(auto, 1em, "Selected");
+            color: $green;
+            position: relative;
+            display: block;
+            float: right;
+            margin-top: -.7em;
+            margin-right: 0;
+
+            @media #{$desk} {
+              margin-top: -1.125em;
             }
         }
     }
@@ -643,6 +651,27 @@ article {
   }
 }
 
+.promo-code {
+  overflow: auto;
+  margin-bottom: 0 !important;
+
+
+  input {
+    text-transform: uppercase;
+    width: 60% !important;
+    margin-bottom: 0;
+
+    @media #{$lap}{
+      width: 70% !important;
+    }
+  }
+
+  button {
+    margin: 0;
+    float: right;
+  }
+}
+
 .type {
   display: block;
   width: 31px;
@@ -651,30 +680,98 @@ article {
   text-indent: 101%;
   text-align:right !important;
   background: url("../images/creditcards.svg") 0 0 ;
-  background-size: 31px auto;
+  background-size: auto 20px;
   background-repeat: no-repeat;
   margin-bottom: 1em;
+  margin-left: 2px;
 
   &.visa {
-    background-position: 1px 0;
+    background-position: 0 0;
   }
 
   &.mastercard {
-    background-position: 1px -20px;
+    background-position: -31px 0;
   }
 
   &.amex, &.americanexpress {
-    background-position: 1px -40px;
+    background-position: -63px 0;
   }
 
   &.discover {
-    background-position: 1px -62px;
+    background-position: -93px 0;
   }
 
   &.paypal {
     background-position: 1px -80px;
   }
 }
+
+.promo-code-container {
+  form {
+    margin: 0;
+    padding: 0;
+  }
+}
+
+#payment-option-credit-card + label .payment-option:after {
+  @include pseudo(125px, 20px, "\ ");
+  background: url("../images/creditcards.svg");
+  background-size: auto 20px;
+  margin-left: 1em;
+}
+
+#payment-option-paypal + label .payment-option:after {
+  @include pseudo(30px, 20px, "\ ");
+  background: url("../images/creditcards.svg");
+  background-size: auto 20px;
+  background-position: -120px 0;
+  margin-left: 1em;
+}
+
+#payment-option-default + label .type {
+  clear: none !important;
+  display: inline-block;
+  height: auto;
+  // padding: 0 !important;
+  margin: 0 .25em 0 1em;
+  // float: none !important;
+}
+
+// .paywiththis {
+//     position: relative;
+//     display: block;
+//     height: 100%;
+//     float: right;
+//     margin-top: 0;
+//     margin-bottom: 0;
+//
+//     &:after {
+//         @include pseudo(100%, 2em, "Pay with this card");
+//     }
+// }
+//
+// .selected .paywiththis {
+//     background: none;
+//     margin-top: 0.5em;
+//
+//     @media #{$desk}{
+//         margin-top: 1em;
+//     }
+//
+//     &:after {
+//         @include pseudo(auto, 1em, "Selected");
+//         color: $green;
+//         position: relative;
+//         display: block;
+//         float: right;
+//         margin-top: -.7em;
+//         margin-right: 0;
+//
+//         @media #{$desk} {
+//           margin-top: -1.125em;
+//         }
+//     }
+// }
 
 /* Colors */
 .bg-lightest { background-color: $lightest; }
