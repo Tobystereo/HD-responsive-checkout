@@ -618,6 +618,10 @@ var hd_checkout = {
 					force_state: "hide",
 					toggle_self: false
 				}).toggleContainer({
+					content_element: hd_checkout.Fields.BillingInfo.$billing_address_container,
+					force_state: "hide",
+					toggle_self: false
+				}).toggleContainer({
 					content_element: hd_checkout.Fields.BillingInfo.$paypal_container,
 					force_state: "show",
 					toggle_self: false
@@ -631,9 +635,6 @@ var hd_checkout = {
 				hd_checkout.Fields.BillingInfo.$payment_option_default.toggleContainer({
 					content_element: hd_checkout.Fields.BillingInfo.$credit_card_wrapper,
 					force_state: "hide",
-					pre_logic: function () {
-						hd_checkout.Fields.BillingInfo.$default_payment_container.insertAfter(hd_checkout.Fields.BillingInfo.$payment_option_list).find("h3").hide();
-					},
 					toggle_self: false
 				}).toggleContainer({
 					content_element: hd_checkout.Fields.BillingInfo.$credit_card_form,
@@ -644,12 +645,12 @@ var hd_checkout = {
 					force_state: "hide",
 					toggle_self: false
 				}).toggleContainer({
-					content_element: hd_checkout.Fields.BillingInfo.$paypal_container,
+					content_element: hd_checkout.Fields.BillingInfo.$billing_address_container,
 					force_state: "hide",
 					toggle_self: false
 				}).toggleContainer({
-					content_element: hd_checkout.Fields.BillingInfo.$default_payment_container,
-					force_state: "show",
+					content_element: hd_checkout.Fields.BillingInfo.$paypal_container,
+					force_state: "hide",
 					toggle_self: false
 				});
 			},
