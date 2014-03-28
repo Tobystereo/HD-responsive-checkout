@@ -159,6 +159,7 @@ var hd_checkout = {
 			"$payment_option_default": undefined,
 			"$credit_card_wrapper": undefined,
 			"$credit_card_list": undefined,
+			"$credit_cards": undefined,
 			"$paypal_container": undefined,
 			"$btncreate_credit_card": undefined,
 			"$credit_card_form": undefined,
@@ -172,7 +173,10 @@ var hd_checkout = {
 			"$input_cc_security_code": undefined,
 			"$input_cc_store_in_wallet": undefined,
 			"$edited_card_masked_number": undefined,
-			"$edited_card_type": undefined
+			"$edited_card_type": undefined,
+			"$change_billing_address_container": undefined,
+			"$btnchange_billing_address": undefined,
+			"$billing_address_container": undefined
 		}
 	},
 	"Settings": {
@@ -264,6 +268,7 @@ var hd_checkout = {
 				hd_checkout.Fields.BillingInfo.$payment_option_default = hd_checkout.Fields.BillingInfo.$payment_option_list.find("#payment-option-default");
 				hd_checkout.Fields.BillingInfo.$credit_card_wrapper = hd_checkout.Fields.Shared.$step_billing.find(".credit-card-wrapper");
 				hd_checkout.Fields.BillingInfo.$credit_card_list = hd_checkout.Fields.BillingInfo.$credit_card_wrapper.find(".credit-card-list");
+				hd_checkout.Fields.BillingInfo.$credit_cards = hd_checkout.Fields.BillingInfo.$credit_card_list.find(".credit-card-item input[type=radio]");
 				hd_checkout.Fields.BillingInfo.$paypal_container = hd_checkout.Fields.Shared.$step_billing.find(".paypal-container");
 				hd_checkout.Fields.BillingInfo.$btncreate_credit_card = hd_checkout.Fields.BillingInfo.$credit_card_wrapper.find(".create-credit-card");
 				hd_checkout.Fields.BillingInfo.$credit_card_form = hd_checkout.Fields.BillingInfo.$credit_card_wrapper.find("#credit-card-form");
@@ -271,13 +276,16 @@ var hd_checkout = {
 				hd_checkout.Fields.BillingInfo.$btnsave_credit_card = hd_checkout.Fields.BillingInfo.$credit_card_form.find("button.save");
 				hd_checkout.Fields.BillingInfo.$btncancel_credit_card = hd_checkout.Fields.BillingInfo.$credit_card_form.find("button.cancel");
 				hd_checkout.Fields.BillingInfo.$btnedit_credit_card = hd_checkout.Fields.BillingInfo.$credit_card_list.find("button.edit");
-				hd_checkout.Fields.BillingInfo.$input_cc_expiration = hd_checkout.Fields.BillingInfo.$credit_card_form.find("#cc-name-input");
-				hd_checkout.Fields.BillingInfo.$input_cc_name = hd_checkout.Fields.BillingInfo.$credit_card_form.find("#cc-number-input");
-				hd_checkout.Fields.BillingInfo.$input_cc_number = hd_checkout.Fields.BillingInfo.$credit_card_form.find("#cc-expiration-input");
+				hd_checkout.Fields.BillingInfo.$input_cc_expiration = hd_checkout.Fields.BillingInfo.$credit_card_form.find("#cc-expiration-input");
+				hd_checkout.Fields.BillingInfo.$input_cc_name = hd_checkout.Fields.BillingInfo.$credit_card_form.find("#cc-name-input");
+				hd_checkout.Fields.BillingInfo.$input_cc_number = hd_checkout.Fields.BillingInfo.$credit_card_form.find("#cc-number-input");
 				hd_checkout.Fields.BillingInfo.$input_cc_security_code = hd_checkout.Fields.BillingInfo.$credit_card_form.find("#cc-security-code-input");
 				hd_checkout.Fields.BillingInfo.$input_cc_store_in_wallet = hd_checkout.Fields.BillingInfo.$credit_card_form.find("#cc-wallet-input");
 				hd_checkout.Fields.BillingInfo.$edited_card_masked_number = hd_checkout.Fields.BillingInfo.$credit_card_form.find(".cc-number-masked");
 				hd_checkout.Fields.BillingInfo.$edited_card_type = hd_checkout.Fields.BillingInfo.$credit_card_form.find("span.type");
+				hd_checkout.Fields.BillingInfo.$btnchange_billing_address = hd_checkout.Fields.BillingInfo.$credit_card_wrapper.find("button.change-billing-address");
+				hd_checkout.Fields.BillingInfo.$change_billing_address_container = hd_checkout.Fields.BillingInfo.$btnchange_billing_address.parent();
+				hd_checkout.Fields.BillingInfo.$billing_address_container = hd_checkout.Fields.Shared.$step_billing.find(".billing-address-container");
 			},
 			"WireEvents": function () {
 				/// <summary>Wire up control events</summary>
@@ -301,6 +309,8 @@ var hd_checkout = {
 				hd_checkout.Functions.BillingInfo.BindEvents_SaveCreditCardButton(false);
 				hd_checkout.Functions.BillingInfo.BindEvents_CancelCreditCardButton(false);
 				hd_checkout.Functions.BillingInfo.BindEvents_EditCreditCardButton(false);
+				hd_checkout.Functions.BillingInfo.BindEvents_CreditCardItems(false);
+				hd_checkout.Functions.BillingInfo.BindEvents_ChangeBillingAddressButton(false);
 			},
 			"InitCurrentStep": function (step_name) {
 				var $currentProgressBarItem = $("a[href=#" + hd_checkout.Settings.Shared.step_url_prefix + hd_checkout.Fields.Shared.$step_current.attr("id") + "]").parent();
@@ -604,6 +614,10 @@ var hd_checkout = {
 					force_state: "hide",
 					toggle_self: false
 				}).toggleContainer({
+					content_element: hd_checkout.Fields.BillingInfo.$change_billing_address_container,
+					force_state: "hide",
+					toggle_self: false
+				}).toggleContainer({
 					content_element: hd_checkout.Fields.BillingInfo.$paypal_container,
 					force_state: "show",
 					toggle_self: false
@@ -626,6 +640,10 @@ var hd_checkout = {
 					force_state: "hide",
 					toggle_self: false
 				}).toggleContainer({
+					content_element: hd_checkout.Fields.BillingInfo.$change_billing_address_container,
+					force_state: "hide",
+					toggle_self: false
+				}).toggleContainer({
 					content_element: hd_checkout.Fields.BillingInfo.$paypal_container,
 					force_state: "hide",
 					toggle_self: false
@@ -642,7 +660,14 @@ var hd_checkout = {
 
 				hd_checkout.Fields.BillingInfo.$btncreate_credit_card.toggleContainer({
 					content_element: hd_checkout.Fields.BillingInfo.$credit_card_form,
-					self_toggle_delay_offset: -hd_checkout.Settings.Shared.easing
+					self_toggle_delay_offset: -hd_checkout.Settings.Shared.easing,
+					pre_logic: function () {
+						hd_checkout.Functions.BillingInfo.ResetCreditCardForm();
+						hd_checkout.Functions.BillingInfo.ToggleCreditCardFormMode("new");
+					},
+					callback: function () {
+						hd_checkout.Fields.BillingInfo.$credit_card_form.animatedScroll();
+					}
 				});
 			},
 			"BindEvents_SaveCreditCardButton": function (refreshSelector) {
@@ -656,6 +681,13 @@ var hd_checkout = {
 					delay: hd_checkout.Settings.Shared.easing - 200
 				}).toggleContainer({
 					content_element: hd_checkout.Fields.BillingInfo.$credit_card_form,
+					toggle_self: false,
+					callback: function () {
+						hd_checkout.Functions.BillingInfo.ResetCreditCardForm();
+					}
+				}).toggleContainer({
+					content_element: hd_checkout.Fields.BillingInfo.$change_billing_address_container,
+					force_state: "hide",
 					toggle_self: false
 				});
 			},
@@ -666,10 +698,23 @@ var hd_checkout = {
 
 				hd_checkout.Fields.BillingInfo.$btncancel_credit_card.toggleContainer({
 					content_element: hd_checkout.Fields.BillingInfo.$btncreate_credit_card,
+					force_state: "show",
 					toggle_self: false,
 					delay: hd_checkout.Settings.Shared.easing - 200
 				}).toggleContainer({
 					content_element: hd_checkout.Fields.BillingInfo.$credit_card_form,
+					force_state: "hide",
+					toggle_self: false,
+					callback: function () {
+						hd_checkout.Functions.BillingInfo.ResetCreditCardForm();
+					}
+				}).toggleContainer({
+					content_element: hd_checkout.Fields.BillingInfo.$billing_address_container,
+					force_state: "hide",
+					toggle_self: false
+				}).toggleContainer({
+					content_element: hd_checkout.Fields.BillingInfo.$change_billing_address_container,
+					force_state: "hide",
 					toggle_self: false
 				});
 			},
@@ -685,10 +730,33 @@ var hd_checkout = {
 					hd_checkout.Functions.BillingInfo.ToggleCreditCardFormMode("edit");
 					hd_checkout.Functions.BillingInfo.PopulateEditCardForm($(this));
 					// Display the credit card form
+					hd_checkout.Fields.BillingInfo.$btnchange_billing_address.show();
+					hd_checkout.Fields.BillingInfo.$change_billing_address_container.show();
 					hd_checkout.Fields.BillingInfo.$credit_card_form.slideDown(hd_checkout.Settings.Shared.easing, function () {
 						hd_checkout.Fields.BillingInfo.$credit_card_form.animatedScroll();
 					});
 				});
+			},
+			"BindEvents_CreditCardItems": function (refreshSelector) {
+				if (refreshSelector) {
+					hd_checkout.Fields.BillingInfo.$credit_cards = $(hd_checkout.Fields.BillingInfo.$credit_cards.selector);
+				}
+				hd_checkout.Fields.BillingInfo.$credit_cards.on("click", function () {
+					hd_checkout.Fields.BillingInfo.$btncancel_credit_card.trigger("click");
+				});
+			},
+			"BindEvents_ChangeBillingAddressButton": function (refreshSelector) {
+				if (refreshSelector) {
+					hd_checkout.Fields.BillingInfo.$btnchange_billing_address = $(hd_checkout.Fields.BillingInfo.$btnchange_billing_address.selector);
+				}
+				hd_checkout.Fields.BillingInfo.$btnchange_billing_address.toggleContainer({
+					content_element: hd_checkout.Fields.BillingInfo.$billing_address_container,
+					self_toggle_delay_offset: -hd_checkout.Settings.Shared.easing,
+					force_state: "show",
+					callback: function () {
+						hd_checkout.Fields.BillingInfo.$billing_address_container.animatedScroll();
+					}
+				})
 			},
 			"BindEvents_CreditCardForm": function (refreshSelector) {
 				if (refreshSelector) {
@@ -704,8 +772,9 @@ var hd_checkout = {
 					// Set form title text
 					hd_checkout.Fields.BillingInfo.$credit_card_form_title.text(hd_checkout.Fields.BillingInfo.$credit_card_form_title.attr("data-edit-text"));
 					// Hide fields that should not be displayed
-					hd_checkout.Fields.BillingInfo.$input_cc_number.hide().next().hide();
-					hd_checkout.Fields.BillingInfo.$payment_option_credit_card.parent().hide();
+					hd_checkout.Fields.BillingInfo.$input_cc_number.hide();
+					hd_checkout.Fields.BillingInfo.$input_cc_number.next().hide();
+					hd_checkout.Fields.BillingInfo.$input_cc_store_in_wallet.parent().hide();
 					// Display the fields that only appear in the edit form
 					hd_checkout.Fields.BillingInfo.$edited_card_type.show();
 					hd_checkout.Fields.BillingInfo.$edited_card_masked_number.show();
@@ -717,13 +786,25 @@ var hd_checkout = {
 					hd_checkout.Fields.BillingInfo.$edited_card_type.hide();
 					hd_checkout.Fields.BillingInfo.$edited_card_masked_number.hide();
 					// Display the fields that only appear in the new form
-					hd_checkout.Fields.BillingInfo.$input_cc_number.hide().next().show();
-					hd_checkout.Fields.BillingInfo.$payment_option_credit_card.parent().show();
+					hd_checkout.Fields.BillingInfo.$input_cc_number.show();
+					hd_checkout.Fields.BillingInfo.$input_cc_number.next().show();
+					hd_checkout.Fields.BillingInfo.$input_cc_store_in_wallet.parent().show();
 				}
 			},
 			"PopulateEditCardForm": function ($editedCard) {
-				//hd_checkout.Fields.BillingInfo.
+				hd_checkout.Fields.BillingInfo.$edited_card_masked_number.html("ending: 1234");
+				hd_checkout.Fields.BillingInfo.$edited_card_type.addClass("visa").html("Visa");
+				hd_checkout.Fields.BillingInfo.$input_cc_name.val("Editing Name");
+				hd_checkout.Fields.BillingInfo.$input_cc_expiration.val("01/15");
+				hd_checkout.Fields.Shared.$form_inputs.trigger("change");
 			},
+			"ResetCreditCardForm": function () {
+				hd_checkout.Fields.BillingInfo.$edited_card_masked_number.html("");
+				hd_checkout.Fields.BillingInfo.$edited_card_type.removeClass("visa mastercard amex discover").html("");
+				hd_checkout.Fields.BillingInfo.$input_cc_name.val("");
+				hd_checkout.Fields.BillingInfo.$input_cc_expiration.val("");
+				hd_checkout.Fields.Shared.$form_inputs.trigger("change");
+			}
 		}
 	}
 }

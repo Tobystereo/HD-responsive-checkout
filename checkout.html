@@ -403,6 +403,10 @@
                                 <form id="credit-card-form" action="#" style="display: none;">
                                     <h2 data-new-text="Enter new credit card" data-edit-text="Edit credit card">Enter new credit card</h2>
                                     <ul class="grid__item add-edit-credit-card form-fields one-whole card">
+                                        <li class="field field__secondary card-number_read_only">
+                                            <span class="type" style="display:none;"></span>
+                                            <span class="cc-number-masked" style="display: none;">xxxx-xxxx-xxxx-1234</span>
+                                        </li>
                                         <li class="field field__secondary name">
                                             <input type="text" class="text-input required" id="cc-name-input" title="Name">
                                             <label for="cc-name-input">Name</label>
@@ -410,8 +414,6 @@
                                         <li class="field field__secondary card-number">
                                             <input type="text" class="text-input required" id="cc-number-input" title="Card Number">
                                             <label for="cc-number-input">Card Number</label>
-                                            <span class="type" style="display:none;"></span>
-                                            <span class="cc-number-masked" style="display: none;">xxxx-xxxx-xxxx-1234</span>
                                         </li>
                                         <li class="field field__secondary one-half card-expiration">
                                             <input type="text" class="text-input required" id="cc-expiration-input" title="Expiration">
@@ -431,6 +433,9 @@
                                         </li>
                                     </ul>
                                 </form>
+                                <div class="buttons grid__item one-whole desk-one-half" style="display:none;">
+                                    <button class="change-billing-address btn taptarget tertiary one-whole">Change Billing Address</button>
+                                </div>
                             </div>
                         </div>
                         <div class="paypal-container" style="display:none;">
@@ -455,7 +460,7 @@
                                         </div>
                                     </label>
                                 </li>
-                                <li class="additional-address grid__item one-whole desk-one-half address-item" style="display:none;">
+                                <li class="additional-address grid__item one-whole desk-one-half address-item">
                                     <input type="radio" name="select-address" id="billing-address1" value="billing-address1">
                                     <label for="billing-address1" class="card">
                                         <span class="btn shiptothis secondary small"></span>
@@ -471,7 +476,7 @@
                                         </div>
                                     </label>
                                 </li>
-                                <li class="additional-address grid__item one-whole desk-one-half address-item" style="display:none;">
+                                <li class="additional-address grid__item one-whole desk-one-half address-item">
                                     <input type="radio" name="select-address" id="billing-address2" value="billing-address2">
                                     <label for="billing-address2" class="card">
                                         <span class="btn shiptothis secondary small"></span>
@@ -487,7 +492,7 @@
                                         </div>
                                     </label>
                                 </li>
-                                <li class="additional-address grid__item one-whole desk-one-half address-item" style="display:none;">
+                                <li class="additional-address grid__item one-whole desk-one-half address-item">
                                     <input type="radio" name="select-address" id="billing-address3" value="billing-address3">
                                     <label for="billing-address3" class="card">
                                         <span class="btn shiptothis secondary small"></span>
@@ -504,13 +509,10 @@
                                         </div>
                                     </label>
                                 </li>
-                            </ul>
-                            <div class="grid">
-                                <div class="buttons grid__item one-whole desk-one-half">
-                                    <button class="changeaddress btn taptarget tertiary one-whole">Use different address</button>
+                                <li class="buttons grid__item one-whole desk-one-half">
                                     <button class="createaddress btn taptarget tertiary one-whole" style="display: none;">Create new address</button>
-                                </div>
-                            </div>
+                                </li>
+                            </ul>
                             <div class="grid">
                                 <form id="new-billing-address-form" action="#" style="display: none;">
                                     <ul class="grid__item add-edit-address form-fields one-whole card">
