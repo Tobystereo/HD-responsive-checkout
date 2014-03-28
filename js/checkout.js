@@ -702,7 +702,7 @@ var hd_checkout = {
 			"ToggleCreditCardFormMode": function (mode) {
 				if (mode == "edit") {
 					// Set form title text
-					$credit_card_form_title.text($credit_card_form_title.attr("data-edit-text"));
+					hd_checkout.Fields.BillingInfo.$credit_card_form_title.text(hd_checkout.Fields.BillingInfo.$credit_card_form_title.attr("data-edit-text"));
 					// Hide fields that should not be displayed
 					hd_checkout.Fields.BillingInfo.$input_cc_number.hide().next().hide();
 					hd_checkout.Fields.BillingInfo.$payment_option_credit_card.parent().hide();
@@ -712,7 +712,7 @@ var hd_checkout = {
 				}
 				else {
 					// Set form title text
-					$credit_card_form_title.text($credit_card_form_title.attr("data-new-text"));
+					hd_checkout.Fields.BillingInfo.$credit_card_form_title.text(hd_checkout.Fields.BillingInfo.$credit_card_form_title.attr("data-new-text"));
 					// Hide fields that should not be displayed
 					hd_checkout.Fields.BillingInfo.$edited_card_type.hide();
 					hd_checkout.Fields.BillingInfo.$edited_card_masked_number.hide();
