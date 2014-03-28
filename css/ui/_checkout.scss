@@ -728,6 +728,15 @@ input[type=radio]:checked + label.card {
   margin-left: 1em;
 }
 
+#payment-option-default + label .type {
+  clear: none !important;
+  display: inline-block;
+  height: auto;
+  // padding: 0 !important;
+  margin: 0 .25em 0 1em;
+  // float: none !important;
+}
+
 // .paywiththis {
 //     position: relative;
 //     display: block;

@@ -5865,34 +5865,42 @@ input[type=radio]:checked + label.card .shiptothis:after, input[type=radio]:chec
   margin-left: 1em;
 }
 
+/* line 731, ui/_checkout.scss */
+#payment-option-default + label .type {
+  clear: none !important;
+  display: inline-block;
+  height: auto;
+  margin: 0 .25em 0 1em;
+}
+
 /* Colors */
-/* line 768, ui/_checkout.scss */
+/* line 777, ui/_checkout.scss */
 .bg-lightest {
   background-color: white;
 }
 
-/* line 769, ui/_checkout.scss */
+/* line 778, ui/_checkout.scss */
 .bg-lighter {
   background-color: #f1f1f1;
 }
 
-/* line 770, ui/_checkout.scss */
+/* line 779, ui/_checkout.scss */
 .bg-light {
   background-color: #cbcbcb;
 }
 
-/* line 771, ui/_checkout.scss */
+/* line 780, ui/_checkout.scss */
 .bg-dark {
   background-color: #727272;
 }
 
-/* line 772, ui/_checkout.scss */
+/* line 781, ui/_checkout.scss */
 .bg-darkest {
   background-color: black;
 }
 
 /* Typography */
-/* line 779, ui/_checkout.scss */
+/* line 788, ui/_checkout.scss */
 a, a:link, a:hover, a:active, a:focus {
   text-decoration: none;
   border-bottom: 1px solid;
