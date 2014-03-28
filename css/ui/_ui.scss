@@ -86,6 +86,45 @@
   box-shadow: none;
 }
 
+.background-success {
+  background-color: $lighter-green;
+}
+
+.background-info {
+  background-color: $lighter-yellow;
+}
+
+.background-error {
+  background-color: $lighter-red;
+}
+
+.text-success {
+  color: $dark-green;
+}
+
+.text-info {
+  color: $dark-yellow;
+}
+
+.text-error {
+  color: $dark-red;
+}
+
+.success, .success > * {
+  @extend .background-success;
+  @extend .text-success;
+}
+
+.info, .info > * {
+  @extend .background-info;
+  @extend .text-info;
+}
+
+.error, .error > * {
+  @extend .background-error;
+  @extend .text-error;
+}
+
 
 .loading-panel {
   width: 200px;

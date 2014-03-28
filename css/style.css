@@ -5873,34 +5873,44 @@ input[type=radio]:checked + label.card .shiptothis:after, input[type=radio]:chec
   margin: 0 .25em 0 1em;
 }
 
+/* line 738, ui/_checkout.scss */
+.paypal-container {
+  margin-bottom: 2em;
+}
+/* line 740, ui/_checkout.scss */
+.paypal-container p {
+  margin: 1em;
+  color: black !important;
+}
+
 /* Colors */
-/* line 777, ui/_checkout.scss */
+/* line 783, ui/_checkout.scss */
 .bg-lightest {
   background-color: white;
 }
 
-/* line 778, ui/_checkout.scss */
+/* line 784, ui/_checkout.scss */
 .bg-lighter {
   background-color: #f1f1f1;
 }
 
-/* line 779, ui/_checkout.scss */
+/* line 785, ui/_checkout.scss */
 .bg-light {
   background-color: #cbcbcb;
 }
 
-/* line 780, ui/_checkout.scss */
+/* line 786, ui/_checkout.scss */
 .bg-dark {
   background-color: #727272;
 }
 
-/* line 781, ui/_checkout.scss */
+/* line 787, ui/_checkout.scss */
 .bg-darkest {
   background-color: black;
 }
 
 /* Typography */
-/* line 788, ui/_checkout.scss */
+/* line 794, ui/_checkout.scss */
 a, a:link, a:hover, a:active, a:focus {
   text-decoration: none;
   border-bottom: 1px solid;
@@ -6024,7 +6034,37 @@ a, a:link, a:hover, a:active, a:focus {
   box-shadow: none;
 }
 
-/* line 90, ui/_ui.scss */
+/* line 89, ui/_ui.scss */
+.background-success, .success, .success > * {
+  background-color: #e4f3e2;
+}
+
+/* line 93, ui/_ui.scss */
+.background-info, .info, .info > * {
+  background-color: #f9f2c6;
+}
+
+/* line 97, ui/_ui.scss */
+.background-error, .error, .error > * {
+  background-color: #f3e2e2;
+}
+
+/* line 101, ui/_ui.scss */
+.text-success, .success, .success > * {
+  color: black;
+}
+
+/* line 105, ui/_ui.scss */
+.text-info, .info, .info > * {
+  color: black;
+}
+
+/* line 109, ui/_ui.scss */
+.text-error, .error, .error > * {
+  color: black;
+}
+
+/* line 129, ui/_ui.scss */
 .loading-panel {
   width: 200px;
   height: 100px;
@@ -6032,7 +6072,7 @@ a, a:link, a:hover, a:active, a:focus {
   margin: 0 auto;
   text-align: center;
 }
-/* line 97, ui/_ui.scss */
+/* line 136, ui/_ui.scss */
 .loading-panel p {
   display: block;
   clear: both;
@@ -6043,7 +6083,7 @@ a, a:link, a:hover, a:active, a:focus {
   animation: grey 2s infinite ease-in-out;
 }
 
-/* line 109, ui/_ui.scss */
+/* line 148, ui/_ui.scss */
 .ball {
   display: block;
   float: left;
@@ -6053,7 +6093,7 @@ a, a:link, a:hover, a:active, a:focus {
   border-radius: 50px;
 }
 
-/* line 117, ui/_ui.scss */
+/* line 156, ui/_ui.scss */
 .ball:nth-child(1) {
   background: #3e6d9d;
   -webkit-animation: right 1s infinite ease-in-out, blue 4s infinite ease-in-out;
@@ -6062,7 +6102,7 @@ a, a:link, a:hover, a:active, a:focus {
   margin-left: 25px;
 }
 
-/* line 125, ui/_ui.scss */
+/* line 164, ui/_ui.scss */
 .ball:nth-child(2) {
   background: #232e50;
   -webkit-animation: right 1.05s infinite ease-in-out, blue 4s infinite ease-in-out;
@@ -6070,7 +6110,7 @@ a, a:link, a:hover, a:active, a:focus {
   animation: right 1s infinite ease-in-out, blue 4s infinite ease-in-out;
 }
 
-/* line 132, ui/_ui.scss */
+/* line 171, ui/_ui.scss */
 .ball:nth-child(3) {
   background: #8aadd1;
   -webkit-animation: right 1.15s infinite ease-in-out, blue 3s infinite ease-in-out;
@@ -6078,7 +6118,7 @@ a, a:link, a:hover, a:active, a:focus {
   animation: right 1s infinite ease-in-out, blue 3s infinite ease-in-out;
 }
 
-/* line 139, ui/_ui.scss */
+/* line 178, ui/_ui.scss */
 .ball:nth-child(4) {
   background: #4a61a9;
   -webkit-animation: right 1s infinite ease-in-out, blue 4s infinite ease-in-out;
@@ -6086,7 +6126,7 @@ a, a:link, a:hover, a:active, a:focus {
   animation: right 1s infinite ease-in-out, blue 4s infinite ease-in-out;
 }
 
-/* line 146, ui/_ui.scss */
+/* line 185, ui/_ui.scss */
 .ball:nth-child(5) {
   background: #e5edf5;
   -webkit-animation: right 1.15s infinite ease-in-out, blue 5s infinite ease-in-out;
@@ -6094,7 +6134,7 @@ a, a:link, a:hover, a:active, a:focus {
   animation: right 1s infinite ease-in-out, blue 5s infinite ease-in-out;
 }
 
-/* line 153, ui/_ui.scss */
+/* line 192, ui/_ui.scss */
 .ball:nth-child(6) {
   background: #4a993d;
   -webkit-animation: right 1.05s infinite ease-in-out, blue 4s infinite ease-in-out;
@@ -6102,7 +6142,7 @@ a, a:link, a:hover, a:active, a:focus {
   animation: right 1.05s infinite ease-in-out, blue 4s infinite ease-in-out;
 }
 
-/* line 160, ui/_ui.scss */
+/* line 199, ui/_ui.scss */
 .ball:nth-child(7) {
   background: #3e6d9d;
   -webkit-animation: right 1s infinite ease-in-out, blue 4s infinite ease-in-out;
@@ -6111,223 +6151,223 @@ a, a:link, a:hover, a:active, a:focus {
 }
 
 @-webkit-keyframes right {
-  /* line 169, ui/_ui.scss */
+  /* line 208, ui/_ui.scss */
   0% {
     -webkit-transform: translateY(-15px);
   }
 
-  /* line 170, ui/_ui.scss */
+  /* line 209, ui/_ui.scss */
   50% {
     -webkit-transform: translateY(15px);
   }
 
-  /* line 171, ui/_ui.scss */
+  /* line 210, ui/_ui.scss */
   100% {
     -webkit-transform: translateY(-15px);
   }
 }
 @-webkit-keyframes left {
-  /* line 175, ui/_ui.scss */
+  /* line 214, ui/_ui.scss */
   0% {
     -webkit-transform: translateY(15px);
   }
 
-  /* line 176, ui/_ui.scss */
+  /* line 215, ui/_ui.scss */
   50% {
     -webkit-transform: translateY(-15px);
   }
 
-  /* line 177, ui/_ui.scss */
+  /* line 216, ui/_ui.scss */
   100% {
     -webkit-transform: translateY(15px);
   }
 }
 @-webkit-keyframes blue {
-  /* line 181, ui/_ui.scss */
+  /* line 220, ui/_ui.scss */
   0% {
     background: #3e6d9d;
   }
 
-  /* line 182, ui/_ui.scss */
+  /* line 221, ui/_ui.scss */
   25% {
     background: #232e50;
   }
 
-  /* line 183, ui/_ui.scss */
+  /* line 222, ui/_ui.scss */
   50% {
     background: #4a993d;
   }
 
-  /* line 184, ui/_ui.scss */
+  /* line 223, ui/_ui.scss */
   75% {
     background: #c3e5bd;
   }
 
-  /* line 185, ui/_ui.scss */
+  /* line 224, ui/_ui.scss */
   100% {
     background: #3e6d9d;
   }
 }
 @-webkit-keyframes grey {
-  /* line 189, ui/_ui.scss */
+  /* line 228, ui/_ui.scss */
   0% {
     color: #727272;
   }
 
-  /* line 190, ui/_ui.scss */
+  /* line 229, ui/_ui.scss */
   50% {
     color: #f1f1f1;
   }
 
-  /* line 191, ui/_ui.scss */
+  /* line 230, ui/_ui.scss */
   100% {
     color: #727272;
   }
 }
 @-moz-keyframes right {
-  /* line 195, ui/_ui.scss */
+  /* line 234, ui/_ui.scss */
   0% {
     -moz-transform: translateY(-15px);
   }
 
-  /* line 196, ui/_ui.scss */
+  /* line 235, ui/_ui.scss */
   50% {
     -moz-transform: translateY(15px);
   }
 
-  /* line 197, ui/_ui.scss */
+  /* line 236, ui/_ui.scss */
   100% {
     -moz-transform: translateY(-15px);
   }
 }
 @-moz-keyframes left {
-  /* line 201, ui/_ui.scss */
+  /* line 240, ui/_ui.scss */
   0% {
     -moz-transform: translateY(15px);
   }
 
-  /* line 202, ui/_ui.scss */
+  /* line 241, ui/_ui.scss */
   50% {
     -moz-transform: translateY(-15px);
   }
 
-  /* line 203, ui/_ui.scss */
+  /* line 242, ui/_ui.scss */
   100% {
     -moz-transform: translateY(15px);
   }
 }
 @-moz-keyframes blue {
-  /* line 207, ui/_ui.scss */
+  /* line 246, ui/_ui.scss */
   0% {
     background: #3e6d9d;
   }
 
-  /* line 208, ui/_ui.scss */
+  /* line 247, ui/_ui.scss */
   25% {
     background: #232e50;
   }
 
-  /* line 209, ui/_ui.scss */
+  /* line 248, ui/_ui.scss */
   50% {
     background: #4a993d;
   }
 
-  /* line 210, ui/_ui.scss */
+  /* line 249, ui/_ui.scss */
   75% {
     background: #993d3d;
   }
 
-  /* line 211, ui/_ui.scss */
+  /* line 250, ui/_ui.scss */
   100% {
     background: #3e6d9d;
   }
 }
 @-moz-keyframes grey {
-  /* line 215, ui/_ui.scss */
+  /* line 254, ui/_ui.scss */
   0% {
     color: #727272;
   }
 
-  /* line 216, ui/_ui.scss */
+  /* line 255, ui/_ui.scss */
   50% {
     color: #f1f1f1;
   }
 
-  /* line 217, ui/_ui.scss */
+  /* line 256, ui/_ui.scss */
   100% {
     color: #727272;
   }
 }
 @keyframes right {
-  /* line 221, ui/_ui.scss */
+  /* line 260, ui/_ui.scss */
   0% {
     transform: translateY(-15px);
   }
 
-  /* line 222, ui/_ui.scss */
+  /* line 261, ui/_ui.scss */
   50% {
     transform: translateY(15px);
   }
 
-  /* line 223, ui/_ui.scss */
+  /* line 262, ui/_ui.scss */
   100% {
     transform: translateY(-15px);
   }
 }
 @keyframes left {
-  /* line 227, ui/_ui.scss */
+  /* line 266, ui/_ui.scss */
   0% {
     transform: translateY(15px);
   }
 
-  /* line 228, ui/_ui.scss */
+  /* line 267, ui/_ui.scss */
   50% {
     transform: translateY(-15px);
   }
 
-  /* line 229, ui/_ui.scss */
+  /* line 268, ui/_ui.scss */
   100% {
     transform: translateY(15px);
   }
 }
 @keyframes blue {
-  /* line 233, ui/_ui.scss */
+  /* line 272, ui/_ui.scss */
   0% {
     background: #3e6d9d;
   }
 
-  /* line 234, ui/_ui.scss */
+  /* line 273, ui/_ui.scss */
   25% {
     background: #232e50;
   }
 
-  /* line 235, ui/_ui.scss */
+  /* line 274, ui/_ui.scss */
   50% {
     background: #4a993d;
   }
 
-  /* line 236, ui/_ui.scss */
+  /* line 275, ui/_ui.scss */
   75% {
     background: #993d3d;
   }
 
-  /* line 237, ui/_ui.scss */
+  /* line 276, ui/_ui.scss */
   100% {
     background: #3e6d9d;
   }
 }
 @keyframes grey {
-  /* line 241, ui/_ui.scss */
+  /* line 280, ui/_ui.scss */
   0% {
     color: #727272;
   }
 
-  /* line 242, ui/_ui.scss */
+  /* line 281, ui/_ui.scss */
   50% {
     color: #f1f1f1;
   }
 
-  /* line 243, ui/_ui.scss */
+  /* line 282, ui/_ui.scss */
   100% {
     color: #727272;
   }

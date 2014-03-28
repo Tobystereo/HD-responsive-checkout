@@ -295,7 +295,7 @@
                                     <span class="expiration">Expires: 10/16</span>
                                 </div>
                                 <div class="address">
-                                  Billing Address: 
+                                  Billing Address:
                                     <span class="street">123 A street</span>,
                                     <span class="city">Mobile</span>
                                     <span class="state">AK</span>
@@ -402,7 +402,7 @@
                             <div class="grid">
                                 <form id="credit-card-form" action="#" style="display: none;">
                                     <h2 data-new-text="Enter new credit card" data-edit-text="Edit credit card">Enter new credit card</h2>
-                                    <ul class="grid__item add-edit-credit-card form-fields one-whole card">
+                                    <ul class="grid__item add-edit-credit-card form-fields one-half card">
                                         <li class="field field__secondary card-number_read_only">
                                             <span class="type" style="display:none;"></span>
                                             <span class="cc-number-masked" style="display: none;">xxxx-xxxx-xxxx-1234</span>
@@ -415,14 +415,19 @@
                                             <input type="text" class="text-input required" id="cc-number-input" title="Card Number">
                                             <label for="cc-number-input">Card Number</label>
                                         </li>
-                                        <li class="field field__secondary one-half card-expiration">
-                                            <input type="text" class="text-input required" id="cc-expiration-input" title="Expiration">
-                                            <label for="cc-expiration-input">MM/YY</label>
+                                        <li>
+                                          <ul class="grid">
+                                            <li class="field field__secondary grid__item one-half card-expiration">
+                                                <input type="text" class="text-input required" id="cc-expiration-input" title="Expiration">
+                                                <label for="cc-expiration-input">MM/YY</label>
+                                            </li>
+                                            <li class="field field__secondary grid__item one-half card-security">
+                                                <input type="text" class="text-input required" id="cc-security-code-input" title="Security Code">
+                                                <label for="cc-security-code-input">Security Code</label>
+                                            </li>
+                                          </ul>
                                         </li>
-                                        <li class="field field__secondary one-half card-security">
-                                            <input type="text" class="text-input required" id="cc-security-code-input" title="Security Code">
-                                            <label for="cc-security-code-input">Security Code</label>
-                                        </li>
+
                                         <li class="field field__secondary card-wallet">
                                             <input type="checkbox" class="checkbox-input" id="cc-wallet-input" title="Save this card to use again">
                                             <label for="cc-wallet-input">Save this card to use again</label>
@@ -438,7 +443,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="paypal-container" style="display:none;">
+                        <div class="paypal-container info" style="display:none;">
                             <p>When you click Next, you’ll be taken to Paypal’s site. Follow Paypal’s instructions, then you’ll be sent right back here to review and confirm your order.</p>
                         </div>
                         <div class="billing-address-container" style="display:none;">
