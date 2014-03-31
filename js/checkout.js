@@ -817,6 +817,7 @@ var hd_checkout = {
 					pre_logic: function () {
 						hd_checkout.Fields.BillingInfo.$billing_address_items.removeAttr("checked");
 						hd_checkout.Fields.BillingInfo.$btnadd_billing_address.show();
+						hd_checkout.Fields.BillingInfo.$billing_address_form.hide();
 					},
 					self_toggle_delay_offset: -hd_checkout.Settings.Shared.easing,
 					force_state: "show",
@@ -866,6 +867,10 @@ var hd_checkout = {
 				hd_checkout.Fields.BillingInfo.$btnadd_billing_address.toggleContainer({
 					content_element: hd_checkout.Fields.BillingInfo.$billing_address_form,
 					self_toggle_delay_offset: -hd_checkout.Settings.Shared.easing,
+					pre_logic: function () {
+						hd_checkout.Fields.BillingInfo.$secondary_fields.hide();
+						hd_checkout.Functions.BillingInfo.ResetAddressForm();
+					},
 					post_toggle: function () {
 						hd_checkout.Fields.BillingInfo.$billing_address_form.animatedScroll();
 					}
@@ -998,6 +1003,7 @@ var hd_checkout = {
 				hd_checkout.Fields.BillingInfo.$edited_card_type.removeClass("visa mastercard amex discover").html("");
 				hd_checkout.Fields.BillingInfo.$input_cc_name.val("");
 				hd_checkout.Fields.BillingInfo.$input_cc_expiration.val("");
+				hd_checkout.Fields.BillingInfo.$btnchange_billing_address.show();
 				hd_checkout.Fields.BillingInfo.$credit_card_inputs.trigger("change");
 			},
 			"ResetAddressForm": function () {
@@ -1010,7 +1016,8 @@ var hd_checkout = {
 				hd_checkout.Fields.BillingInfo.$input_postal.val("");
 				hd_checkout.Fields.BillingInfo.$input_phone.val("");
 				hd_checkout.Fields.BillingInfo.$secondary_fields.css("display", "none");
-				hd_checkout.Fields.BillingInfo.$address_inputs.trigger("change");
+				hd_checkout.Fields.BillingInfo.$billing_address_form.find("label").removeClass("notempty");
+				//hd_checkout.Fields.BillingInfo.$address_inputs.trigger("change");
 			},
 			"CreateNewCreditCardElement": function () {
 				var $newCard,
