@@ -759,41 +759,12 @@ input[type=radio]:checked + label.card {
   margin-top: 3px;
 }
 
-// .paywiththis {
-//     position: relative;
-//     display: block;
-//     height: 100%;
-//     float: right;
-//     margin-top: 0;
-//     margin-bottom: 0;
-//
-//     &:after {
-//         @include pseudo(100%, 2em, "Pay with this card");
-//     }
-// }
-//
-// .selected .paywiththis {
-//     background: none;
-//     margin-top: 0.5em;
-//
-//     @media #{$desk}{
-//         margin-top: 1em;
-//     }
-//
-//     &:after {
-//         @include pseudo(auto, 1em, "Selected");
-//         color: $green;
-//         position: relative;
-//         display: block;
-//         float: right;
-//         margin-top: -.7em;
-//         margin-right: 0;
-//
-//         @media #{$desk} {
-//           margin-top: -1.125em;
-//         }
-//     }
-// }
+.card-number_read_only {
+  .type {
+    float: left;
+    margin-right: 0.5em;
+  }
+}
 
 /* Colors */
 .bg-lightest { background-color: $lightest; }

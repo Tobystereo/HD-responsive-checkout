@@ -5902,34 +5902,40 @@ input[type=radio]:checked + label.card .shiptothis:after, input[type=radio]:chec
   margin-top: 3px;
 }
 
+/* line 763, ui/_checkout.scss */
+.card-number_read_only .type {
+  float: left;
+  margin-right: 0.5em;
+}
+
 /* Colors */
-/* line 799, ui/_checkout.scss */
+/* line 770, ui/_checkout.scss */
 .bg-lightest {
   background-color: white;
 }
 
-/* line 800, ui/_checkout.scss */
+/* line 771, ui/_checkout.scss */
 .bg-lighter {
   background-color: #f1f1f1;
 }
 
-/* line 801, ui/_checkout.scss */
+/* line 772, ui/_checkout.scss */
 .bg-light {
   background-color: #cbcbcb;
 }
 
-/* line 802, ui/_checkout.scss */
+/* line 773, ui/_checkout.scss */
 .bg-dark {
   background-color: #727272;
 }
 
-/* line 803, ui/_checkout.scss */
+/* line 774, ui/_checkout.scss */
 .bg-darkest {
   background-color: black;
 }
 
 /* Typography */
-/* line 810, ui/_checkout.scss */
+/* line 781, ui/_checkout.scss */
 a, a:link, a:hover, a:active, a:focus {
   text-decoration: none;
   border-bottom: 1px solid;
