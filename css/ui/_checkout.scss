@@ -366,7 +366,6 @@ article {
     }
     .name, .company, .country, .type, .masked-number, .expiration {
         display: block;
-        clear: both;
     }
 
 
@@ -772,6 +771,7 @@ input[type=radio]:checked + label.card {
 
 .paypal-container {
   margin-bottom: 2em;
+  padding: 1em;
   p {
     margin: 1em;
     color: $dark-yellow !important;
