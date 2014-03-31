@@ -672,9 +672,14 @@ input[type=radio]:checked + label.card {
   }
 }
 
+/*
+  CREDIT CARD ICONS
+*/
+
+// General icon setup
 .type {
   display: block;
-  width: 31px;
+  width: 24px;
   height: 20px;
   overflow: hidden;
   text-indent: 101%;
@@ -690,26 +695,28 @@ input[type=radio]:checked + label.card {
   }
 
   &.mastercard {
-    background-position: -31px 0;
+    background-position: -24px 0;
   }
 
   &.amex, &.americanexpress {
-    background-position: -63px 0;
+    background-position: -48px 0;
   }
 
   &.discover {
-    background-position: -93px 0;
+    background-position: -72px 0;
   }
 
   &.paypal {
-    background-position: 1px -80px;
+    background-position: -96px 0;
   }
 }
 
-.promo-code-container {
-  form {
-    margin: 0;
-    padding: 0;
+// When editing a card the icon should display larger
+.add-edit-credit-card {
+  .type {
+    width: 62px;
+    height: 40px;
+    background-size: auto 40px;
   }
 }
 
@@ -743,6 +750,17 @@ input[type=radio]:checked + label.card {
   }
 }
 
+
+
+
+
+.promo-code-container {
+  form {
+    margin: 0;
+    padding: 0;
+  }
+}
+
 .incomplete {
   background: $lightest !important;
   @include border('all', 1px, solid, $light);
@@ -772,7 +790,16 @@ input[type=radio]:checked + label.card {
   span {
     font-weight: 300;
   }
+
+  .city {
+    clear: left;
+    display: block;
+    float: left;
+    margin-right: 0.5em;
+  }
 }
+
+
 
 /* Colors */
 .bg-lightest { background-color: $lightest; }
