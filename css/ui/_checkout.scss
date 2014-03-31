@@ -679,12 +679,12 @@ input[type=radio]:checked + label.card {
 // General icon setup
 .type {
   display: block;
-  width: 24px;
+  width: 29px;
   height: 20px;
   overflow: hidden;
   text-indent: 101%;
   text-align:right !important;
-  background: url("../images/creditcards.svg") 0 0 ;
+  background: url("../images/creditcards.svg") 0 0;
   background-size: auto 20px;
   background-repeat: no-repeat;
   margin-bottom: 1em;
@@ -695,15 +695,15 @@ input[type=radio]:checked + label.card {
   }
 
   &.mastercard {
-    background-position: -24px 0;
+    background-position: -29px 0;
   }
 
   &.amex, &.americanexpress {
-    background-position: -48px 0;
+    background-position: -58px 0;
   }
 
   &.discover {
-    background-position: -72px 0;
+    background-position: -87px 0;
   }
 
   &.paypal {
@@ -714,25 +714,52 @@ input[type=radio]:checked + label.card {
 // When editing a card the icon should display larger
 .add-edit-credit-card {
   .type {
-    width: 62px;
+    width: 58px;
     height: 40px;
     background-size: auto 40px;
+
+    &.visa {
+      background-position: 0 0;
+    }
+
+    &.mastercard {
+      background-position: -58px 0;
+    }
+
+    &.amex, &.americanexpress {
+      background-position: -116px 0;
+    }
+
+    &.discover {
+      background-position: -174px 0;
+    }
+
+    &.paypal {
+      background-position: -232px 0;
+    }
   }
+
+  .cc-number-masked {
+    @include font(1.5, 100, 2);
+  }
+
 }
 
 #payment-option-credit-card + label .payment-option:after {
-  @include pseudo(125px, 20px, "\ ");
+  @include pseudo(119px, 20px, "\ ");
   background: url("../images/creditcards.svg");
   background-size: auto 20px;
   margin-left: 1em;
+  margin-bottom: -4px;
 }
 
 #payment-option-paypal + label .payment-option:after {
   @include pseudo(30px, 20px, "\ ");
-  background: url("../images/creditcards.svg");
+  background: url("../images/creditcards.svg") no-repeat;
   background-size: auto 20px;
-  background-position: -120px 0;
+  background-position: -96px 0;
   margin-left: 1em;
+  margin-bottom: -4px;
 }
 
 #payment-option-default + label .type {
@@ -740,6 +767,7 @@ input[type=radio]:checked + label.card {
   display: inline-block;
   height: auto;
   margin: 0 .25em 0 1em;
+  margin-bottom: -4px;
 }
 
 .paypal-container {

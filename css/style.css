@@ -5805,7 +5805,7 @@ input[type=radio]:checked + label.card .shiptothis:after, input[type=radio]:chec
 /* line 680, ui/_checkout.scss */
 .type {
   display: block;
-  width: 24px;
+  width: 29px;
   height: 20px;
   overflow: hidden;
   text-indent: 101%;
@@ -5822,15 +5822,15 @@ input[type=radio]:checked + label.card .shiptothis:after, input[type=radio]:chec
 }
 /* line 697, ui/_checkout.scss */
 .type.mastercard {
-  background-position: -24px 0;
+  background-position: -29px 0;
 }
 /* line 701, ui/_checkout.scss */
 .type.amex, .type.americanexpress {
-  background-position: -48px 0;
+  background-position: -58px 0;
 }
 /* line 705, ui/_checkout.scss */
 .type.discover {
-  background-position: -72px 0;
+  background-position: -87px 0;
 }
 /* line 709, ui/_checkout.scss */
 .type.paypal {
@@ -5839,72 +5839,105 @@ input[type=radio]:checked + label.card .shiptothis:after, input[type=radio]:chec
 
 /* line 716, ui/_checkout.scss */
 .add-edit-credit-card .type {
-  width: 62px;
+  width: 58px;
   height: 40px;
   background-size: auto 40px;
 }
+/* line 721, ui/_checkout.scss */
+.add-edit-credit-card .type.visa {
+  background-position: 0 0;
+}
+/* line 725, ui/_checkout.scss */
+.add-edit-credit-card .type.mastercard {
+  background-position: -58px 0;
+}
+/* line 729, ui/_checkout.scss */
+.add-edit-credit-card .type.amex, .add-edit-credit-card .type.americanexpress {
+  background-position: -116px 0;
+}
+/* line 733, ui/_checkout.scss */
+.add-edit-credit-card .type.discover {
+  background-position: -174px 0;
+}
+/* line 737, ui/_checkout.scss */
+.add-edit-credit-card .type.paypal {
+  background-position: -232px 0;
+}
+/* line 742, ui/_checkout.scss */
+.add-edit-credit-card .cc-number-masked {
+  font-size: 24px;
+  font-size: 1.5rem;
+  font-family: 'Helvetica Neue', Helvetica, sans-serif;
+  font-weight: 100;
+  letter-spacing: 0;
+  line-height: 41.6px;
+  line-height: 2.6rem;
+}
 
-/* line 723, ui/_checkout.scss */
+/* line 748, ui/_checkout.scss */
 #payment-option-credit-card + label .payment-option:after {
   display: inline-block;
   position: relative;
   content: "\ ";
-  width: 125px;
+  width: 119px;
   height: 20px;
   background: url("../images/creditcards.svg");
   background-size: auto 20px;
   margin-left: 1em;
+  margin-bottom: -4px;
 }
 
-/* line 730, ui/_checkout.scss */
+/* line 756, ui/_checkout.scss */
 #payment-option-paypal + label .payment-option:after {
   display: inline-block;
   position: relative;
   content: "\ ";
   width: 30px;
   height: 20px;
-  background: url("../images/creditcards.svg");
+  background: url("../images/creditcards.svg") no-repeat;
   background-size: auto 20px;
-  background-position: -120px 0;
+  background-position: -96px 0;
   margin-left: 1em;
+  margin-bottom: -4px;
 }
 
-/* line 738, ui/_checkout.scss */
+/* line 765, ui/_checkout.scss */
 #payment-option-default + label .type {
   clear: none !important;
   display: inline-block;
   height: auto;
   margin: 0 .25em 0 1em;
+  margin-bottom: -4px;
 }
 
-/* line 745, ui/_checkout.scss */
+/* line 773, ui/_checkout.scss */
 .paypal-container {
   margin-bottom: 2em;
 }
-/* line 747, ui/_checkout.scss */
+/* line 775, ui/_checkout.scss */
 .paypal-container p {
   margin: 1em;
   color: black !important;
 }
 
-/* line 758, ui/_checkout.scss */
+/* line 786, ui/_checkout.scss */
 .promo-code-container form {
   margin: 0;
   padding: 0;
 }
 
-/* line 764, ui/_checkout.scss */
+/* line 792, ui/_checkout.scss */
 .incomplete {
   background: white !important;
   border: 1px solid #cbcbcb;
 }
 
-/* line 769, ui/_checkout.scss */
+/* line 797, ui/_checkout.scss */
 .selected.incomplete, input[type=radio]:checked + label.incomplete {
   border: 1px solid #4a993d;
 }
 
-/* line 773, ui/_checkout.scss */
+/* line 801, ui/_checkout.scss */
 .checkbox-input {
   clear: none;
   float: left;
@@ -5912,21 +5945,21 @@ input[type=radio]:checked + label.card .shiptothis:after, input[type=radio]:chec
   margin-top: 3px;
 }
 
-/* line 781, ui/_checkout.scss */
+/* line 809, ui/_checkout.scss */
 .card-number_read_only .type {
   float: left;
   margin-right: 0.5em;
 }
 
-/* line 787, ui/_checkout.scss */
+/* line 815, ui/_checkout.scss */
 .billing-address {
   font-weight: 500;
 }
-/* line 790, ui/_checkout.scss */
+/* line 818, ui/_checkout.scss */
 .billing-address span {
   font-weight: 300;
 }
-/* line 794, ui/_checkout.scss */
+/* line 822, ui/_checkout.scss */
 .billing-address .city {
   clear: left;
   display: block;
@@ -5935,33 +5968,33 @@ input[type=radio]:checked + label.card .shiptothis:after, input[type=radio]:chec
 }
 
 /* Colors */
-/* line 805, ui/_checkout.scss */
+/* line 833, ui/_checkout.scss */
 .bg-lightest {
   background-color: white;
 }
 
-/* line 806, ui/_checkout.scss */
+/* line 834, ui/_checkout.scss */
 .bg-lighter {
   background-color: #f1f1f1;
 }
 
-/* line 807, ui/_checkout.scss */
+/* line 835, ui/_checkout.scss */
 .bg-light {
   background-color: #cbcbcb;
 }
 
-/* line 808, ui/_checkout.scss */
+/* line 836, ui/_checkout.scss */
 .bg-dark {
   background-color: #727272;
 }
 
-/* line 809, ui/_checkout.scss */
+/* line 837, ui/_checkout.scss */
 .bg-darkest {
   background-color: black;
 }
 
 /* Typography */
-/* line 816, ui/_checkout.scss */
+/* line 844, ui/_checkout.scss */
 a, a:link, a:hover, a:active, a:focus {
   text-decoration: none;
   border-bottom: 1px solid;
