@@ -5883,34 +5883,53 @@ input[type=radio]:checked + label.card .shiptothis:after, input[type=radio]:chec
   color: black !important;
 }
 
+/* line 746, ui/_checkout.scss */
+.incomplete {
+  background: white !important;
+  border: 1px solid #cbcbcb;
+}
+
+/* line 751, ui/_checkout.scss */
+.selected.incomplete, input[type=radio]:checked + label.incomplete {
+  border: 1px solid #4a993d;
+}
+
+/* line 755, ui/_checkout.scss */
+.checkbox-input {
+  clear: none;
+  float: left;
+  margin-right: 1em;
+  margin-top: 3px;
+}
+
 /* Colors */
-/* line 783, ui/_checkout.scss */
+/* line 799, ui/_checkout.scss */
 .bg-lightest {
   background-color: white;
 }
 
-/* line 784, ui/_checkout.scss */
+/* line 800, ui/_checkout.scss */
 .bg-lighter {
   background-color: #f1f1f1;
 }
 
-/* line 785, ui/_checkout.scss */
+/* line 801, ui/_checkout.scss */
 .bg-light {
   background-color: #cbcbcb;
 }
 
-/* line 786, ui/_checkout.scss */
+/* line 802, ui/_checkout.scss */
 .bg-dark {
   background-color: #727272;
 }
 
-/* line 787, ui/_checkout.scss */
+/* line 803, ui/_checkout.scss */
 .bg-darkest {
   background-color: black;
 }
 
 /* Typography */
-/* line 794, ui/_checkout.scss */
+/* line 810, ui/_checkout.scss */
 a, a:link, a:hover, a:active, a:focus {
   text-decoration: none;
   border-bottom: 1px solid;

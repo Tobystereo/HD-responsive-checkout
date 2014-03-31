@@ -743,6 +743,22 @@ input[type=radio]:checked + label.card {
   }
 }
 
+.incomplete {
+  background: $lightest !important;
+  @include border('all', 1px, solid, $light);
+}
+
+.selected.incomplete, input[type=radio]:checked + label.incomplete {
+  @include border('all', 1px, solid, $green);
+}
+
+.checkbox-input {
+  clear: none;
+  float: left;
+  margin-right: 1em;
+  margin-top: 3px;
+}
+
 // .paywiththis {
 //     position: relative;
 //     display: block;
