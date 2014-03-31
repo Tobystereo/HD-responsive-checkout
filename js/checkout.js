@@ -992,7 +992,7 @@ var hd_checkout = {
 				}
 			},
 			"PopulateEditCardForm": function ($editedCard) {
-				hd_checkout.Fields.BillingInfo.$edited_card_masked_number.html("ending: 1234");
+				hd_checkout.Fields.BillingInfo.$edited_card_masked_number.html("ending in: 1234");
 				hd_checkout.Fields.BillingInfo.$edited_card_type.addClass("visa").html("Visa");
 				hd_checkout.Fields.BillingInfo.$input_cc_name.val("Editing Name");
 				hd_checkout.Fields.BillingInfo.$input_cc_expiration.val("01/15");
