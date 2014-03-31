@@ -720,7 +720,11 @@ var hd_checkout = {
 				hd_checkout.Fields.BillingInfo.$btnsave_credit_card.toggleContainer({
 					content_element: hd_checkout.Fields.BillingInfo.$btncreate_credit_card,
 					toggle_self: false,
-					pre_logic: hd_checkout.Functions.BillingInfo.CreateNewCreditCardElement,
+					pre_logic: function () {
+						if (hd_checkout.Fields.BillingInfo.$credit_card_form.attr("data-mode") == "new") {
+							hd_checkout.Functions.BillingInfo.CreateNewCreditCardElement();
+						}
+					},
 					delay: hd_checkout.Settings.Shared.easing - 200
 				}).toggleContainer({
 					content_element: hd_checkout.Fields.BillingInfo.$credit_card_form,
@@ -964,6 +968,8 @@ var hd_checkout = {
 				});
 			},
 			"ToggleCreditCardFormMode": function (mode) {
+				// Set the mode on the form
+				hd_checkout.Fields.BillingInfo.$credit_card_form.attr("data-mode", mode);
 				if (mode == "edit") {
 					// Set form title text
 					hd_checkout.Fields.BillingInfo.$credit_card_form_title.text(hd_checkout.Fields.BillingInfo.$credit_card_form_title.attr("data-edit-text"));
@@ -1002,7 +1008,9 @@ var hd_checkout = {
 				hd_checkout.Fields.BillingInfo.$edited_card_masked_number.html("");
 				hd_checkout.Fields.BillingInfo.$edited_card_type.removeClass("visa mastercard amex discover").html("");
 				hd_checkout.Fields.BillingInfo.$input_cc_name.val("");
+				hd_checkout.Fields.BillingInfo.$input_cc_number.val("");
 				hd_checkout.Fields.BillingInfo.$input_cc_expiration.val("");
+				hd_checkout.Fields.BillingInfo.$input_cc_store_in_wallet.removeAttr("checked");
 				hd_checkout.Fields.BillingInfo.$btnchange_billing_address.show();
 				hd_checkout.Fields.BillingInfo.$credit_card_inputs.trigger("change");
 			},
@@ -1017,15 +1025,14 @@ var hd_checkout = {
 				hd_checkout.Fields.BillingInfo.$input_phone.val("");
 				hd_checkout.Fields.BillingInfo.$secondary_fields.css("display", "none");
 				hd_checkout.Fields.BillingInfo.$billing_address_form.find("label").removeClass("notempty");
-				//hd_checkout.Fields.BillingInfo.$address_inputs.trigger("change");
 			},
 			"CreateNewCreditCardElement": function () {
 				var $newCard,
-					mu = '<li class="grid__item one-whole desk-one-half credit-card-item">';
+					mu = '<li class="default grid__item one-whole desk-one-half credit-card-item">';
 				mu += '<input type="radio" name="select-credit-card" id="card6" value="card6">';
 				mu += '<label for="card6" class="card incomplete">';
 				mu += '<span class="btn paywiththis secondary small"></span>';
-				mu += '<button class="btn edit tertiary small">Edit</button>';
+				mu += '<button class="btn edit-credit-card tertiary small">Edit</button>';
 				mu += '<div class="credit-card">';
 				mu += '<span class="type visa">Visa</span>';
 				mu += '<span class="masked-number">ending in: ' + hd_checkout.Fields.BillingInfo.$input_cc_number.val().substring(hd_checkout.Fields.BillingInfo.$input_cc_number.val().length - 4) + '</span>';
@@ -1037,7 +1044,7 @@ var hd_checkout = {
 				mu += '<span class="zip"></span>';
 				mu += '</div></label></li>';
 				$newCard = $(mu);
-				hd_checkout.Fields.BillingInfo.$credit_card_list.append($newCard);
+				hd_checkout.Fields.BillingInfo.$credit_card_list.find("li:last-child").before($newCard);
 				hd_checkout.Functions.BillingInfo.BindEvents_EditCreditCardButton(true);
 				$newCard.find("input[type=radio]").trigger("click");
 			},
