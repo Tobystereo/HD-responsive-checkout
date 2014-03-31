@@ -848,6 +848,8 @@ var hd_checkout = {
 				if (mode == "edit") {
 					// Set form title text
 					hd_checkout.Fields.BillingInfo.$credit_card_form_title.text(hd_checkout.Fields.BillingInfo.$credit_card_form_title.attr("data-edit-text"));
+					// Set button text
+					hd_checkout.Fields.BillingInfo.$btnsave_credit_card.text(hd_checkout.Fields.BillingInfo.$btnsave_credit_card.attr("data-edit-text"));
 					// Hide fields that should not be displayed
 					hd_checkout.Fields.BillingInfo.$input_cc_number.hide();
 					hd_checkout.Fields.BillingInfo.$input_cc_number.next().hide();
@@ -859,6 +861,8 @@ var hd_checkout = {
 				else {
 					// Set form title text
 					hd_checkout.Fields.BillingInfo.$credit_card_form_title.text(hd_checkout.Fields.BillingInfo.$credit_card_form_title.attr("data-new-text"));
+					// Set button text
+					hd_checkout.Fields.BillingInfo.$btnsave_credit_card.text(hd_checkout.Fields.BillingInfo.$btnsave_credit_card.attr("data-new-text"));
 					// Hide fields that should not be displayed
 					hd_checkout.Fields.BillingInfo.$edited_card_type.hide();
 					hd_checkout.Fields.BillingInfo.$edited_card_masked_number.hide();
