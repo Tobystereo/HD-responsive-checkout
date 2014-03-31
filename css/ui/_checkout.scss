@@ -766,6 +766,14 @@ input[type=radio]:checked + label.card {
   }
 }
 
+.billing-address {
+  font-weight: 500;
+
+  span {
+    font-weight: 300;
+  }
+}
+
 /* Colors */
 .bg-lightest { background-color: $lightest; }
 .bg-lighter { background-color: $lighter; }

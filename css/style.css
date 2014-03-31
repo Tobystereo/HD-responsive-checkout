@@ -5908,34 +5908,43 @@ input[type=radio]:checked + label.card .shiptothis:after, input[type=radio]:chec
   margin-right: 0.5em;
 }
 
+/* line 769, ui/_checkout.scss */
+.billing-address {
+  font-weight: 500;
+}
+/* line 772, ui/_checkout.scss */
+.billing-address span {
+  font-weight: 300;
+}
+
 /* Colors */
-/* line 770, ui/_checkout.scss */
+/* line 778, ui/_checkout.scss */
 .bg-lightest {
   background-color: white;
 }
 
-/* line 771, ui/_checkout.scss */
+/* line 779, ui/_checkout.scss */
 .bg-lighter {
   background-color: #f1f1f1;
 }
 
-/* line 772, ui/_checkout.scss */
+/* line 780, ui/_checkout.scss */
 .bg-light {
   background-color: #cbcbcb;
 }
 
-/* line 773, ui/_checkout.scss */
+/* line 781, ui/_checkout.scss */
 .bg-dark {
   background-color: #727272;
 }
 
-/* line 774, ui/_checkout.scss */
+/* line 782, ui/_checkout.scss */
 .bg-darkest {
   background-color: black;
 }
 
 /* Typography */
-/* line 781, ui/_checkout.scss */
+/* line 789, ui/_checkout.scss */
 a, a:link, a:hover, a:active, a:focus {
   text-decoration: none;
   border-bottom: 1px solid;
