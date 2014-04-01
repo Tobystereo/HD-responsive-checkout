@@ -122,6 +122,7 @@ var hd_checkout = {
 			"$address_list": undefined,
 			"$default_address": undefined,
 			"$additional_addresses": undefined,
+			"$address_items": undefined,
 			"$new_address_form": undefined,
 			"$btncancel_address": undefined,
 			"$btnsave_address": undefined,
@@ -261,6 +262,7 @@ var hd_checkout = {
 				hd_checkout.Fields.ShippingAddress.$address_list = hd_checkout.Fields.ShippingAddress.$address_wrapper.find(".address-list");
 				hd_checkout.Fields.ShippingAddress.$default_address = hd_checkout.Fields.ShippingAddress.$address_list.find(".default");
 				hd_checkout.Fields.ShippingAddress.$additional_addresses = hd_checkout.Fields.ShippingAddress.$address_list.find(".additional-address");
+				hd_checkout.Fields.ShippingAddress.$address_items = hd_checkout.Fields.ShippingAddress.$address_list.find("input[type=radio]");
 				hd_checkout.Fields.ShippingAddress.$new_address_form = hd_checkout.Fields.Shared.$step_shipping_address.find("#new-address-form");
 				hd_checkout.Fields.ShippingAddress.$btnedit_address = hd_checkout.Fields.Shared.$step_shipping_address.find(".address-item button");
 				hd_checkout.Fields.ShippingAddress.$btncancel_address = hd_checkout.Fields.Shared.$step_shipping_address.find(".add-edit-address button.cancel");
@@ -273,8 +275,8 @@ var hd_checkout = {
 				hd_checkout.Fields.ShippingAddress.$input_state = hd_checkout.Fields.Shared.$step_shipping_address.find("#state-input");
 				hd_checkout.Fields.ShippingAddress.$input_postal = hd_checkout.Fields.Shared.$step_shipping_address.find("#postal-code-input");
 				hd_checkout.Fields.ShippingAddress.$input_phone = hd_checkout.Fields.Shared.$step_shipping_address.find("#phone-input");
-				hd_checkout.Fields.ShippingAddress.$secondary_fields = hd_checkout.Fields.Shared.$step_shipping_address.find("input[type=text], textarea, #country-input");
-				hd_checkout.Fields.ShippingAddress.$address_inputs = hd_checkout.Fields.Shared.$step_shipping_address.find(".field__secondary");
+				hd_checkout.Fields.ShippingAddress.$secondary_fields = hd_checkout.Fields.Shared.$step_shipping_address.find(".field__secondary");
+				hd_checkout.Fields.ShippingAddress.$address_inputs = hd_checkout.Fields.Shared.$step_shipping_address.find("input[type=text], textarea, #country-input");
 				hd_checkout.Fields.ShippingMethod.$loading_panel = hd_checkout.Fields.Shared.$step_shipping_option.find(".loading-panel");
 				hd_checkout.Fields.ShippingMethod.$shipping_option_wrapper = hd_checkout.Fields.Shared.$step_shipping_option.find(".shipping-option-wrapper");
 				hd_checkout.Fields.BillingInfo.$promo_code_form = hd_checkout.Fields.Shared.$step_billing.find("#promo-code-form");
@@ -337,6 +339,7 @@ var hd_checkout = {
 				hd_checkout.Functions.Shared.BindEvents_FormInputs(false);
 				hd_checkout.Functions.Shared.BindEvents_ProgressBarItems(false);
 				hd_checkout.Functions.ShippingAddress.BindEvents_AdditionalAddressButton(false);
+				hd_checkout.Functions.ShippingAddress.BindEvents_AddressItems(false);
 				hd_checkout.Functions.ShippingAddress.BindEvents_AddAddressButton(false);
 				hd_checkout.Functions.ShippingAddress.BindEvents_EditAddressButton(false);
 				hd_checkout.Functions.ShippingAddress.BindEvents_CancelAddressButton(false);
@@ -474,6 +477,20 @@ var hd_checkout = {
 					toggle_self: false
 				});
 			},
+			"BindEvents_AddressItems": function (refreshSelector) {
+				if (refreshSelector) {
+					hd_checkout.Fields.ShippingAddress.$address_items = $(hd_checkout.Fields.ShippingAddress.$address_items.selector);
+				}
+				hd_checkout.Fields.ShippingAddress.$address_items.toggleContainer({
+					content_element: hd_checkout.Fields.ShippingAddress.$new_address_form,
+					toggle_self: false,
+					force_state: "hide"
+				}).toggleContainer({
+					content_element: hd_checkout.Fields.ShippingAddress.$btnadd_address,
+					toggle_self: false,
+					force_state: "show"
+				});
+			},
 			"BindEvents_AddAddressButton": function (refreshSelector) {
 				if (refreshSelector) {
 					hd_checkout.Fields.ShippingAddress.$btnadd_address = $(hd_checkout.Fields.ShippingAddress.$btnadd_address.selector);
@@ -481,6 +498,9 @@ var hd_checkout = {
 				hd_checkout.Fields.ShippingAddress.$btnadd_address.toggleContainer({
 					content_element: hd_checkout.Fields.ShippingAddress.$new_address_form,
 					self_toggle_delay_offset: -hd_checkout.Settings.Shared.easing,
+					pre_logic: function () {
+						hd_checkout.Functions.ShippingAddress.ResetAddressForm();
+					},
 					post_toggle: function () {
 						hd_checkout.Fields.ShippingAddress.$new_address_form.animatedScroll();
 					}
@@ -491,12 +511,8 @@ var hd_checkout = {
 					hd_checkout.Fields.ShippingAddress.$btnedit_address = $(hd_checkout.Fields.ShippingAddress.$btnedit_address.selector);
 				}
 				hd_checkout.Fields.ShippingAddress.$btnedit_address.on("click", function () {
-					// Select the address being edited
-					$(this).parent().trigger("click");
 					// Hide the new address button
-					if (hd_checkout.Fields.ShippingAddress.$btnadd_address.is(":visible")) {
-						hd_checkout.Fields.ShippingAddress.$btnadd_address.slideUp(hd_checkout.Settings.Shared.easing - 200);
-					}
+					hd_checkout.Fields.ShippingAddress.$btnadd_address.slideUp(hd_checkout.Settings.Shared.easing - 200);
 					// Set the input values
 					hd_checkout.Fields.ShippingAddress.$input_country.val("CA");
 					hd_checkout.Fields.ShippingAddress.$input_name.val("Editing Name");
@@ -512,6 +528,7 @@ var hd_checkout = {
 					hd_checkout.Fields.ShippingAddress.$new_address_form.slideDown(hd_checkout.Settings.Shared.easing, function () {
 						hd_checkout.Fields.ShippingAddress.$new_address_form.animatedScroll();
 					});
+					return false;
 				});
 			},
 			"BindEvents_CancelAddressButton": function (refreshSelector) {
@@ -529,18 +546,7 @@ var hd_checkout = {
 						// Scroll to the progress bar
 						hd_checkout.Fields.Shared.$progress_bar.animatedScroll();
 					},
-					callback: function () {
-						hd_checkout.Fields.ShippingAddress.$input_country.val("");
-						hd_checkout.Fields.ShippingAddress.$input_name.val("");
-						hd_checkout.Fields.ShippingAddress.$input_company.val("");
-						hd_checkout.Fields.ShippingAddress.$input_street.val("");
-						hd_checkout.Fields.ShippingAddress.$input_city.val("");
-						hd_checkout.Fields.ShippingAddress.$input_state.val("");
-						hd_checkout.Fields.ShippingAddress.$input_postal.val("");
-						hd_checkout.Fields.ShippingAddress.$input_phone.val("");
-						hd_checkout.Fields.ShippingAddress.$secondary_fields.css("display", "none");
-						hd_checkout.Fields.ShippingAddress.$address_inputs.trigger("change");
-					}
+					callback: hd_checkout.Functions.ShippingAddress.ResetAddressForm
 				});
 			},
 			"BindEvents_SaveAddressButton": function (refreshSelector) {
@@ -577,15 +583,7 @@ var hd_checkout = {
 						$newAddress.find("input[type=radio]").trigger("click");
 					},
 					callback: function (element, event) {
-						hd_checkout.Fields.ShippingAddress.$input_country.val("");
-						hd_checkout.Fields.ShippingAddress.$input_name.val("");
-						hd_checkout.Fields.ShippingAddress.$input_company.val("");
-						hd_checkout.Fields.ShippingAddress.$input_street.val("");
-						hd_checkout.Fields.ShippingAddress.$input_city.val("");
-						hd_checkout.Fields.ShippingAddress.$input_state.val("");
-						hd_checkout.Fields.ShippingAddress.$input_postal.val("");
-						hd_checkout.Fields.ShippingAddress.$input_phone.val("");
-						hd_checkout.Fields.ShippingAddress.$address_inputs.trigger("change");
+						hd_checkout.Functions.ShippingAddress.ResetAddressForm();
 						// Scroll to the new address
 						hd_checkout.Fields.ShippingAddress.$address_list.find("input[type=radio]:checked").parent().animatedScroll();
 					}
@@ -610,6 +608,18 @@ var hd_checkout = {
 					force_state: "show",
 					toggle_self: false
 				})
+			},
+			"ResetAddressForm": function () {
+				hd_checkout.Fields.ShippingAddress.$input_country.val("");
+				hd_checkout.Fields.ShippingAddress.$input_name.val("");
+				hd_checkout.Fields.ShippingAddress.$input_company.val("");
+				hd_checkout.Fields.ShippingAddress.$input_street.val("");
+				hd_checkout.Fields.ShippingAddress.$input_city.val("");
+				hd_checkout.Fields.ShippingAddress.$input_state.val("");
+				hd_checkout.Fields.ShippingAddress.$input_postal.val("");
+				hd_checkout.Fields.ShippingAddress.$input_phone.val("");
+				hd_checkout.Fields.ShippingAddress.$address_inputs.trigger("change");
+				hd_checkout.Fields.ShippingAddress.$secondary_fields.css("display", "none");
 			}
 		},
 		"ShippingOption": {
