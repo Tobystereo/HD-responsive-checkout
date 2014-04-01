@@ -835,7 +835,7 @@ var hd_checkout = {
 
 				hd_checkout.Fields.BillingInfo.$btnedit_credit_card.on("click", function () {
 					var $this = $(this);
-					$this.parent().parent().find("input[type=radio]").trigger("click");
+					//$this.parent().parent().find("input[type=radio]").trigger("click");
 					hd_checkout.Fields.BillingInfo.$btncreate_credit_card.slideUp(hd_checkout.Settings.Shared.easing - 200);
 					hd_checkout.Functions.BillingInfo.ToggleCreditCardFormMode("edit");
 					hd_checkout.Functions.BillingInfo.PopulateEditCardForm($this);
@@ -1038,7 +1038,7 @@ var hd_checkout = {
 
 				hd_checkout.Fields.BillingInfo.$btnedit_address.on("click", function () {
 					var $this = $(this);
-					$this.parent().parent().find("input[type=radio]").trigger("click");
+					//$this.parent().parent().find("input[type=radio]").trigger("click");
 					// Set the input values
 					hd_checkout.Functions.BillingInfo.ToggleAddressFormMode("edit");
 					hd_checkout.Fields.BillingInfo.$input_country.val("CA");
