@@ -1055,6 +1055,7 @@ var hd_checkout = {
 						hd_checkout.Fields.BillingInfo.$input_phone.val("Editing Phone");
 						hd_checkout.Fields.BillingInfo.$address_inputs.trigger("change");
 						hd_checkout.Fields.BillingInfo.$secondary_fields.css("display", "");
+						return false;
 					}
 				}).toggleContainer({
 					content_element: hd_checkout.Fields.BillingInfo.$billing_address_form,
