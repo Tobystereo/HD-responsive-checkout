@@ -629,6 +629,10 @@ var hd_checkout = {
 					force_state: "hide",
 					toggle_self: false
 				}).toggleContainer({
+					content_element: hd_checkout.Fields.BillingInfo.$credit_card_form,
+					force_state: "hide",
+					toggle_self: false
+				}).toggleContainer({
 					content_element: hd_checkout.Fields.BillingInfo.$btncreate_credit_card,
 					force_state: "show",
 					toggle_self: false
@@ -778,6 +782,7 @@ var hd_checkout = {
 					hd_checkout.Fields.BillingInfo.$credit_card_form.slideDown(hd_checkout.Settings.Shared.easing, function () {
 						hd_checkout.Fields.BillingInfo.$credit_card_form.animatedScroll();
 					});
+					return false;
 				});
 			},
 			"BindEvents_EditDefaultCreditCardButton": function (refreshSelector) {
