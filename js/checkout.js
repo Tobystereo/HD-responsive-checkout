@@ -835,7 +835,7 @@ var hd_checkout = {
 
 				hd_checkout.Fields.BillingInfo.$btnedit_credit_card.on("click", function () {
 					var $this = $(this);
-					$this.parent().trigger("click");
+					$this.parent().parent().find("input[type=radio]").trigger("click");
 					hd_checkout.Fields.BillingInfo.$btncreate_credit_card.slideUp(hd_checkout.Settings.Shared.easing - 200);
 					hd_checkout.Functions.BillingInfo.ToggleCreditCardFormMode("edit");
 					hd_checkout.Functions.BillingInfo.PopulateEditCardForm($this);
@@ -1036,34 +1036,27 @@ var hd_checkout = {
 					hd_checkout.Fields.BillingInfo.$btnedit_address = $(hd_checkout.Fields.BillingInfo.$btnedit_address.selector);
 				}
 
-				hd_checkout.Fields.BillingInfo.$btnedit_address.toggleContainer({
-					content_element: hd_checkout.Fields.BillingInfo.$btnadd_billing_address,
-					toggle_self: false,
-					force_state: "hide",
-					delay: hd_checkout.Settings.Shared.easing - 200,
-					pre_logic: function (self) {
-						$(self).parent().trigger("click");
-						// Set the input values
-						hd_checkout.Functions.BillingInfo.ToggleAddressFormMode("edit");
-						hd_checkout.Fields.BillingInfo.$input_country.val("CA");
-						hd_checkout.Fields.BillingInfo.$input_name.val("Editing Name");
-						hd_checkout.Fields.BillingInfo.$input_company.val("Editing Company");
-						hd_checkout.Fields.BillingInfo.$input_street.val("Editing Street Address");
-						hd_checkout.Fields.BillingInfo.$input_city.val("Editing City");
-						hd_checkout.Fields.BillingInfo.$input_state.val("Editing State");
-						hd_checkout.Fields.BillingInfo.$input_postal.val("Editing Postal Code");
-						hd_checkout.Fields.BillingInfo.$input_phone.val("Editing Phone");
-						hd_checkout.Fields.BillingInfo.$address_inputs.trigger("change");
-						hd_checkout.Fields.BillingInfo.$secondary_fields.css("display", "");
-						return false;
-					}
-				}).toggleContainer({
-					content_element: hd_checkout.Fields.BillingInfo.$billing_address_form,
-					force_state: "show",
-					toggle_self: false,
-					post_toggle: function () {
+				hd_checkout.Fields.BillingInfo.$btnedit_address.on("click", function () {
+					var $this = $(this);
+					$this.parent().parent().find("input[type=radio]").trigger("click");
+					// Set the input values
+					hd_checkout.Functions.BillingInfo.ToggleAddressFormMode("edit");
+					hd_checkout.Fields.BillingInfo.$input_country.val("CA");
+					hd_checkout.Fields.BillingInfo.$input_name.val("Editing Name");
+					hd_checkout.Fields.BillingInfo.$input_company.val("Editing Company");
+					hd_checkout.Fields.BillingInfo.$input_street.val("Editing Street Address");
+					hd_checkout.Fields.BillingInfo.$input_city.val("Editing City");
+					hd_checkout.Fields.BillingInfo.$input_state.val("Editing State");
+					hd_checkout.Fields.BillingInfo.$input_postal.val("Editing Postal Code");
+					hd_checkout.Fields.BillingInfo.$input_phone.val("Editing Phone");
+					hd_checkout.Fields.BillingInfo.$address_inputs.trigger("change");
+					hd_checkout.Fields.BillingInfo.$secondary_fields.css("display", "");
+
+					hd_checkout.Fields.BillingInfo.$btnadd_billing_address.slideUp(hd_checkout.Settings.Shared.easing - 200);
+					hd_checkout.Fields.BillingInfo.$billing_address_form.slideDown(hd_checkout.Settings.Shared.easing, function () {
 						hd_checkout.Fields.BillingInfo.$billing_address_form.animatedScroll();
-					}
+					});
+					return false;
 				});
 			},
 			"BindEvents_BillingAddressForm": function (refreshSelector) {
