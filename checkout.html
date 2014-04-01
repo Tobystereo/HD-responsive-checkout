@@ -276,12 +276,12 @@
                             <form id="promo-code-form" action="#">
                                 <ul class="form-fields one-whole card">
                                     <li class="promo-error-message" style="display:none;"></li>
-                                    <li class="field field__secondary promo-code">
+                                    <li class="field promo-code">
                                         <input type="text" class="text-input" id="promo-code-input" title="Promo Code">
                                         <label for="promo-code-input">Enter Promo Code</label>
+                                        <span class="promo-details" style="display:none;"></span>
                                         <button class="apply btn taptarget secondary" data-text="Apply Code" data-text-alt="Remove Code">Apply Code</button>
                                     </li>
-                                    <li class="promo-details" style="display:none;"></li>
                                 </ul>
                             </form>
                         </div>
@@ -542,7 +542,7 @@
                                 <form id="billing-address-form" action="#" style="display: none;">
                                     <ul class="grid__item add-edit-address form-fields one-whole card">
                                         <li class="field country ">
-                                            <h3>Create a new address</h3>
+                                            <h3 class="title" data-new-text="Create a new address" data-edit-text="Edit address">Create a new address</h3>
                                             <select class="" id="country-input">
                                                 <option value=""></option>
                                                 <option value="US">United States</option>
