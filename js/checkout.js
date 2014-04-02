@@ -29,11 +29,6 @@
 
 		if (settings.content_element !== undefined) {
 			this.on(settings.firing_events, function (e) {
-				var $this = $(this);
-				console.log("Element #: " + $this.attr("id") + "|." + $this.attr("class") + " firing toggleContainer");
-				console.log("Toggled element: #" + settings.content_element.attr("id") + "|." + settings.content_element.attr("class"));
-				console.log("Action: " + settings.force_state);
-				console.log("--------------------------------------------------------");
 				e.stopPropagation();
 				if (settings.pre_logic !== undefined) {
 					settings.pre_logic(this);
@@ -517,7 +512,6 @@ var hd_checkout = {
 					hd_checkout.Fields.ShippingAddress.$btnedit_address = $(hd_checkout.Fields.ShippingAddress.$btnedit_address.selector);
 				}
 				hd_checkout.Fields.ShippingAddress.$btnedit_address.on("click", function (e) {
-					console.log("edit address button click event fired");
 					var $this = $(this);
 					e.stopPropagation();
 					$this.parent().parent().find("input[type=radio]").trigger("click");
