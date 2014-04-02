@@ -28,7 +28,13 @@
 			};
 
 		if (settings.content_element !== undefined) {
-			this.on(settings.firing_events, function () {
+			this.on(settings.firing_events, function (e) {
+				var $this = $(this);
+				console.log("Element #: " + $this.attr("id") + "|." + $this.attr("class") + " firing toggleContainer");
+				console.log("Toggled element: #" + settings.content_element.attr("id") + "|." + settings.content_element.attr("class"));
+				console.log("Action: " + settings.force_state);
+				console.log("--------------------------------------------------------");
+				e.stopPropagation();
 				if (settings.pre_logic !== undefined) {
 					settings.pre_logic(this);
 				}
@@ -510,7 +516,11 @@ var hd_checkout = {
 				if (refreshSelector) {
 					hd_checkout.Fields.ShippingAddress.$btnedit_address = $(hd_checkout.Fields.ShippingAddress.$btnedit_address.selector);
 				}
-				hd_checkout.Fields.ShippingAddress.$btnedit_address.on("click", function () {
+				hd_checkout.Fields.ShippingAddress.$btnedit_address.on("click", function (e) {
+					console.log("edit address button click event fired");
+					var $this = $(this);
+					e.stopPropagation();
+					$this.parent().parent().find("input[type=radio]").trigger("click");
 					// Hide the new address button
 					hd_checkout.Fields.ShippingAddress.$btnadd_address.slideUp(hd_checkout.Settings.Shared.easing - 200);
 					// Set the input values
@@ -843,9 +853,10 @@ var hd_checkout = {
 					hd_checkout.Fields.BillingInfo.$btnedit_credit_card = $(hd_checkout.Fields.BillingInfo.$btnedit_credit_card.selector);
 				}
 
-				hd_checkout.Fields.BillingInfo.$btnedit_credit_card.on("click", function () {
+				hd_checkout.Fields.BillingInfo.$btnedit_credit_card.on("click", function (e) {
 					var $this = $(this);
-					//$this.parent().parent().find("input[type=radio]").trigger("click");
+					e.stopPropagation();
+					$this.parent().parent().find("input[type=radio]").trigger("click");
 					hd_checkout.Fields.BillingInfo.$btncreate_credit_card.slideUp(hd_checkout.Settings.Shared.easing - 200);
 					hd_checkout.Functions.BillingInfo.ToggleCreditCardFormMode("edit");
 					hd_checkout.Functions.BillingInfo.PopulateEditCardForm($this);
@@ -854,7 +865,6 @@ var hd_checkout = {
 					hd_checkout.Fields.BillingInfo.$credit_card_form.slideDown(hd_checkout.Settings.Shared.easing, function () {
 						hd_checkout.Fields.BillingInfo.$credit_card_form.animatedScroll();
 					});
-					return false;
 				});
 			},
 			"BindEvents_EditDefaultCreditCardButton": function (refreshSelector) {
@@ -862,10 +872,11 @@ var hd_checkout = {
 					hd_checkout.Fields.BillingInfo.$btnedit_default_credit_card = $(hd_checkout.Fields.BillingInfo.$btnedit_default_credit_card.selector);
 				}
 
-				hd_checkout.Fields.BillingInfo.$btnedit_default_credit_card.on("click", function () {
+				hd_checkout.Fields.BillingInfo.$btnedit_default_credit_card.on("click", function (e) {
 					var $this = $(this);
+					e.stopPropagation();
+					$this.parent().parent().find("input[type=radio]").trigger("click");
 					hd_checkout.Fields.BillingInfo.$btncreate_credit_card.slideUp(hd_checkout.Settings.Shared.easing - 200);
-
 					hd_checkout.Functions.BillingInfo.ToggleCreditCardFormMode("edit");
 					hd_checkout.Functions.BillingInfo.PopulateEditCardForm($this);
 					// Display the credit card form
@@ -1046,9 +1057,10 @@ var hd_checkout = {
 					hd_checkout.Fields.BillingInfo.$btnedit_address = $(hd_checkout.Fields.BillingInfo.$btnedit_address.selector);
 				}
 
-				hd_checkout.Fields.BillingInfo.$btnedit_address.on("click", function () {
+				hd_checkout.Fields.BillingInfo.$btnedit_address.on("click", function (e){
 					var $this = $(this);
-					//$this.parent().parent().find("input[type=radio]").trigger("click");
+					e.stopPropagation();
+					$this.parent().parent().find("input[type=radio]").trigger("click");
 					// Set the input values
 					hd_checkout.Functions.BillingInfo.ToggleAddressFormMode("edit");
 					hd_checkout.Fields.BillingInfo.$input_country.val("CA");
