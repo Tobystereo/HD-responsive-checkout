@@ -89,3 +89,17 @@ $borderstyle: $lineweight $linetype $linecolor;
   #{$attribute}: $value * $basefontsize + px;
   #{$attribute}: $value + rem;
 }
+
+
+@mixin clear($location: "after") {
+  @if $location == "after" {
+    &:after {
+      @include pseudo(100%,0,"\ ");
+      display: table;
+      clear: both;
+    }
+  }
+  @else {
+    clear: $location;
+  }
+}

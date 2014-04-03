@@ -287,8 +287,26 @@
                         </div>
                     </div>
                     <div class="grid default-payment">
-                        <div class="default grid__item one-whole desk-one-half">
-                            <div class="billing-data card selected one-whole">
+                        <div class="default grid__item one-whole desk-one-half credit-card-item">
+                          <input type="radio" name="standard-credit-card" id="card1" value="card1" checked>
+                          <label for="card0" class="card">
+                              <span class="btn paywiththis secondary small"></span>
+                              <button class="btn edit-credit-card tertiary small">Edit</button>
+                              <div class="credit-card">
+                                  <span class="type visa">Visa</span>
+                                  <span class="masked-number">ending in: 8237</span>
+                                  <span class="expiration">Expires: 10/16</span>
+                              </div>
+                              <div class="address">
+                                  <span class="label">Billing Address:</span>
+                                  <span class="street">123 A street</span>,
+                                  <span class="city">Mobile</span>
+                                  <span class="state">AK</span>
+                                  <span class="zip">88739</span>
+                              </div>
+                          </label>
+
+<!--                             <div class="billing-data card selected label one-whole">
                                 <div class="credit-card">
                                     <button class="btn edit-credit-card tertiary small">Edit</button>
                                     <span class="type visa">Visa</span>
@@ -296,13 +314,13 @@
                                     <span class="expiration">Expires: 10/16</span>
                                 </div>
                                 <div class="address">
-                                    Billing Address:
+                                    <span class="label">Billing Address:</span>
                                     <span class="street">123 A street</span>,
                                     <span class="city">Mobile</span>
                                     <span class="state">AK</span>
                                     <span class="zip">88739</span>
                                 </div>
-                            </div>
+                            </div> -->
                         </div>
                         <div class="buttons grid__item one-whole desk-one-half">
                             <button class="change-payment-option btn taptarget tertiary one-whole">Use different payment option</button>
@@ -350,7 +368,7 @@
                                             <span class="expiration">Expires: 01/13</span>
                                         </div>
                                         <div class="address">
-                                            Billing Address:
+                                            <span class="label">Billing Address:</span>
                                             <span class="street">123 A street</span>,
                                             <span class="city">Mobile</span>
                                             <span class="state">AK</span>
@@ -369,7 +387,7 @@
                                             <span class="expiration">Expires: 03/15</span>
                                         </div>
                                         <div class="address">
-                                            Billing Address:
+                                            <span class="label">Billing Address:</span>
                                             <span class="street">123 A street</span>,
                                             <span class="city">Mobile</span>
                                             <span class="state">AK</span>
@@ -388,7 +406,7 @@
                                             <span class="expiration">Expires: 10/16</span>
                                         </div>
                                         <div class="address">
-                                            Billing Address:
+                                            <span class="label">Billing Address:</span>
                                             <span class="street">123 A street</span>,
                                             <span class="city">Mobile</span>
                                             <span class="state">AK</span>
@@ -396,7 +414,7 @@
                                         </div>
                                     </label>
                                 </li>
-                                <li class="default grid__item one-whole desk-one-half credit-card-item">
+                                <li class="grid__item one-whole desk-one-half create-credit-card-wrapper">
                                     <button class="create-credit-card btn taptarget tertiary one-whole" style="display: none;">Add new credit card</button>
                                 </li>
                             </ul>
@@ -432,7 +450,7 @@
                                             <ul class="grid">
                                                 <li class="field grid__item billing-address one-half">
                                                     <p>
-                                                        Billing Address:<br>
+                                                        <span class="label">Billing Address:</span>
                                                         <span class="street">123 A street</span>,
                                                         <span class="city">Mobile</span>
                                                         <span class="state">AK</span>
@@ -440,7 +458,7 @@
                                                     </p>
                                                 </li>
                                                 <li class="buttons grid__item one-half">
-                                                    <button class="change-billing-address small btn taptarget tertiary one-whole">Change Billing Address</button>
+                                                    <button class="change-billing-address small btn taptarget tertiary one-whole">Change Address</button>
                                                 </li>
                                             </ul>
                                         </li>
