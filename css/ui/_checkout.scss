@@ -944,7 +944,131 @@ input[type=radio]:checked + label.card {
   }
 }
 
+// REVIEW STEP
+.cart-items {
+  .cart-item {
+    &:nth-of-type(odd) {
+      background-color: $lighter;
+    }
 
+    &.header {
+      display: none;
+
+      @media #{$desk} {
+        display: block;
+        background-color: $light;
+
+        .field {
+          margin-top: 0 !important;
+          margin-bottom: 0 !important;
+        }
+
+        .label {
+          display: block !important;
+          font-weight: 700 !important;
+        }
+      }
+    }
+
+    .thumbnail {
+      width: 30%;
+
+      @media #{$lap} {
+        width: 30%;
+        float: left;
+        clear: none;
+      }
+
+      @media #{$desk} {
+        width: 20%;
+        float: none;
+      }
+    }
+
+    .form-fields {
+      width: 100%;
+
+      .label {
+        float: left;
+        width: 26%;
+        margin-right: 1em;
+
+        @media #{$desk} {
+          display: none;
+        }
+      }
+
+      .field {
+        margin-bottom: 1em;
+
+        &.quantity {
+          .label {
+            width: 100%;
+            margin-bottom: 0.25em;
+          }
+          input[type=text] {
+            width: 25%;
+          }
+          .update-cart-item {
+            width: auto;
+            margin-left: 1em;
+            @media #{$desk} {
+              margin-top: .7em;
+              margin-left: 0;
+            }
+          }
+          @media #{$desk} {
+            input[type=text] {
+              width: 100%;
+            }
+            .update-cart-item {
+              width: 100%;
+            }
+          }
+        }
+
+        &.buttons {
+          width: 30%;
+          float: right;
+
+          button {
+            width: 100%;
+            margin-top: -11em;
+
+            @media #{$desk} {
+              margin-top: 0 !important;
+            }
+          }
+        }
+
+        @media #{$desk} {
+          &.name {
+            width: 35%;
+          }
+
+          &.price, &.quantity, &.total {
+            width: 12.5%;
+          }
+
+          &.buttons {
+            width: 15%;
+            margin-top: 0.5em;
+          }
+
+          &.name, &.price, &.total {
+            margin-top: 1em;
+          }
+
+          display: block;
+          float: left;
+          margin-right: 1em;
+        }
+      }
+    }
+  }
+
+
+}
 
 /* Colors */
 .bg-lightest { background-color: $lightest; }
