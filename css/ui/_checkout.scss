@@ -1121,6 +1121,34 @@ input[type=radio]:checked + label.card {
   }
 }
 
+// Review Checkout Selections
+.selection-container {
+  h3 {
+    padding-left: 1rem;
+  }
+
+  h4 {
+    margin-bottom: 1rem;
+  }
+
+  button {
+    float: right;
+    margin-top: -5.25rem;
+  }
+
+  .billing-information {
+    h4 {
+      margin-bottom: 4rem;
+    }
+
+    button {
+      margin-top: -6.25rem;
+    }
+  }
+
+
+}
+
 /* Colors */
 .bg-lightest { background-color: $lightest; }
 .bg-lighter { background-color: $lighter; }

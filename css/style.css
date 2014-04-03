@@ -6290,34 +6290,56 @@ input[type=radio]:checked + label.card .shiptothis:after, input[type=radio]:chec
   margin-right: 0;
 }
 
+/* line 1126, ui/_checkout.scss */
+.selection-container h3 {
+  padding-left: 1rem;
+}
+/* line 1130, ui/_checkout.scss */
+.selection-container h4 {
+  margin-bottom: 1rem;
+}
+/* line 1134, ui/_checkout.scss */
+.selection-container button {
+  float: right;
+  margin-top: -5.25rem;
+}
+/* line 1140, ui/_checkout.scss */
+.selection-container .billing-information h4 {
+  margin-bottom: 4rem;
+}
+/* line 1144, ui/_checkout.scss */
+.selection-container .billing-information button {
+  margin-top: -6.25rem;
+}
+
 /* Colors */
-/* line 1125, ui/_checkout.scss */
+/* line 1153, ui/_checkout.scss */
 .bg-lightest {
   background-color: white;
 }
 
-/* line 1126, ui/_checkout.scss */
+/* line 1154, ui/_checkout.scss */
 .bg-lighter {
   background-color: #f1f1f1;
 }
 
-/* line 1127, ui/_checkout.scss */
+/* line 1155, ui/_checkout.scss */
 .bg-light {
   background-color: #cbcbcb;
 }
 
-/* line 1128, ui/_checkout.scss */
+/* line 1156, ui/_checkout.scss */
 .bg-dark {
   background-color: #727272;
 }
 
-/* line 1129, ui/_checkout.scss */
+/* line 1157, ui/_checkout.scss */
 .bg-darkest {
   background-color: black;
 }
 
 /* Typography */
-/* line 1136, ui/_checkout.scss */
+/* line 1164, ui/_checkout.scss */
 a, a:link, a:hover, a:active, a:focus {
   text-decoration: none;
   border-bottom: 1px solid;
