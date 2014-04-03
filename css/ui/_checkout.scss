@@ -1066,8 +1066,59 @@ input[type=radio]:checked + label.card {
       }
     }
   }
+}
 
+// Price break-down
+.cost-breakdown {
 
+  .field {
+    margin-bottom: 0;
+  }
+
+  .label {
+    width: 30%;
+
+    @media #{$lap} {
+      width: 50%;
+      text-align: right;
+    }
+
+    @media #{$desk} {
+      width: 71%;
+    }
+
+    p {
+      margin-left: 1em;
+    }
+
+    span {
+      font-weight: 300;
+    }
+  }
+
+  .value {
+    width: 29%;
+  }
+
+  .total {
+    @include border(top);
+    padding-top: .5em;
+    @include font(2, 100);
+
+    p {
+      margin-left: 1rem;
+    }
+  }
+
+  .discount {
+    .value {
+      &:before {
+        @include pseudo(.5em, 1em, "-");
+        margin-left: -.5em;
+        margin-right: 0;
+      }
+    }
+  }
 }
 
 /* Colors */

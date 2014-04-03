@@ -6230,34 +6230,94 @@ input[type=radio]:checked + label.card .shiptothis:after, input[type=radio]:chec
   }
 }
 
-/* Colors */
 /* line 1074, ui/_checkout.scss */
+.cost-breakdown .field {
+  margin-bottom: 0;
+}
+/* line 1078, ui/_checkout.scss */
+.cost-breakdown .label {
+  width: 30%;
+}
+@media only screen and (min-width: 30em) {
+  /* line 1078, ui/_checkout.scss */
+  .cost-breakdown .label {
+    width: 50%;
+    text-align: right;
+  }
+}
+@media only screen and (min-width: 50em) {
+  /* line 1078, ui/_checkout.scss */
+  .cost-breakdown .label {
+    width: 71%;
+  }
+}
+/* line 1090, ui/_checkout.scss */
+.cost-breakdown .label p {
+  margin-left: 1em;
+}
+/* line 1094, ui/_checkout.scss */
+.cost-breakdown .label span {
+  font-weight: 300;
+}
+/* line 1099, ui/_checkout.scss */
+.cost-breakdown .value {
+  width: 29%;
+}
+/* line 1103, ui/_checkout.scss */
+.cost-breakdown .total {
+  border-top: 1px solid #727272;
+  padding-top: .5em;
+  font-size: 32px;
+  font-size: 2rem;
+  font-family: 'Helvetica Neue', Helvetica, sans-serif;
+  font-weight: 100;
+  letter-spacing: 0;
+  line-height: 41.6px;
+  line-height: 2.6rem;
+}
+/* line 1108, ui/_checkout.scss */
+.cost-breakdown .total p {
+  margin-left: 1rem;
+}
+/* line 1115, ui/_checkout.scss */
+.cost-breakdown .discount .value:before {
+  display: inline-block;
+  position: relative;
+  content: "-";
+  width: 0.5em;
+  height: 1em;
+  margin-left: -.5em;
+  margin-right: 0;
+}
+
+/* Colors */
+/* line 1125, ui/_checkout.scss */
 .bg-lightest {
   background-color: white;
 }
 
-/* line 1075, ui/_checkout.scss */
+/* line 1126, ui/_checkout.scss */
 .bg-lighter {
   background-color: #f1f1f1;
 }
 
-/* line 1076, ui/_checkout.scss */
+/* line 1127, ui/_checkout.scss */
 .bg-light {
   background-color: #cbcbcb;
 }
 
-/* line 1077, ui/_checkout.scss */
+/* line 1128, ui/_checkout.scss */
 .bg-dark {
   background-color: #727272;
 }
 
-/* line 1078, ui/_checkout.scss */
+/* line 1129, ui/_checkout.scss */
 .bg-darkest {
   background-color: black;
 }
 
 /* Typography */
-/* line 1085, ui/_checkout.scss */
+/* line 1136, ui/_checkout.scss */
 a, a:link, a:hover, a:active, a:focus {
   text-decoration: none;
   border-bottom: 1px solid;
