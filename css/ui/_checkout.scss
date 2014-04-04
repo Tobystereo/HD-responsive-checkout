@@ -101,10 +101,6 @@ article {
     }
 }
 
-.checkout {
-
-}
-
     .global-nav {
         height: (($tapheight - 1) * $rootfontsize) + px;
         height: ($tapheight - 1) + rem;
@@ -357,7 +353,7 @@ article {
     }
 }
 
-.address-item, .credit-card {
+.address-item, .credit-card, .credit-card-item {
     text-align: left;
 
     span {
@@ -372,29 +368,65 @@ article {
     .edit {
         position: relative;
         float: left;
+        margin-bottom: 1em;
     }
 
     .address {
+        text-align: left;
         display: block;
         float: left;
         margin-left: 0;
-        margin-top: 1em;
-        clear: both;
+        margin-top: 0;
+        clear: left !important;
 
         @media #{$lap}{
             clear: none;
-            margin-top: 0;
             margin-left: 1.5em;
         }
 
         @media #{$desk}{
-            margin-top: 1em;
             margin-left: 0;
             clear: both;
         }
     }
 
+}
 
+.billing-data, .credit-card-item {
+  padding-top: 0;
+
+  button {
+    display: block;
+    // margin-top: -2em;
+    margin-bottom: 1em;
+  }
+
+  .credit-card {
+    margin-top: -50px !important;
+    overflow: hidden;
+    display: block;
+    margin-bottom: 1em;
+  }
+
+  .address {
+    display: block;
+    clear: both;
+    margin-top: 1em;
+  }
+}
+
+.credit-card-item {
+  button {
+    margin-top: -2em;
+  }
+}
+
+.label {
+  font-weight: 500 !important;
+}
+
+.create-credit-card-wrapper {
+  margin-bottom: 1em;
 }
 
 input[type=radio] + label.card {
@@ -422,6 +454,57 @@ input[type=radio] + label.card {
         height: 2em;
     }
 
+}
+
+.expired, .expired input[type=radio]:checked + label {
+
+  .card, &.card {
+    background-color: $lighter-red;
+
+    &:before {
+      content: "";
+    }
+  }
+
+  // the selected one
+  &.card {
+    .paywiththis:before {
+      margin-top: -0.25em;
+    }
+  }
+
+  .edit-credit-card {
+    border-color: $red !important;
+    color: $red !important;
+  }
+
+  .paywiththis {
+    background: none;
+
+
+    &:before {
+      @include pseudo(auto, .5em, '\2718');
+      float: right;
+      color: $red !important;
+      @include font-size(2);
+      @include line-height(1);
+      text-align: center;
+      display: block;
+      margin-left: 0.25em;
+    }
+
+    &:after {
+      @include pseudo(auto, 1em, "Expired");
+      color: $red !important;
+      position: relative;
+      display: block;
+      float: right;
+      margin-top: -1.1em;
+      margin-right: 2em;
+      text-align: right;
+      content: "Expired" !important;
+    }
+  }
 }
 
 input[type=radio]:checked + label.card {
@@ -628,25 +711,34 @@ input[type=radio]:checked + label.card {
   .card {
     margin-top: 0;
     padding-top: 1em;
-    // min-height: 150px;
   }
 }
 
 .billing-data {
   .address {
     color: $dark;
-    margin-top: 0;
+    margin-top: 1em;
+
   }
 }
 
-.credit-card {
-  overflow: auto;
+.credit-card, .credit-card-item {
+  overflow: visible;
+  clear: both;
 
-  span, .name, .masked-number, .expiration {
+  .address {
+    margin-top: 0;
+  }
+
+  .name, .masked-number, .expiration, .label, .type {
     clear: none;
     float: left;
     margin-right: 1em;
-    margin-top: 1em;
+  }
+
+  button {
+    float: left;
+    clear: right !important;
   }
 }
 
@@ -657,10 +749,14 @@ input[type=radio]:checked + label.card {
 
   input {
     text-transform: uppercase;
-    width: 60% !important;
+    width: 55% !important;
     margin-bottom: 0;
 
     @media #{$lap}{
+      width: 80% !important;
+    }
+
+    @media #{$desk}{
       width: 70% !important;
     }
   }
@@ -683,11 +779,13 @@ input[type=radio]:checked + label.card {
   overflow: hidden;
   text-indent: 101%;
   text-align:right !important;
-  background: url("../images/creditcards.svg") 0 0;
+  background: url("../images/creditcards.png") 0 0;
+  // background: url("../images/creditcards.svg") 0 0;
   background-size: auto 20px;
   background-repeat: no-repeat;
-  margin-bottom: 1em;
   margin-left: 2px;
+
+  clear: left !important;
 
   &.visa {
     background-position: 0 0;
@@ -742,11 +840,29 @@ input[type=radio]:checked + label.card {
     @include font(1.5, 100, 2);
   }
 
+  .billing-address {
+    .street {
+      @include clear;
+    }
+
+    .city {
+      margin-right: 0;
+    }
+
+    .state {
+      margin-left: 0.25em;
+    }
+  }
+
+
+
 }
+
 
 #payment-option-credit-card + label .payment-option:after {
   @include pseudo(119px, 20px, "\ ");
-  background: url("../images/creditcards.svg");
+  background: url("../images/creditcards.png");
+  // background: url("../images/creditcards.svg");
   background-size: auto 20px;
   margin-left: 1em;
   margin-bottom: -4px;
@@ -754,7 +870,8 @@ input[type=radio]:checked + label.card {
 
 #payment-option-paypal + label .payment-option:after {
   @include pseudo(30px, 20px, "\ ");
-  background: url("../images/creditcards.svg") no-repeat;
+  background: url("../images/creditcards.png") no-repeat;
+  // background: url("../images/creditcards.svg") no-repeat;
   background-size: auto 20px;
   background-position: -96px 0;
   margin-left: 1em;
@@ -827,7 +944,210 @@ input[type=radio]:checked + label.card {
   }
 }
 
+// REVIEW STEP
+.cart-items {
+  .cart-item {
+    &:nth-of-type(odd) {
+      background-color: $lighter;
+    }
 
+    &.header {
+      display: none;
+
+      @media #{$desk} {
+        display: block;
+        background-color: $light;
+
+        .field {
+          margin-top: 0 !important;
+          margin-bottom: 0 !important;
+        }
+
+        .label {
+          display: block !important;
+          font-weight: 700 !important;
+        }
+      }
+    }
+
+    .thumbnail {
+      width: 30%;
+
+      @media #{$lap} {
+        width: 30%;
+        float: left;
+        clear: none;
+      }
+
+      @media #{$desk} {
+        width: 20%;
+        float: none;
+      }
+    }
+
+    .form-fields {
+      width: 100%;
+
+      .label {
+        float: left;
+        width: 26%;
+        margin-right: 1em;
+
+        @media #{$desk} {
+          display: none;
+        }
+      }
+
+      .field {
+        margin-bottom: 1em;
+
+        &.quantity {
+          .label {
+            width: 100%;
+            margin-bottom: 0.25em;
+          }
+          input[type=text] {
+            width: 25%;
+          }
+          .update-cart-item {
+            width: auto;
+            margin-left: 1em;
+            @media #{$desk} {
+              margin-top: .7em;
+              margin-left: 0;
+            }
+          }
+          @media #{$desk} {
+            input[type=text] {
+              width: 100%;
+            }
+            .update-cart-item {
+              width: 100%;
+            }
+          }
+        }
+
+        &.buttons {
+          width: 30%;
+          float: right;
+
+          button {
+            width: 100%;
+            margin-top: -11em;
+
+            @media #{$desk} {
+              margin-top: 0 !important;
+            }
+          }
+        }
+
+        @media #{$desk} {
+          &.name {
+            width: 35%;
+          }
+
+          &.price, &.quantity, &.total {
+            width: 12.5%;
+          }
+
+          &.buttons {
+            width: 15%;
+            margin-top: 0.5em;
+          }
+
+          &.name, &.price, &.total {
+            margin-top: 1em;
+          }
+
+          display: block;
+          float: left;
+          margin-right: 1em;
+        }
+      }
+    }
+  }
+}
+
+// Price break-down
+.cost-breakdown {
+
+  .field {
+    margin-bottom: 0;
+  }
+
+  .label {
+    width: 30%;
+
+    @media #{$lap} {
+      width: 50%;
+      text-align: right;
+    }
+
+    @media #{$desk} {
+      width: 71%;
+    }
+
+    p {
+      margin-left: 1em;
+    }
+
+    span {
+      font-weight: 300;
+    }
+  }
+
+  .value {
+    width: 29%;
+  }
+
+  .total {
+    @include border(top);
+    padding-top: .5em;
+    @include font(2, 100);
+
+    p {
+      margin-left: 1rem;
+    }
+  }
+
+  .discount {
+    .value {
+      &:before {
+        @include pseudo(.5em, 1em, "-");
+        margin-left: -.5em;
+        margin-right: 0;
+      }
+    }
+  }
+}
+
+// Review Checkout Selections
+.selection-container {
+  h3 {
+    padding-left: 1rem;
+  }
+
+  h4 {
+    margin-bottom: 1rem;
+  }
+
+  button {
+    float: right;
+    margin-top: -5.25rem;
+  }
+
+  .billing-information {
+    h4 {
+      margin-bottom: 4rem;
+    }
+
+    button {
+      margin-top: -6.25rem;
+    }
+  }
+
+
+}
 
 /* Colors */
 .bg-lightest { background-color: $lightest; }

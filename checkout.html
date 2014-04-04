@@ -287,8 +287,26 @@
                         </div>
                     </div>
                     <div class="grid default-payment">
-                        <div class="default grid__item one-whole desk-one-half">
-                            <div class="billing-data card selected one-whole">
+                        <div class="default grid__item one-whole desk-one-half credit-card-item">
+                          <input type="radio" name="standard-credit-card" id="card1" value="card1" checked>
+                          <label for="card0" class="card">
+                              <span class="btn paywiththis secondary small"></span>
+                              <button class="btn edit-credit-card tertiary small">Edit</button>
+                              <div class="credit-card">
+                                  <span class="type visa">Visa</span>
+                                  <span class="masked-number">ending in: 8237</span>
+                                  <span class="expiration">Expires: 10/16</span>
+                              </div>
+                              <div class="address">
+                                  <span class="label">Billing Address:</span>
+                                  <span class="street">123 A street</span>,
+                                  <span class="city">Mobile</span>
+                                  <span class="state">AK</span>
+                                  <span class="zip">88739</span>
+                              </div>
+                          </label>
+
+<!--                             <div class="billing-data card selected label one-whole">
                                 <div class="credit-card">
                                     <button class="btn edit-credit-card tertiary small">Edit</button>
                                     <span class="type visa">Visa</span>
@@ -296,13 +314,13 @@
                                     <span class="expiration">Expires: 10/16</span>
                                 </div>
                                 <div class="address">
-                                    Billing Address:
+                                    <span class="label">Billing Address:</span>
                                     <span class="street">123 A street</span>,
                                     <span class="city">Mobile</span>
                                     <span class="state">AK</span>
                                     <span class="zip">88739</span>
                                 </div>
-                            </div>
+                            </div> -->
                         </div>
                         <div class="buttons grid__item one-whole desk-one-half">
                             <button class="change-payment-option btn taptarget tertiary one-whole">Use different payment option</button>
@@ -350,7 +368,7 @@
                                             <span class="expiration">Expires: 01/13</span>
                                         </div>
                                         <div class="address">
-                                            Billing Address:
+                                            <span class="label">Billing Address:</span>
                                             <span class="street">123 A street</span>,
                                             <span class="city">Mobile</span>
                                             <span class="state">AK</span>
@@ -369,7 +387,7 @@
                                             <span class="expiration">Expires: 03/15</span>
                                         </div>
                                         <div class="address">
-                                            Billing Address:
+                                            <span class="label">Billing Address:</span>
                                             <span class="street">123 A street</span>,
                                             <span class="city">Mobile</span>
                                             <span class="state">AK</span>
@@ -388,7 +406,7 @@
                                             <span class="expiration">Expires: 10/16</span>
                                         </div>
                                         <div class="address">
-                                            Billing Address:
+                                            <span class="label">Billing Address:</span>
                                             <span class="street">123 A street</span>,
                                             <span class="city">Mobile</span>
                                             <span class="state">AK</span>
@@ -396,7 +414,7 @@
                                         </div>
                                     </label>
                                 </li>
-                                <li class="default grid__item one-whole desk-one-half credit-card-item">
+                                <li class="grid__item one-whole desk-one-half create-credit-card-wrapper">
                                     <button class="create-credit-card btn taptarget tertiary one-whole" style="display: none;">Add new credit card</button>
                                 </li>
                             </ul>
@@ -432,7 +450,7 @@
                                             <ul class="grid">
                                                 <li class="field grid__item billing-address one-half">
                                                     <p>
-                                                        Billing Address:<br>
+                                                        <span class="label">Billing Address:</span>
                                                         <span class="street">123 A street</span>,
                                                         <span class="city">Mobile</span>
                                                         <span class="state">AK</span>
@@ -440,7 +458,7 @@
                                                     </p>
                                                 </li>
                                                 <li class="buttons grid__item one-half">
-                                                    <button class="change-billing-address small btn taptarget tertiary one-whole">Change Billing Address</button>
+                                                    <button class="change-billing-address small btn taptarget tertiary one-whole">Change Address</button>
                                                 </li>
                                             </ul>
                                         </li>
@@ -592,12 +610,37 @@
                     <h2>Review your order</h2>
                     <div class="shopping-cart-container">
                         <ul class="cart-items block-list">
-                            <li class="cart-item">
+                          <li class="cart-item header">
+                              <ul class="grid">
+                                  <li class="grid__item one-third thumbnail">
+
+                                  </li>
+                                  <li class="grid__item four-fifths details">
+                                      <ul class="form-fields">
+                                          <li class="field name">
+                                              <span class="label">Name:</span>
+                                          </li>
+                                          <li class="field price">
+                                              <span class="label">Price:</span>
+                                          </li>
+                                          <li class="field quantity">
+                                              <span class="label">Quantity:</span>
+                                          </li>
+                                          <li class="field total">
+                                              <span class="label">Total:</span>
+                                          </li>
+                                          <li class="field buttons">
+                                          </li>
+                                      </ul>
+                                  </li>
+                              </ul>
+                          </li>
+                            <li class="cart-item one-whole">
                                 <ul class="grid">
                                     <li class="grid__item one-third thumbnail">
                                         <img src="images/product_1_thumb.png" alt="" />
                                     </li>
-                                    <li class="grid__item two-thirds details">
+                                    <li class="grid__item one-whole lap-two-thirds desk-four-fifths details">
                                         <ul class="form-fields">
                                             <li class="field name">
                                                 <span class="label">Name:</span>
@@ -609,14 +652,15 @@
                                             </li>
                                             <li class="field quantity">
                                                 <span class="label">Quantity:</span>
-                                                <span class="value">1</span>
+                                                <span class="value">
+                                                  <input type="text" name="product_1_quantity" value="1" class="nolabel"><button class="btn small update-cart-item tertiary">Update</button>
+                                                </span>
                                             </li>
                                             <li class="field total">
                                                 <span class="label">Total:</span>
                                                 <span class="value">$9.95</span>
                                             </li>
                                             <li class="field buttons">
-                                                <button class="btn small edit-cart-item secondary">Edit</button>
                                                 <button class="btn small remove-cart-item tertiary">Remove</button>
                                             </li>
                                         </ul>
@@ -628,7 +672,7 @@
                                     <li class="grid__item one-third thumbnail">
                                         <img src="images/product_2_thumb.png" alt="" />
                                     </li>
-                                    <li class="grid__item two-thirds details">
+                                    <li class="grid__item one-whole lap-two-thirds desk-four-fifths details">
                                         <ul class="form-fields">
                                             <li class="field name">
                                                 <span class="label">Name:</span>
@@ -640,14 +684,15 @@
                                             </li>
                                             <li class="field quantity">
                                                 <span class="label">Quantity:</span>
-                                                <span class="value">2</span>
+                                                <span class="value">
+                                                  <input type="text" name="product_2_quantity" value="2" class="nolabel"><button class="btn small update-cart-item tertiary">Update</button>
+                                                </span>
                                             </li>
                                             <li class="field total">
                                                 <span class="label">Total:</span>
                                                 <span class="value">$29.80</span>
                                             </li>
                                             <li class="field buttons">
-                                                <button class="btn small edit-cart-item secondary">Edit</button>
                                                 <button class="btn small remove-cart-item tertiary">Remove</button>
                                             </li>
                                         </ul>
@@ -659,7 +704,7 @@
                                     <li class="grid__item one-third thumbnail">
                                         <img src="images/product_3_thumb.png" alt="" />
                                     </li>
-                                    <li class="grid__item two-thirds details">
+                                    <li class="grid__item one-whole lap-two-thirds desk-four-fifths details">
                                         <ul class="form-fields">
                                             <li class="field name">
                                                 <span class="label">Name:</span>
@@ -671,14 +716,15 @@
                                             </li>
                                             <li class="field quantity">
                                                 <span class="label">Quantity:</span>
-                                                <span class="value">5</span>
+                                                <span class="value">
+                                                  <input type="text" name="product_3_quantity" value="5" class="nolabel"><button class="btn small update-cart-item tertiary">Update</button>
+                                                </span>
                                             </li>
                                             <li class="field total">
                                                 <span class="label">Total:</span>
                                                 <span class="value">$24.75</span>
                                             </li>
                                             <li class="field buttons">
-                                                <button class="btn small edit-cart-item secondary">Edit</button>
                                                 <button class="btn small remove-cart-item tertiary">Remove</button>
                                             </li>
                                         </ul>
@@ -687,36 +733,39 @@
                             </li>
                         </ul>
                     </div>
-                    <div class="total-container">
+                    <div class="total-container one-whole">
                         <ul class="cost-breakdown form-fields">
                             <li class="subtotal field">
                                 <ul class="grid">
-                                    <li class="label grid__item one-half">Subtotal<br />(excl. tax)</li>
-                                    <li class="value grid__item one-half">$64.50</li>
+                                    <li class="label grid__item">
+                                      <p>
+                                        Subtotal:<br /><span>(excl. tax)</span>
+                                      </p></li>
+                                    <li class="value grid__item">$64.50</li>
                                 </ul>
                             </li>
                             <li class="shipping field">
                                 <ul class="grid">
-                                    <li class="label grid__item one-half">Shipping<br />(excl. tax)</li>
-                                    <li class="value grid__item one-half">$12.50</li>
+                                    <li class="label grid__item"><p>Shipping:<br /><span>(excl. tax)</span></p></li>
+                                    <li class="value grid__item">$12.50</li>
                                 </ul>
                             </li>
                             <li class="tax field">
                                 <ul class="grid">
-                                    <li class="label grid__item one-half">Tax</li>
-                                    <li class="value grid__item one-half">$4.62</li>
+                                    <li class="label grid__item"><p>Tax:</p></li>
+                                    <li class="value grid__item">$4.62</li>
                                 </ul>
                             </li>
                             <li class="discount field">
                                 <ul class="grid">
-                                    <li class="label grid__item one-half">Discount</li>
-                                    <li class="value grid__item one-half">-$5.00</li>
+                                    <li class="label grid__item"><p>Discount:</p></li>
+                                    <li class="value grid__item">$5.00</li>
                                 </ul>
                             </li>
                             <li class="total field">
                                 <ul class="grid">
-                                    <li class="label grid__item one-half">Total</li>
-                                    <li class="value grid__item one-half">$76.62</li>
+                                    <li class="label grid__item"><p>Total:</p></li>
+                                    <li class="value grid__item">$76.62</li>
                                 </ul>
                             </li>
                         </ul>
