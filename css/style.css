@@ -6163,7 +6163,7 @@ input[type=radio]:checked + label.card .shiptothis:after, input[type=radio]:chec
   margin-bottom: 0.25em;
 }
 /* line 1009, ui/_checkout.scss */
-.cart-items .cart-item .form-fields .field.quantity input[type=text] {
+.cart-items .cart-item .form-fields .field.quantity input[type=text], .cart-items .cart-item .form-fields .field.quantity input[type=number] {
   width: 25%;
 }
 /* line 1012, ui/_checkout.scss */
@@ -6180,7 +6180,7 @@ input[type=radio]:checked + label.card .shiptothis:after, input[type=radio]:chec
 }
 @media only screen and (min-width: 50em) {
   /* line 1021, ui/_checkout.scss */
-  .cart-items .cart-item .form-fields .field.quantity input[type=text] {
+  .cart-items .cart-item .form-fields .field.quantity input[type=text], .cart-items .cart-item .form-fields .field.quantity input[type=number] {
     width: 100%;
   }
   /* line 1024, ui/_checkout.scss */
