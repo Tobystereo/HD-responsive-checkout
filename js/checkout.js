@@ -456,7 +456,6 @@ var Checkout = {
 			},
 			"UpdateOrderTotal": function () {
 				Checkout.Functions.Shared.CalculateCartTotal();
-
 			},
 			"CalculateCartTotal": function () {
 				// reset the subotal
