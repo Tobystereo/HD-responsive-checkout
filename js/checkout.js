@@ -97,6 +97,34 @@
 //#endregion PLUGINS
 
 var Checkout = {
+	"Data": {
+		"cart_items": [
+			{
+				"name": "ProTouch No Sweat 4oz",
+				"thumbnail": "images/product_1_thumb.png",
+				"unit_price": 9.95,
+				"quantity": 1,
+				"extended_price": 9.95
+			},
+			{
+				"name": "C22 Citrus Solvent 12oz",
+				"thumbnail": "images/product_2_thumb.png",
+				"unit_price": 14.90,
+				"quantity": 2,
+				"extended_price": 29.80
+			},
+			{
+				"name": "Walker Adhesive Remover 4oz",
+				"thumbnail": "images/product_3_thumb.png",
+				"unit_price": 4.95,
+				"quantity": 5,
+				"extended_price": 24.75
+			}
+		],
+		"checkout_costs": {
+			"subtotal": 100
+		}
+	},
 	"Fields": {
 		"Shared": {
 			"$cta_bar": undefined,
@@ -114,6 +142,8 @@ var Checkout = {
 			"$step_next": undefined,
 			"$step_previous": undefined,
 			"$form_inputs": undefined,
+			"$footer": undefined,
+			"$order_total": undefined
 		},
 		"ShippingAddress": {
 			"$shipping_address_instructions": undefined,
@@ -220,6 +250,7 @@ var Checkout = {
 		"Shared": {
 			"Init": function () {
 				Checkout.Settings.Shared.steps = [Checkout.Settings.Shared.shipping_address_step_id, Checkout.Settings.Shared.shipping_option_step_id, Checkout.Settings.Shared.billing_step_id, Checkout.Settings.Shared.review_step_id, Checkout.Settings.Shared.confirmation_step_id]
+				
 				$(window).bind('hashchange', function (e) {
 					var step = e.fragment.replace(Checkout.Settings.Shared.step_url_prefix, ""),
 						previousStep = e.originalEvent !== undefined ? jQuery.param.fragment(e.originalEvent.oldURL).replace(Checkout.Settings.Shared.step_url_prefix, "") : undefined,
@@ -422,6 +453,24 @@ var Checkout = {
 					case Checkout.Settings.Shared.confirmation_step_id:
 						break;
 				}
+			},
+			"UpdateOrderTotal": function () {
+				Checkout.Functions.Shared.CalculateCartTotal();
+
+			},
+			"CalculateCartTotal": function () {
+				// reset the subotal
+				Checkout.Data.checkout_costs.subtotal = 0;
+				$.each(Checkout.Data.cart_items, function (i, cart_item) {
+					Checkout.Data.checkout_costs.subtotal = Checkout.Functions.Shared.GetDecimal(Checkout.Functions.Shared.GetDecimal(Checkout.Data.checkout_costs.subtotal, 2) + Checkout.Functions.Shared.GetDecimal(cart_item.extended_price, 2));
+				});
+			},
+			"GetDecimal": function (number, decimalPlaces) {
+				/// <summary>Converts a string to a decimal.</summary>
+				/// <param name="number" type="String">The string to convert.</param>
+				/// <param name="decimalPlaces" type="Int">The number of decimals to format the number to.</param>
+				/// <returns type="Decimal" />
+				return parseFloat(parseFloat(number).toFixed(decimalPlaces));
 			},
 			"BindEvents_FormInputs": function (refreshSelector) {
 				if (refreshSelector) {
@@ -1051,7 +1100,7 @@ var Checkout = {
 					Checkout.Fields.BillingInfo.$btnedit_address = $(Checkout.Fields.BillingInfo.$btnedit_address.selector);
 				}
 
-				Checkout.Fields.BillingInfo.$btnedit_address.on("click", function (e){
+				Checkout.Fields.BillingInfo.$btnedit_address.on("click", function (e) {
 					var $this = $(this);
 					e.stopPropagation();
 					$this.parent().parent().find("input[type=radio]").trigger("click");
