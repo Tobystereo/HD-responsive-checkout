@@ -6808,13 +6808,13 @@ form {
 }
 
 /* line 7, ui/_forms.scss */
-input[type=text], select {
+input[type=text], input[type=number], select {
   height: 51.2px;
   height: 3.2rem;
 }
 
 /* line 11, ui/_forms.scss */
-input[type=text], textarea, select {
+input[type=text], input[type=number], textarea, select {
   width: 100%;
   border: 1px solid #727272;
   background: none;
@@ -6831,45 +6831,45 @@ input[type=text], textarea, select {
   transition: all 0.15s ease-out 0;
 }
 /* line 21, ui/_forms.scss */
-input[type=text].nolabel, textarea.nolabel, select.nolabel {
+input[type=text].nolabel, input[type=number].nolabel, textarea.nolabel, select.nolabel {
   padding-top: 0;
 }
 /* line 37, ui/_forms.scss */
-input[type=text].valid, textarea.valid, select.valid {
+input[type=text].valid, input[type=number].valid, textarea.valid, select.valid {
   background-color: #e4f3e2 !important;
   border-color: #4a993d !important;
 }
 /* line 41, ui/_forms.scss */
-input[type=text].valid:focus, textarea.valid:focus, select.valid:focus {
+input[type=text].valid:focus, input[type=number].valid:focus, textarea.valid:focus, select.valid:focus {
   background-color: #c3e5bd !important;
 }
 /* line 45, ui/_forms.scss */
-input[type=text].valid + label, textarea.valid + label, select.valid + label {
+input[type=text].valid + label, input[type=number].valid + label, textarea.valid + label, select.valid + label {
   color: #4a993d !important;
 }
 /* line 50, ui/_forms.scss */
-input[type=text].error, textarea.error, select.error {
+input[type=text].error, input[type=number].error, textarea.error, select.error {
   background-color: #f3e2e2 !important;
   border-color: #993d3d !important;
 }
 /* line 54, ui/_forms.scss */
-input[type=text].error:focus, textarea.error:focus, select.error:focus {
+input[type=text].error:focus, input[type=number].error:focus, textarea.error:focus, select.error:focus {
   background-color: #e5bdbd !important;
 }
 /* line 58, ui/_forms.scss */
-input[type=text].error + label, textarea.error + label, select.error + label {
+input[type=text].error + label, input[type=number].error + label, textarea.error + label, select.error + label {
   color: #993d3d !important;
 }
 /* line 63, ui/_forms.scss */
-input[type=text]:valid, textarea:valid, select:valid {
+input[type=text]:valid, input[type=number]:valid, textarea:valid, select:valid {
   background: white;
 }
 /* line 68, ui/_forms.scss */
-input[type=text]:focus, textarea:focus, select:focus {
+input[type=text]:focus, input[type=number]:focus, textarea:focus, select:focus {
   background-color: #f1f1f1;
 }
 /* line 72, ui/_forms.scss */
-input[type=text]:focus + label, input[type=text] + label.notempty, textarea:focus + label, textarea + label.notempty, select:focus + label, select + label.notempty {
+input[type=text]:focus + label, input[type=text] + label.notempty, input[type=number]:focus + label, input[type=number] + label.notempty, textarea:focus + label, textarea + label.notempty, select:focus + label, select + label.notempty {
   padding: 0 1rem;
   font-size: 9.6px;
   font-size: 0.6rem;
@@ -7044,7 +7044,7 @@ OTHER STYLES
 
 *********************************/
 /* line 227, ui/_forms.scss */
-.required:after, input[type=text].required + label:after, textarea.required + label:after, select.required + label:after, .required-field-message:after {
+.required:after, input[type=text].required + label:after, input[type=number].required + label:after, textarea.required + label:after, select.required + label:after, .required-field-message:after {
   display: inline-block;
   position: relative;
   content: "*";

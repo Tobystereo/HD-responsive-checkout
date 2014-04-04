@@ -4,11 +4,11 @@ form {
     width: 100%;
     padding-left: 1.5em;
 }
-    input[type=text], select {
+    input[type=text], input[type=number], select {
         @include rem-height($formfieldheight);
     }
 
-    input[type=text], textarea, select {
+    input[type=text], input[type=number], textarea, select {
         width: 100%;
         @include border;
         background: none;
