@@ -125,58 +125,6 @@ article {
 
 	}
 
-    .help {
-        min-height: ($tapheight - 1) + em;
-        h2, p {
-          text-align: center;
-          margin: 2rem;
-        }
-
-        h2 {
-          font-weight: 100;
-          margin-bottom: 0;
-        }
-
-        p {
-          margin-top: 1rem;
-          margin-bottom: 0;
-          @include font(1.2, 100);
-        }
-    }
-
-    .help, .privacy-policy, .shipping-policy {
-      a {
-        margin-left: auto !important;
-        margin-right: auto !important;
-        margin-top: 2em !important;
-        display: block;
-        @include taptarget();
-        text-align: center;
-        width: 90%;
-        @extend .btn;
-        @extend .tertiary;
-
-        &:hover {
-          background-color: $light !important;
-          color: $dark;
-          border-color: $dark;
-        }
-      }
-    }
-
-    .privacy-policy {
-      a {
-        @media #{$lap} {
-          margin-bottom: 2em !important;
-        }
-      }
-    }
-
-    .shipping-policy {
-      a {
-        margin-bottom: 2em !important;
-      }
-    }
 
     .progress {
         background: $lighter;
@@ -1201,6 +1149,61 @@ input[type=radio]:checked + label.card {
   }
 
 
+}
+
+footer {
+    .help {
+        min-height: ($tapheight - 1) + em;
+        h2, p {
+          text-align: center;
+          margin: 2rem;
+        }
+
+        h2 {
+          font-weight: 100;
+          margin-bottom: 0;
+        }
+
+        p {
+          margin-top: 1rem;
+          margin-bottom: 0;
+          @include font(1.2, 100);
+        }
+    }
+
+    .help, .privacy-policy, .shipping-policy {
+      a {
+        margin-left: auto !important;
+        margin-right: auto !important;
+        margin-top: 2em !important;
+        display: block;
+        @include taptarget();
+        text-align: center;
+        width: 90%;
+        @extend .btn;
+        @extend .tertiary;
+
+        &:hover {
+          background-color: $light !important;
+          color: $dark;
+          border-color: $dark;
+        }
+      }
+    }
+
+    .privacy-policy {
+      a {
+        @media #{$lap} {
+          margin-bottom: 2em !important;
+        }
+      }
+    }
+
+    .shipping-policy {
+      a {
+        margin-bottom: 2em !important;
+      }
+    }
 }
 
 /* Colors */
