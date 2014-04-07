@@ -121,12 +121,15 @@ var Checkout = {
 				"extended_price": 24.75
 			}
 		],
-		"checkout_costs": {
+		"checkout_amounts": {
 			"subtotal": 0,
 			"tax_rate": 0,
 			"tax_amount": 0,
 			"shipping_amount": 0,
-			"shipping_tax_amount": 0
+			"shipping_tax_amount": 0,
+			"promo_code": "",
+			"promo_amount": 0,
+			"grand_total": 0
 		}
 	},
 	"Fields": {
@@ -183,6 +186,7 @@ var Checkout = {
 			"$btnpromo_code": undefined,
 			"$input_promo_code": undefined,
 			"$promo_details": undefined,
+			"$promo_error": undefined,
 			"$default_payment_container": undefined,
 			"$default_payment": undefined,
 			"$btnchange_payment_option": undefined,
@@ -323,6 +327,7 @@ var Checkout = {
 				Checkout.Fields.BillingInfo.$btnpromo_code = Checkout.Fields.BillingInfo.$promo_code_form.find("button");
 				Checkout.Fields.BillingInfo.$input_promo_code = Checkout.Fields.BillingInfo.$promo_code_form.find("#promo-code-input");
 				Checkout.Fields.BillingInfo.$promo_details = Checkout.Fields.BillingInfo.$promo_code_form.find(".promo-details");
+				Checkout.Fields.BillingInfo.$promo_error = Checkout.Fields.BillingInfo.$promo_code_form.find(".promo-error-message");
 				Checkout.Fields.BillingInfo.$btnchange_payment_option = Checkout.Fields.Shared.$step_billing.find("button.change-payment-option");
 				Checkout.Fields.BillingInfo.$default_payment_container = Checkout.Fields.Shared.$step_billing.find("div.default-payment");
 				Checkout.Fields.BillingInfo.$default_payment = Checkout.Fields.BillingInfo.$default_payment_container.find("div.default");
@@ -465,20 +470,24 @@ var Checkout = {
 				}
 			},
 			"UpdateOrderTotal": function () {
-				Checkout.Functions.Shared.CalculateCartTotal();
-				Checkout.Functions.Shared.CalculateTaxAmount();
-				Checkout.Fields.Shared.$order_total.text("$" + (Checkout.Data.checkout_costs.subtotal + Checkout.Data.checkout_costs.tax_amount + Checkout.Data.checkout_costs.shipping_amount).toFixed(2));
+				Checkout.Functions.Shared.CalculateGrandTotal();
+				Checkout.Fields.Shared.$order_total.text("$" + Checkout.Data.checkout_amounts.grand_total);
 			},
 			"CalculateCartTotal": function () {
 				// reset the subotal
-				Checkout.Data.checkout_costs.subtotal = 0;
+				Checkout.Data.checkout_amounts.subtotal = 0;
 				$.each(Checkout.Data.cart_items, function (i, cart_item) {
-					Checkout.Data.checkout_costs.subtotal = (Checkout.Functions.Shared.GetDecimal(Checkout.Data.checkout_costs.subtotal) + Checkout.Functions.Shared.GetDecimal(cart_item.extended_price));
+					Checkout.Data.checkout_amounts.subtotal = (Checkout.Functions.Shared.GetDecimal(Checkout.Data.checkout_amounts.subtotal) + Checkout.Functions.Shared.GetDecimal(cart_item.extended_price));
 				});
 			},
 			"CalculateTaxAmount": function () {
-				Checkout.Data.checkout_costs.tax_amount = Checkout.Functions.Shared.GetDecimal(Checkout.Data.checkout_costs.subtotal * Checkout.Data.checkout_costs.tax_rate);
-				Checkout.Data.checkout_costs.shipping_tax_amount = Checkout.Functions.Shared.GetDecimal(Checkout.Data.checkout_costs.shipping_amount * Checkout.Data.checkout_costs.tax_rate);
+				Checkout.Data.checkout_amounts.tax_amount = Checkout.Functions.Shared.GetDecimal((Checkout.Data.checkout_amounts.subtotal - Checkout.Data.checkout_amounts.promo_amount) * Checkout.Data.checkout_amounts.tax_rate);
+				Checkout.Data.checkout_amounts.shipping_tax_amount = Checkout.Functions.Shared.GetDecimal(Checkout.Data.checkout_amounts.shipping_amount * Checkout.Data.checkout_amounts.tax_rate);
+			},
+			"CalculateGrandTotal": function () {
+				Checkout.Functions.Shared.CalculateCartTotal();
+				Checkout.Functions.Shared.CalculateTaxAmount();
+				Checkout.Data.checkout_amounts.grand_total = (Checkout.Data.checkout_amounts.subtotal - Checkout.Data.checkout_amounts.promo_amount + Checkout.Data.checkout_amounts.tax_amount + Checkout.Data.checkout_amounts.shipping_amount + Checkout.Data.checkout_amounts.shipping_tax_amount).toFixed(2);
 			},
 			"GetDecimal": function (number) {
 				/// <summary>Converts a string to a decimal (2 places).</summary>
@@ -550,10 +559,10 @@ var Checkout = {
 						$state = $address.find("span.state");
 
 					if ($state.text() == "PA") {
-						Checkout.Data.checkout_costs.tax_rate = .06;
+						Checkout.Data.checkout_amounts.tax_rate = .06;
 					}
 					else {
-						Checkout.Data.checkout_costs.tax_rate = 0;
+						Checkout.Data.checkout_amounts.tax_rate = 0;
 					}
 					Checkout.Functions.Shared.UpdateOrderTotal();
 				}).toggleContainer({
@@ -710,7 +719,7 @@ var Checkout = {
 					var $option = $(this).parent(),
 						$price = $option.find(".price");
 
-					Checkout.Data.checkout_costs.shipping_amount = Checkout.Functions.Shared.GetDecimal($price.text().replace("$", ""));
+					Checkout.Data.checkout_amounts.shipping_amount = Checkout.Functions.Shared.GetDecimal($price.text().replace("$", ""));
 					Checkout.Functions.Shared.UpdateOrderTotal();
 				});
 			}
@@ -723,20 +732,33 @@ var Checkout = {
 				Checkout.Fields.BillingInfo.$btnpromo_code.on("click", function () {
 					var $this = $(this),
 						mode = $this.text(),
+						promoVal = Checkout.Fields.BillingInfo.$input_promo_code.val().toUpperCase(),
 						applyMode = $this.attr("data-text"),
 						unapplyMode = $this.attr("data-text-alt");
 					if (mode == applyMode) {
-						$this.text(unapplyMode);
-						Checkout.Fields.BillingInfo.$promo_details.html("Promo code <span>" + Checkout.Fields.BillingInfo.$input_promo_code.val() + "</span> has been applied to your order. You saved: $3.75")
-						Checkout.Fields.BillingInfo.$input_promo_code.fadeOut(Checkout.Settings.Shared.easing - 200).val("").next().hide();
-						Checkout.Fields.BillingInfo.$promo_details.fadeIn(Checkout.Settings.Shared.easing - 200);
+						Checkout.Fields.BillingInfo.$promo_error.fadeOut(Checkout.Settings.Shared.easing - 200).html("");
+						if (promoVal === "10HDBUCKS") {
+							Checkout.Data.checkout_amounts.promo_code = promoVal;
+							Checkout.Data.checkout_amounts.promo_amount = 10.00;
+							$this.text(unapplyMode);
+							Checkout.Fields.BillingInfo.$input_promo_code.fadeOut(Checkout.Settings.Shared.easing - 200).val("").next().hide();
+							Checkout.Fields.BillingInfo.$promo_details.html("Promo code <span>" + promoVal + "</span> has been applied to your order. You saved: $10.00");
+							Checkout.Fields.BillingInfo.$promo_details.fadeIn(Checkout.Settings.Shared.easing - 200);
+						}
+						else {
+							Checkout.Fields.BillingInfo.$promo_error.html("Promo code <span>" + promoVal + "</span> is no longer available for use.");
+							Checkout.Fields.BillingInfo.$promo_error.fadeIn(Checkout.Settings.Shared.easing - 200);
+						}
 					}
 					else {
+						Checkout.Data.checkout_amounts.promo_code = "";
+						Checkout.Data.checkout_amounts.promo_amount = 0.00;
 						$this.text(applyMode);
 						Checkout.Fields.BillingInfo.$promo_details.html("")
 						Checkout.Fields.BillingInfo.$promo_details.fadeOut(Checkout.Settings.Shared.easing - 200);
 						Checkout.Fields.BillingInfo.$input_promo_code.val("").fadeIn(Checkout.Settings.Shared.easing - 200).next().removeClass("notempty").show();
 					}
+					Checkout.Functions.Shared.UpdateOrderTotal();
 				});
 			},
 			"BindEvents_ChangePaymentOptionButton": function (refreshSelector) {
