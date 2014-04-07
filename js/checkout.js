@@ -527,7 +527,8 @@ var Checkout = {
 			},
 			"UpdateOrderTotal": function () {
 				Checkout.Functions.Shared.CalculateGrandTotal();
-				Checkout.Fields.Shared.$order_total.text("$" + Checkout.Data.checkout_details.grand_total);
+				Checkout.Fields.Shared.$order_total.text("$" + Checkout.Data.checkout_details.grand_total.toFixed(2));
+				Checkout.Functions.Review.UpdateOrderReviewTotals();
 			},
 			"CalculateCartTotal": function () {
 				// reset the subotal
@@ -543,7 +544,7 @@ var Checkout = {
 			"CalculateGrandTotal": function () {
 				Checkout.Functions.Shared.CalculateCartTotal();
 				Checkout.Functions.Shared.CalculateTaxAmount();
-				Checkout.Data.checkout_details.grand_total = (Checkout.Data.checkout_details.subtotal - Checkout.Data.checkout_details.promo_amount + Checkout.Data.checkout_details.tax_amount + Checkout.Data.checkout_details.shipping_amount + Checkout.Data.checkout_details.shipping_tax_amount).toFixed(2);
+				Checkout.Data.checkout_details.grand_total = (Checkout.Data.checkout_details.subtotal - Checkout.Data.checkout_details.promo_amount + Checkout.Data.checkout_details.tax_amount + Checkout.Data.checkout_details.shipping_amount + Checkout.Data.checkout_details.shipping_tax_amount);
 			},
 			"GetDecimal": function (number) {
 				/// <summary>Converts a string to a decimal (2 places).</summary>
@@ -1405,6 +1406,13 @@ var Checkout = {
 				Checkout.Fields.Review.$shipping_address_country.text(Checkout.Data.checkout_details.shipping_address.country);
 				Checkout.Fields.Review.$shipping_address_phone.text(Checkout.Data.checkout_details.shipping_address.phone_number);
 			},
+			"UpdateOrderReviewTotals": function () {
+				Checkout.Fields.Review.$subtotal.text("$" + Checkout.Data.checkout_details.subtotal.toFixed(2));
+				Checkout.Fields.Review.$shipping_cost.text("$" + Checkout.Data.checkout_details.shipping_amount.toFixed(2));
+				Checkout.Fields.Review.$tax.text("$" + (Checkout.Data.checkout_details.tax_amount + Checkout.Data.checkout_details.shipping_tax_amount).toFixed(2));
+				Checkout.Fields.Review.$discount.text("$" + Checkout.Data.checkout_details.promo_amount.toFixed(2));
+				Checkout.Fields.Review.$total.text("$" + Checkout.Data.checkout_details.grand_total.toFixed(2));
+			}
 		}
 	}
 }
