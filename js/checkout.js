@@ -121,7 +121,7 @@ var Checkout = {
 				"extended_price": 24.75
 			}
 		],
-		"checkout_amounts": {
+		"checkout_details": {
 			"subtotal": 0,
 			"tax_rate": 0,
 			"tax_amount": 0,
@@ -129,7 +129,31 @@ var Checkout = {
 			"shipping_tax_amount": 0,
 			"promo_code": "",
 			"promo_amount": 0,
-			"grand_total": 0
+			"grand_total": 0,
+			"shipping_address": {
+				"name": "",
+				"company": "",
+				"street": "",
+				"city": "",
+				"state": "",
+				"postal_code": "",
+				"country": "",
+				"phone_number": ""
+			},
+			"shipping_option": {
+				"carrier": "",
+				"option": ""
+			},
+			"billing_address": {
+				"name": "",
+				"company": "",
+				"street": "",
+				"city": "",
+				"state": "",
+				"postal_code": "",
+				"country": "",
+				"phone_number": ""
+			}
 		}
 	},
 	"Fields": {
@@ -235,6 +259,23 @@ var Checkout = {
 			"$btnsave_address": undefined,
 			"$btncancel_address": undefined,
 			"$btnedit_address": undefined
+		},
+		"Review": {
+			"$cost_breakdown_container": undefined,
+			"$subtotal": undefined,
+			"$shipping_cost": undefined,
+			"$tax": undefined,
+			"$discount": undefined,
+			"$total": undefined,
+			"$shipping_address_container": undefined,
+			"$shipping_address_name": undefined,
+			"$shipping_address_company": undefined,
+			"$shipping_address_street": undefined,
+			"$shipping_address_city": undefined,
+			"$shipping_address_state": undefined,
+			"$shipping_address_postal": undefined,
+			"$shipping_address_country": undefined,
+			"$shipping_address_phone": undefined
 		}
 	},
 	"Settings": {
@@ -288,7 +329,7 @@ var Checkout = {
 				Checkout.Fields.Shared.$step_shipping_address = $("#" + Checkout.Settings.Shared.shipping_address_step_id);
 				Checkout.Fields.Shared.$step_shipping_option = $("#" + Checkout.Settings.Shared.shipping_option_step_id);
 				Checkout.Fields.Shared.$step_billing = $("#" + Checkout.Settings.Shared.billing_step_id);
-				Checkout.Fields.Shared.$step_review = $("#" + Checkout.Settings.Shared.billing_step_id);
+				Checkout.Fields.Shared.$step_review = $("#" + Checkout.Settings.Shared.review_step_id);
 				Checkout.Fields.Shared.$step_confirmation = $("#" + Checkout.Settings.Shared.confirmation_step_id);
 				Checkout.Fields.Shared.$step_current = Checkout.Fields.Shared.$step_shipping_address;
 				Checkout.Fields.Shared.$step_next = Checkout.Fields.Shared.$step_shipping_option;
@@ -376,6 +417,21 @@ var Checkout = {
 				Checkout.Fields.BillingInfo.$btncancel_address = Checkout.Fields.BillingInfo.$billing_address_form.find("button.cancel");
 				Checkout.Fields.BillingInfo.$btnsave_address = Checkout.Fields.BillingInfo.$billing_address_form.find("button.save");
 				Checkout.Fields.BillingInfo.$btnedit_address = Checkout.Fields.BillingInfo.$billing_address_list.find("button.edit");
+				Checkout.Fields.Review.$cost_breakdown_container = Checkout.Fields.Shared.$step_review.find(".cost-breakdown");
+				Checkout.Fields.Review.$subtotal = Checkout.Fields.Review.$cost_breakdown_container.find(".subtotal .value");
+				Checkout.Fields.Review.$shipping_cost = Checkout.Fields.Review.$cost_breakdown_container.find(".shipping .value");
+				Checkout.Fields.Review.$tax = Checkout.Fields.Review.$cost_breakdown_container.find(".tax .value");
+				Checkout.Fields.Review.$discount = Checkout.Fields.Review.$cost_breakdown_container.find(".discount .value");
+				Checkout.Fields.Review.$total = Checkout.Fields.Review.$cost_breakdown_container.find(".total .value");
+				Checkout.Fields.Review.$shipping_address_container = Checkout.Fields.Shared.$step_review.find("li.shipping-address");
+				Checkout.Fields.Review.$shipping_address_name = Checkout.Fields.Review.$shipping_address_container.find(".name");
+				Checkout.Fields.Review.$shipping_address_company = Checkout.Fields.Review.$shipping_address_container.find(".company");
+				Checkout.Fields.Review.$shipping_address_street = Checkout.Fields.Review.$shipping_address_container.find(".street");
+				Checkout.Fields.Review.$shipping_address_city = Checkout.Fields.Review.$shipping_address_container.find(".city");
+				Checkout.Fields.Review.$shipping_address_state = Checkout.Fields.Review.$shipping_address_container.find(".state");
+				Checkout.Fields.Review.$shipping_address_postal = Checkout.Fields.Review.$shipping_address_container.find(".zip");
+				Checkout.Fields.Review.$shipping_address_country = Checkout.Fields.Review.$shipping_address_container.find(".country");
+				Checkout.Fields.Review.$shipping_address_phone = Checkout.Fields.Review.$shipping_address_container.find(".phone");
 			},
 			"WireEvents": function () {
 				/// <summary>Wire up control events</summary>
@@ -471,23 +527,23 @@ var Checkout = {
 			},
 			"UpdateOrderTotal": function () {
 				Checkout.Functions.Shared.CalculateGrandTotal();
-				Checkout.Fields.Shared.$order_total.text("$" + Checkout.Data.checkout_amounts.grand_total);
+				Checkout.Fields.Shared.$order_total.text("$" + Checkout.Data.checkout_details.grand_total);
 			},
 			"CalculateCartTotal": function () {
 				// reset the subotal
-				Checkout.Data.checkout_amounts.subtotal = 0;
+				Checkout.Data.checkout_details.subtotal = 0;
 				$.each(Checkout.Data.cart_items, function (i, cart_item) {
-					Checkout.Data.checkout_amounts.subtotal = (Checkout.Functions.Shared.GetDecimal(Checkout.Data.checkout_amounts.subtotal) + Checkout.Functions.Shared.GetDecimal(cart_item.extended_price));
+					Checkout.Data.checkout_details.subtotal = (Checkout.Functions.Shared.GetDecimal(Checkout.Data.checkout_details.subtotal) + Checkout.Functions.Shared.GetDecimal(cart_item.extended_price));
 				});
 			},
 			"CalculateTaxAmount": function () {
-				Checkout.Data.checkout_amounts.tax_amount = Checkout.Functions.Shared.GetDecimal((Checkout.Data.checkout_amounts.subtotal - Checkout.Data.checkout_amounts.promo_amount) * Checkout.Data.checkout_amounts.tax_rate);
-				Checkout.Data.checkout_amounts.shipping_tax_amount = Checkout.Functions.Shared.GetDecimal(Checkout.Data.checkout_amounts.shipping_amount * Checkout.Data.checkout_amounts.tax_rate);
+				Checkout.Data.checkout_details.tax_amount = Checkout.Functions.Shared.GetDecimal((Checkout.Data.checkout_details.subtotal - Checkout.Data.checkout_details.promo_amount) * Checkout.Data.checkout_details.tax_rate);
+				Checkout.Data.checkout_details.shipping_tax_amount = Checkout.Functions.Shared.GetDecimal(Checkout.Data.checkout_details.shipping_amount * Checkout.Data.checkout_details.tax_rate);
 			},
 			"CalculateGrandTotal": function () {
 				Checkout.Functions.Shared.CalculateCartTotal();
 				Checkout.Functions.Shared.CalculateTaxAmount();
-				Checkout.Data.checkout_amounts.grand_total = (Checkout.Data.checkout_amounts.subtotal - Checkout.Data.checkout_amounts.promo_amount + Checkout.Data.checkout_amounts.tax_amount + Checkout.Data.checkout_amounts.shipping_amount + Checkout.Data.checkout_amounts.shipping_tax_amount).toFixed(2);
+				Checkout.Data.checkout_details.grand_total = (Checkout.Data.checkout_details.subtotal - Checkout.Data.checkout_details.promo_amount + Checkout.Data.checkout_details.tax_amount + Checkout.Data.checkout_details.shipping_amount + Checkout.Data.checkout_details.shipping_tax_amount).toFixed(2);
 			},
 			"GetDecimal": function (number) {
 				/// <summary>Converts a string to a decimal (2 places).</summary>
@@ -559,11 +615,13 @@ var Checkout = {
 						$state = $address.find("span.state");
 
 					if ($state.text() == "PA") {
-						Checkout.Data.checkout_amounts.tax_rate = .06;
+						Checkout.Data.checkout_details.tax_rate = .06;
 					}
 					else {
-						Checkout.Data.checkout_amounts.tax_rate = 0;
+						Checkout.Data.checkout_details.tax_rate = 0;
 					}
+					Checkout.Functions.ShippingAddress.UpdateShippingAddressData($address);
+					Checkout.Functions.Review.RefreshOrderReviewSelectionData();
 					Checkout.Functions.Shared.UpdateOrderTotal();
 				}).toggleContainer({
 					content_element: Checkout.Fields.ShippingAddress.$new_address_form,
@@ -696,6 +754,25 @@ var Checkout = {
 					toggle_self: false
 				})
 			},
+			"UpdateShippingAddressData": function (selected_address) {
+				var $name = selected_address.find(".name"),
+					$company = selected_address.find(".company"),
+					$street = selected_address.find(".street"),
+					$city = selected_address.find(".city"),
+					$state = selected_address.find(".state"),
+					$postal = selected_address.find(".zip"),
+					$country = selected_address.find(".country"),
+					$phone = selected_address.find(".phone");
+
+				Checkout.Data.checkout_details.shipping_address.name = $name.length > 0 ? $name.text() : "";
+				Checkout.Data.checkout_details.shipping_address.company = $company.length > 0 ? $company.text() : "";
+				Checkout.Data.checkout_details.shipping_address.street = $street.length > 0 ? $street.text() : "";
+				Checkout.Data.checkout_details.shipping_address.city = $city.length > 0 ? $city.text() : "";
+				Checkout.Data.checkout_details.shipping_address.state = $state.length > 0 ? $state.text() : "";
+				Checkout.Data.checkout_details.shipping_address.postal_code = $postal.length > 0 ? $postal.text() : "";
+				Checkout.Data.checkout_details.shipping_address.country = $country.length > 0 ? $country.text() : "";
+				Checkout.Data.checkout_details.shipping_address.phone_number = $phone.length > 0 ? $phone.text() : "";
+			},
 			"ResetAddressForm": function () {
 				Checkout.Fields.ShippingAddress.$input_country.val("");
 				Checkout.Fields.ShippingAddress.$input_name.val("");
@@ -719,7 +796,7 @@ var Checkout = {
 					var $option = $(this).parent(),
 						$price = $option.find(".price");
 
-					Checkout.Data.checkout_amounts.shipping_amount = Checkout.Functions.Shared.GetDecimal($price.text().replace("$", ""));
+					Checkout.Data.checkout_details.shipping_amount = Checkout.Functions.Shared.GetDecimal($price.text().replace("$", ""));
 					Checkout.Functions.Shared.UpdateOrderTotal();
 				});
 			}
@@ -738,8 +815,8 @@ var Checkout = {
 					if (mode == applyMode) {
 						Checkout.Fields.BillingInfo.$promo_error.fadeOut(Checkout.Settings.Shared.easing - 200).html("");
 						if (promoVal === "10HDBUCKS") {
-							Checkout.Data.checkout_amounts.promo_code = promoVal;
-							Checkout.Data.checkout_amounts.promo_amount = 10.00;
+							Checkout.Data.checkout_details.promo_code = promoVal;
+							Checkout.Data.checkout_details.promo_amount = 10.00;
 							$this.text(unapplyMode);
 							Checkout.Fields.BillingInfo.$input_promo_code.fadeOut(Checkout.Settings.Shared.easing - 200).val("").next().hide();
 							Checkout.Fields.BillingInfo.$promo_details.html("Promo code <span>" + promoVal + "</span> has been applied to your order. You saved: $10.00");
@@ -751,8 +828,8 @@ var Checkout = {
 						}
 					}
 					else {
-						Checkout.Data.checkout_amounts.promo_code = "";
-						Checkout.Data.checkout_amounts.promo_amount = 0.00;
+						Checkout.Data.checkout_details.promo_code = "";
+						Checkout.Data.checkout_details.promo_amount = 0.00;
 						$this.text(applyMode);
 						Checkout.Fields.BillingInfo.$promo_details.html("")
 						Checkout.Fields.BillingInfo.$promo_details.fadeOut(Checkout.Settings.Shared.easing - 200);
@@ -1315,6 +1392,19 @@ var Checkout = {
 				Checkout.Functions.BillingInfo.BindEvents_EditAddressButton(true);
 				$newAddress.find("input[type=radio]").trigger("click");
 			}
+		},
+		"Review": {
+			"RefreshOrderReviewSelectionData": function () {
+				// Update shipping address data
+				Checkout.Fields.Review.$shipping_address_name.text(Checkout.Data.checkout_details.shipping_address.name);
+				Checkout.Fields.Review.$shipping_address_company.text(Checkout.Data.checkout_details.shipping_address.company);
+				Checkout.Fields.Review.$shipping_address_street.text(Checkout.Data.checkout_details.shipping_address.street);
+				Checkout.Fields.Review.$shipping_address_city.text(Checkout.Data.checkout_details.shipping_address.city);
+				Checkout.Fields.Review.$shipping_address_state.text(Checkout.Data.checkout_details.shipping_address.state);
+				Checkout.Fields.Review.$shipping_address_postal.text(Checkout.Data.checkout_details.shipping_address.postal_code);
+				Checkout.Fields.Review.$shipping_address_country.text(Checkout.Data.checkout_details.shipping_address.country);
+				Checkout.Fields.Review.$shipping_address_phone.text(Checkout.Data.checkout_details.shipping_address.phone_number);
+			},
 		}
 	}
 }
