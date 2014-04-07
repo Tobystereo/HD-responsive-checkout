@@ -8,6 +8,7 @@
 	$.fn.toggleContainer = function (options) {
 		// Default options
 		var $self = this,
+			shouldToggle = true,
 			settings = $.extend({
 				content_element: undefined,
 				pre_logic: undefined,
@@ -18,7 +19,8 @@
 				firing_events: "click",
 				toggle_self: true,
 				toggle_order: "before", /* before|after */
-				self_toggle_delay_offset: 100
+				self_toggle_delay_offset: 100,
+				toggle_condition: undefined
 			}, options),
 			event_post_toggle = function (element) {
 				settings.content_element.css("overflow", "inherit");
@@ -30,6 +32,13 @@
 		if (settings.content_element !== undefined) {
 			this.on(settings.firing_events, function (e) {
 				e.stopPropagation();
+				if (settings.toggle_condition !== undefined) {
+					shouldToggle = settings.toggle_condition();
+					if (!shouldToggle) {
+						return this;
+					}
+				}
+
 				if (settings.pre_logic !== undefined) {
 					settings.pre_logic(this);
 				}
@@ -142,7 +151,8 @@ var Checkout = {
 			},
 			"shipping_option": {
 				"carrier": "",
-				"option": ""
+				"option": "",
+				"delivery_date": ""
 			},
 			"billing_address": {
 				"name": "",
@@ -275,7 +285,12 @@ var Checkout = {
 			"$shipping_address_state": undefined,
 			"$shipping_address_postal": undefined,
 			"$shipping_address_country": undefined,
-			"$shipping_address_phone": undefined
+			"$shipping_address_phone": undefined,
+			"$shipping_option_container": undefined,
+			"$shipping_option_carrier": undefined,
+			"$shipping_option_method": undefined,
+			"$shipping_option_delivery_date": undefined,
+			"$shipping_option_price": undefined
 		}
 	},
 	"Settings": {
@@ -432,6 +447,11 @@ var Checkout = {
 				Checkout.Fields.Review.$shipping_address_postal = Checkout.Fields.Review.$shipping_address_container.find(".zip");
 				Checkout.Fields.Review.$shipping_address_country = Checkout.Fields.Review.$shipping_address_container.find(".country");
 				Checkout.Fields.Review.$shipping_address_phone = Checkout.Fields.Review.$shipping_address_container.find(".phone");
+				Checkout.Fields.Review.$shipping_option_container = Checkout.Fields.Shared.$step_review.find("li.shipping-option");
+				Checkout.Fields.Review.$shipping_option_carrier = Checkout.Fields.Review.$shipping_option_container.find(".carrier");
+				Checkout.Fields.Review.$shipping_option_delivery_date = Checkout.Fields.Review.$shipping_option_container.find(".delivery-date");
+				Checkout.Fields.Review.$shipping_option_method = Checkout.Fields.Review.$shipping_option_container.find(".method");
+				Checkout.Fields.Review.$shipping_option_price = Checkout.Fields.Review.$shipping_option_container.find(".price");
 			},
 			"WireEvents": function () {
 				/// <summary>Wire up control events</summary>
@@ -485,12 +505,17 @@ var Checkout = {
 				}
 				switch (step_name) {
 					case Checkout.Settings.Shared.shipping_address_step_id:
+						if (Checkout.Data.checkout_details.shipping_address.street == "") {
+							Checkout.Fields.ShippingAddress.$address_items.filter("[checked]").trigger("click");
+						}
 						break;
 					case Checkout.Settings.Shared.shipping_option_step_id:
 						Checkout.Settings.ShippingMethod.loading_panel_timeout = setTimeout(function () {
 							Checkout.Fields.ShippingMethod.$loading_panel.fadeOut(Checkout.Settings.Shared.easing - 200, function () {
 								Checkout.Fields.ShippingMethod.$shipping_option_wrapper.slideDown(Checkout.Settings.Shared.easing, function () {
-									Checkout.Fields.ShippingMethod.$shipping_option_items.filter("[checked]").trigger("click");
+									if (Checkout.Data.checkout_details.shipping_option.option == "") {
+										Checkout.Fields.ShippingMethod.$shipping_option_items.filter("[checked]").trigger("click");
+									}
 									Checkout.Fields.Shared.$step_shipping_option.animatedScroll();
 								});
 							});
@@ -631,7 +656,15 @@ var Checkout = {
 				}).toggleContainer({
 					content_element: Checkout.Fields.ShippingAddress.$btnadd_address,
 					toggle_self: false,
-					force_state: "show"
+					force_state: "show",
+					toggle_condition: function () {
+						if (Checkout.Fields.ShippingAddress.$btnchangeaddress.is(":visible")) {
+							return false;
+						}
+						else {
+							return true;
+						}
+					}
 				});
 			},
 			"BindEvents_AddAddressButton": function (refreshSelector) {
@@ -795,9 +828,16 @@ var Checkout = {
 
 				Checkout.Fields.ShippingMethod.$shipping_option_items.on("click", function () {
 					var $option = $(this).parent(),
-						$price = $option.find(".price");
+						$price = $option.find(".price"),
+						$carrier = $option.find(".carrier"),
+						$method = $option.find(".method"),
+						$delivery_date = $option.find(".delivery-date");
 
 					Checkout.Data.checkout_details.shipping_amount = Checkout.Functions.Shared.GetDecimal($price.text().replace("$", ""));
+					Checkout.Data.checkout_details.shipping_option.carrier = $carrier.text();
+					Checkout.Data.checkout_details.shipping_option.delivery_date = $delivery_date.text();
+					Checkout.Data.checkout_details.shipping_option.option = $method.text();
+					Checkout.Functions.Review.RefreshOrderReviewSelectionData();
 					Checkout.Functions.Shared.UpdateOrderTotal();
 				});
 			}
@@ -1405,6 +1445,11 @@ var Checkout = {
 				Checkout.Fields.Review.$shipping_address_postal.text(Checkout.Data.checkout_details.shipping_address.postal_code);
 				Checkout.Fields.Review.$shipping_address_country.text(Checkout.Data.checkout_details.shipping_address.country);
 				Checkout.Fields.Review.$shipping_address_phone.text(Checkout.Data.checkout_details.shipping_address.phone_number);
+				// Update shipping option data
+				Checkout.Fields.Review.$shipping_option_carrier.text(Checkout.Data.checkout_details.shipping_option.carrier);
+				Checkout.Fields.Review.$shipping_option_delivery_date.text(Checkout.Data.checkout_details.shipping_option.delivery_date);
+				Checkout.Fields.Review.$shipping_option_method.text(Checkout.Data.checkout_details.shipping_option.option);
+				Checkout.Fields.Review.$shipping_option_price.text("$" + (Checkout.Data.checkout_details.shipping_amount + Checkout.Data.checkout_details.shipping_tax_amount).toFixed(2));
 			},
 			"UpdateOrderReviewTotals": function () {
 				Checkout.Fields.Review.$subtotal.text("$" + Checkout.Data.checkout_details.subtotal.toFixed(2));
