@@ -122,7 +122,11 @@ var Checkout = {
 			}
 		],
 		"checkout_costs": {
-			"subtotal": 100
+			"subtotal": 0,
+			"tax_rate": 0,
+			"tax_amount": 0,
+			"shipping_amount": 0,
+			"shipping_tax_amount": 0
 		}
 	},
 	"Fields": {
@@ -171,7 +175,8 @@ var Checkout = {
 		},
 		"ShippingMethod": {
 			"$loading_panel": undefined,
-			"$shipping_option_list": undefined
+			"$shipping_option_wrapper": undefined,
+			"$shipping_option_items": undefined
 		},
 		"BillingInfo": {
 			"$promo_code_form": undefined,
@@ -250,7 +255,6 @@ var Checkout = {
 		"Shared": {
 			"Init": function () {
 				Checkout.Settings.Shared.steps = [Checkout.Settings.Shared.shipping_address_step_id, Checkout.Settings.Shared.shipping_option_step_id, Checkout.Settings.Shared.billing_step_id, Checkout.Settings.Shared.review_step_id, Checkout.Settings.Shared.confirmation_step_id]
-				
 				$(window).bind('hashchange', function (e) {
 					var step = e.fragment.replace(Checkout.Settings.Shared.step_url_prefix, ""),
 						previousStep = e.originalEvent !== undefined ? jQuery.param.fragment(e.originalEvent.oldURL).replace(Checkout.Settings.Shared.step_url_prefix, "") : undefined,
@@ -264,16 +268,15 @@ var Checkout = {
 					}
 				});
 				$(document).ready(function () {
-					Checkout.Functions.Shared.SetGlobalVariables();
+					Checkout.Functions.Shared.GetFields();
 					Checkout.Functions.Shared.WireEvents();
+					Checkout.Functions.Shared.UpdateOrderTotal();
 					jQuery.bbq.pushState("#" + Checkout.Settings.Shared.step_url_prefix + Checkout.Fields.Shared.$step_current.attr("id"), 2);
 					$(window).trigger('hashchange');
 				});
 			},
-			"SetGlobalVariables": function () {
+			"GetFields": function () {
 				/// <summary>Gets DOM elements & other dynamic variable values.</summary>
-				Checkout.Fields.Shared.$cta_bar = $(".cta_bar");
-				Checkout.Fields.Shared.$btn_next = Checkout.Fields.Shared.$cta_bar.find("button");
 				Checkout.Fields.Shared.$need_help = $(".need-help");
 				Checkout.Fields.Shared.$help_content = $("#help-content");
 				Checkout.Fields.Shared.$progress_bar = $("#progress-bar");
@@ -287,6 +290,10 @@ var Checkout = {
 				Checkout.Fields.Shared.$step_next = Checkout.Fields.Shared.$step_shipping_option;
 				Checkout.Fields.Shared.$step_previous = Checkout.Fields.Shared.$step_current.prev();
 				Checkout.Fields.Shared.$form_inputs = $("input[type=text], textarea, #country-input");
+				Checkout.Fields.Shared.$footer = $(".checkout > footer");
+				Checkout.Fields.Shared.$cta_bar = Checkout.Fields.Shared.$footer.find(".cta_bar");
+				Checkout.Fields.Shared.$btn_next = Checkout.Fields.Shared.$cta_bar.find("button");
+				Checkout.Fields.Shared.$order_total = Checkout.Fields.Shared.$cta_bar.find(".total");
 				Checkout.Fields.ShippingAddress.$shipping_address_instructions = Checkout.Fields.Shared.$step_shipping_address.find(".instructions");
 				Checkout.Fields.ShippingAddress.$btnchangeaddress = Checkout.Fields.Shared.$step_shipping_address.find("button.changeaddress");
 				Checkout.Fields.ShippingAddress.$btnadd_address = Checkout.Fields.Shared.$step_shipping_address.find("button.createaddress");
@@ -311,6 +318,7 @@ var Checkout = {
 				Checkout.Fields.ShippingAddress.$address_inputs = Checkout.Fields.Shared.$step_shipping_address.find("input[type=text], textarea, #country-input");
 				Checkout.Fields.ShippingMethod.$loading_panel = Checkout.Fields.Shared.$step_shipping_option.find(".loading-panel");
 				Checkout.Fields.ShippingMethod.$shipping_option_wrapper = Checkout.Fields.Shared.$step_shipping_option.find(".shipping-option-wrapper");
+				Checkout.Fields.ShippingMethod.$shipping_option_items = Checkout.Fields.ShippingMethod.$shipping_option_wrapper.find(".shipping-option-item input[type=radio]");
 				Checkout.Fields.BillingInfo.$promo_code_form = Checkout.Fields.Shared.$step_billing.find("#promo-code-form");
 				Checkout.Fields.BillingInfo.$btnpromo_code = Checkout.Fields.BillingInfo.$promo_code_form.find("button");
 				Checkout.Fields.BillingInfo.$input_promo_code = Checkout.Fields.BillingInfo.$promo_code_form.find("#promo-code-input");
@@ -378,6 +386,7 @@ var Checkout = {
 				Checkout.Functions.ShippingAddress.BindEvents_SaveAddressButton(false);
 				Checkout.Functions.ShippingAddress.BindEvents_AddressForm(false);
 				Checkout.Functions.ShippingAddress.BindEvents_CountrySelect(false);
+				Checkout.Functions.ShippingOption.BindEvents_ShippingOptionItems(false);
 				Checkout.Functions.BillingInfo.BindEvents_PromoCodeForm(false);
 				Checkout.Functions.BillingInfo.BindEvents_PromoCodeButton(false);
 				Checkout.Functions.BillingInfo.BindEvents_ChangePaymentOptionButton(false);
@@ -420,6 +429,7 @@ var Checkout = {
 						Checkout.Settings.ShippingMethod.loading_panel_timeout = setTimeout(function () {
 							Checkout.Fields.ShippingMethod.$loading_panel.fadeOut(Checkout.Settings.Shared.easing - 200, function () {
 								Checkout.Fields.ShippingMethod.$shipping_option_wrapper.slideDown(Checkout.Settings.Shared.easing, function () {
+									Checkout.Fields.ShippingMethod.$shipping_option_items.filter("[checked]").trigger("click");
 									Checkout.Fields.Shared.$step_shipping_option.animatedScroll();
 								});
 							});
@@ -456,20 +466,25 @@ var Checkout = {
 			},
 			"UpdateOrderTotal": function () {
 				Checkout.Functions.Shared.CalculateCartTotal();
+				Checkout.Functions.Shared.CalculateTaxAmount();
+				Checkout.Fields.Shared.$order_total.text("$" + (Checkout.Data.checkout_costs.subtotal + Checkout.Data.checkout_costs.tax_amount + Checkout.Data.checkout_costs.shipping_amount).toFixed(2));
 			},
 			"CalculateCartTotal": function () {
 				// reset the subotal
 				Checkout.Data.checkout_costs.subtotal = 0;
 				$.each(Checkout.Data.cart_items, function (i, cart_item) {
-					Checkout.Data.checkout_costs.subtotal = Checkout.Functions.Shared.GetDecimal(Checkout.Functions.Shared.GetDecimal(Checkout.Data.checkout_costs.subtotal, 2) + Checkout.Functions.Shared.GetDecimal(cart_item.extended_price, 2));
+					Checkout.Data.checkout_costs.subtotal = (Checkout.Functions.Shared.GetDecimal(Checkout.Data.checkout_costs.subtotal) + Checkout.Functions.Shared.GetDecimal(cart_item.extended_price));
 				});
 			},
-			"GetDecimal": function (number, decimalPlaces) {
-				/// <summary>Converts a string to a decimal.</summary>
+			"CalculateTaxAmount": function () {
+				Checkout.Data.checkout_costs.tax_amount = Checkout.Functions.Shared.GetDecimal(Checkout.Data.checkout_costs.subtotal * Checkout.Data.checkout_costs.tax_rate);
+				Checkout.Data.checkout_costs.shipping_tax_amount = Checkout.Functions.Shared.GetDecimal(Checkout.Data.checkout_costs.shipping_amount * Checkout.Data.checkout_costs.tax_rate);
+			},
+			"GetDecimal": function (number) {
+				/// <summary>Converts a string to a decimal (2 places).</summary>
 				/// <param name="number" type="String">The string to convert.</param>
-				/// <param name="decimalPlaces" type="Int">The number of decimals to format the number to.</param>
 				/// <returns type="Decimal" />
-				return parseFloat(parseFloat(number).toFixed(decimalPlaces));
+				return parseFloat(Math.round(number * 100) / 100);
 			},
 			"BindEvents_FormInputs": function (refreshSelector) {
 				if (refreshSelector) {
@@ -530,7 +545,18 @@ var Checkout = {
 				if (refreshSelector) {
 					Checkout.Fields.ShippingAddress.$address_items = $(Checkout.Fields.ShippingAddress.$address_items.selector);
 				}
-				Checkout.Fields.ShippingAddress.$address_items.toggleContainer({
+				Checkout.Fields.ShippingAddress.$address_items.on("click", function () {
+					var $address = $(this).parent(),
+						$state = $address.find("span.state");
+
+					if ($state.text() == "PA") {
+						Checkout.Data.checkout_costs.tax_rate = .06;
+					}
+					else {
+						Checkout.Data.checkout_costs.tax_rate = 0;
+					}
+					Checkout.Functions.Shared.UpdateOrderTotal();
+				}).toggleContainer({
 					content_element: Checkout.Fields.ShippingAddress.$new_address_form,
 					toggle_self: false,
 					force_state: "hide"
@@ -675,7 +701,19 @@ var Checkout = {
 			}
 		},
 		"ShippingOption": {
+			"BindEvents_ShippingOptionItems": function (refreshSelector) {
+				if (refreshSelector) {
+					Checkout.Fields.ShippingMethod.$shipping_option_items = $(Checkout.Fields.ShippingMethod.$shipping_option_items.selector);
+				}
 
+				Checkout.Fields.ShippingMethod.$shipping_option_items.on("click", function () {
+					var $option = $(this).parent(),
+						$price = $option.find(".price");
+
+					Checkout.Data.checkout_costs.shipping_amount = Checkout.Functions.Shared.GetDecimal($price.text().replace("$", ""));
+					Checkout.Functions.Shared.UpdateOrderTotal();
+				});
+			}
 		},
 		"BillingInfo": {
 			"BindEvents_PromoCodeButton": function (refreshSelector) {
