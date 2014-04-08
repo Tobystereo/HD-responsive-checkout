@@ -359,7 +359,12 @@ var Checkout = {
 					if (stepNumber > -1) {
 						Checkout.Fields.Shared.$step_previous = previousStep !== undefined ? $("#" + previousStep) : undefined;
 						Checkout.Fields.Shared.$step_current = $("#" + step);
-						Checkout.Functions.Shared.InitCurrentStep(step);
+						if (previousStep == Checkout.Settings.Shared.confirmation_step_id) {
+							location.reload();
+						}
+						else {
+							Checkout.Functions.Shared.InitCurrentStep(step);
+						}
 					}
 				});
 				$(document).ready(function () {
@@ -538,6 +543,7 @@ var Checkout = {
 			"InitCurrentStep": function (step_name) {
 				var $currentProgressBarItem = $("a[href=#" + Checkout.Settings.Shared.step_url_prefix + Checkout.Fields.Shared.$step_current.attr("id") + "]").parent();
 				Checkout.Functions.Shared.SetActiveProgressBarItem($currentProgressBarItem);
+				Checkout.Fields.Shared.$btn_next.text(Checkout.Fields.Shared.$btn_next.attr("data-text-next"));
 				if (Checkout.Fields.Shared.$step_previous !== undefined) {
 					Checkout.Fields.Shared.$progress_bar.animatedScroll();
 					Checkout.Fields.Shared.$step_previous.slideUp(Checkout.Settings.Shared.easing - 200, function () {
@@ -572,8 +578,12 @@ var Checkout = {
 						}
 						break;
 					case Checkout.Settings.Shared.review_step_id:
+						Checkout.Fields.Shared.$btn_next.text(Checkout.Fields.Shared.$btn_next.attr("data-text-complete"));
 						break;
 					case Checkout.Settings.Shared.confirmation_step_id:
+						Checkout.Fields.Shared.$progress_bar.hide();
+						Checkout.Fields.Shared.$cta_bar.hide();
+						Checkout.Fields.Shared.$footer.hide();
 						break;
 				}
 			},
@@ -906,6 +916,7 @@ var Checkout = {
 					if (mode == applyMode) {
 						Checkout.Fields.BillingInfo.$promo_error.fadeOut(Checkout.Settings.Shared.easing - 200).html("");
 						if (promoVal === "10HDBUCKS") {
+							Checkout.Fields.BillingInfo.$promo_code_form.removeClass("error").addClass("success");
 							Checkout.Data.checkout_details.promo_code = promoVal;
 							Checkout.Data.checkout_details.promo_amount = 10.00;
 							$this.text(unapplyMode);
@@ -914,6 +925,7 @@ var Checkout = {
 							Checkout.Fields.BillingInfo.$promo_details.fadeIn(Checkout.Settings.Shared.easing - 200);
 						}
 						else {
+							Checkout.Fields.BillingInfo.$promo_code_form.removeClass("success").addClass("error");
 							Checkout.Fields.BillingInfo.$promo_error.html("Promo code <span>" + promoVal + "</span> is no longer available for use.");
 							Checkout.Fields.BillingInfo.$promo_error.fadeIn(Checkout.Settings.Shared.easing - 200);
 						}
