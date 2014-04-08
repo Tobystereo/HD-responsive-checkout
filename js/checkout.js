@@ -34,9 +34,6 @@
 			this.on(settings.firing_events, function (e) {
 				e.stopPropagation();
 				if (settings.enable_logging) {
-					console.log("------------------------ BEGIN: toggleContainer ------------------------");
-					console.log("Firing Element: Class - " + $self.attr("class") + "    Id - " + $self.attr("id"));
-					console.log("Toggled Element: Class - " + settings.content_element.attr("class") + "    Id - " + settings.content_element.attr("id"));
 					var action = settings.force_state != "" ? settings.force_state + " (forced)" : "";
 					if (action == "") {
 						if (settings.content_element.is(":visible")) {
@@ -46,15 +43,17 @@
 							action = "show";
 						}
 					}
-					console.log("Toggle Action: " + action);
+					console.info("toggleContainer", {
+						"action": action,
+						"toggled_element": settings.content_element,
+						"firing_element": this
+					});
 				}
 				if (settings.toggle_condition !== undefined) {
 					shouldToggle = settings.toggle_condition();
 					if (!shouldToggle) {
 						if (settings.enable_logging) {
 							console.log("Toggle condition failed. Exiting toggleContainer.");
-							console.log("------------------------ END: toggleContainer ------------------------");
-							console.log("");
 						}
 						return this;
 					}
@@ -90,7 +89,6 @@
 							event_post_toggle(this);
 						});
 					}
-					// Slide-down container
 				}
 				// Toggle self (after)
 				if (settings.toggle_self && settings.toggle_order == "after") {
@@ -99,11 +97,6 @@
 				// Fire Callback
 				if (settings.callback !== undefined) {
 					settings.callback(this);
-				}
-
-				if (settings.enable_logging) {
-					console.log("------------------------ END: toggleContainer ------------------------");
-					console.log("");
 				}
 			});
 		}
@@ -189,6 +182,12 @@ var Checkout = {
 				"postal_code": "",
 				"country": "",
 				"phone_number": ""
+			},
+			"billing_method": "",
+			"credit_card_data": {
+				"type": "",
+				"last_four": "",
+				"expiration": ""
 			}
 		}
 	},
@@ -316,7 +315,17 @@ var Checkout = {
 			"$shipping_option_carrier": undefined,
 			"$shipping_option_method": undefined,
 			"$shipping_option_delivery_date": undefined,
-			"$shipping_option_price": undefined
+			"$shipping_option_price": undefined,
+			"$billing_data_container": undefined,
+			"$billing_address_container": undefined,
+			"$billing_address_name": undefined,
+			"$billing_address_company": undefined,
+			"$billing_address_street": undefined,
+			"$billing_address_city": undefined,
+			"$billing_address_state": undefined,
+			"$billing_address_postal": undefined,
+			"$billing_address_country": undefined,
+			"$billing_address_phone": undefined
 		}
 	},
 	"Settings": {
@@ -478,6 +487,16 @@ var Checkout = {
 				Checkout.Fields.Review.$shipping_option_delivery_date = Checkout.Fields.Review.$shipping_option_container.find(".delivery-date");
 				Checkout.Fields.Review.$shipping_option_method = Checkout.Fields.Review.$shipping_option_container.find(".method");
 				Checkout.Fields.Review.$shipping_option_price = Checkout.Fields.Review.$shipping_option_container.find(".price");
+				Checkout.Fields.Review.$billing_data_container = Checkout.Fields.Shared.$step_review.find("li.billing-information");
+				Checkout.Fields.Review.$billing_address_container = Checkout.Fields.Review.$billing_data_container.find(".address");
+				Checkout.Fields.Review.$billing_address_name = Checkout.Fields.Review.$billing_address_container.find(".name");
+				Checkout.Fields.Review.$billing_address_company = Checkout.Fields.Review.$billing_address_container.find(".company");
+				Checkout.Fields.Review.$billing_address_street = Checkout.Fields.Review.$billing_address_container.find(".street");
+				Checkout.Fields.Review.$billing_address_city = Checkout.Fields.Review.$billing_address_container.find(".city");
+				Checkout.Fields.Review.$billing_address_state = Checkout.Fields.Review.$billing_address_container.find(".state");
+				Checkout.Fields.Review.$billing_address_postal = Checkout.Fields.Review.$billing_address_container.find(".zip");
+				Checkout.Fields.Review.$billing_address_country = Checkout.Fields.Review.$billing_address_container.find(".country");
+				Checkout.Fields.Review.$billing_address_phone = Checkout.Fields.Review.$billing_address_container.find(".phone");
 			},
 			"WireEvents": function () {
 				/// <summary>Wire up control events</summary>
@@ -548,6 +567,9 @@ var Checkout = {
 						}, 3000);
 						break;
 					case Checkout.Settings.Shared.billing_step_id:
+						if (Checkout.Data.checkout_details.billing_method == "") {
+							Checkout.Functions.BillingInfo.SelectDefaultOption();
+						}
 						break;
 					case Checkout.Settings.Shared.review_step_id:
 						break;
@@ -715,7 +737,7 @@ var Checkout = {
 				Checkout.Fields.ShippingAddress.$btnedit_address.on("click", function (e) {
 					var $this = $(this);
 					e.stopPropagation();
-					$this.parent().parent().find("input[type=radio]").trigger("click");
+					$this.parent().parent().find("input[type=radio]").attr("checked", "checked");
 					// Hide the new address button
 					Checkout.Fields.ShippingAddress.$btnadd_address.slideUp(Checkout.Settings.Shared.easing - 200);
 					// Set the input values
@@ -955,7 +977,18 @@ var Checkout = {
 				if (refreshSelector) {
 					Checkout.Fields.BillingInfo.$payment_option_paypal = $(Checkout.Fields.BillingInfo.$payment_option_paypal.selector);
 				}
-				Checkout.Fields.BillingInfo.$payment_option_paypal.toggleContainer({
+				Checkout.Fields.BillingInfo.$payment_option_paypal.on("click", function () {
+					Checkout.Data.checkout_details.billing_method = "PayPal";
+					Checkout.Data.checkout_details.billing_address.name = "Ethan Koser";
+					Checkout.Data.checkout_details.billing_address.company = "";
+					Checkout.Data.checkout_details.billing_address.street = "123 A street";
+					Checkout.Data.checkout_details.billing_address.city = "Mobile";
+					Checkout.Data.checkout_details.billing_address.state = "AK";
+					Checkout.Data.checkout_details.billing_address.postal_code = "88739";
+					Checkout.Data.checkout_details.billing_address.country = "United States";
+					Checkout.Data.checkout_details.billing_address.phone_number = "+1-222-333-4567";
+					Checkout.Functions.Review.RefreshOrderReviewSelectionData();
+				}).toggleContainer({
 					content_element: Checkout.Fields.BillingInfo.$default_payment,
 					force_state: "hide",
 					toggle_self: false
@@ -985,7 +1018,7 @@ var Checkout = {
 					Checkout.Fields.BillingInfo.$payment_option_default = $(Checkout.Fields.BillingInfo.$payment_option_default.selector);
 				}
 
-				Checkout.Fields.BillingInfo.$payment_option_default.toggleContainer({
+				Checkout.Fields.BillingInfo.$payment_option_default.on("click", Checkout.Functions.BillingInfo.SelectDefaultOption).toggleContainer({
 					content_element: Checkout.Fields.BillingInfo.$credit_card_form,
 					force_state: "hide",
 					pre_logic: function () {
@@ -1021,6 +1054,7 @@ var Checkout = {
 
 				Checkout.Fields.BillingInfo.$btncreate_credit_card.toggleContainer({
 					content_element: Checkout.Fields.BillingInfo.$credit_card_form,
+					force_state: "show",
 					self_toggle_delay_offset: -Checkout.Settings.Shared.easing,
 					pre_logic: function () {
 						Checkout.Functions.BillingInfo.ResetCreditCardForm();
@@ -1056,9 +1090,7 @@ var Checkout = {
 				}).toggleContainer({
 					content_element: Checkout.Fields.BillingInfo.$credit_card_form,
 					toggle_self: false,
-					callback: function () {
-						Checkout.Functions.BillingInfo.ResetCreditCardForm();
-					}
+					force_state: "hide"
 				}).toggleContainer({
 					content_element: Checkout.Fields.BillingInfo.$billing_address_container,
 					force_state: "hide",
@@ -1086,10 +1118,7 @@ var Checkout = {
 				}).toggleContainer({
 					content_element: Checkout.Fields.BillingInfo.$credit_card_form,
 					force_state: "hide",
-					toggle_self: false,
-					callback: function () {
-						Checkout.Functions.BillingInfo.ResetCreditCardForm();
-					}
+					toggle_self: false
 				}).toggleContainer({
 					content_element: Checkout.Fields.BillingInfo.$billing_address_container,
 					force_state: "hide",
@@ -1104,7 +1133,7 @@ var Checkout = {
 				Checkout.Fields.BillingInfo.$btnedit_credit_card.on("click", function (e) {
 					var $this = $(this);
 					e.stopPropagation();
-					$this.parent().parent().find("input[type=radio]").trigger("click");
+					$this.parent().parent().find("input[type=radio]").attr("checked", "checked");
 					Checkout.Fields.BillingInfo.$btncreate_credit_card.slideUp(Checkout.Settings.Shared.easing - 200);
 					Checkout.Functions.BillingInfo.ToggleCreditCardFormMode("edit");
 					Checkout.Functions.BillingInfo.PopulateEditCardForm($this);
@@ -1123,7 +1152,7 @@ var Checkout = {
 				Checkout.Fields.BillingInfo.$btnedit_default_credit_card.on("click", function (e) {
 					var $this = $(this);
 					e.stopPropagation();
-					$this.parent().parent().find("input[type=radio]").trigger("click");
+					$this.parent().parent().find("input[type=radio]").attr("checked", "checked");
 					Checkout.Fields.BillingInfo.$btncreate_credit_card.slideUp(Checkout.Settings.Shared.easing - 200);
 					Checkout.Functions.BillingInfo.ToggleCreditCardFormMode("edit");
 					Checkout.Functions.BillingInfo.PopulateEditCardForm($this);
@@ -1144,7 +1173,15 @@ var Checkout = {
 				if (refreshSelector) {
 					Checkout.Fields.BillingInfo.$credit_cards = $(Checkout.Fields.BillingInfo.$credit_cards.selector);
 				}
-				Checkout.Fields.BillingInfo.$credit_cards.toggleContainer({
+
+				Checkout.Fields.BillingInfo.$credit_cards.on("click", function (e) {
+					var $parent = $(this).parent();
+					e.stopPropagation();
+					Checkout.Data.checkout_details.billing_method = "Credit Card";
+					Checkout.Functions.BillingInfo.UpdateCreditCardData($parent.find(".credit-card"));
+					Checkout.Functions.BillingInfo.UpdateBillingAddressData($parent.find(".address"));
+					Checkout.Functions.Review.RefreshOrderReviewSelectionData();
+				}).toggleContainer({
 					content_element: Checkout.Fields.BillingInfo.$btncreate_credit_card,
 					force_state: "show",
 					toggle_self: false,
@@ -1152,10 +1189,7 @@ var Checkout = {
 				}).toggleContainer({
 					content_element: Checkout.Fields.BillingInfo.$credit_card_form,
 					force_state: "hide",
-					toggle_self: false,
-					callback: function () {
-						Checkout.Functions.BillingInfo.ResetCreditCardForm();
-					}
+					toggle_self: false
 				}).toggleContainer({
 					content_element: Checkout.Fields.BillingInfo.$billing_address_container,
 					force_state: "hide",
@@ -1308,7 +1342,7 @@ var Checkout = {
 				Checkout.Fields.BillingInfo.$btnedit_address.on("click", function (e) {
 					var $this = $(this);
 					e.stopPropagation();
-					$this.parent().parent().find("input[type=radio]").trigger("click");
+					$this.parent().parent().find("input[type=radio]").attr("checked", "checked");
 					// Set the input values
 					Checkout.Functions.BillingInfo.ToggleAddressFormMode("edit");
 					Checkout.Fields.BillingInfo.$input_country.val("CA");
@@ -1389,6 +1423,7 @@ var Checkout = {
 				}
 			},
 			"PopulateEditCardForm": function ($editedCard) {
+				Checkout.Functions.BillingInfo.ResetCreditCardForm();
 				Checkout.Fields.BillingInfo.$edited_card_masked_number.html("ending in: 1234");
 				Checkout.Fields.BillingInfo.$edited_card_type.addClass("visa").html("Visa");
 				Checkout.Fields.BillingInfo.$input_cc_name.val("Editing Name");
@@ -1401,6 +1436,7 @@ var Checkout = {
 				Checkout.Fields.BillingInfo.$input_cc_name.val("");
 				Checkout.Fields.BillingInfo.$input_cc_number.val("");
 				Checkout.Fields.BillingInfo.$input_cc_expiration.val("");
+				Checkout.Fields.BillingInfo.$input_cc_security_code.val("");
 				Checkout.Fields.BillingInfo.$input_cc_store_in_wallet.removeAttr("checked");
 				Checkout.Fields.BillingInfo.$btnchange_billing_address.show();
 				Checkout.Fields.BillingInfo.$credit_card_inputs.trigger("change");
@@ -1437,6 +1473,7 @@ var Checkout = {
 				$newCard = $(mu);
 				Checkout.Fields.BillingInfo.$credit_card_list.find("li:last-child").before($newCard);
 				Checkout.Functions.BillingInfo.BindEvents_EditCreditCardButton(true);
+				Checkout.Functions.BillingInfo.BindEvents_CreditCardItems(true);
 				$newCard.find("input[type=radio]").trigger("click");
 			},
 			"CreateNewAddressElement": function () {
@@ -1460,10 +1497,45 @@ var Checkout = {
 				Checkout.Fields.BillingInfo.$billing_address_list.find("li:last-child").before($newAddress);
 				Checkout.Functions.BillingInfo.BindEvents_EditAddressButton(true);
 				$newAddress.find("input[type=radio]").trigger("click");
-			}
+			},
+			"SelectDefaultOption": function () {
+				Checkout.Data.checkout_details.billing_method = "Credit Card";
+				Checkout.Functions.BillingInfo.UpdateCreditCardData(Checkout.Fields.BillingInfo.$default_payment.find(".credit-card"));
+				Checkout.Functions.BillingInfo.UpdateBillingAddressData(Checkout.Fields.BillingInfo.$default_payment.find(".address"));
+				Checkout.Functions.Review.RefreshOrderReviewSelectionData();
+			},
+			"UpdateCreditCardData": function (selected_card) {
+				var $type = selected_card.find(".type"),
+					$last_four = selected_card.find(".masked-number"),
+					$expiration = selected_card.find(".expiration");
+
+				Checkout.Data.checkout_details.credit_card_data.type = $type.length > 0 ? $type.text() : "";
+				Checkout.Data.checkout_details.credit_card_data.last_four = $last_four.length > 0 ? $last_four.text().replace("ending in: ", "") : "";
+				Checkout.Data.checkout_details.credit_card_data.expiration = $expiration.length > 0 ? $expiration.text().replace("Expires: ", "") : "";
+			},
+			"UpdateBillingAddressData": function (selected_address) {
+				var $name = selected_address.find(".name"),
+					$company = selected_address.find(".company"),
+					$street = selected_address.find(".street"),
+					$city = selected_address.find(".city"),
+					$state = selected_address.find(".state"),
+					$postal = selected_address.find(".zip"),
+					$country = selected_address.find(".country"),
+					$phone = selected_address.find(".phone");
+
+				Checkout.Data.checkout_details.billing_address.name = $name.length > 0 ? $name.text() : "";
+				Checkout.Data.checkout_details.billing_address.company = $company.length > 0 ? $company.text() : "";
+				Checkout.Data.checkout_details.billing_address.street = $street.length > 0 ? $street.text() : "";
+				Checkout.Data.checkout_details.billing_address.city = $city.length > 0 ? $city.text() : "";
+				Checkout.Data.checkout_details.billing_address.state = $state.length > 0 ? $state.text() : "";
+				Checkout.Data.checkout_details.billing_address.postal_code = $postal.length > 0 ? $postal.text() : "";
+				Checkout.Data.checkout_details.billing_address.country = $country.length > 0 ? $country.text() : "";
+				Checkout.Data.checkout_details.billing_address.phone_number = $phone.length > 0 ? $phone.text() : "";
+			},
 		},
 		"Review": {
 			"RefreshOrderReviewSelectionData": function () {
+				var billing_markup = "";
 				// Update shipping address data
 				Checkout.Fields.Review.$shipping_address_name.text(Checkout.Data.checkout_details.shipping_address.name);
 				Checkout.Fields.Review.$shipping_address_company.text(Checkout.Data.checkout_details.shipping_address.company);
@@ -1478,6 +1550,29 @@ var Checkout = {
 				Checkout.Fields.Review.$shipping_option_delivery_date.text(Checkout.Data.checkout_details.shipping_option.delivery_date);
 				Checkout.Fields.Review.$shipping_option_method.text(Checkout.Data.checkout_details.shipping_option.option);
 				Checkout.Fields.Review.$shipping_option_price.text("$" + (Checkout.Data.checkout_details.shipping_amount + Checkout.Data.checkout_details.shipping_tax_amount).toFixed(2));
+				// Update billing data
+				Checkout.Fields.Review.$billing_address_name.text(Checkout.Data.checkout_details.billing_address.name);
+				Checkout.Fields.Review.$billing_address_company.text(Checkout.Data.checkout_details.billing_address.company);
+				Checkout.Fields.Review.$billing_address_street.text(Checkout.Data.checkout_details.billing_address.street);
+				Checkout.Fields.Review.$billing_address_city.text(Checkout.Data.checkout_details.billing_address.city);
+				Checkout.Fields.Review.$billing_address_state.text(Checkout.Data.checkout_details.billing_address.state);
+				Checkout.Fields.Review.$billing_address_postal.text(Checkout.Data.checkout_details.billing_address.postal_code);
+				Checkout.Fields.Review.$billing_address_country.text(Checkout.Data.checkout_details.billing_address.country);
+				Checkout.Fields.Review.$billing_address_phone.text(Checkout.Data.checkout_details.billing_address.phone_number);
+				if (Checkout.Data.checkout_details.billing_method == "Credit Card") {
+					billing_markup += "<div class='credit-card'>";
+					billing_markup += "<span class='type " + Checkout.Data.checkout_details.credit_card_data.type.toLowerCase() + "'>" + Checkout.Data.checkout_details.credit_card_data.type + "</span>";
+					billing_markup += "<span class='masked-number'>ending in: " + Checkout.Data.checkout_details.credit_card_data.last_four + "</span>";
+					billing_markup += "<span class='expiration'>Expires: " + Checkout.Data.checkout_details.credit_card_data.expiration + "</span>";
+					billing_markup += "</div>";
+				}
+				else if (Checkout.Data.checkout_details.billing_method == "PayPal") {
+					billing_markup += "<div class='paypal'>";
+					billing_markup += "<span>PayPal payment</span>";
+					billing_markup += "</div>";
+				}
+				Checkout.Fields.Review.$billing_data_container.find(".paypal, .credit-card").remove();
+				Checkout.Fields.Review.$billing_address_container.before(billing_markup);
 			},
 			"UpdateOrderReviewTotals": function () {
 				Checkout.Fields.Review.$subtotal.text("$" + Checkout.Data.checkout_details.subtotal.toFixed(2));
