@@ -787,7 +787,14 @@
                         </div>
                     </div>
                 </div>
-                <div id="order-confirmation" style="display:none;">
+                <div id="order-confirmation" class="order-confirmation grid__item one-whole" style="display:none;">
+                    <h2>Order confirmation</h2>
+                    <div class="confirmation-message">
+                        <p>Order successfully submitted.</p>
+                        <p>You will receive an order confirmation email shortly via email.</p>
+                        <p>Your order number: <span class="order-number">WEB00012345</span></p>
+                        <button class="btn grid__item primary">Continue to HD</button>
+                    </div>
                 </div>
             </div>
         </article>
@@ -795,7 +802,7 @@
             <div class="cta_bar one-whole">
                 <div class="grid">
                     <div class="total grid__item three-quarters"></div>
-                    <button class="btn btn--positive grid__item one-quarter primary">Next</button>
+                    <button class="btn btn--positive grid__item one-quarter primary" data-text-next="Next" data-text-complete="Submit Order">Next</button>
                 </div>
             </div>
             <div id="help-content" class="help grid__item one-whole greybox">
