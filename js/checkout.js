@@ -931,6 +931,7 @@ var Checkout = {
 						}
 					}
 					else {
+						Checkout.Fields.BillingInfo.$promo_code_form.removeClass("error success");
 						Checkout.Data.checkout_details.promo_code = "";
 						Checkout.Data.checkout_details.promo_amount = 0.00;
 						$this.text(applyMode);
