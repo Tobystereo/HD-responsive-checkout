@@ -780,7 +780,10 @@ input[type=radio]:checked + label.card {
       @extend .background-success;
 
       .promo-details {
-        width: 50%;
+        display: block !important;
+        color: $green;
+        width: 60%;
+        float: left;
         span {
           font-weight: 700;
         }
