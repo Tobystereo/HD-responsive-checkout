@@ -32,6 +32,11 @@ body {
 header {
 }
 
+.need-help {
+  @media #{$desk} {
+    display: none;
+  }
+}
 
 .trust-asset {
     width: auto;
@@ -766,6 +771,35 @@ input[type=radio]:checked + label.card {
   button {
     margin: 0;
     float: right;
+  }
+}
+
+#promo-code-form {
+  &.success {
+    .card {
+      @extend .background-success;
+
+      .promo-details {
+        width: 50%;
+        span {
+          font-weight: 700;
+        }
+      }
+    }
+  }
+
+  &.error {
+    .card {
+      @extend .background-error;
+    }
+  }
+}
+
+.promo-error-message {
+  color: $red;
+
+  span {
+    font-weight: 700;
   }
 }
 
