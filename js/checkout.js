@@ -15,6 +15,7 @@
 				post_toggle: undefined,
 				callback: undefined,
 				delay: 300,
+				enable_logging: true,
 				force_state: "", /* show|hide */
 				firing_events: "click",
 				toggle_self: true,
@@ -32,9 +33,29 @@
 		if (settings.content_element !== undefined) {
 			this.on(settings.firing_events, function (e) {
 				e.stopPropagation();
+				if (settings.enable_logging) {
+					console.log("------------------------ BEGIN: toggleContainer ------------------------");
+					console.log("Firing Element: Class - " + $self.attr("class") + "    Id - " + $self.attr("id"));
+					console.log("Toggled Element: Class - " + settings.content_element.attr("class") + "    Id - " + settings.content_element.attr("id"));
+					var action = settings.force_state != "" ? settings.force_state + " (forced)" : "";
+					if (action == "") {
+						if (settings.content_element.is(":visible")) {
+							action = "hide";
+						}
+						else {
+							action = "show";
+						}
+					}
+					console.log("Toggle Action: " + action);
+				}
 				if (settings.toggle_condition !== undefined) {
 					shouldToggle = settings.toggle_condition();
 					if (!shouldToggle) {
+						if (settings.enable_logging) {
+							console.log("Toggle condition failed. Exiting toggleContainer.");
+							console.log("------------------------ END: toggleContainer ------------------------");
+							console.log("");
+						}
 						return this;
 					}
 				}
@@ -78,6 +99,11 @@
 				// Fire Callback
 				if (settings.callback !== undefined) {
 					settings.callback(this);
+				}
+
+				if (settings.enable_logging) {
+					console.log("------------------------ END: toggleContainer ------------------------");
+					console.log("");
 				}
 			});
 		}
@@ -739,6 +765,7 @@ var Checkout = {
 				}).toggleContainer({
 					content_element: Checkout.Fields.ShippingAddress.$new_address_form,
 					toggle_self: false,
+					force_state: "hide",
 					pre_logic: function () {
 						var $newAddress,
 							mu = '<li class="additional-address grid__item one-whole desk-one-half address-item">';
@@ -758,6 +785,7 @@ var Checkout = {
 						mu += '</div></label></li>';
 						$newAddress = $(mu);
 						Checkout.Fields.ShippingAddress.$address_list.append($newAddress);
+						Checkout.Functions.ShippingAddress.BindEvents_AddressItems(true);
 						Checkout.Functions.ShippingAddress.BindEvents_EditAddressButton(true);
 						$newAddress.find("input[type=radio]").trigger("click");
 					},
