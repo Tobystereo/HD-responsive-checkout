@@ -6348,20 +6348,48 @@ input[type=radio]:checked + label.card .shiptothis:after, input[type=radio]:chec
 }
 
 /* line 1192, ui/_checkout.scss */
+.order-review .card, .order-review input[type=radio] + label.card {
+  min-height: 150px;
+}
+/* line 1196, ui/_checkout.scss */
+.order-review .card .address span {
+  display: block;
+  float: left;
+  margin: 0 0.25em 0 0;
+}
+/* line 1201, ui/_checkout.scss */
+.order-review .card .address .company, .order-review .card .address .street, .order-review .card .address .city, .order-review .card .address .country, .order-review .card .address .phone {
+  clear: left;
+}
+/* line 1205, ui/_checkout.scss */
+.order-review .card .address .name {
+  margin-right: 0;
+}
+/* line 1209, ui/_checkout.scss */
+.order-review .card .address .phone, .order-review .card .address .street {
+  margin-top: 1em;
+}
+/* line 1214, ui/_checkout.scss */
+.order-review .card .change {
+  margin: 0;
+  float: right;
+}
+
+/* line 1222, ui/_checkout.scss */
 footer .help {
   min-height: 3em;
 }
-/* line 1194, ui/_checkout.scss */
+/* line 1224, ui/_checkout.scss */
 footer .help h2, footer .help p {
   text-align: center;
   margin: 2rem;
 }
-/* line 1199, ui/_checkout.scss */
+/* line 1229, ui/_checkout.scss */
 footer .help h2 {
   font-weight: 100;
   margin-bottom: 0;
 }
-/* line 1204, ui/_checkout.scss */
+/* line 1234, ui/_checkout.scss */
 footer .help p {
   margin-top: 1rem;
   margin-bottom: 0;
@@ -6373,7 +6401,7 @@ footer .help p {
   line-height: 24.96px;
   line-height: 1.56rem;
 }
-/* line 1212, ui/_checkout.scss */
+/* line 1242, ui/_checkout.scss */
 footer .help a, footer .privacy-policy a, footer .shipping-policy a {
   margin-left: auto !important;
   margin-right: auto !important;
@@ -6386,51 +6414,69 @@ footer .help a, footer .privacy-policy a, footer .shipping-policy a {
   text-align: center;
   width: 90%;
 }
-/* line 1223, ui/_checkout.scss */
+/* line 1253, ui/_checkout.scss */
 footer .help a:hover, footer .privacy-policy a:hover, footer .shipping-policy a:hover {
   background-color: #cbcbcb !important;
   color: #727272;
   border-color: #727272;
 }
 @media only screen and (min-width: 30em) {
-  /* line 1232, ui/_checkout.scss */
+  /* line 1262, ui/_checkout.scss */
   footer .privacy-policy a {
     margin-bottom: 2em !important;
   }
 }
-/* line 1240, ui/_checkout.scss */
+/* line 1270, ui/_checkout.scss */
 footer .shipping-policy a {
   margin-bottom: 2em !important;
 }
 
+/* line 1278, ui/_checkout.scss */
+.order-confirmation {
+  text-align: center;
+}
+/* line 1280, ui/_checkout.scss */
+.order-confirmation h2 {
+  text-align: center;
+  color: #4a993d;
+}
+/* line 1285, ui/_checkout.scss */
+.order-confirmation .order-number {
+  font-weight: 700;
+}
+/* line 1289, ui/_checkout.scss */
+.order-confirmation button {
+  margin-top: 3rem;
+}
+
 /* Colors */
-/* line 1247, ui/_checkout.scss */
+/* line 1295, ui/_checkout.scss */
 .bg-lightest {
   background-color: white;
 }
 
-/* line 1248, ui/_checkout.scss */
+/* line 1296, ui/_checkout.scss */
 .bg-lighter {
   background-color: #f1f1f1;
 }
 
-/* line 1249, ui/_checkout.scss */
+/* line 1297, ui/_checkout.scss */
 .bg-light {
   background-color: #cbcbcb;
 }
 
-/* line 1250, ui/_checkout.scss */
+/* line 1298, ui/_checkout.scss */
 .bg-dark {
   background-color: #727272;
 }
 
-/* line 1251, ui/_checkout.scss */
+/* line 1299, ui/_checkout.scss */
 .bg-darkest {
   background-color: black;
 }
 
 /* Typography */
-/* line 1258, ui/_checkout.scss */
+/* line 1306, ui/_checkout.scss */
 a, a:link, a:hover, a:active, a:focus {
   text-decoration: none;
   border-bottom: 1px solid;
