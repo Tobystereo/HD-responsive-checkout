@@ -806,6 +806,15 @@ input[type=radio]:checked + label.card {
   }
 }
 
+.billtothis {
+  &:after {
+    @include pseudo(auto, 1em, "Select this billing address");
+  }
+
+  display: block;
+  float: right;
+}
+
 /*
   CREDIT CARD ICONS
 */
