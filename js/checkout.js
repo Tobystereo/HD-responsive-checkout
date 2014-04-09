@@ -128,6 +128,7 @@ var Checkout = {
 	"Data": {
 		"cart_items": [
 			{
+				"id": 1,
 				"name": "ProTouch No Sweat 4oz",
 				"thumbnail": "images/product_1_thumb.png",
 				"unit_price": 9.95,
@@ -135,6 +136,7 @@ var Checkout = {
 				"extended_price": 9.95
 			},
 			{
+				"id": 2,
 				"name": "C22 Citrus Solvent 12oz",
 				"thumbnail": "images/product_2_thumb.png",
 				"unit_price": 14.90,
@@ -142,6 +144,7 @@ var Checkout = {
 				"extended_price": 29.80
 			},
 			{
+				"id": 3,
 				"name": "Walker Adhesive Remover 4oz",
 				"thumbnail": "images/product_3_thumb.png",
 				"unit_price": 4.95,
@@ -325,7 +328,11 @@ var Checkout = {
 			"$billing_address_state": undefined,
 			"$billing_address_postal": undefined,
 			"$billing_address_country": undefined,
-			"$billing_address_phone": undefined
+			"$billing_address_phone": undefined,
+			"$shopping_cart_container": undefined,
+			"$btnupdate_cart_item": undefined,
+			"$btnremove_cart_item": undefined,
+			"$quantity_inputs": undefined
 		}
 	},
 	"Settings": {
@@ -502,6 +509,10 @@ var Checkout = {
 				Checkout.Fields.Review.$billing_address_postal = Checkout.Fields.Review.$billing_address_container.find(".zip");
 				Checkout.Fields.Review.$billing_address_country = Checkout.Fields.Review.$billing_address_container.find(".country");
 				Checkout.Fields.Review.$billing_address_phone = Checkout.Fields.Review.$billing_address_container.find(".phone");
+				Checkout.Fields.Review.$shopping_cart_container = Checkout.Fields.Shared.$step_review.find(".shopping-cart-container");
+				Checkout.Fields.Review.$btnupdate_cart_item = Checkout.Fields.Review.$shopping_cart_container.find("button.update-cart-item");
+				Checkout.Fields.Review.$btnremove_cart_item = Checkout.Fields.Review.$shopping_cart_container.find("button.remove-cart-item");
+				Checkout.Fields.Review.$quantity_inputs = Checkout.Fields.Review.$shopping_cart_container.find(".quantity input");
 			},
 			"WireEvents": function () {
 				/// <summary>Wire up control events</summary>
@@ -539,6 +550,9 @@ var Checkout = {
 				Checkout.Functions.BillingInfo.BindEvents_CancelAddressButton(false);
 				Checkout.Functions.BillingInfo.BindEvents_SaveAddressButton(false);
 				Checkout.Functions.BillingInfo.BindEvents_EditAddressButton(false);
+				Checkout.Functions.Review.BindEvents_QuantityInputs(false);
+				Checkout.Functions.Review.BindEvents_UpdateCartItemButton(false);
+				Checkout.Functions.Review.BindEvents_RemoveCartItemButton(false);
 			},
 			"InitCurrentStep": function (step_name) {
 				var $currentProgressBarItem = $("a[href=#" + Checkout.Settings.Shared.step_url_prefix + Checkout.Fields.Shared.$step_current.attr("id") + "]").parent();
@@ -1547,6 +1561,89 @@ var Checkout = {
 			},
 		},
 		"Review": {
+			"BindEvents_QuantityInputs": function (refreshSelector) {
+				if (refreshSelector) {
+					Checkout.Fields.Review.$quantity_inputs = $(Checkout.Fields.Review.$quantity_inputs.selector);
+				}
+				Checkout.Fields.Review.$quantity_inputs.on("change", function () {
+					var $this = $(this),
+						val = parseInt($this.val()),
+						orig_val = parseInt($this.attr("data-orig-val"));
+
+					if (val === orig_val) {
+						$this.next().addClass("tertiary").removeClass("secondary");
+					}
+					else {
+						$this.next().addClass("secondary").removeClass("tertiary");
+					}
+				});
+			},
+			"BindEvents_UpdateCartItemButton": function (refreshSelector) {
+				if (refreshSelector) {
+					Checkout.Fields.Review.$btnupdate_cart_item = $(Checkout.Fields.Review.$btnupdate_cart_item.selector);
+				}
+				Checkout.Fields.Review.$btnupdate_cart_item.on("click", function (e) {
+					var $this = $(this),
+						$cart_item = $this.parents("li.cart-item");
+					e.preventDefault();
+					Checkout.Functions.Review.UpdateCartItem($cart_item);
+					$this.addClass("tertiary").removeClass("secondary");
+				});
+			},
+			"BindEvents_RemoveCartItemButton": function (refreshSelector) {
+				if (refreshSelector) {
+					Checkout.Fields.Review.$btnremove_cart_item = $(Checkout.Fields.Review.$btnremove_cart_item.selector);
+				}
+				Checkout.Fields.Review.$btnremove_cart_item.on("click", function (e) {
+					var $this = $(this),
+						$cart_item = $this.parents("li.cart-item");
+					e.preventDefault();
+					Checkout.Functions.Review.RemoveCartItem($cart_item);
+				});
+			},
+			"UpdateCartItem": function ($cart_item) {
+				var quantity = Checkout.Functions.Shared.GetDecimal($cart_item.find(".quantity input").val()),
+					product_id = parseInt($cart_item.find("input.product-id").val()),
+					$total_value = $cart_item.find(".total > .value"),
+					updated_item = undefined;
+				if (quantity < 0 || quantity == 0) {
+					Checkout.Functions.Review.RemoveCartItem($cart_item);
+				}
+				else {
+					// Update the data in the cart items array
+					$.each(Checkout.Data.cart_items, function (i, item) {
+						if (item.id === product_id) {
+							item.quantity = quantity;
+							item.extended_price = Checkout.Functions.Shared.GetDecimal(item.unit_price * item.quantity);
+							updated_item = item;
+							return false;
+						}
+					});
+					if (updated_item !== undefined) {
+						// Refresh the UI
+						$total_value.text("$" + updated_item.extended_price.toFixed(2));
+						Checkout.Functions.Shared.UpdateOrderTotal();
+					}
+				}
+			},
+			"RemoveCartItem": function ($cart_item) {
+				var product_id = parseInt($cart_item.find("input.product-id").val()),
+					index_to_remove = -1;
+
+				// Find the item to remove from the cart item array;
+				$.each(Checkout.Data.cart_items, function (i, item) {
+					if (item.id === product_id) {
+						index_to_remove = i;
+						return false;
+					}
+				});
+				if (index_to_remove > -1 && Checkout.Data.cart_items.length > 1) {
+					Checkout.Data.cart_items.splice(index_to_remove, 1);
+					Checkout.Functions.Shared.UpdateOrderTotal();
+					// Remove the cart item from the UI
+					$cart_item.fadeOut(Checkout.Settings.Shared.easing);
+				}
+			},
 			"RefreshOrderReviewSelectionData": function () {
 				var billing_markup = "";
 				// Update shipping address data
