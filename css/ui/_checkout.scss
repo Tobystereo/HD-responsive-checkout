@@ -360,13 +360,14 @@ article {
     }
 }
 
-.address-item, .credit-card, .credit-card-item {
+.address-item, .credit-card, .credit-card-item, .billing-data {
     text-align: left;
 
     span {
         display: inline-block;
         text-align: left;
     }
+
     .name, .company, .country, .type, .masked-number, .expiration {
         display: block;
     }
@@ -398,6 +399,8 @@ article {
     }
 
 }
+
+
 
 .billing-data, .credit-card-item {
   padding-top: 0;
@@ -563,6 +566,51 @@ input[type=radio]:checked + label.card {
   margin-bottom: 1em;
 }
 
+.carrier {
+  width: 30% !important;
+  font-weight: 500;
+  text-align: right;
+  padding-right: 10px;
+
+  @media #{$lap} {
+    width: 18% !important;
+  }
+
+  @media #{$desk} {
+    width: 12% !important;
+  }
+
+  &:before {
+    @include pseudo(2em, 2em, "\ ");
+    margin: 5px 1em 0 0;
+    display: block;
+    float: left;
+    position: absolute;
+
+    background-size: contain;
+    background-repeat: no-repeat;
+  }
+
+  &.ups:before {
+    background-image: url('../images/United_Parcel_Service_logo.svg');
+    margin-top: -2px;
+
+    @media #{$desk} {
+      margin-top: 5px;
+    }
+  }
+
+  &.usps:before {
+    background-image: url('../images/United_States_Postal_Service_Logo_Icon.svg');
+
+    margin-top: 2px;
+
+    @media #{$desk} {
+      margin-top: 10px;
+    }
+  }
+}
+
 .shipping-option-item {
   .shipping-option {
     span {
@@ -577,50 +625,6 @@ input[type=radio]:checked + label.card {
       }
     }
 
-    .carrier {
-      width: 30%;
-      font-weight: 500;
-      text-align: right;
-      padding-right: 10px;
-
-      @media #{$lap} {
-        width: 18%;
-      }
-
-      @media #{$desk} {
-        width: 12%;
-      }
-
-      &:before {
-        @include pseudo(2em, 2em, "\ ");
-        margin: 5px 1em 0 0;
-        display: block;
-        float: left;
-        position: absolute;
-
-        background-size: contain;
-        background-repeat: no-repeat;
-      }
-
-      &.ups:before {
-        background-image: url('../images/United_Parcel_Service_logo.svg');
-        margin-top: -2px;
-
-        @media #{$desk} {
-          margin-top: 5px;
-        }
-      }
-
-      &.usps:before {
-        background-image: url('../images/United_States_Postal_Service_Logo_Icon.svg');
-
-        margin-top: 2px;
-
-        @media #{$desk} {
-          margin-top: 10px;
-        }
-      }
-    }
 
     .method {
       width: 60%;
@@ -803,6 +807,12 @@ input[type=radio]:checked + label.card {
 
   span {
     font-weight: 700;
+  }
+}
+
+.billing-address-container {
+  h3 {
+    padding-left: 0;
   }
 }
 
@@ -1225,6 +1235,53 @@ input[type=radio]:checked + label.card {
       float: right;
     }
   }
+
+  .shipping-option {
+    span {
+      display: block;
+      float: left;
+      margin-right: 1em;
+    }
+
+    .delivery-date, .price {
+      clear: left;
+    }
+
+    .carrier {
+      width: 30% !important;
+      padding-right: 0;
+      text-align: left;
+      padding-left: 2.5em;
+
+      &:before {
+        display: inline-block !important;
+        margin-top: -2px;
+        margin-left: -2.5em;
+      }
+    }
+
+    .delivery-date, .price {
+      width: 100%;
+      display: block;
+      margin-top: 1em;
+
+      &:before {
+        font-weight: 500;
+        @include pseudo(30%, 1em, "\ ");
+        margin-right: 1em;
+        text-align: left;
+      }
+    }
+
+    .delivery-date:before {
+      content: "Delivery date: ";
+    }
+
+    .price:before {
+      content: "Shipping cost: ";
+    }
+
+  }
 }
 
 footer {
@@ -1281,6 +1338,8 @@ footer {
       }
     }
 }
+
+
 
 // ORDER CONFIRMATION
 
