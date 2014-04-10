@@ -50,6 +50,19 @@ h3, .h3 {
   }
 }
 
+h4, .h4 {
+  @include font(1, 500);
+  @extend .heading;
+
+  @media #{$lap}{
+      @include font(1.25, 500);
+  }
+
+  @media #{$desk} {
+      @include font(1.5, 300)
+  }
+}
+
 
 body {
   @include font(1,1);

@@ -6499,52 +6499,112 @@ footer .shipping-policy a {
   margin-bottom: 2em !important;
 }
 
-/* line 1346, ui/_checkout.scss */
+/* line 1345, ui/_checkout.scss */
+.modal-inner header {
+  padding: 1em 3em !important;
+}
+
+/* line 1350, ui/_checkout.scss */
+.semantic-content.is-active:before {
+  background: #727272 !important;
+}
+
+/* line 1354, ui/_checkout.scss */
+.modal-close {
+  color: #727272;
+}
+@media only screen and (min-width: 30em) {
+  /* line 1354, ui/_checkout.scss */
+  .modal-close {
+    text-align: center;
+    font-size: 48px;
+    font-size: 3rem;
+    font-family: 'Helvetica Neue', Helvetica, sans-serif;
+    font-weight: 100;
+    letter-spacing: 0;
+    line-height: 41.6px;
+    line-height: 2.6rem;
+    margin-right: -3px;
+  }
+}
+@media only screen and (min-width: 30em) {
+  /* line 1364, ui/_checkout.scss */
+  .modal-close:after {
+    width: 50px;
+    height: 50px;
+  }
+}
+@media only screen and (min-width: 50em) {
+  /* line 1364, ui/_checkout.scss */
+  .modal-close:after {
+    margin-left: 275px !important;
+  }
+}
+
+/* line 1378, ui/_checkout.scss */
+.modal-content {
+  padding: 3em !important;
+}
+/* line 1381, ui/_checkout.scss */
+.modal-content h1 {
+  padding: 0;
+  margin-top: 0 !important;
+}
+/* line 1388, ui/_checkout.scss */
+.modal-content h2 {
+  padding: 0  !important;
+}
+/* line 1393, ui/_checkout.scss */
+.modal-content h3 {
+  padding: 0 !important;
+}
+
+/* line 1402, ui/_checkout.scss */
 .order-confirmation {
   text-align: center;
 }
-/* line 1348, ui/_checkout.scss */
+/* line 1404, ui/_checkout.scss */
 .order-confirmation h2 {
   text-align: center;
   color: #4a993d;
 }
-/* line 1353, ui/_checkout.scss */
+/* line 1409, ui/_checkout.scss */
 .order-confirmation .order-number {
   font-weight: 700;
 }
-/* line 1357, ui/_checkout.scss */
+/* line 1413, ui/_checkout.scss */
 .order-confirmation button {
   margin-top: 3rem;
 }
 
 /* Colors */
-/* line 1363, ui/_checkout.scss */
+/* line 1419, ui/_checkout.scss */
 .bg-lightest {
   background-color: white;
 }
 
-/* line 1364, ui/_checkout.scss */
+/* line 1420, ui/_checkout.scss */
 .bg-lighter {
   background-color: #f1f1f1;
 }
 
-/* line 1365, ui/_checkout.scss */
+/* line 1421, ui/_checkout.scss */
 .bg-light {
   background-color: #cbcbcb;
 }
 
-/* line 1366, ui/_checkout.scss */
+/* line 1422, ui/_checkout.scss */
 .bg-dark {
   background-color: #727272;
 }
 
-/* line 1367, ui/_checkout.scss */
+/* line 1423, ui/_checkout.scss */
 .bg-darkest {
   background-color: black;
 }
 
 /* Typography */
-/* line 1374, ui/_checkout.scss */
+/* line 1430, ui/_checkout.scss */
 a, a:link, a:hover, a:active, a:focus {
   text-decoration: none;
   border-bottom: 1px solid;
@@ -7267,14 +7327,14 @@ OTHER STYLES
 }
 
 /* line 1, ui/_typography.scss */
-.heading, h1, .h1, h2, .h2, h3, .h3 {
+.heading, h1, .h1, h2, .h2, .modal-content h1, h3, .h3, .modal-content h2, h4, .h4, .modal-content h3 {
   margin-top: 1em;
   padding: 0;
   text-align: center;
 }
 @media only screen and (min-width: 50em) {
   /* line 1, ui/_typography.scss */
-  .heading, h1, .h1, h2, .h2, h3, .h3 {
+  .heading, h1, .h1, h2, .h2, .modal-content h1, h3, .h3, .modal-content h2, h4, .h4, .modal-content h3 {
     padding-left: 1em;
     text-align: left;
   }
@@ -7316,7 +7376,7 @@ h1, .h1 {
 }
 
 /* line 25, ui/_typography.scss */
-h2, .h2 {
+h2, .h2, .modal-content h1 {
   font-size: 24px;
   font-size: 1.5rem;
   font-family: 'Helvetica Neue', Helvetica, sans-serif;
@@ -7327,7 +7387,7 @@ h2, .h2 {
 }
 @media only screen and (min-width: 30em) {
   /* line 25, ui/_typography.scss */
-  h2, .h2 {
+  h2, .h2, .modal-content h1 {
     font-size: 32px;
     font-size: 2rem;
     font-family: 'Helvetica Neue', Helvetica, sans-serif;
@@ -7340,7 +7400,7 @@ h2, .h2 {
 }
 @media only screen and (min-width: 50em) {
   /* line 25, ui/_typography.scss */
-  h2, .h2 {
+  h2, .h2, .modal-content h1 {
     text-align: left;
     font-size: 48px;
     font-size: 3rem;
@@ -7353,7 +7413,7 @@ h2, .h2 {
 }
 
 /* line 40, ui/_typography.scss */
-h3, .h3 {
+h3, .h3, .modal-content h2 {
   font-size: 24px;
   font-size: 1.5rem;
   font-family: 'Helvetica Neue', Helvetica, sans-serif;
@@ -7364,7 +7424,7 @@ h3, .h3 {
 }
 @media only screen and (min-width: 30em) {
   /* line 40, ui/_typography.scss */
-  h3, .h3 {
+  h3, .h3, .modal-content h2 {
     font-size: 24px;
     font-size: 1.5rem;
     font-family: 'Helvetica Neue', Helvetica, sans-serif;
@@ -7376,7 +7436,7 @@ h3, .h3 {
 }
 @media only screen and (min-width: 50em) {
   /* line 40, ui/_typography.scss */
-  h3, .h3 {
+  h3, .h3, .modal-content h2 {
     font-size: 32px;
     font-size: 2rem;
     font-family: 'Helvetica Neue', Helvetica, sans-serif;
@@ -7387,7 +7447,42 @@ h3, .h3 {
   }
 }
 
-/* line 54, ui/_typography.scss */
+/* line 53, ui/_typography.scss */
+h4, .h4, .modal-content h3 {
+  font-size: 16px;
+  font-size: 1rem;
+  font-family: 'Helvetica Neue', Helvetica, sans-serif;
+  font-weight: 500;
+  letter-spacing: 0;
+  line-height: 20.8px;
+  line-height: 1.3rem;
+}
+@media only screen and (min-width: 30em) {
+  /* line 53, ui/_typography.scss */
+  h4, .h4, .modal-content h3 {
+    font-size: 20px;
+    font-size: 1.25rem;
+    font-family: 'Helvetica Neue', Helvetica, sans-serif;
+    font-weight: 500;
+    letter-spacing: 0;
+    line-height: 26px;
+    line-height: 1.625rem;
+  }
+}
+@media only screen and (min-width: 50em) {
+  /* line 53, ui/_typography.scss */
+  h4, .h4, .modal-content h3 {
+    font-size: 24px;
+    font-size: 1.5rem;
+    font-family: 'Helvetica Neue', Helvetica, sans-serif;
+    font-weight: 300;
+    letter-spacing: 0;
+    line-height: 31.2px;
+    line-height: 1.95rem;
+  }
+}
+
+/* line 67, ui/_typography.scss */
 body {
   font-size: 16px;
   font-size: 1rem;
