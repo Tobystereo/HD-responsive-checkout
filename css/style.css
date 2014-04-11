@@ -5228,8 +5228,17 @@ xmp {
     background: #3e6d9d;
     color: white !important;
   }
+  /* line 204, ui/_checkout.scss */
+  .progress li.completed a {
+    color: #8aadd1 !important;
+  }
+  /* line 208, ui/_checkout.scss */
+  .progress li.completed:before {
+    background: #8aadd1;
+    color: white !important;
+  }
 }
-/* line 202, ui/_checkout.scss */
+/* line 215, ui/_checkout.scss */
 .progress li a {
   display: block;
   text-align: center;
@@ -5250,86 +5259,86 @@ xmp {
   color: #cbcbcb;
   text-decoration: none;
 }
-/* line 215, ui/_checkout.scss */
+/* line 227, ui/_checkout.scss */
 .progress li a:hover {
   background: #3e6d9d;
 }
-/* line 218, ui/_checkout.scss */
+/* line 230, ui/_checkout.scss */
 .progress li a:hover:before {
   background: #8aadd1;
   color: white;
 }
-/* line 224, ui/_checkout.scss */
+/* line 236, ui/_checkout.scss */
 .progress li a:visited {
   background-color: #f1f1f1;
   color: #cbcbcb;
 }
 @media only screen and (min-width: 30em) {
-  /* line 202, ui/_checkout.scss */
+  /* line 215, ui/_checkout.scss */
   .progress li a {
     height: 3em;
     line-height: 3em !important;
   }
 }
 @media only screen and (min-width: 50em) {
-  /* line 202, ui/_checkout.scss */
+  /* line 215, ui/_checkout.scss */
   .progress li a {
     display: inline;
   }
 }
-/* line 244, ui/_checkout.scss */
+/* line 256, ui/_checkout.scss */
 .progress .active {
   background-color: #3e6d9d !important;
   color: white !important;
 }
-/* line 248, ui/_checkout.scss */
+/* line 260, ui/_checkout.scss */
 .progress .active a {
   color: white !important;
 }
-/* line 254, ui/_checkout.scss */
+/* line 266, ui/_checkout.scss */
 .progress .shipping a, .progress .method a {
   line-height: 16px;
   line-height: 1rem;
 }
-/* line 260, ui/_checkout.scss */
+/* line 272, ui/_checkout.scss */
 .progress .billing, .progress .review {
   margin: 0;
 }
-/* line 262, ui/_checkout.scss */
+/* line 274, ui/_checkout.scss */
 .progress .billing a, .progress .review a {
   line-height: 32px;
   line-height: 2rem;
   margin: 0;
 }
 @media only screen and (min-width: 50em) {
-  /* line 272, ui/_checkout.scss */
+  /* line 284, ui/_checkout.scss */
   .progress .shipping:before {
     content: "1";
   }
-  /* line 276, ui/_checkout.scss */
+  /* line 288, ui/_checkout.scss */
   .progress .method:before {
     content: "2";
   }
-  /* line 280, ui/_checkout.scss */
+  /* line 292, ui/_checkout.scss */
   .progress .billing:before {
     content: "3";
   }
-  /* line 284, ui/_checkout.scss */
+  /* line 296, ui/_checkout.scss */
   .progress .review:before {
     content: "4";
   }
 }
-/* line 289, ui/_checkout.scss */
+/* line 301, ui/_checkout.scss */
 .progress .nav {
   margin-bottom: 0;
 }
 
-/* line 294, ui/_checkout.scss */
+/* line 306, ui/_checkout.scss */
 .cancel-order {
   height: 64px;
   height: 4rem;
 }
-/* line 297, ui/_checkout.scss */
+/* line 309, ui/_checkout.scss */
 .cancel-order a {
   -webkit-transition: all 0.15s ease-out 0;
   -moz-transition: all 0.15s ease-out 0;
@@ -5345,23 +5354,23 @@ xmp {
   line-height: 3.9rem;
   background-color: #993d3d;
 }
-/* line 303, ui/_checkout.scss */
+/* line 315, ui/_checkout.scss */
 .cancel-order a:hover {
   background-color: #3e1919;
 }
 
-/* line 311, ui/_checkout.scss */
+/* line 323, ui/_checkout.scss */
 .cta_bar {
   height: 64px;
   height: 4rem;
   background-color: #cbcbcb;
 }
-/* line 316, ui/_checkout.scss */
+/* line 328, ui/_checkout.scss */
 .cta_bar .grid__item {
   height: 64px;
   height: 4rem;
 }
-/* line 320, ui/_checkout.scss */
+/* line 332, ui/_checkout.scss */
 .cta_bar .total {
   text-align: center;
   font-size: 24px;
@@ -5373,7 +5382,7 @@ xmp {
   line-height: 4.225rem;
 }
 @media only screen and (min-width: 50em) {
-  /* line 320, ui/_checkout.scss */
+  /* line 332, ui/_checkout.scss */
   .cta_bar .total {
     font-size: 32px;
     font-size: 2rem;
@@ -5384,7 +5393,7 @@ xmp {
     line-height: 4.225rem;
   }
 }
-/* line 328, ui/_checkout.scss */
+/* line 340, ui/_checkout.scss */
 .cta_bar .total:before {
   display: inline-block;
   position: relative;
@@ -5394,55 +5403,55 @@ xmp {
   margin-right: .6em;
 }
 
-/* line 338, ui/_checkout.scss */
+/* line 350, ui/_checkout.scss */
 #content {
   min-height: 1000px;
   background-color: white;
 }
 
-/* line 343, ui/_checkout.scss */
+/* line 355, ui/_checkout.scss */
 #help-content, .privacy-policy, .shipping-policy {
   background-color: #727272;
 }
 
-/* line 347, ui/_checkout.scss */
+/* line 359, ui/_checkout.scss */
 #help-content {
   padding-top: 64px;
 }
 
-/* line 352, ui/_checkout.scss */
+/* line 364, ui/_checkout.scss */
 .changeaddress, .createaddress {
   margin: 1em auto;
   width: 100%;
 }
 
 @media only screen and (min-width: 30em) {
-  /* line 357, ui/_checkout.scss */
+  /* line 369, ui/_checkout.scss */
   .changeaddress {
     margin-top: 0;
   }
 }
 
-/* line 363, ui/_checkout.scss */
+/* line 375, ui/_checkout.scss */
 .address-item, .credit-card, .credit-card-item, .billing-data {
   text-align: left;
 }
-/* line 366, ui/_checkout.scss */
+/* line 378, ui/_checkout.scss */
 .address-item span, .credit-card span, .credit-card-item span, .billing-data span {
   display: inline-block;
   text-align: left;
 }
-/* line 371, ui/_checkout.scss */
+/* line 383, ui/_checkout.scss */
 .address-item .name, .address-item .company, .address-item .country, .address-item .type, .address-item .masked-number, .address-item .expiration, .credit-card .name, .credit-card .company, .credit-card .country, .credit-card .type, .credit-card .masked-number, .credit-card .expiration, .credit-card-item .name, .credit-card-item .company, .credit-card-item .country, .credit-card-item .type, .credit-card-item .masked-number, .credit-card-item .expiration, .billing-data .name, .billing-data .company, .billing-data .country, .billing-data .type, .billing-data .masked-number, .billing-data .expiration {
   display: block;
 }
-/* line 376, ui/_checkout.scss */
+/* line 388, ui/_checkout.scss */
 .address-item .edit, .credit-card .edit, .credit-card-item .edit, .billing-data .edit {
   position: relative;
   float: left;
   margin-bottom: 1em;
 }
-/* line 382, ui/_checkout.scss */
+/* line 394, ui/_checkout.scss */
 .address-item .address, .credit-card .address, .credit-card-item .address, .billing-data .address {
   text-align: left;
   display: block;
@@ -5452,59 +5461,59 @@ xmp {
   clear: left !important;
 }
 @media only screen and (min-width: 30em) {
-  /* line 382, ui/_checkout.scss */
+  /* line 394, ui/_checkout.scss */
   .address-item .address, .credit-card .address, .credit-card-item .address, .billing-data .address {
     clear: none;
     margin-left: 1.5em;
   }
 }
 @media only screen and (min-width: 50em) {
-  /* line 382, ui/_checkout.scss */
+  /* line 394, ui/_checkout.scss */
   .address-item .address, .credit-card .address, .credit-card-item .address, .billing-data .address {
     margin-left: 0;
     clear: both;
   }
 }
 
-/* line 405, ui/_checkout.scss */
+/* line 417, ui/_checkout.scss */
 .billing-data, .credit-card-item {
   padding-top: 0;
 }
-/* line 408, ui/_checkout.scss */
+/* line 420, ui/_checkout.scss */
 .billing-data button, .credit-card-item button {
   display: block;
   margin-bottom: 1em;
 }
-/* line 414, ui/_checkout.scss */
+/* line 426, ui/_checkout.scss */
 .billing-data .credit-card, .credit-card-item .credit-card {
   margin-top: -50px !important;
   overflow: hidden;
   display: block;
   margin-bottom: 1em;
 }
-/* line 421, ui/_checkout.scss */
+/* line 433, ui/_checkout.scss */
 .billing-data .address, .credit-card-item .address {
   display: block;
   clear: both;
   margin-top: 1em;
 }
 
-/* line 429, ui/_checkout.scss */
+/* line 441, ui/_checkout.scss */
 .credit-card-item button {
   margin-top: -2em;
 }
 
-/* line 434, ui/_checkout.scss */
+/* line 446, ui/_checkout.scss */
 .label {
   font-weight: 500 !important;
 }
 
-/* line 438, ui/_checkout.scss */
+/* line 450, ui/_checkout.scss */
 .create-credit-card-wrapper {
   margin-bottom: 1em;
 }
 
-/* line 443, ui/_checkout.scss */
+/* line 455, ui/_checkout.scss */
 input[type=radio] + label.card .shiptothis, input[type=radio] + label.card .paywiththis {
   position: relative;
   display: block;
@@ -5513,7 +5522,7 @@ input[type=radio] + label.card .shiptothis, input[type=radio] + label.card .payw
   margin-top: 0;
   margin-bottom: 0;
 }
-/* line 452, ui/_checkout.scss */
+/* line 464, ui/_checkout.scss */
 input[type=radio] + label.card .shiptothis:after {
   display: inline-block;
   position: relative;
@@ -5521,7 +5530,7 @@ input[type=radio] + label.card .shiptothis:after {
   width: 100%;
   height: 2em;
 }
-/* line 457, ui/_checkout.scss */
+/* line 469, ui/_checkout.scss */
 input[type=radio] + label.card .paywiththis:after {
   display: inline-block;
   position: relative;
@@ -5529,34 +5538,34 @@ input[type=radio] + label.card .paywiththis:after {
   width: 100%;
   height: 2em;
 }
-/* line 462, ui/_checkout.scss */
+/* line 474, ui/_checkout.scss */
 input[type=radio] + label.card button {
   display: block;
   height: 2em;
 }
 
-/* line 471, ui/_checkout.scss */
+/* line 483, ui/_checkout.scss */
 .expired .card, .expired input[type=radio] + label.card, .expired.card, input[type=radio] + label.expired.card, .expired input[type=radio]:checked + label .card, .expired input[type=radio]:checked + label.card {
   background-color: #f3e2e2;
 }
-/* line 474, ui/_checkout.scss */
+/* line 486, ui/_checkout.scss */
 .expired .card:before, .expired input[type=radio] + label.card:before, .expired.card:before, input[type=radio] + label.expired.card:before, .expired input[type=radio]:checked + label .card:before, .expired input[type=radio]:checked + label.card:before {
   content: "";
 }
-/* line 481, ui/_checkout.scss */
+/* line 493, ui/_checkout.scss */
 .expired.card .paywiththis:before, .expired input[type=radio]:checked + label.card .paywiththis:before {
   margin-top: -0.25em;
 }
-/* line 486, ui/_checkout.scss */
+/* line 498, ui/_checkout.scss */
 .expired .edit-credit-card, .expired input[type=radio]:checked + label .edit-credit-card {
   border-color: #993d3d !important;
   color: #993d3d !important;
 }
-/* line 491, ui/_checkout.scss */
+/* line 503, ui/_checkout.scss */
 .expired .paywiththis, .expired input[type=radio]:checked + label .paywiththis {
   background: none;
 }
-/* line 495, ui/_checkout.scss */
+/* line 507, ui/_checkout.scss */
 .expired .paywiththis:before, .expired input[type=radio]:checked + label .paywiththis:before {
   display: inline-block;
   position: relative;
@@ -5573,7 +5582,7 @@ input[type=radio] + label.card button {
   display: block;
   margin-left: 0.25em;
 }
-/* line 506, ui/_checkout.scss */
+/* line 518, ui/_checkout.scss */
 .expired .paywiththis:after, .expired input[type=radio]:checked + label .paywiththis:after {
   display: inline-block;
   position: relative;
@@ -5590,18 +5599,18 @@ input[type=radio] + label.card button {
   content: "Expired" !important;
 }
 
-/* line 522, ui/_checkout.scss */
+/* line 534, ui/_checkout.scss */
 input[type=radio]:checked + label.card .shiptothis, input[type=radio]:checked + label.card .paywiththis {
   background: none;
   margin-top: 0.5em;
 }
 @media only screen and (min-width: 50em) {
-  /* line 522, ui/_checkout.scss */
+  /* line 534, ui/_checkout.scss */
   input[type=radio]:checked + label.card .shiptothis, input[type=radio]:checked + label.card .paywiththis {
     margin-top: 1em;
   }
 }
-/* line 530, ui/_checkout.scss */
+/* line 542, ui/_checkout.scss */
 input[type=radio]:checked + label.card .shiptothis:after, input[type=radio]:checked + label.card .paywiththis:after {
   display: inline-block;
   position: relative;
@@ -5616,36 +5625,36 @@ input[type=radio]:checked + label.card .shiptothis:after, input[type=radio]:chec
   margin-right: 0;
 }
 @media only screen and (min-width: 50em) {
-  /* line 530, ui/_checkout.scss */
+  /* line 542, ui/_checkout.scss */
   input[type=radio]:checked + label.card .shiptothis:after, input[type=radio]:checked + label.card .paywiththis:after {
     margin-top: -1.125em;
   }
 }
 
-/* line 546, ui/_checkout.scss */
+/* line 558, ui/_checkout.scss */
 .new-address {
   clear: both;
   margin-bottom: 2em;
 }
-/* line 550, ui/_checkout.scss */
+/* line 562, ui/_checkout.scss */
 .new-address button {
   margin-right: 1em;
 }
-/* line 554, ui/_checkout.scss */
+/* line 566, ui/_checkout.scss */
 .new-address .country {
   text-align: center !important;
 }
-/* line 557, ui/_checkout.scss */
+/* line 569, ui/_checkout.scss */
 .new-address .country label {
   margin-bottom: 1em;
 }
 
-/* line 565, ui/_checkout.scss */
+/* line 577, ui/_checkout.scss */
 .buttons {
   margin-bottom: 1em;
 }
 
-/* line 569, ui/_checkout.scss */
+/* line 581, ui/_checkout.scss */
 .carrier {
   width: 30% !important;
   font-weight: 500;
@@ -5653,18 +5662,18 @@ input[type=radio]:checked + label.card .shiptothis:after, input[type=radio]:chec
   padding-right: 10px;
 }
 @media only screen and (min-width: 30em) {
-  /* line 569, ui/_checkout.scss */
+  /* line 581, ui/_checkout.scss */
   .carrier {
     width: 18% !important;
   }
 }
 @media only screen and (min-width: 50em) {
-  /* line 569, ui/_checkout.scss */
+  /* line 581, ui/_checkout.scss */
   .carrier {
     width: 12% !important;
   }
 }
-/* line 583, ui/_checkout.scss */
+/* line 595, ui/_checkout.scss */
 .carrier:before {
   display: inline-block;
   position: relative;
@@ -5678,30 +5687,30 @@ input[type=radio]:checked + label.card .shiptothis:after, input[type=radio]:chec
   background-size: contain;
   background-repeat: no-repeat;
 }
-/* line 594, ui/_checkout.scss */
+/* line 606, ui/_checkout.scss */
 .carrier.ups:before {
   background-image: url("../images/United_Parcel_Service_logo.svg");
   margin-top: -2px;
 }
 @media only screen and (min-width: 50em) {
-  /* line 594, ui/_checkout.scss */
+  /* line 606, ui/_checkout.scss */
   .carrier.ups:before {
     margin-top: 5px;
   }
 }
-/* line 603, ui/_checkout.scss */
+/* line 615, ui/_checkout.scss */
 .carrier.usps:before {
   background-image: url("../images/United_States_Postal_Service_Logo_Icon.svg");
   margin-top: 2px;
 }
 @media only screen and (min-width: 50em) {
-  /* line 603, ui/_checkout.scss */
+  /* line 615, ui/_checkout.scss */
   .carrier.usps:before {
     margin-top: 10px;
   }
 }
 
-/* line 616, ui/_checkout.scss */
+/* line 628, ui/_checkout.scss */
 .shipping-option-item .shipping-option span {
   display: block;
   width: 100%;
@@ -5711,7 +5720,7 @@ input[type=radio]:checked + label.card .shiptothis:after, input[type=radio]:chec
   font-size: 0.8rem;
 }
 @media only screen and (min-width: 30em) {
-  /* line 616, ui/_checkout.scss */
+  /* line 628, ui/_checkout.scss */
   .shipping-option-item .shipping-option span {
     font-size: 16px;
     font-size: 1rem;
@@ -5722,18 +5731,18 @@ input[type=radio]:checked + label.card .shiptothis:after, input[type=radio]:chec
     line-height: 2.6rem;
   }
 }
-/* line 629, ui/_checkout.scss */
+/* line 641, ui/_checkout.scss */
 .shipping-option-item .shipping-option .method {
   width: 60%;
   font-style: italic;
 }
 @media only screen and (min-width: 50em) {
-  /* line 629, ui/_checkout.scss */
+  /* line 641, ui/_checkout.scss */
   .shipping-option-item .shipping-option .method {
     width: 30%;
   }
 }
-/* line 641, ui/_checkout.scss */
+/* line 653, ui/_checkout.scss */
 .shipping-option-item .shipping-option .delivery-date:before {
   display: inline-block;
   position: relative;
@@ -5751,7 +5760,7 @@ input[type=radio]:checked + label.card .shiptothis:after, input[type=radio]:chec
   text-align: right;
 }
 @media only screen and (min-width: 30em) {
-  /* line 641, ui/_checkout.scss */
+  /* line 653, ui/_checkout.scss */
   .shipping-option-item .shipping-option .delivery-date:before {
     font-size: 16px;
     font-size: 1rem;
@@ -5764,31 +5773,31 @@ input[type=radio]:checked + label.card .shiptothis:after, input[type=radio]:chec
   }
 }
 @media only screen and (min-width: 50em) {
-  /* line 641, ui/_checkout.scss */
+  /* line 653, ui/_checkout.scss */
   .shipping-option-item .shipping-option .delivery-date:before {
     display: none;
   }
 }
 @media only screen and (min-width: 50em) {
-  /* line 639, ui/_checkout.scss */
+  /* line 651, ui/_checkout.scss */
   .shipping-option-item .shipping-option .delivery-date {
     width: 42%;
   }
 }
-/* line 662, ui/_checkout.scss */
+/* line 674, ui/_checkout.scss */
 .shipping-option-item .shipping-option .price {
   font-weight: 700;
   line-height: 1.2em;
 }
 @media only screen and (min-width: 50em) {
-  /* line 662, ui/_checkout.scss */
+  /* line 674, ui/_checkout.scss */
   .shipping-option-item .shipping-option .price {
     width: 10%;
     line-height: 41.6px;
     line-height: 2.6rem;
   }
 }
-/* line 670, ui/_checkout.scss */
+/* line 682, ui/_checkout.scss */
 .shipping-option-item .shipping-option .price:before {
   display: inline-block;
   position: relative;
@@ -5806,7 +5815,7 @@ input[type=radio]:checked + label.card .shiptothis:after, input[type=radio]:chec
   text-align: right;
 }
 @media only screen and (min-width: 30em) {
-  /* line 670, ui/_checkout.scss */
+  /* line 682, ui/_checkout.scss */
   .shipping-option-item .shipping-option .price:before {
     width: 16%;
     font-size: 16px;
@@ -5819,22 +5828,22 @@ input[type=radio]:checked + label.card .shiptothis:after, input[type=radio]:chec
   }
 }
 @media only screen and (min-width: 50em) {
-  /* line 670, ui/_checkout.scss */
+  /* line 682, ui/_checkout.scss */
   .shipping-option-item .shipping-option .price:before {
     display: none;
   }
 }
-/* line 687, ui/_checkout.scss */
+/* line 699, ui/_checkout.scss */
 .shipping-option-item .shipping-option.labels {
   display: none;
 }
 @media only screen and (min-width: 50em) {
-  /* line 687, ui/_checkout.scss */
+  /* line 699, ui/_checkout.scss */
   .shipping-option-item .shipping-option.labels {
     display: block;
     padding: 1em;
   }
-  /* line 693, ui/_checkout.scss */
+  /* line 705, ui/_checkout.scss */
   .shipping-option-item .shipping-option.labels span {
     margin: 0;
     padding: 0;
@@ -5842,117 +5851,117 @@ input[type=radio]:checked + label.card .shiptothis:after, input[type=radio]:chec
     text-align: left;
     font-style: normal;
   }
-  /* line 701, ui/_checkout.scss */
+  /* line 713, ui/_checkout.scss */
   .shipping-option-item .shipping-option.labels span.carrier:before {
     display: none;
   }
 }
 
-/* line 712, ui/_checkout.scss */
+/* line 724, ui/_checkout.scss */
 .shipping-method p {
   margin-left: 1em;
 }
 @media only screen and (min-width: 50em) {
-  /* line 712, ui/_checkout.scss */
+  /* line 724, ui/_checkout.scss */
   .shipping-method p {
     margin-left: 0;
   }
 }
 
-/* line 722, ui/_checkout.scss */
+/* line 734, ui/_checkout.scss */
 .default-payment .card, .default-payment input[type=radio] + label.card {
   margin-top: 0;
   padding-top: 1em;
 }
 
-/* line 729, ui/_checkout.scss */
+/* line 741, ui/_checkout.scss */
 .billing-data .address {
   color: #727272;
   margin-top: 1em;
 }
 
-/* line 736, ui/_checkout.scss */
+/* line 748, ui/_checkout.scss */
 .credit-card, .credit-card-item {
   overflow: visible;
   clear: both;
 }
-/* line 740, ui/_checkout.scss */
+/* line 752, ui/_checkout.scss */
 .credit-card .address, .credit-card-item .address {
   margin-top: 0;
 }
-/* line 744, ui/_checkout.scss */
+/* line 756, ui/_checkout.scss */
 .credit-card .name, .credit-card .masked-number, .credit-card .expiration, .credit-card .label, .credit-card .type, .credit-card-item .name, .credit-card-item .masked-number, .credit-card-item .expiration, .credit-card-item .label, .credit-card-item .type {
   clear: none;
   float: left;
   margin-right: 1em;
 }
-/* line 750, ui/_checkout.scss */
+/* line 762, ui/_checkout.scss */
 .credit-card button, .credit-card-item button {
   float: left;
   clear: right !important;
 }
 
-/* line 756, ui/_checkout.scss */
+/* line 768, ui/_checkout.scss */
 .promo-code {
   overflow: auto;
   margin-bottom: 0 !important;
 }
-/* line 761, ui/_checkout.scss */
+/* line 773, ui/_checkout.scss */
 .promo-code input {
   text-transform: uppercase;
   width: 55% !important;
   margin-bottom: 0;
 }
 @media only screen and (min-width: 30em) {
-  /* line 761, ui/_checkout.scss */
+  /* line 773, ui/_checkout.scss */
   .promo-code input {
     width: 80% !important;
   }
 }
 @media only screen and (min-width: 50em) {
-  /* line 761, ui/_checkout.scss */
+  /* line 773, ui/_checkout.scss */
   .promo-code input {
     width: 70% !important;
   }
 }
-/* line 775, ui/_checkout.scss */
+/* line 787, ui/_checkout.scss */
 .promo-code button {
   margin: 0;
   float: right;
 }
 
-/* line 786, ui/_checkout.scss */
+/* line 798, ui/_checkout.scss */
 #promo-code-form.success .card .promo-details {
   display: block !important;
   color: #4a993d;
   width: 60%;
   float: left;
 }
-/* line 791, ui/_checkout.scss */
+/* line 803, ui/_checkout.scss */
 #promo-code-form.success .card .promo-details span {
   font-weight: 700;
 }
 
-/* line 805, ui/_checkout.scss */
+/* line 817, ui/_checkout.scss */
 .promo-error-message {
   color: #993d3d;
 }
-/* line 808, ui/_checkout.scss */
+/* line 820, ui/_checkout.scss */
 .promo-error-message span {
   font-weight: 700;
 }
 
-/* line 814, ui/_checkout.scss */
+/* line 826, ui/_checkout.scss */
 .billing-address-container h3 {
   padding-left: 0;
 }
 
-/* line 819, ui/_checkout.scss */
+/* line 831, ui/_checkout.scss */
 .billtothis {
   display: block;
   float: right;
 }
-/* line 820, ui/_checkout.scss */
+/* line 832, ui/_checkout.scss */
 .billtothis:after {
   display: inline-block;
   position: relative;
@@ -5964,7 +5973,7 @@ input[type=radio]:checked + label.card .shiptothis:after, input[type=radio]:chec
 /*
   CREDIT CARD ICONS
 */
-/* line 833, ui/_checkout.scss */
+/* line 845, ui/_checkout.scss */
 .type {
   display: block;
   width: 29px;
@@ -5978,54 +5987,54 @@ input[type=radio]:checked + label.card .shiptothis:after, input[type=radio]:chec
   margin-left: 2px;
   clear: left !important;
 }
-/* line 848, ui/_checkout.scss */
+/* line 860, ui/_checkout.scss */
 .type.visa {
   background-position: 0 0;
 }
-/* line 852, ui/_checkout.scss */
+/* line 864, ui/_checkout.scss */
 .type.mastercard {
   background-position: -29px 0;
 }
-/* line 856, ui/_checkout.scss */
+/* line 868, ui/_checkout.scss */
 .type.amex, .type.americanexpress {
   background-position: -58px 0;
 }
-/* line 860, ui/_checkout.scss */
+/* line 872, ui/_checkout.scss */
 .type.discover {
   background-position: -87px 0;
 }
-/* line 864, ui/_checkout.scss */
+/* line 876, ui/_checkout.scss */
 .type.paypal {
   background-position: -96px 0;
 }
 
-/* line 871, ui/_checkout.scss */
+/* line 883, ui/_checkout.scss */
 .add-edit-credit-card .type {
   width: 58px;
   height: 40px;
   background-size: auto 40px;
 }
-/* line 876, ui/_checkout.scss */
+/* line 888, ui/_checkout.scss */
 .add-edit-credit-card .type.visa {
   background-position: 0 0;
 }
-/* line 880, ui/_checkout.scss */
+/* line 892, ui/_checkout.scss */
 .add-edit-credit-card .type.mastercard {
   background-position: -58px 0;
 }
-/* line 884, ui/_checkout.scss */
+/* line 896, ui/_checkout.scss */
 .add-edit-credit-card .type.amex, .add-edit-credit-card .type.americanexpress {
   background-position: -116px 0;
 }
-/* line 888, ui/_checkout.scss */
+/* line 900, ui/_checkout.scss */
 .add-edit-credit-card .type.discover {
   background-position: -174px 0;
 }
-/* line 892, ui/_checkout.scss */
+/* line 904, ui/_checkout.scss */
 .add-edit-credit-card .type.paypal {
   background-position: -232px 0;
 }
-/* line 897, ui/_checkout.scss */
+/* line 909, ui/_checkout.scss */
 .add-edit-credit-card .cc-number-masked {
   font-size: 24px;
   font-size: 1.5rem;
@@ -6045,16 +6054,16 @@ input[type=radio]:checked + label.card .shiptothis:after, input[type=radio]:chec
   display: table;
   clear: both;
 }
-/* line 906, ui/_checkout.scss */
+/* line 918, ui/_checkout.scss */
 .add-edit-credit-card .billing-address .city {
   margin-right: 0;
 }
-/* line 910, ui/_checkout.scss */
+/* line 922, ui/_checkout.scss */
 .add-edit-credit-card .billing-address .state {
   margin-left: 0.25em;
 }
 
-/* line 920, ui/_checkout.scss */
+/* line 932, ui/_checkout.scss */
 #payment-option-credit-card + label .payment-option:after {
   display: inline-block;
   position: relative;
@@ -6067,7 +6076,7 @@ input[type=radio]:checked + label.card .shiptothis:after, input[type=radio]:chec
   margin-bottom: -4px;
 }
 
-/* line 929, ui/_checkout.scss */
+/* line 941, ui/_checkout.scss */
 #payment-option-paypal + label .payment-option:after {
   display: inline-block;
   position: relative;
@@ -6081,7 +6090,7 @@ input[type=radio]:checked + label.card .shiptothis:after, input[type=radio]:chec
   margin-bottom: -4px;
 }
 
-/* line 939, ui/_checkout.scss */
+/* line 951, ui/_checkout.scss */
 #payment-option-default + label .type {
   clear: none !important;
   display: inline-block;
@@ -6090,35 +6099,35 @@ input[type=radio]:checked + label.card .shiptothis:after, input[type=radio]:chec
   margin-bottom: -4px;
 }
 
-/* line 947, ui/_checkout.scss */
+/* line 959, ui/_checkout.scss */
 .paypal-container {
   margin-bottom: 2em;
   padding: 1em;
 }
-/* line 950, ui/_checkout.scss */
+/* line 962, ui/_checkout.scss */
 .paypal-container p {
   margin: 1em;
   color: black !important;
 }
 
-/* line 961, ui/_checkout.scss */
+/* line 973, ui/_checkout.scss */
 .promo-code-container form {
   margin: 0;
   padding: 0;
 }
 
-/* line 967, ui/_checkout.scss */
+/* line 979, ui/_checkout.scss */
 .incomplete {
   background: white !important;
   border: 1px solid #cbcbcb;
 }
 
-/* line 972, ui/_checkout.scss */
+/* line 984, ui/_checkout.scss */
 .selected.incomplete, input[type=radio]:checked + label.incomplete {
   border: 1px solid #4a993d;
 }
 
-/* line 976, ui/_checkout.scss */
+/* line 988, ui/_checkout.scss */
 .checkbox-input {
   clear: none;
   float: left;
@@ -6126,21 +6135,21 @@ input[type=radio]:checked + label.card .shiptothis:after, input[type=radio]:chec
   margin-top: 3px;
 }
 
-/* line 984, ui/_checkout.scss */
+/* line 996, ui/_checkout.scss */
 .card-number_read_only .type {
   float: left;
   margin-right: 0.5em;
 }
 
-/* line 990, ui/_checkout.scss */
+/* line 1002, ui/_checkout.scss */
 .billing-address {
   font-weight: 500;
 }
-/* line 993, ui/_checkout.scss */
+/* line 1005, ui/_checkout.scss */
 .billing-address span {
   font-weight: 300;
 }
-/* line 997, ui/_checkout.scss */
+/* line 1009, ui/_checkout.scss */
 .billing-address .city {
   clear: left;
   display: block;
@@ -6148,37 +6157,37 @@ input[type=radio]:checked + label.card .shiptothis:after, input[type=radio]:chec
   margin-right: 0.5em;
 }
 
-/* line 1008, ui/_checkout.scss */
+/* line 1020, ui/_checkout.scss */
 .cart-items .cart-item:nth-of-type(odd) {
   background-color: #f1f1f1;
 }
-/* line 1012, ui/_checkout.scss */
+/* line 1024, ui/_checkout.scss */
 .cart-items .cart-item.header {
   display: none;
 }
 @media only screen and (min-width: 50em) {
-  /* line 1012, ui/_checkout.scss */
+  /* line 1024, ui/_checkout.scss */
   .cart-items .cart-item.header {
     display: block;
     background-color: #cbcbcb;
   }
-  /* line 1019, ui/_checkout.scss */
+  /* line 1031, ui/_checkout.scss */
   .cart-items .cart-item.header .field {
     margin-top: 0 !important;
     margin-bottom: 0 !important;
   }
-  /* line 1024, ui/_checkout.scss */
+  /* line 1036, ui/_checkout.scss */
   .cart-items .cart-item.header .label {
     display: block !important;
     font-weight: 700 !important;
   }
 }
-/* line 1031, ui/_checkout.scss */
+/* line 1043, ui/_checkout.scss */
 .cart-items .cart-item .thumbnail {
   width: 30%;
 }
 @media only screen and (min-width: 30em) {
-  /* line 1031, ui/_checkout.scss */
+  /* line 1043, ui/_checkout.scss */
   .cart-items .cart-item .thumbnail {
     width: 30%;
     float: left;
@@ -6186,139 +6195,139 @@ input[type=radio]:checked + label.card .shiptothis:after, input[type=radio]:chec
   }
 }
 @media only screen and (min-width: 50em) {
-  /* line 1031, ui/_checkout.scss */
+  /* line 1043, ui/_checkout.scss */
   .cart-items .cart-item .thumbnail {
     width: 20%;
     float: none;
   }
 }
-/* line 1046, ui/_checkout.scss */
+/* line 1058, ui/_checkout.scss */
 .cart-items .cart-item .form-fields {
   width: 100%;
 }
-/* line 1049, ui/_checkout.scss */
+/* line 1061, ui/_checkout.scss */
 .cart-items .cart-item .form-fields .label {
   float: left;
   width: 26%;
   margin-right: 1em;
 }
 @media only screen and (min-width: 50em) {
-  /* line 1049, ui/_checkout.scss */
+  /* line 1061, ui/_checkout.scss */
   .cart-items .cart-item .form-fields .label {
     display: none;
   }
 }
-/* line 1059, ui/_checkout.scss */
+/* line 1071, ui/_checkout.scss */
 .cart-items .cart-item .form-fields .field {
   margin-bottom: 1em;
 }
-/* line 1063, ui/_checkout.scss */
+/* line 1075, ui/_checkout.scss */
 .cart-items .cart-item .form-fields .field.quantity .label {
   width: 100%;
   margin-bottom: 0.25em;
 }
-/* line 1067, ui/_checkout.scss */
+/* line 1079, ui/_checkout.scss */
 .cart-items .cart-item .form-fields .field.quantity input[type=text], .cart-items .cart-item .form-fields .field.quantity input[type=number] {
   width: 25%;
 }
-/* line 1070, ui/_checkout.scss */
+/* line 1082, ui/_checkout.scss */
 .cart-items .cart-item .form-fields .field.quantity .update-cart-item {
   width: auto;
   margin-left: 1em;
 }
 @media only screen and (min-width: 50em) {
-  /* line 1070, ui/_checkout.scss */
+  /* line 1082, ui/_checkout.scss */
   .cart-items .cart-item .form-fields .field.quantity .update-cart-item {
     margin-top: .7em;
     margin-left: 0;
   }
 }
 @media only screen and (min-width: 50em) {
-  /* line 1079, ui/_checkout.scss */
+  /* line 1091, ui/_checkout.scss */
   .cart-items .cart-item .form-fields .field.quantity input[type=text], .cart-items .cart-item .form-fields .field.quantity input[type=number] {
     width: 100%;
   }
-  /* line 1082, ui/_checkout.scss */
+  /* line 1094, ui/_checkout.scss */
   .cart-items .cart-item .form-fields .field.quantity .update-cart-item {
     width: 100%;
   }
 }
-/* line 1088, ui/_checkout.scss */
+/* line 1100, ui/_checkout.scss */
 .cart-items .cart-item .form-fields .field.buttons {
   width: 30%;
   float: right;
 }
-/* line 1092, ui/_checkout.scss */
+/* line 1104, ui/_checkout.scss */
 .cart-items .cart-item .form-fields .field.buttons button {
   width: 100%;
   margin-top: -11em;
 }
 @media only screen and (min-width: 50em) {
-  /* line 1092, ui/_checkout.scss */
+  /* line 1104, ui/_checkout.scss */
   .cart-items .cart-item .form-fields .field.buttons button {
     margin-top: 0 !important;
   }
 }
 @media only screen and (min-width: 50em) {
-  /* line 1059, ui/_checkout.scss */
+  /* line 1071, ui/_checkout.scss */
   .cart-items .cart-item .form-fields .field {
     display: block;
     float: left;
     margin-right: 1em;
   }
-  /* line 1103, ui/_checkout.scss */
+  /* line 1115, ui/_checkout.scss */
   .cart-items .cart-item .form-fields .field.name {
     width: 35%;
   }
-  /* line 1107, ui/_checkout.scss */
+  /* line 1119, ui/_checkout.scss */
   .cart-items .cart-item .form-fields .field.price, .cart-items .cart-item .form-fields .field.quantity, .cart-items .cart-item .form-fields .field.total {
     width: 12.5%;
   }
-  /* line 1111, ui/_checkout.scss */
+  /* line 1123, ui/_checkout.scss */
   .cart-items .cart-item .form-fields .field.buttons {
     width: 15%;
     margin-top: 0.5em;
   }
-  /* line 1116, ui/_checkout.scss */
+  /* line 1128, ui/_checkout.scss */
   .cart-items .cart-item .form-fields .field.name, .cart-items .cart-item .form-fields .field.price, .cart-items .cart-item .form-fields .field.total {
     margin-top: 1em;
   }
 }
 
-/* line 1132, ui/_checkout.scss */
+/* line 1144, ui/_checkout.scss */
 .cost-breakdown .field {
   margin-bottom: 0;
 }
-/* line 1136, ui/_checkout.scss */
+/* line 1148, ui/_checkout.scss */
 .cost-breakdown .label {
   width: 30%;
 }
 @media only screen and (min-width: 30em) {
-  /* line 1136, ui/_checkout.scss */
+  /* line 1148, ui/_checkout.scss */
   .cost-breakdown .label {
     width: 50%;
     text-align: right;
   }
 }
 @media only screen and (min-width: 50em) {
-  /* line 1136, ui/_checkout.scss */
+  /* line 1148, ui/_checkout.scss */
   .cost-breakdown .label {
     width: 71%;
   }
 }
-/* line 1148, ui/_checkout.scss */
+/* line 1160, ui/_checkout.scss */
 .cost-breakdown .label p {
   margin-left: 1em;
 }
-/* line 1152, ui/_checkout.scss */
+/* line 1164, ui/_checkout.scss */
 .cost-breakdown .label span {
   font-weight: 300;
 }
-/* line 1157, ui/_checkout.scss */
+/* line 1169, ui/_checkout.scss */
 .cost-breakdown .value {
   width: 29%;
 }
-/* line 1161, ui/_checkout.scss */
+/* line 1173, ui/_checkout.scss */
 .cost-breakdown .total {
   border-top: 1px solid #727272;
   padding-top: .5em;
@@ -6330,11 +6339,11 @@ input[type=radio]:checked + label.card .shiptothis:after, input[type=radio]:chec
   line-height: 41.6px;
   line-height: 2.6rem;
 }
-/* line 1166, ui/_checkout.scss */
+/* line 1178, ui/_checkout.scss */
 .cost-breakdown .total p {
   margin-left: 1rem;
 }
-/* line 1173, ui/_checkout.scss */
+/* line 1185, ui/_checkout.scss */
 .cost-breakdown .discount .value:before {
   display: inline-block;
   position: relative;
@@ -6345,85 +6354,85 @@ input[type=radio]:checked + label.card .shiptothis:after, input[type=radio]:chec
   margin-right: 0;
 }
 
-/* line 1184, ui/_checkout.scss */
+/* line 1196, ui/_checkout.scss */
 .selection-container h3 {
   padding-left: 1rem;
 }
-/* line 1188, ui/_checkout.scss */
+/* line 1200, ui/_checkout.scss */
 .selection-container h4 {
   margin-bottom: 1rem;
 }
-/* line 1192, ui/_checkout.scss */
+/* line 1204, ui/_checkout.scss */
 .selection-container button {
   float: right;
   margin-top: -5.25rem;
 }
-/* line 1198, ui/_checkout.scss */
+/* line 1210, ui/_checkout.scss */
 .selection-container .billing-information h4 {
   margin-bottom: 4rem;
 }
-/* line 1202, ui/_checkout.scss */
+/* line 1214, ui/_checkout.scss */
 .selection-container .billing-information button {
   margin-top: -6.25rem;
 }
 
-/* line 1211, ui/_checkout.scss */
+/* line 1223, ui/_checkout.scss */
 .order-review .card, .order-review input[type=radio] + label.card {
   min-height: 150px;
 }
-/* line 1215, ui/_checkout.scss */
+/* line 1227, ui/_checkout.scss */
 .order-review .card .address span {
   display: block;
   float: left;
   margin: 0 0.25em 0 0;
 }
-/* line 1220, ui/_checkout.scss */
+/* line 1232, ui/_checkout.scss */
 .order-review .card .address .company, .order-review .card .address .street, .order-review .card .address .city, .order-review .card .address .country, .order-review .card .address .phone {
   clear: left;
 }
-/* line 1224, ui/_checkout.scss */
+/* line 1236, ui/_checkout.scss */
 .order-review .card .address .name {
   margin-right: 0;
 }
-/* line 1228, ui/_checkout.scss */
+/* line 1240, ui/_checkout.scss */
 .order-review .card .address .phone, .order-review .card .address .street {
   margin-top: 1em;
 }
-/* line 1233, ui/_checkout.scss */
+/* line 1245, ui/_checkout.scss */
 .order-review .card .change {
   margin: 0;
   float: right;
 }
-/* line 1240, ui/_checkout.scss */
+/* line 1252, ui/_checkout.scss */
 .order-review .shipping-option span {
   display: block;
   float: left;
   margin-right: 1em;
 }
-/* line 1246, ui/_checkout.scss */
+/* line 1258, ui/_checkout.scss */
 .order-review .shipping-option .delivery-date, .order-review .shipping-option .price {
   clear: left;
 }
-/* line 1250, ui/_checkout.scss */
+/* line 1262, ui/_checkout.scss */
 .order-review .shipping-option .carrier {
   width: 30% !important;
   padding-right: 0;
   text-align: left;
   padding-left: 2.5em;
 }
-/* line 1256, ui/_checkout.scss */
+/* line 1268, ui/_checkout.scss */
 .order-review .shipping-option .carrier:before {
   display: inline-block !important;
   margin-top: -2px;
   margin-left: -2.5em;
 }
-/* line 1263, ui/_checkout.scss */
+/* line 1275, ui/_checkout.scss */
 .order-review .shipping-option .delivery-date, .order-review .shipping-option .price {
   width: 100%;
   display: block;
   margin-top: 1em;
 }
-/* line 1268, ui/_checkout.scss */
+/* line 1280, ui/_checkout.scss */
 .order-review .shipping-option .delivery-date:before, .order-review .shipping-option .price:before {
   font-weight: 500;
   display: inline-block;
@@ -6434,30 +6443,30 @@ input[type=radio]:checked + label.card .shiptothis:after, input[type=radio]:chec
   margin-right: 1em;
   text-align: left;
 }
-/* line 1276, ui/_checkout.scss */
+/* line 1288, ui/_checkout.scss */
 .order-review .shipping-option .delivery-date:before {
   content: "Delivery date: ";
 }
-/* line 1280, ui/_checkout.scss */
+/* line 1292, ui/_checkout.scss */
 .order-review .shipping-option .price:before {
   content: "Shipping cost: ";
 }
 
-/* line 1288, ui/_checkout.scss */
+/* line 1300, ui/_checkout.scss */
 footer .help {
   min-height: 3em;
 }
-/* line 1290, ui/_checkout.scss */
+/* line 1302, ui/_checkout.scss */
 footer .help h2, footer .help p {
   text-align: center;
   margin: 2rem;
 }
-/* line 1295, ui/_checkout.scss */
+/* line 1307, ui/_checkout.scss */
 footer .help h2 {
   font-weight: 100;
   margin-bottom: 0;
 }
-/* line 1300, ui/_checkout.scss */
+/* line 1312, ui/_checkout.scss */
 footer .help p {
   margin-top: 1rem;
   margin-bottom: 0;
@@ -6469,7 +6478,7 @@ footer .help p {
   line-height: 24.96px;
   line-height: 1.56rem;
 }
-/* line 1308, ui/_checkout.scss */
+/* line 1320, ui/_checkout.scss */
 footer .help a, footer .privacy-policy a, footer .shipping-policy a {
   margin-left: auto !important;
   margin-right: auto !important;
@@ -6482,39 +6491,39 @@ footer .help a, footer .privacy-policy a, footer .shipping-policy a {
   text-align: center;
   width: 90%;
 }
-/* line 1319, ui/_checkout.scss */
+/* line 1331, ui/_checkout.scss */
 footer .help a:hover, footer .privacy-policy a:hover, footer .shipping-policy a:hover {
   background-color: #cbcbcb !important;
   color: #727272;
   border-color: #727272;
 }
 @media only screen and (min-width: 30em) {
-  /* line 1328, ui/_checkout.scss */
+  /* line 1340, ui/_checkout.scss */
   footer .privacy-policy a {
     margin-bottom: 2em !important;
   }
 }
-/* line 1336, ui/_checkout.scss */
+/* line 1348, ui/_checkout.scss */
 footer .shipping-policy a {
   margin-bottom: 2em !important;
 }
 
-/* line 1345, ui/_checkout.scss */
+/* line 1357, ui/_checkout.scss */
 .modal-inner header {
   padding: 1em 3em !important;
 }
 
-/* line 1350, ui/_checkout.scss */
+/* line 1362, ui/_checkout.scss */
 .semantic-content.is-active:before {
   background: #727272 !important;
 }
 
-/* line 1354, ui/_checkout.scss */
+/* line 1366, ui/_checkout.scss */
 .modal-close {
   color: #727272;
 }
 @media only screen and (min-width: 30em) {
-  /* line 1354, ui/_checkout.scss */
+  /* line 1366, ui/_checkout.scss */
   .modal-close {
     text-align: center;
     font-size: 48px;
@@ -6528,83 +6537,83 @@ footer .shipping-policy a {
   }
 }
 @media only screen and (min-width: 30em) {
-  /* line 1364, ui/_checkout.scss */
+  /* line 1376, ui/_checkout.scss */
   .modal-close:after {
     width: 50px;
     height: 50px;
   }
 }
 @media only screen and (min-width: 50em) {
-  /* line 1364, ui/_checkout.scss */
+  /* line 1376, ui/_checkout.scss */
   .modal-close:after {
     margin-left: 275px !important;
   }
 }
 
-/* line 1378, ui/_checkout.scss */
+/* line 1390, ui/_checkout.scss */
 .modal-content {
   padding: 3em !important;
 }
-/* line 1381, ui/_checkout.scss */
+/* line 1393, ui/_checkout.scss */
 .modal-content h1 {
   padding: 0;
   margin-top: 0 !important;
 }
-/* line 1388, ui/_checkout.scss */
+/* line 1400, ui/_checkout.scss */
 .modal-content h2 {
   padding: 0  !important;
 }
-/* line 1393, ui/_checkout.scss */
+/* line 1405, ui/_checkout.scss */
 .modal-content h3 {
   padding: 0 !important;
 }
 
-/* line 1402, ui/_checkout.scss */
+/* line 1414, ui/_checkout.scss */
 .order-confirmation {
   text-align: center;
 }
-/* line 1404, ui/_checkout.scss */
+/* line 1416, ui/_checkout.scss */
 .order-confirmation h2 {
   text-align: center;
   color: #4a993d;
 }
-/* line 1409, ui/_checkout.scss */
+/* line 1421, ui/_checkout.scss */
 .order-confirmation .order-number {
   font-weight: 700;
 }
-/* line 1413, ui/_checkout.scss */
+/* line 1425, ui/_checkout.scss */
 .order-confirmation button {
   margin-top: 3rem;
 }
 
 /* Colors */
-/* line 1419, ui/_checkout.scss */
+/* line 1431, ui/_checkout.scss */
 .bg-lightest {
   background-color: white;
 }
 
-/* line 1420, ui/_checkout.scss */
+/* line 1432, ui/_checkout.scss */
 .bg-lighter {
   background-color: #f1f1f1;
 }
 
-/* line 1421, ui/_checkout.scss */
+/* line 1433, ui/_checkout.scss */
 .bg-light {
   background-color: #cbcbcb;
 }
 
-/* line 1422, ui/_checkout.scss */
+/* line 1434, ui/_checkout.scss */
 .bg-dark {
   background-color: #727272;
 }
 
-/* line 1423, ui/_checkout.scss */
+/* line 1435, ui/_checkout.scss */
 .bg-darkest {
   background-color: black;
 }
 
 /* Typography */
-/* line 1430, ui/_checkout.scss */
+/* line 1442, ui/_checkout.scss */
 a, a:link, a:hover, a:active, a:focus {
   text-decoration: none;
   border-bottom: 1px solid;

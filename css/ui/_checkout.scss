@@ -186,16 +186,29 @@ article {
               }
 
               &.active {
-                  background-color: $lightest !important;
+                background-color: $lightest !important;
 
-                  a {
-                    color: $light-blue !important;
-                  }
+                a {
+                  color: $light-blue !important;
+                }
 
-                  &:before {
-                      background: $light-blue;
-                      color: $lightest !important;
-                  }
+                &:before {
+                    background: $light-blue;
+                    color: $lightest !important;
+                }
+              }
+
+              &.completed {
+                // background-color: $dark !important;
+
+                a {
+                  color: $light-blue-light !important;
+                }
+
+                &:before {
+                    background: $light-blue-light;
+                    color: $lightest !important;
+                }
               }
           }
 
@@ -207,7 +220,6 @@ article {
               padding: 0;
               border-bottom: 0;
               @include font(0.9, 500, 1);
-              // @include taptarget(-1);
               @include transition($transition);
               color: $light;
               text-decoration: none;
