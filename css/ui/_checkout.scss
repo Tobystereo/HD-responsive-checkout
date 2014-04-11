@@ -262,6 +262,15 @@ article {
             }
         }
 
+        .completed {
+            background-color: $light-blue-light !important;
+            color: $lightest !important;
+
+            a {
+              color: $lightest !important;
+            }
+        }
+
         .shipping, .method {
           a {
             @include line-height(1, true);
