@@ -5297,7 +5297,7 @@ xmp {
 }
 /* line 265, ui/_checkout.scss */
 .progress .completed {
-  background-color: #8aadd1 !important;
+  background-color: #8aadd1;
   color: white !important;
 }
 /* line 269, ui/_checkout.scss */
