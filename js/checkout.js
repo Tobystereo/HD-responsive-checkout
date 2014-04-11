@@ -332,7 +332,8 @@ var Checkout = {
 			"$shopping_cart_container": undefined,
 			"$btnupdate_cart_item": undefined,
 			"$btnremove_cart_item": undefined,
-			"$quantity_inputs": undefined
+			"$quantity_inputs": undefined,
+			"$btnchange_selection": undefined
 		}
 	},
 	"Settings": {
@@ -357,30 +358,8 @@ var Checkout = {
 		"Shared": {
 			"Init": function () {
 				Checkout.Settings.Shared.steps = [Checkout.Settings.Shared.shipping_address_step_id, Checkout.Settings.Shared.shipping_option_step_id, Checkout.Settings.Shared.billing_step_id, Checkout.Settings.Shared.review_step_id, Checkout.Settings.Shared.confirmation_step_id]
-				$(window).bind('hashchange', function (e) {
-					var step = e.fragment.replace(Checkout.Settings.Shared.step_url_prefix, ""),
-						previousStep = e.originalEvent !== undefined ? jQuery.param.fragment(e.originalEvent.oldURL).replace(Checkout.Settings.Shared.step_url_prefix, "") : undefined,
-						stepNumber = jQuery.inArray(step, Checkout.Settings.Shared.steps);
-
-					// Check if the hash is a step
-					if (stepNumber > -1) {
-						Checkout.Fields.Shared.$step_previous = previousStep !== undefined ? $("#" + previousStep) : undefined;
-						Checkout.Fields.Shared.$step_current = $("#" + step);
-						if (previousStep == Checkout.Settings.Shared.confirmation_step_id) {
-							location.reload();
-						}
-						else {
-							Checkout.Functions.Shared.InitCurrentStep(step);
-						}
-					}
-				});
-				$(document).ready(function () {
-					Checkout.Functions.Shared.GetFields();
-					Checkout.Functions.Shared.WireEvents();
-					Checkout.Functions.Shared.UpdateOrderTotal();
-					jQuery.bbq.pushState("#" + Checkout.Settings.Shared.step_url_prefix + Checkout.Fields.Shared.$step_current.attr("id"), 2);
-					$(window).trigger('hashchange');
-				});
+				Checkout.Functions.Shared.BindEvents_Window();
+				Checkout.Functions.Shared.BindEvents_Document();
 			},
 			"GetFields": function () {
 				/// <summary>Gets DOM elements & other dynamic variable values.</summary>
@@ -513,6 +492,7 @@ var Checkout = {
 				Checkout.Fields.Review.$btnupdate_cart_item = Checkout.Fields.Review.$shopping_cart_container.find("button.update-cart-item");
 				Checkout.Fields.Review.$btnremove_cart_item = Checkout.Fields.Review.$shopping_cart_container.find("button.remove-cart-item");
 				Checkout.Fields.Review.$quantity_inputs = Checkout.Fields.Review.$shopping_cart_container.find(".quantity input");
+				Checkout.Fields.Review.$btnchange_selection = Checkout.Fields.Shared.$step_review.find(".selection-container button.change");
 			},
 			"WireEvents": function () {
 				/// <summary>Wire up control events</summary>
@@ -553,6 +533,7 @@ var Checkout = {
 				Checkout.Functions.Review.BindEvents_QuantityInputs(false);
 				Checkout.Functions.Review.BindEvents_UpdateCartItemButton(false);
 				Checkout.Functions.Review.BindEvents_RemoveCartItemButton(false);
+				Checkout.Functions.Review.BindEvents_ChangeSelectionButton(false);
 			},
 			"InitCurrentStep": function (step_name) {
 				var $currentProgressBarItem = $("a[href=#" + Checkout.Settings.Shared.step_url_prefix + Checkout.Fields.Shared.$step_current.attr("id") + "]").parent();
@@ -649,6 +630,34 @@ var Checkout = {
 				/// <returns type="Decimal" />
 				return parseFloat(Math.round(number * 100) / 100);
 			},
+			"BindEvents_Window": function () {
+				$(window).bind('hashchange', function (e) {
+					var step = e.fragment.replace(Checkout.Settings.Shared.step_url_prefix, ""),
+						previousStep = e.originalEvent !== undefined ? jQuery.param.fragment(e.originalEvent.oldURL).replace(Checkout.Settings.Shared.step_url_prefix, "") : undefined,
+						stepNumber = jQuery.inArray(step, Checkout.Settings.Shared.steps);
+
+					// Check if the hash is a step
+					if (stepNumber > -1) {
+						Checkout.Fields.Shared.$step_previous = previousStep !== undefined ? $("#" + previousStep) : undefined;
+						Checkout.Fields.Shared.$step_current = $("#" + step);
+						if (previousStep == Checkout.Settings.Shared.confirmation_step_id) {
+							location.reload();
+						}
+						else {
+							Checkout.Functions.Shared.InitCurrentStep(step);
+						}
+					}
+				});
+			},
+			"BindEvents_Document": function () {
+				$(document).ready(function () {
+					Checkout.Functions.Shared.GetFields();
+					Checkout.Functions.Shared.WireEvents();
+					Checkout.Functions.Shared.UpdateOrderTotal();
+					jQuery.bbq.pushState("#" + Checkout.Settings.Shared.step_url_prefix + Checkout.Fields.Shared.$step_current.attr("id"), 2);
+					$(window).trigger('hashchange');
+				});
+			},
 			"BindEvents_FormInputs": function (refreshSelector) {
 				if (refreshSelector) {
 					Checkout.Fields.Shared.$form_inputs = $(Checkout.Fields.Shared.$form_inputs.selector);
@@ -677,7 +686,12 @@ var Checkout = {
 				}
 
 				Checkout.Fields.Shared.$btn_next.on("click", function () {
+					var currentStepHref = "#" + Checkout.Settings.Shared.step_url_prefix + Checkout.Fields.Shared.$step_current.attr("id");
+					// Mark the current step as completed
+					Checkout.Fields.Shared.$progress_bar_items.filter("[href=" + currentStepHref + "]").parent().addClass("completed");
+					// Progress to the next step
 					jQuery.bbq.pushState("#" + Checkout.Settings.Shared.step_url_prefix + Checkout.Fields.Shared.$step_current.next().attr("id"), 2);
+					// Mark the new step as active.
 				});
 			},
 			"BindEvents_ProgressBarItems": function (refreshSelector) {
@@ -685,9 +699,14 @@ var Checkout = {
 					Checkout.Fields.Shared.$progress_bar_items = $(Checkout.Fields.Shared.$progress_bar_items.selector);
 				}
 
-				Checkout.Fields.Shared.$progress_bar_items.on("click", function () {
+				Checkout.Fields.Shared.$progress_bar_items.on("click", function (e) {
 					var $parent = $(this).parent();
-					Checkout.Functions.Shared.SetActiveProgressBarItem($parent);
+					if ($parent.hasClass("active") || $parent.hasClass("completed")) {
+						Checkout.Functions.Shared.SetActiveProgressBarItem($parent);
+					}
+					else {
+						e.preventDefault();
+					}
 				});
 			}
 		},
@@ -1601,6 +1620,16 @@ var Checkout = {
 					Checkout.Functions.Review.RemoveCartItem($cart_item);
 				});
 			},
+			"BindEvents_ChangeSelectionButton": function (refreshSelector) {
+				if (refreshSelector) {
+					Checkout.Fields.Review.$btnchange_selection = $(Checkout.Fields.Review.$btnchange_selection.selector);
+				}
+				Checkout.Fields.Review.$btnchange_selection.on("click", function (e) {
+					var step = $(this).attr("data-related-step");
+					e.preventDefault();
+					jQuery.bbq.pushState(step, 2);
+				});
+			},
 			"UpdateCartItem": function ($cart_item) {
 				var quantity = Checkout.Functions.Shared.GetDecimal($cart_item.find(".quantity input").val()),
 					product_id = parseInt($cart_item.find("input.product-id").val()),
@@ -1642,6 +1671,9 @@ var Checkout = {
 					Checkout.Functions.Shared.UpdateOrderTotal();
 					// Remove the cart item from the UI
 					$cart_item.fadeOut(Checkout.Settings.Shared.easing);
+				}
+				else {
+					alert("This action is not supported in the prototype");
 				}
 			},
 			"RefreshOrderReviewSelectionData": function () {
