@@ -153,6 +153,7 @@ article {
           margin: 0;
           width: 25%;
 
+
           @media #{$desk} {
               $pillsize: 40px;
               @include transition($transition);
@@ -184,33 +185,9 @@ article {
                   margin-left: -$pillsize*1.5;
                   text-align: center;
               }
-
-              &.active {
-                background-color: $lightest !important;
-
-                a {
-                  color: $light-blue !important;
-                }
-
-                &:before {
-                    background: $light-blue;
-                    color: $lightest !important;
-                }
-              }
-
-              &.completed {
-                // background-color: $dark !important;
-
-                a {
-                  color: $light-blue-light !important;
-                }
-
-                &:before {
-                    background: $light-blue-light;
-                    color: $lightest !important;
-                }
-              }
           }
+
+
 
           a {
               display: block;
@@ -225,7 +202,7 @@ article {
               text-decoration: none;
 
               &:hover {
-                  background: $light-blue;
+                  color: $light-blue;
 
                   &:before {
                       background: $light-blue-light;
@@ -250,26 +227,57 @@ article {
 
 
           }
-        }
 
 
-        .active {
+
+        &.active {
             background-color: $light-blue !important;
-            color: $lightest !important;
+            color: $lightest;
+
+            @media #{$desk} {
+              background-color: $lightest !important;
+
+              &:before {
+                  background: $light-blue !important;
+                  color: $lightest !important;
+              }
+            }
 
             a {
-              color: $lightest !important;
+              color: $lightest;
+
+              @media #{$desk} {
+                color: $light-blue !important;
+              }
             }
         }
 
-        .completed {
+        &.completed {
             background-color: $light-blue-light;
-            color: $lightest !important;
+            color: $lightest;
+
+            @media #{$desk} {
+              &:before {
+                  background: $light-blue-light;
+                  color: $lightest;
+              }
+            }
 
             a {
-              color: $lightest !important;
+              color: $lightest;
+
+              @media #{$desk} {
+                color: $light-blue-light;
+
+                &:hover {
+                  background-color: none !important;
+                }
+              }
             }
         }
+
+}
+
 
         .shipping, .method {
           a {
