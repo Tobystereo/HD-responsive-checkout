@@ -10,7 +10,6 @@
     <script src="js/modernizr-2.6.2.js"></script>
     <script src="js/jquery-1.11.0.min.js"></script>
     <script src="js/jquery-migrate-1.2.1.js"></script>
-    <script src="js/jquery.scrollTo-1.4.3.1.js"></script>
     <script src="js/animatescroll.js"></script>
 </head>
 <body>
@@ -58,7 +57,8 @@
                                     <span class="btn shiptothis secondary small"></span>
                                     <button class="btn edit tertiary small">Edit</button>
                                     <div class="address">
-                                        <span class="name">Ethan Koser</span>
+                                        <span class="name">John Doe</span>
+                                        <span class="company"></span>
                                         <span class="street">123 A street</span>,
                                         <span class="city">Mobile</span>
                                         <span class="state">AK</span>
@@ -74,9 +74,9 @@
                                     <span class="btn shiptothis secondary small"></span>
                                     <button class="btn edit tertiary small">Edit</button>
                                     <div class="address">
-                                        <span class="name">Mike Koser</span>
-                                        <span class="company">Hair Direct</span>
-                                        <span class="street">1866 Colonial Village Ln</span>,
+                                        <span class="name">Jane Doe</span>
+                                        <span class="company">Northwind Ltd.</span>
+                                        <span class="street">1866 Industry Rd.</span>,
                                         <span class="city">Lancaster</span>
                                         <span class="state">PA</span>
                                         <span class="zip">17601</span>
@@ -91,8 +91,9 @@
                                     <span class="btn shiptothis secondary small"></span>
                                     <button class="btn edit tertiary small">Edit</button>
                                     <div class="address">
-                                        <span class="name">Mike Koser</span>
-                                        <span class="street">289 Sprecher Rd</span>,
+                                        <span class="name">Jane Doe</span>
+                                        <span class="company"></span>
+                                        <span class="street">456 Hollow Dr.</span>,
                                         <span class="city">Lancaster</span>
                                         <span class="state">PA</span>
                                         <span class="zip">17603</span>
@@ -113,7 +114,7 @@
                         <form id="new-address-form" action="#" class="new-address" style="display: none;">
                             <ul class="grid__item add-edit-address form-fields one-whole card">
                                 <li class="field country ">
-                                    <h2>Create a new address</h2>
+                                    <h2 data-new-text="Create a new address" data-edit-text="Edit address">Create a new address</h2>
                                     <select class="" id="country-input">
                                         <option value=""></option>
                                         <option value="US">United States</option>
@@ -356,7 +357,7 @@
                                         </div>
                                         <div class="address">
                                             <span class="label">Billing Address:</span>
-                                            <span class="street">289 Sprecher Rd</span>,
+                                            <span class="street">456 Hollow Dr.</span>,
                                             <span class="city">Lancaster</span>
                                             <span class="state">PA</span>
                                             <span class="zip">17603</span>
