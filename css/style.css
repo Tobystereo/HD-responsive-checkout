@@ -5997,7 +5997,7 @@ input[type=radio]:checked + label.card .shiptothis:after, input[type=radio]:chec
 /* line 862, ui/_checkout.scss */
 .type {
   display: block;
-  width: 29px;
+  width: 30px;
   height: 20px;
   overflow: hidden;
   text-indent: 101%;
@@ -6014,11 +6014,11 @@ input[type=radio]:checked + label.card .shiptothis:after, input[type=radio]:chec
 }
 /* line 881, ui/_checkout.scss */
 .type.mastercard {
-  background-position: -29px 0;
+  background-position: -30px 0;
 }
 /* line 885, ui/_checkout.scss */
 .type.amex, .type.americanexpress {
-  background-position: -58px 0;
+  background-position: -60px 0;
 }
 /* line 889, ui/_checkout.scss */
 .type.discover {
@@ -6026,7 +6026,7 @@ input[type=radio]:checked + label.card .shiptothis:after, input[type=radio]:chec
 }
 /* line 893, ui/_checkout.scss */
 .type.paypal {
-  background-position: -96px 0;
+  background-position: -120px 0;
 }
 
 /* line 900, ui/_checkout.scss */
@@ -6041,11 +6041,11 @@ input[type=radio]:checked + label.card .shiptothis:after, input[type=radio]:chec
 }
 /* line 909, ui/_checkout.scss */
 .add-edit-credit-card .type.mastercard {
-  background-position: -58px 0;
+  background-position: -60px 0;
 }
 /* line 913, ui/_checkout.scss */
 .add-edit-credit-card .type.amex, .add-edit-credit-card .type.americanexpress {
-  background-position: -116px 0;
+  background-position: -120px 0;
 }
 /* line 917, ui/_checkout.scss */
 .add-edit-credit-card .type.discover {
@@ -6083,8 +6083,12 @@ input[type=radio]:checked + label.card .shiptothis:after, input[type=radio]:chec
 .add-edit-credit-card .billing-address .state {
   margin-left: 0.25em;
 }
+/* line 944, ui/_checkout.scss */
+.add-edit-credit-card .buttons button {
+  margin-top: 1em;
+}
 
-/* line 949, ui/_checkout.scss */
+/* line 953, ui/_checkout.scss */
 #payment-option-credit-card + label .payment-option:after {
   display: inline-block;
   position: relative;
@@ -6097,7 +6101,7 @@ input[type=radio]:checked + label.card .shiptothis:after, input[type=radio]:chec
   margin-bottom: -4px;
 }
 
-/* line 958, ui/_checkout.scss */
+/* line 962, ui/_checkout.scss */
 #payment-option-paypal + label .payment-option:after {
   display: inline-block;
   position: relative;
@@ -6106,12 +6110,12 @@ input[type=radio]:checked + label.card .shiptothis:after, input[type=radio]:chec
   height: 20px;
   background: url("../images/creditcards.png") no-repeat;
   background-size: auto 20px;
-  background-position: -96px 0;
+  background-position: -120px 0;
   margin-left: 1em;
   margin-bottom: -4px;
 }
 
-/* line 968, ui/_checkout.scss */
+/* line 972, ui/_checkout.scss */
 #payment-option-default + label .type {
   clear: none !important;
   display: inline-block;
@@ -6120,35 +6124,35 @@ input[type=radio]:checked + label.card .shiptothis:after, input[type=radio]:chec
   margin-bottom: -4px;
 }
 
-/* line 976, ui/_checkout.scss */
+/* line 980, ui/_checkout.scss */
 .paypal-container {
   margin-bottom: 2em;
   padding: 1em;
 }
-/* line 979, ui/_checkout.scss */
+/* line 983, ui/_checkout.scss */
 .paypal-container p {
   margin: 1em;
   color: black !important;
 }
 
-/* line 990, ui/_checkout.scss */
+/* line 994, ui/_checkout.scss */
 .promo-code-container form {
   margin: 0;
   padding: 0;
 }
 
-/* line 996, ui/_checkout.scss */
+/* line 1000, ui/_checkout.scss */
 .incomplete {
   background: white !important;
   border: 1px solid #cbcbcb;
 }
 
-/* line 1001, ui/_checkout.scss */
+/* line 1005, ui/_checkout.scss */
 .selected.incomplete, input[type=radio]:checked + label.incomplete {
   border: 1px solid #4a993d;
 }
 
-/* line 1005, ui/_checkout.scss */
+/* line 1009, ui/_checkout.scss */
 .checkbox-input {
   clear: none;
   float: left;
@@ -6156,21 +6160,21 @@ input[type=radio]:checked + label.card .shiptothis:after, input[type=radio]:chec
   margin-top: 3px;
 }
 
-/* line 1013, ui/_checkout.scss */
+/* line 1017, ui/_checkout.scss */
 .card-number_read_only .type {
   float: left;
   margin-right: 0.5em;
 }
 
-/* line 1019, ui/_checkout.scss */
+/* line 1023, ui/_checkout.scss */
 .billing-address {
   font-weight: 500;
 }
-/* line 1022, ui/_checkout.scss */
+/* line 1026, ui/_checkout.scss */
 .billing-address span {
   font-weight: 300;
 }
-/* line 1026, ui/_checkout.scss */
+/* line 1030, ui/_checkout.scss */
 .billing-address .city {
   clear: left;
   display: block;
@@ -6178,37 +6182,37 @@ input[type=radio]:checked + label.card .shiptothis:after, input[type=radio]:chec
   margin-right: 0.5em;
 }
 
-/* line 1037, ui/_checkout.scss */
+/* line 1041, ui/_checkout.scss */
 .cart-items .cart-item:nth-of-type(odd) {
   background-color: #f1f1f1;
 }
-/* line 1041, ui/_checkout.scss */
+/* line 1045, ui/_checkout.scss */
 .cart-items .cart-item.header {
   display: none;
 }
 @media only screen and (min-width: 50em) {
-  /* line 1041, ui/_checkout.scss */
+  /* line 1045, ui/_checkout.scss */
   .cart-items .cart-item.header {
     display: block;
     background-color: #cbcbcb;
   }
-  /* line 1048, ui/_checkout.scss */
+  /* line 1052, ui/_checkout.scss */
   .cart-items .cart-item.header .field {
     margin-top: 0 !important;
     margin-bottom: 0 !important;
   }
-  /* line 1053, ui/_checkout.scss */
+  /* line 1057, ui/_checkout.scss */
   .cart-items .cart-item.header .label {
     display: block !important;
     font-weight: 700 !important;
   }
 }
-/* line 1060, ui/_checkout.scss */
+/* line 1064, ui/_checkout.scss */
 .cart-items .cart-item .thumbnail {
   width: 30%;
 }
 @media only screen and (min-width: 30em) {
-  /* line 1060, ui/_checkout.scss */
+  /* line 1064, ui/_checkout.scss */
   .cart-items .cart-item .thumbnail {
     width: 30%;
     float: left;
@@ -6216,139 +6220,139 @@ input[type=radio]:checked + label.card .shiptothis:after, input[type=radio]:chec
   }
 }
 @media only screen and (min-width: 50em) {
-  /* line 1060, ui/_checkout.scss */
+  /* line 1064, ui/_checkout.scss */
   .cart-items .cart-item .thumbnail {
     width: 20%;
     float: none;
   }
 }
-/* line 1075, ui/_checkout.scss */
+/* line 1079, ui/_checkout.scss */
 .cart-items .cart-item .form-fields {
   width: 100%;
 }
-/* line 1078, ui/_checkout.scss */
+/* line 1082, ui/_checkout.scss */
 .cart-items .cart-item .form-fields .label {
   float: left;
   width: 26%;
   margin-right: 1em;
 }
 @media only screen and (min-width: 50em) {
-  /* line 1078, ui/_checkout.scss */
+  /* line 1082, ui/_checkout.scss */
   .cart-items .cart-item .form-fields .label {
     display: none;
   }
 }
-/* line 1088, ui/_checkout.scss */
+/* line 1092, ui/_checkout.scss */
 .cart-items .cart-item .form-fields .field {
   margin-bottom: 1em;
 }
-/* line 1092, ui/_checkout.scss */
+/* line 1096, ui/_checkout.scss */
 .cart-items .cart-item .form-fields .field.quantity .label {
   width: 100%;
   margin-bottom: 0.25em;
 }
-/* line 1096, ui/_checkout.scss */
+/* line 1100, ui/_checkout.scss */
 .cart-items .cart-item .form-fields .field.quantity input[type=text], .cart-items .cart-item .form-fields .field.quantity input[type=number] {
   width: 25%;
 }
-/* line 1099, ui/_checkout.scss */
+/* line 1103, ui/_checkout.scss */
 .cart-items .cart-item .form-fields .field.quantity .update-cart-item {
   width: auto;
   margin-left: 1em;
 }
 @media only screen and (min-width: 50em) {
-  /* line 1099, ui/_checkout.scss */
+  /* line 1103, ui/_checkout.scss */
   .cart-items .cart-item .form-fields .field.quantity .update-cart-item {
     margin-top: .7em;
     margin-left: 0;
   }
 }
 @media only screen and (min-width: 50em) {
-  /* line 1108, ui/_checkout.scss */
+  /* line 1112, ui/_checkout.scss */
   .cart-items .cart-item .form-fields .field.quantity input[type=text], .cart-items .cart-item .form-fields .field.quantity input[type=number] {
     width: 100%;
   }
-  /* line 1111, ui/_checkout.scss */
+  /* line 1115, ui/_checkout.scss */
   .cart-items .cart-item .form-fields .field.quantity .update-cart-item {
     width: 100%;
   }
 }
-/* line 1117, ui/_checkout.scss */
+/* line 1121, ui/_checkout.scss */
 .cart-items .cart-item .form-fields .field.buttons {
   width: 30%;
   float: right;
 }
-/* line 1121, ui/_checkout.scss */
+/* line 1125, ui/_checkout.scss */
 .cart-items .cart-item .form-fields .field.buttons button {
   width: 100%;
   margin-top: -11em;
 }
 @media only screen and (min-width: 50em) {
-  /* line 1121, ui/_checkout.scss */
+  /* line 1125, ui/_checkout.scss */
   .cart-items .cart-item .form-fields .field.buttons button {
     margin-top: 0 !important;
   }
 }
 @media only screen and (min-width: 50em) {
-  /* line 1088, ui/_checkout.scss */
+  /* line 1092, ui/_checkout.scss */
   .cart-items .cart-item .form-fields .field {
     display: block;
     float: left;
     margin-right: 1em;
   }
-  /* line 1132, ui/_checkout.scss */
+  /* line 1136, ui/_checkout.scss */
   .cart-items .cart-item .form-fields .field.name {
     width: 35%;
   }
-  /* line 1136, ui/_checkout.scss */
+  /* line 1140, ui/_checkout.scss */
   .cart-items .cart-item .form-fields .field.price, .cart-items .cart-item .form-fields .field.quantity, .cart-items .cart-item .form-fields .field.total {
     width: 12.5%;
   }
-  /* line 1140, ui/_checkout.scss */
+  /* line 1144, ui/_checkout.scss */
   .cart-items .cart-item .form-fields .field.buttons {
     width: 15%;
     margin-top: 0.5em;
   }
-  /* line 1145, ui/_checkout.scss */
+  /* line 1149, ui/_checkout.scss */
   .cart-items .cart-item .form-fields .field.name, .cart-items .cart-item .form-fields .field.price, .cart-items .cart-item .form-fields .field.total {
     margin-top: 1em;
   }
 }
 
-/* line 1161, ui/_checkout.scss */
+/* line 1165, ui/_checkout.scss */
 .cost-breakdown .field {
   margin-bottom: 0;
 }
-/* line 1165, ui/_checkout.scss */
+/* line 1169, ui/_checkout.scss */
 .cost-breakdown .label {
   width: 30%;
 }
 @media only screen and (min-width: 30em) {
-  /* line 1165, ui/_checkout.scss */
+  /* line 1169, ui/_checkout.scss */
   .cost-breakdown .label {
     width: 50%;
     text-align: right;
   }
 }
 @media only screen and (min-width: 50em) {
-  /* line 1165, ui/_checkout.scss */
+  /* line 1169, ui/_checkout.scss */
   .cost-breakdown .label {
     width: 71%;
   }
 }
-/* line 1177, ui/_checkout.scss */
+/* line 1181, ui/_checkout.scss */
 .cost-breakdown .label p {
   margin-left: 1em;
 }
-/* line 1181, ui/_checkout.scss */
+/* line 1185, ui/_checkout.scss */
 .cost-breakdown .label span {
   font-weight: 300;
 }
-/* line 1186, ui/_checkout.scss */
+/* line 1190, ui/_checkout.scss */
 .cost-breakdown .value {
   width: 29%;
 }
-/* line 1190, ui/_checkout.scss */
+/* line 1194, ui/_checkout.scss */
 .cost-breakdown .total {
   border-top: 1px solid #727272;
   padding-top: .5em;
@@ -6360,11 +6364,11 @@ input[type=radio]:checked + label.card .shiptothis:after, input[type=radio]:chec
   line-height: 41.6px;
   line-height: 2.6rem;
 }
-/* line 1195, ui/_checkout.scss */
+/* line 1199, ui/_checkout.scss */
 .cost-breakdown .total p {
   margin-left: 1rem;
 }
-/* line 1202, ui/_checkout.scss */
+/* line 1206, ui/_checkout.scss */
 .cost-breakdown .discount .value:before {
   display: inline-block;
   position: relative;
@@ -6375,85 +6379,85 @@ input[type=radio]:checked + label.card .shiptothis:after, input[type=radio]:chec
   margin-right: 0;
 }
 
-/* line 1213, ui/_checkout.scss */
+/* line 1217, ui/_checkout.scss */
 .selection-container h3 {
   padding-left: 1rem;
 }
-/* line 1217, ui/_checkout.scss */
+/* line 1221, ui/_checkout.scss */
 .selection-container h4 {
   margin-bottom: 1rem;
 }
-/* line 1221, ui/_checkout.scss */
+/* line 1225, ui/_checkout.scss */
 .selection-container button {
   float: right;
   margin-top: -5.25rem;
 }
-/* line 1227, ui/_checkout.scss */
+/* line 1231, ui/_checkout.scss */
 .selection-container .billing-information h4 {
   margin-bottom: 4rem;
 }
-/* line 1231, ui/_checkout.scss */
+/* line 1235, ui/_checkout.scss */
 .selection-container .billing-information button {
   margin-top: -6.25rem;
 }
 
-/* line 1240, ui/_checkout.scss */
+/* line 1244, ui/_checkout.scss */
 .order-review .card, .order-review input[type=radio] + label.card {
   min-height: 150px;
 }
-/* line 1244, ui/_checkout.scss */
+/* line 1248, ui/_checkout.scss */
 .order-review .card .address span {
   display: block;
   float: left;
   margin: 0 0.25em 0 0;
 }
-/* line 1249, ui/_checkout.scss */
+/* line 1253, ui/_checkout.scss */
 .order-review .card .address .company, .order-review .card .address .street, .order-review .card .address .city, .order-review .card .address .country, .order-review .card .address .phone {
   clear: left;
 }
-/* line 1253, ui/_checkout.scss */
+/* line 1257, ui/_checkout.scss */
 .order-review .card .address .name {
   margin-right: 0;
 }
-/* line 1257, ui/_checkout.scss */
+/* line 1261, ui/_checkout.scss */
 .order-review .card .address .phone, .order-review .card .address .street {
   margin-top: 1em;
 }
-/* line 1262, ui/_checkout.scss */
+/* line 1266, ui/_checkout.scss */
 .order-review .card .change {
   margin: 0;
   float: right;
 }
-/* line 1269, ui/_checkout.scss */
+/* line 1273, ui/_checkout.scss */
 .order-review .shipping-option span {
   display: block;
   float: left;
   margin-right: 1em;
 }
-/* line 1275, ui/_checkout.scss */
+/* line 1279, ui/_checkout.scss */
 .order-review .shipping-option .delivery-date, .order-review .shipping-option .price {
   clear: left;
 }
-/* line 1279, ui/_checkout.scss */
+/* line 1283, ui/_checkout.scss */
 .order-review .shipping-option .carrier {
   width: 30% !important;
   padding-right: 0;
   text-align: left;
   padding-left: 2.5em;
 }
-/* line 1285, ui/_checkout.scss */
+/* line 1289, ui/_checkout.scss */
 .order-review .shipping-option .carrier:before {
   display: inline-block !important;
   margin-top: -2px;
   margin-left: -2.5em;
 }
-/* line 1292, ui/_checkout.scss */
+/* line 1296, ui/_checkout.scss */
 .order-review .shipping-option .delivery-date, .order-review .shipping-option .price {
   width: 100%;
   display: block;
   margin-top: 1em;
 }
-/* line 1297, ui/_checkout.scss */
+/* line 1301, ui/_checkout.scss */
 .order-review .shipping-option .delivery-date:before, .order-review .shipping-option .price:before {
   font-weight: 500;
   display: inline-block;
@@ -6464,30 +6468,30 @@ input[type=radio]:checked + label.card .shiptothis:after, input[type=radio]:chec
   margin-right: 1em;
   text-align: left;
 }
-/* line 1305, ui/_checkout.scss */
+/* line 1309, ui/_checkout.scss */
 .order-review .shipping-option .delivery-date:before {
   content: "Delivery date: ";
 }
-/* line 1309, ui/_checkout.scss */
+/* line 1313, ui/_checkout.scss */
 .order-review .shipping-option .price:before {
   content: "Shipping cost: ";
 }
 
-/* line 1317, ui/_checkout.scss */
+/* line 1321, ui/_checkout.scss */
 footer .help {
   min-height: 3em;
 }
-/* line 1319, ui/_checkout.scss */
+/* line 1323, ui/_checkout.scss */
 footer .help h2, footer .help p {
   text-align: center;
   margin: 2rem;
 }
-/* line 1324, ui/_checkout.scss */
+/* line 1328, ui/_checkout.scss */
 footer .help h2 {
   font-weight: 100;
   margin-bottom: 0;
 }
-/* line 1329, ui/_checkout.scss */
+/* line 1333, ui/_checkout.scss */
 footer .help p {
   margin-top: 1rem;
   margin-bottom: 0;
@@ -6499,7 +6503,7 @@ footer .help p {
   line-height: 24.96px;
   line-height: 1.56rem;
 }
-/* line 1337, ui/_checkout.scss */
+/* line 1341, ui/_checkout.scss */
 footer .help a, footer .privacy-policy a, footer .shipping-policy a {
   margin-left: auto !important;
   margin-right: auto !important;
@@ -6512,39 +6516,39 @@ footer .help a, footer .privacy-policy a, footer .shipping-policy a {
   text-align: center;
   width: 90%;
 }
-/* line 1348, ui/_checkout.scss */
+/* line 1352, ui/_checkout.scss */
 footer .help a:hover, footer .privacy-policy a:hover, footer .shipping-policy a:hover {
   background-color: #cbcbcb !important;
   color: #727272;
   border-color: #727272;
 }
 @media only screen and (min-width: 30em) {
-  /* line 1357, ui/_checkout.scss */
+  /* line 1361, ui/_checkout.scss */
   footer .privacy-policy a {
     margin-bottom: 2em !important;
   }
 }
-/* line 1365, ui/_checkout.scss */
+/* line 1369, ui/_checkout.scss */
 footer .shipping-policy a {
   margin-bottom: 2em !important;
 }
 
-/* line 1374, ui/_checkout.scss */
+/* line 1378, ui/_checkout.scss */
 .modal-inner header {
   padding: 1em 3em !important;
 }
 
-/* line 1379, ui/_checkout.scss */
+/* line 1383, ui/_checkout.scss */
 .semantic-content.is-active:before {
   background: #727272 !important;
 }
 
-/* line 1383, ui/_checkout.scss */
+/* line 1387, ui/_checkout.scss */
 .modal-close {
   color: #727272;
 }
 @media only screen and (min-width: 30em) {
-  /* line 1383, ui/_checkout.scss */
+  /* line 1387, ui/_checkout.scss */
   .modal-close {
     text-align: center;
     font-size: 48px;
@@ -6558,83 +6562,83 @@ footer .shipping-policy a {
   }
 }
 @media only screen and (min-width: 30em) {
-  /* line 1393, ui/_checkout.scss */
+  /* line 1397, ui/_checkout.scss */
   .modal-close:after {
     width: 50px;
     height: 50px;
   }
 }
 @media only screen and (min-width: 50em) {
-  /* line 1393, ui/_checkout.scss */
+  /* line 1397, ui/_checkout.scss */
   .modal-close:after {
     margin-left: 275px !important;
   }
 }
 
-/* line 1407, ui/_checkout.scss */
+/* line 1411, ui/_checkout.scss */
 .modal-content {
   padding: 3em !important;
 }
-/* line 1410, ui/_checkout.scss */
+/* line 1414, ui/_checkout.scss */
 .modal-content h1 {
   padding: 0;
   margin-top: 0 !important;
 }
-/* line 1417, ui/_checkout.scss */
+/* line 1421, ui/_checkout.scss */
 .modal-content h2 {
   padding: 0  !important;
 }
-/* line 1422, ui/_checkout.scss */
+/* line 1426, ui/_checkout.scss */
 .modal-content h3 {
   padding: 0 !important;
 }
 
-/* line 1431, ui/_checkout.scss */
+/* line 1435, ui/_checkout.scss */
 .order-confirmation {
   text-align: center;
 }
-/* line 1433, ui/_checkout.scss */
+/* line 1437, ui/_checkout.scss */
 .order-confirmation h2 {
   text-align: center;
   color: #4a993d;
 }
-/* line 1438, ui/_checkout.scss */
+/* line 1442, ui/_checkout.scss */
 .order-confirmation .order-number {
   font-weight: 700;
 }
-/* line 1442, ui/_checkout.scss */
+/* line 1446, ui/_checkout.scss */
 .order-confirmation button {
   margin-top: 3rem;
 }
 
 /* Colors */
-/* line 1448, ui/_checkout.scss */
+/* line 1452, ui/_checkout.scss */
 .bg-lightest {
   background-color: white;
 }
 
-/* line 1449, ui/_checkout.scss */
+/* line 1453, ui/_checkout.scss */
 .bg-lighter {
   background-color: #f1f1f1;
 }
 
-/* line 1450, ui/_checkout.scss */
+/* line 1454, ui/_checkout.scss */
 .bg-light {
   background-color: #cbcbcb;
 }
 
-/* line 1451, ui/_checkout.scss */
+/* line 1455, ui/_checkout.scss */
 .bg-dark {
   background-color: #727272;
 }
 
-/* line 1452, ui/_checkout.scss */
+/* line 1456, ui/_checkout.scss */
 .bg-darkest {
   background-color: black;
 }
 
 /* Typography */
-/* line 1459, ui/_checkout.scss */
+/* line 1463, ui/_checkout.scss */
 a, a:link, a:hover, a:active, a:focus {
   text-decoration: none;
   border-bottom: 1px solid;
@@ -7104,8 +7108,8 @@ form {
 
 /* line 7, ui/_forms.scss */
 input[type=text], input[type=number], select {
-  height: 51.2px;
-  height: 3.2rem;
+  height: 52px;
+  height: 3.25rem;
 }
 
 /* line 11, ui/_forms.scss */
@@ -7201,8 +7205,8 @@ input[type=text] + label, textarea + label, select + label {
 
 /* line 92, ui/_forms.scss */
 textarea, textarea.threelines {
-  height: 102.4px !important;
-  height: 6.4rem !important;
+  height: 104px !important;
+  height: 6.5rem !important;
   line-height: 31.2px;
   line-height: 1.95rem;
   display: block;
@@ -7219,8 +7223,8 @@ textarea:focus + label, textarea + label.notempty, textarea.threelines:focus + l
 }
 /* line 108, ui/_forms.scss */
 textarea.fourlines, textarea.threelines.fourlines {
-  height: 128px !important;
-  height: 8rem !important;
+  height: 130px !important;
+  height: 8.125rem !important;
 }
 /* line 111, ui/_forms.scss */
 textarea.fourlines + label, textarea.threelines.fourlines + label {
@@ -7232,8 +7236,8 @@ textarea.fourlines:focus + label, textarea.fourlines:focus + label.notempty, tex
 }
 /* line 120, ui/_forms.scss */
 textarea.fivelines, textarea.threelines.fivelines {
-  height: 153.6px !important;
-  height: 9.6rem !important;
+  height: 156px !important;
+  height: 9.75rem !important;
 }
 /* line 123, ui/_forms.scss */
 textarea.fivelines + label, textarea.threelines.fivelines + label {
