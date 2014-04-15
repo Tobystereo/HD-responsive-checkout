@@ -152,6 +152,44 @@ var Checkout = {
 				"extended_price": 24.75
 			}
 		],
+		"addresses": [
+			{
+				"id": 1,
+				"name": "John Doe",
+				"company": "",
+				"street": "123 A street",
+				"city": "Mobile",
+				"state": "AK",
+				"postal": "88739",
+				"country_code": "US",
+				"country_name": "United States",
+				"phone": "+1-222-333-4567"
+			},
+			{
+				"id": 2,
+				"name": "Jane Doe",
+				"company": "Northwind Ltd.",
+				"street": "1866 Industry Rd.",
+				"city": "Lancaster",
+				"state": "PA",
+				"postal": "17601",
+				"country_code": "US",
+				"country_name": "United States",
+				"phone": "+1-555-555-5555"
+			},
+			{
+				"id": 3,
+				"name": "Jane Doe",
+				"company": "Hair Direct",
+				"street": "456 Hollow Dr.",
+				"city": "Lancaster",
+				"state": "PA",
+				"postal": "17603",
+				"country_code": "US",
+				"country_name": "United States",
+				"phone": "+1-444-444-3444"
+			}
+		],
 		"checkout_details": {
 			"subtotal": 0,
 			"tax_rate": 0,
@@ -619,40 +657,14 @@ var Checkout = {
 				Checkout.Functions.Review.UpdateOrderReviewTotals();
 			},
 			"InitializeAddressData": function () {
-				var $address_items = Checkout.Fields.ShippingAddress.$address_list.children();
-				$address_items.eq(0).data("address", {
-					"name": "John Doe",
-					"company": "",
-					"street": "123 A street",
-					"city": "Mobile",
-					"state": "AK",
-					"postal": "88739",
-					"country_code": "US",
-					"country_name": "United States",
-					"phone": "+1-222-333-4567"
-				});
-				$address_items.eq(1).data("address", {
-					"name": "Jane Doe",
-					"company": "Northwind Ltd.",
-					"street": "1866 Industry Rd.",
-					"city": "Lancaster",
-					"state": "PA",
-					"postal": "17601",
-					"country_code": "US",
-					"country_name": "United States",
-					"phone": "+1-555-555-5555"
-				});
-				$address_items.eq(2).data("address", {
-					"name": "Jane Doe",
-					"company": "Hair Direct",
-					"street": "456 Hollow Dr.",
-					"city": "Lancaster",
-					"state": "PA",
-					"postal": "17603",
-					"country_code": "US",
-					"country_name": "United States",
-					"phone": "+1-444-444-3444"
-				});
+				var $address_items = Checkout.Fields.ShippingAddress.$address_list.children(),
+					$billing_address_items = Checkout.Fields.BillingInfo.$billing_address_list.children();
+				$address_items.eq(0).data("addressId", Checkout.Data.addresses[0].id);
+				$address_items.eq(1).data("addressId", Checkout.Data.addresses[1].id);
+				$address_items.eq(2).data("addressId", Checkout.Data.addresses[2].id);
+				$billing_address_items.eq(0).data("addressId", Checkout.Data.addresses[0].id);
+				$billing_address_items.eq(1).data("addressId", Checkout.Data.addresses[1].id);
+				$billing_address_items.eq(2).data("addressId", Checkout.Data.addresses[2].id);
 			},
 			"CalculateCartTotal": function () {
 				// reset the subotal
@@ -669,6 +681,32 @@ var Checkout = {
 				Checkout.Functions.Shared.CalculateCartTotal();
 				Checkout.Functions.Shared.CalculateTaxAmount();
 				Checkout.Data.checkout_details.grand_total = (Checkout.Data.checkout_details.subtotal - Checkout.Data.checkout_details.promo_amount + Checkout.Data.checkout_details.tax_amount + Checkout.Data.checkout_details.shipping_amount + Checkout.Data.checkout_details.shipping_tax_amount);
+			},
+			"GetAddressIndexById": function (id) {
+				var addressIndex = -1;
+				$.each(Checkout.Data.addresses, function (i, item) {
+					if (item.id === id) {
+						addressIndex = i;
+						return false;
+					}
+				});
+				return addressIndex;
+			},
+			"UpdateAddressMarkup": function (index) {
+				var addressData = Checkout.Data.addresses[index],
+					$address_items = Checkout.Fields.ShippingAddress.$address_list.children(),
+					$billing_address_items = Checkout.Fields.BillingInfo.$billing_address_list.children();
+				// Get shipping address
+				$.each($address_items, function (i, item) {
+					if ($address_items.data("addressId") === addressData.id) {
+						item.quantity = quantity;
+						item.extended_price = Checkout.Functions.Shared.GetDecimal(item.unit_price * item.quantity);
+						updated_item = item;
+						return false;
+					}
+				});
+				// Get billing address
+				// Determine if the review address was updated
 			},
 			"GetDecimal": function (number) {
 				/// <summary>Converts a string to a decimal (2 places).</summary>
@@ -941,6 +979,7 @@ var Checkout = {
 			},
 			"CreateNewAddressElement": function () {
 				var $newAddress,
+					id = Checkout.Data.addresses[Checkout.Data.addresses.length - 1].id + 1,
 					name = Checkout.Fields.ShippingAddress.$input_name.val(),
 					company = Checkout.Fields.ShippingAddress.$input_company.val(),
 					street = Checkout.Fields.ShippingAddress.$input_street.val(),
@@ -952,8 +991,8 @@ var Checkout = {
 					phone = Checkout.Fields.ShippingAddress.$input_phone.val(),
 					mu = '<li class="additional-address grid__item one-whole desk-one-half address-item">';
 
-				mu += '<input type="radio" name="select-address" id="address4" value="address4">';
-				mu += '<label for="address4" class="card">';
+				mu += '<input type="radio" name="select-address" id="address' + id + '" value="address4">';
+				mu += '<label for="address' + id + '" class="card">';
 				mu += '<span class="btn shiptothis secondary small"></span>';
 				mu += '<button class="btn edit tertiary small">Edit</button>';
 				mu += '<div class="address">';
@@ -966,8 +1005,9 @@ var Checkout = {
 				mu += country_name !== "" ? '<span class="country">' + country_name + '</span>' : "";
 				mu += phone !== "" ? '<span class="phone">' + phone + '</span>' : "";
 				mu += '</div></label></li>';
-				$newAddress = $(mu);
-				$newAddress.data("address", {
+
+				Checkout.Data.addresses.push({
+					"id": id,
 					"name": name,
 					"company": company,
 					"street": street,
@@ -978,6 +1018,9 @@ var Checkout = {
 					"country_name": country_name,
 					"phone": phone
 				});
+
+				$newAddress = $(mu);
+				$newAddress.data("addressId", id);
 				Checkout.Fields.ShippingAddress.$address_list.append($newAddress);
 				Checkout.Functions.ShippingAddress.BindEvents_AddressItems(true);
 				Checkout.Functions.ShippingAddress.BindEvents_EditAddressButton(true);
@@ -986,6 +1029,7 @@ var Checkout = {
 			"EditAddressElement": function () {
 				var $address_input = Checkout.Fields.ShippingAddress.$address_items.filter("[checked]"),
 					$address_element = $address_input.parent(),
+					index = Checkout.Functions.Shared.GetAddressIndexById($address_element.data("address").id);
 					name = Checkout.Fields.ShippingAddress.$input_name.val(),
 					company = Checkout.Fields.ShippingAddress.$input_company.val(),
 					street = Checkout.Fields.ShippingAddress.$input_street.val(),
@@ -996,18 +1040,17 @@ var Checkout = {
 					country_name = Checkout.Fields.ShippingAddress.$input_country.find("option:selected").text(),
 					phone = Checkout.Fields.ShippingAddress.$input_phone.val();
 
-				// Update the address elements data
-				$address_element.data("address", {
-					"name": name,
-					"company": company,
-					"street": street,
-					"city": city,
-					"state": state,
-					"postal": postal,
-					"country_code": country_code,
-					"country_name": country_name,
-					"phone": phone
-				});
+				// Update the address data
+				Checkout.Data.addresses[index].name = name;
+				Checkout.Data.addresses[index].company = company;
+				Checkout.Data.addresses[index].street = street;
+				Checkout.Data.addresses[index].city = city;
+				Checkout.Data.addresses[index].state = state;
+				Checkout.Data.addresses[index].postal = postal;
+				Checkout.Data.addresses[index].country_code = country_code;
+				Checkout.Data.addresses[index].country_name = country_name;
+				Checkout.Data.addresses[index].phone = phone;
+
 				// Update the element markup
 				$address_element.find(".name").text(name);
 				$address_element.find(".company").text(company);
