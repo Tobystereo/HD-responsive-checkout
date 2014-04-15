@@ -5997,7 +5997,7 @@ input[type=radio]:checked + label.card .shiptothis:after, input[type=radio]:chec
 /* line 862, ui/_checkout.scss */
 .type {
   display: block;
-  width: 29px;
+  width: 30px;
   height: 20px;
   overflow: hidden;
   text-indent: 101%;
@@ -6014,11 +6014,11 @@ input[type=radio]:checked + label.card .shiptothis:after, input[type=radio]:chec
 }
 /* line 881, ui/_checkout.scss */
 .type.mastercard {
-  background-position: -29px 0;
+  background-position: -30px 0;
 }
 /* line 885, ui/_checkout.scss */
 .type.amex, .type.americanexpress {
-  background-position: -58px 0;
+  background-position: -60px 0;
 }
 /* line 889, ui/_checkout.scss */
 .type.discover {
@@ -6026,7 +6026,7 @@ input[type=radio]:checked + label.card .shiptothis:after, input[type=radio]:chec
 }
 /* line 893, ui/_checkout.scss */
 .type.paypal {
-  background-position: -96px 0;
+  background-position: -120px 0;
 }
 
 /* line 900, ui/_checkout.scss */
@@ -6041,11 +6041,11 @@ input[type=radio]:checked + label.card .shiptothis:after, input[type=radio]:chec
 }
 /* line 909, ui/_checkout.scss */
 .add-edit-credit-card .type.mastercard {
-  background-position: -58px 0;
+  background-position: -60px 0;
 }
 /* line 913, ui/_checkout.scss */
 .add-edit-credit-card .type.amex, .add-edit-credit-card .type.americanexpress {
-  background-position: -116px 0;
+  background-position: -120px 0;
 }
 /* line 917, ui/_checkout.scss */
 .add-edit-credit-card .type.discover {
@@ -6106,7 +6106,7 @@ input[type=radio]:checked + label.card .shiptothis:after, input[type=radio]:chec
   height: 20px;
   background: url("../images/creditcards.png") no-repeat;
   background-size: auto 20px;
-  background-position: -96px 0;
+  background-position: -120px 0;
   margin-left: 1em;
   margin-bottom: -4px;
 }
