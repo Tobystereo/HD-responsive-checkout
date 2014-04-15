@@ -658,13 +658,20 @@ var Checkout = {
 			},
 			"InitializeAddressData": function () {
 				var $address_items = Checkout.Fields.ShippingAddress.$address_list.children(),
-					$billing_address_items = Checkout.Fields.BillingInfo.$billing_address_list.children();
+					$billing_address_items = Checkout.Fields.BillingInfo.$billing_address_list.children(),
+					$default_cc_address = Checkout.Fields.BillingInfo.$default_payment.find(".address"),
+					$cc_addresses = Checkout.Fields.BillingInfo.$credit_card_list.find(".address");
+
 				$address_items.eq(0).data("addressId", Checkout.Data.addresses[0].id);
 				$address_items.eq(1).data("addressId", Checkout.Data.addresses[1].id);
 				$address_items.eq(2).data("addressId", Checkout.Data.addresses[2].id);
 				$billing_address_items.eq(0).data("addressId", Checkout.Data.addresses[0].id);
 				$billing_address_items.eq(1).data("addressId", Checkout.Data.addresses[1].id);
 				$billing_address_items.eq(2).data("addressId", Checkout.Data.addresses[2].id);
+				$default_cc_address.data("addressId", Checkout.Data.addresses[0].id);
+				$cc_addresses.eq(0).data("addressId", Checkout.Data.addresses[0].id);
+				$cc_addresses.eq(1).data("addressId", Checkout.Data.addresses[2].id);
+				$cc_addresses.eq(2).data("addressId", Checkout.Data.addresses[0].id);
 			},
 			"CalculateCartTotal": function () {
 				// reset the subotal
@@ -692,21 +699,77 @@ var Checkout = {
 				});
 				return addressIndex;
 			},
-			"UpdateAddressMarkup": function (index) {
-				var addressData = Checkout.Data.addresses[index],
-					$address_items = Checkout.Fields.ShippingAddress.$address_list.children(),
-					$billing_address_items = Checkout.Fields.BillingInfo.$billing_address_list.children();
-				// Get shipping address
-				$.each($address_items, function (i, item) {
-					if ($address_items.data("addressId") === addressData.id) {
-						item.quantity = quantity;
-						item.extended_price = Checkout.Functions.Shared.GetDecimal(item.unit_price * item.quantity);
-						updated_item = item;
+			"UpdateAddress": function (addressData, $address_element, type) {
+				var addressDataEntry = Checkout.Data.addresses[Checkout.Functions.Shared.GetAddressIndexById(addressData.id)]
+				$shipping_address_items = type == "billing" ? Checkout.Fields.ShippingAddress.$address_list.children() : undefined,
+				$billing_address_items = type == "shipping" ? Checkout.Fields.BillingInfo.$billing_address_list.children() : undefined,
+				$default_cc_address = Checkout.Fields.BillingInfo.$default_payment.find(".address"),
+				$cc_addresses = Checkout.Fields.BillingInfo.$credit_card_list.find(".address");
+
+				// Update address data entry
+				addressDataEntry.name = addressData.name;
+				addressDataEntry.company = addressData.company;
+				addressDataEntry.street = addressData.street;
+				addressDataEntry.city = addressData.city;
+				addressDataEntry.state = addressData.state;
+				addressDataEntry.postal = addressData.postal;
+				addressDataEntry.country_code = addressData.country_code;
+				addressDataEntry.country_name = addressData.country_name;
+				addressDataEntry.phone = addressData.phone;
+
+				// Update the supplied element
+				Checkout.Functions.Shared.UpdateAddressMarkup($address_element, addressData);
+
+				// Update shipping address element
+				if ($shipping_address_items !== undefined) {
+					$.each($shipping_address_items, function (i, element) {
+						var $element = $(element);
+						if ($element.data("addressId") === addressData.id) {
+							Checkout.Functions.Shared.UpdateAddressMarkup($element, addressData);
+							return false;
+						}
+					});
+				}
+				// Update shipping address element
+				if ($billing_address_items !== undefined) {
+					$.each($billing_address_items, function (i, element) {
+						var $element = $(element);
+						if ($element.data("addressId") === addressData.id) {
+							Checkout.Functions.Shared.UpdateAddressMarkup($element, addressData);
+							return false;
+						}
+					});
+				}
+				// Determine if the default credit card address was updated
+				if ($default_cc_address.data("addressId") === addressData.id) {
+					Checkout.Functions.Shared.UpdateAddressMarkup($default_cc_address, addressData);
+				}
+				// Update credit card address data
+				$.each($cc_addresses, function (i, element) {
+					var $element = $(element);
+					if ($element.data("addressId") === addressData.id) {
+						Checkout.Functions.Shared.UpdateAddressMarkup($element, addressData);
 						return false;
 					}
 				});
-				// Get billing address
-				// Determine if the review address was updated
+				// Determine if the review shipping address was updated
+				if (Checkout.Fields.Review.$shipping_address_container.data("addressId") === addressData.id) {
+					Checkout.Functions.Shared.UpdateAddressMarkup(Checkout.Fields.Review.$shipping_address_container, addressData);
+				}
+				// Determine if the review billing address was updated
+				if (Checkout.Fields.Review.$billing_address_container.data("addressId") === addressData.id) {
+					Checkout.Functions.Shared.UpdateAddressMarkup(Checkout.Fields.Review.$billing_address_container, addressData);
+				}
+			},
+			"UpdateAddressMarkup": function ($element, data) {
+				$element.find(".name").text(data.name);
+				$element.find(".company").text(data.company);
+				$element.find(".street").text(data.street);
+				$element.find(".city").text(data.city);
+				$element.find(".state").text(data.state);
+				$element.find(".zip").text(data.postal);
+				$element.find(".country").text(data.country_name);
+				$element.find(".phone").text(data.phone);
 			},
 			"GetDecimal": function (number) {
 				/// <summary>Converts a string to a decimal (2 places).</summary>
@@ -855,20 +918,21 @@ var Checkout = {
 				}
 				Checkout.Fields.ShippingAddress.$btnedit_address.on("click", function (e) {
 					var $this = $(this),
-						$parent = $this.parent().parent();
+						$parent = $this.parent().parent(),
+						data = Checkout.Data.addresses[Checkout.Functions.Shared.GetAddressIndexById($parent.data("addressId"))];
 					e.stopPropagation();
 					$parent.find("input[type=radio]").attr("checked", "checked");
 					// Hide the new address button
 					Checkout.Fields.ShippingAddress.$btnadd_address.slideUp(Checkout.Settings.Shared.easing - 200);
 					// Set the input values
-					Checkout.Fields.ShippingAddress.$input_country.val($parent.data("address").country_code);
-					Checkout.Fields.ShippingAddress.$input_name.val($parent.data("address").name);
-					Checkout.Fields.ShippingAddress.$input_company.val($parent.data("address").company);
-					Checkout.Fields.ShippingAddress.$input_street.val($parent.data("address").street);
-					Checkout.Fields.ShippingAddress.$input_city.val($parent.data("address").city);
-					Checkout.Fields.ShippingAddress.$input_state.val($parent.data("address").state);
-					Checkout.Fields.ShippingAddress.$input_postal.val($parent.data("address").postal);
-					Checkout.Fields.ShippingAddress.$input_phone.val($parent.data("address").phone);
+					Checkout.Fields.ShippingAddress.$input_country.val(data.country_code);
+					Checkout.Fields.ShippingAddress.$input_name.val(data.name);
+					Checkout.Fields.ShippingAddress.$input_company.val(data.company);
+					Checkout.Fields.ShippingAddress.$input_street.val(data.street);
+					Checkout.Fields.ShippingAddress.$input_city.val(data.city);
+					Checkout.Fields.ShippingAddress.$input_state.val(data.state);
+					Checkout.Fields.ShippingAddress.$input_postal.val(data.postal);
+					Checkout.Fields.ShippingAddress.$input_phone.val(data.phone);
 					Checkout.Fields.ShippingAddress.$address_inputs.trigger("change");
 					Checkout.Fields.ShippingAddress.$secondary_fields.css("display", "");
 					// Display the address form
@@ -924,7 +988,6 @@ var Checkout = {
 						else {
 							Checkout.Functions.ShippingAddress.EditAddressElement();
 						}
-						Checkout.Functions.ShippingAddress.EvaluateSelectedAddress();
 					},
 					callback: function (element, event) {
 						Checkout.Functions.ShippingAddress.ResetAddressForm();
@@ -1029,7 +1092,7 @@ var Checkout = {
 			"EditAddressElement": function () {
 				var $address_input = Checkout.Fields.ShippingAddress.$address_items.filter("[checked]"),
 					$address_element = $address_input.parent(),
-					index = Checkout.Functions.Shared.GetAddressIndexById($address_element.data("address").id);
+					id = $address_element.data("addressId"),
 					name = Checkout.Fields.ShippingAddress.$input_name.val(),
 					company = Checkout.Fields.ShippingAddress.$input_company.val(),
 					street = Checkout.Fields.ShippingAddress.$input_street.val(),
@@ -1038,49 +1101,35 @@ var Checkout = {
 					postal = Checkout.Fields.ShippingAddress.$input_postal.val(),
 					country_code = Checkout.Fields.ShippingAddress.$input_country.val(),
 					country_name = Checkout.Fields.ShippingAddress.$input_country.find("option:selected").text(),
-					phone = Checkout.Fields.ShippingAddress.$input_phone.val();
+					phone = Checkout.Fields.ShippingAddress.$input_phone.val(),
+					addressData = {
+						"id": id,
+						"name": name,
+						"company": company,
+						"street": street,
+						"city": city,
+						"state": state,
+						"postal": postal,
+						"country_code": country_code,
+						"country_name": country_name,
+						"phone": phone
+					};
 
-				// Update the address data
-				Checkout.Data.addresses[index].name = name;
-				Checkout.Data.addresses[index].company = company;
-				Checkout.Data.addresses[index].street = street;
-				Checkout.Data.addresses[index].city = city;
-				Checkout.Data.addresses[index].state = state;
-				Checkout.Data.addresses[index].postal = postal;
-				Checkout.Data.addresses[index].country_code = country_code;
-				Checkout.Data.addresses[index].country_name = country_name;
-				Checkout.Data.addresses[index].phone = phone;
-
-				// Update the element markup
-				$address_element.find(".name").text(name);
-				$address_element.find(".company").text(company);
-				$address_element.find(".street").text(street);
-				$address_element.find(".city").text(city);
-				$address_element.find(".state").text(state);
-				$address_element.find(".zip").text(postal);
-				$address_element.find(".country").text(country_name);
-				$address_element.find(".phone").text(phone);
-
+				// Update the address data and markup
+				Checkout.Functions.Shared.UpdateAddress(addressData, $address_element, "shipping");
 				$address_input.trigger("click");
 			},
 			"UpdateShippingAddressData": function (selected_address) {
-				var $name = selected_address.data("address").name,
-					$company = selected_address.data("address").company,
-					$street = selected_address.data("address").street,
-					$city = selected_address.data("address").city,
-					$state = selected_address.data("address").state,
-					$postal = selected_address.data("address").postal,
-					$country = selected_address.data("address").country_name,
-					$phone = selected_address.data("address").phone;
+				var data = Checkout.Data.addresses[Checkout.Functions.Shared.GetAddressIndexById(selected_address.data("addressId"))];
 
-				Checkout.Data.checkout_details.shipping_address.name = $name !== "" ? $name : "";
-				Checkout.Data.checkout_details.shipping_address.company = $company !== "" ? $company : "";
-				Checkout.Data.checkout_details.shipping_address.street = $street !== "" ? $street : "";
-				Checkout.Data.checkout_details.shipping_address.city = $city !== "" ? $city : "";
-				Checkout.Data.checkout_details.shipping_address.state = $state !== "" ? $state : "";
-				Checkout.Data.checkout_details.shipping_address.postal_code = $postal !== "" ? $postal : "";
-				Checkout.Data.checkout_details.shipping_address.country = $country !== "" ? $country : "";
-				Checkout.Data.checkout_details.shipping_address.phone_number = $phone !== "" ? $phone : "";
+				Checkout.Data.checkout_details.shipping_address.name = data.name;
+				Checkout.Data.checkout_details.shipping_address.company = data.company;
+				Checkout.Data.checkout_details.shipping_address.street = data.street;
+				Checkout.Data.checkout_details.shipping_address.city = data.city;
+				Checkout.Data.checkout_details.shipping_address.state = data.state;
+				Checkout.Data.checkout_details.shipping_address.postal_code = data.postal;
+				Checkout.Data.checkout_details.shipping_address.country = data.country_name;
+				Checkout.Data.checkout_details.shipping_address.phone_number = data.phone;
 			},
 			"ResetAddressForm": function () {
 				Checkout.Fields.ShippingAddress.$input_country.val("");
