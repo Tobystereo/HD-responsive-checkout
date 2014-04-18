@@ -1,4 +1,6 @@
 ﻿/// <reference path="jquery.ba-bbq.js"/>
+/// <reference path="animatescroll.js" />
+/// <reference path="modal.js" />
 
 //#region -- PLUGINS --
 
@@ -15,7 +17,7 @@
 				post_toggle: undefined,
 				callback: undefined,
 				delay: 300,
-				enable_logging: true,
+				enable_logging: false,
 				force_state: "", /* show|hide */
 				firing_events: "click",
 				toggle_self: true,
@@ -163,7 +165,9 @@ var Checkout = {
 				"postal": "88739",
 				"country_code": "US",
 				"country_name": "United States",
-				"phone": "+1-222-333-4567"
+				"phone": "+1-222-333-4567",
+				"default_shipping": true,
+				"default_billing": true
 			},
 			{
 				"id": 2,
@@ -175,19 +179,55 @@ var Checkout = {
 				"postal": "17601",
 				"country_code": "US",
 				"country_name": "United States",
-				"phone": "+1-555-555-5555"
+				"phone": "+1-555-555-5555",
+				"default_shipping": false,
+				"default_billing": false
 			},
 			{
 				"id": 3,
 				"name": "Jane Doe",
-				"company": "Hair Direct",
+				"company": "",
 				"street": "456 Hollow Dr.",
 				"city": "Lancaster",
 				"state": "PA",
 				"postal": "17603",
 				"country_code": "US",
 				"country_name": "United States",
-				"phone": "+1-444-444-3444"
+				"phone": "+1-444-444-3444",
+				"default_shipping": false,
+				"default_billing": false
+			}
+		],
+		"credit_cards": [
+			{
+				"id": 1,
+				"name": "John Doe",
+				"type": "Visa",
+				"last_four": "8237",
+				"expiration": "10/16",
+				"addressId": 1,
+				"default": true,
+				"in_wallet": true
+			},
+			{
+				"id": 2,
+				"name": "John Doe",
+				"type": "MasterCard",
+				"last_four": "7812",
+				"expiration": "01/13",
+				"addressId": 1,
+				"default": false,
+				"in_wallet": true
+			},
+			{
+				"id": 3,
+				"name": "Jane Doe",
+				"type": "AMEX",
+				"last_four": "2254",
+				"expiration": "01/13",
+				"addressId": 3,
+				"default": false,
+				"in_wallet": true
 			}
 		],
 		"checkout_details": {
@@ -290,6 +330,7 @@ var Checkout = {
 			"$promo_error": undefined,
 			"$default_payment_container": undefined,
 			"$default_payment": undefined,
+			"$default_payment_item": undefined,
 			"$btnchange_payment_option": undefined,
 			"$payment_wrapper": undefined,
 			"$payment_option_list": undefined,
@@ -456,7 +497,8 @@ var Checkout = {
 				Checkout.Fields.BillingInfo.$promo_error = Checkout.Fields.BillingInfo.$promo_code_form.find(".promo-error-message");
 				Checkout.Fields.BillingInfo.$btnchange_payment_option = Checkout.Fields.Shared.$step_billing.find("button.change-payment-option");
 				Checkout.Fields.BillingInfo.$default_payment_container = Checkout.Fields.Shared.$step_billing.find("div.default-payment");
-				Checkout.Fields.BillingInfo.$default_payment = Checkout.Fields.BillingInfo.$default_payment_container.find("div.default");
+				Checkout.Fields.BillingInfo.$default_payment = Checkout.Fields.Shared.$step_billing.find("div.credit-card-item.default");
+				Checkout.Fields.BillingInfo.$default_payment_item = Checkout.Fields.BillingInfo.$default_payment.find("input[type=radio]");
 				Checkout.Fields.BillingInfo.$payment_wrapper = Checkout.Fields.Shared.$step_billing.find("div.payment-wrapper");
 				Checkout.Fields.BillingInfo.$payment_option_list = Checkout.Fields.BillingInfo.$payment_wrapper.find(".payment-option-list");
 				Checkout.Fields.BillingInfo.$payment_option_credit_card = Checkout.Fields.BillingInfo.$payment_option_list.find("#payment-option-credit-card");
@@ -465,6 +507,7 @@ var Checkout = {
 				Checkout.Fields.BillingInfo.$credit_card_wrapper = Checkout.Fields.Shared.$step_billing.find(".credit-card-wrapper");
 				Checkout.Fields.BillingInfo.$credit_card_list = Checkout.Fields.BillingInfo.$credit_card_wrapper.find(".credit-card-list");
 				Checkout.Fields.BillingInfo.$credit_cards = Checkout.Fields.BillingInfo.$credit_card_list.find(".credit-card-item input[type=radio]");
+				Checkout.Fields.BillingInfo.$credit_cards = Checkout.Fields.BillingInfo.$credit_cards.add(Checkout.Fields.BillingInfo.$default_payment_item);
 				Checkout.Fields.BillingInfo.$paypal_container = Checkout.Fields.Shared.$step_billing.find(".paypal-container");
 				Checkout.Fields.BillingInfo.$btncreate_credit_card = Checkout.Fields.BillingInfo.$credit_card_wrapper.find(".create-credit-card");
 				Checkout.Fields.BillingInfo.$credit_card_form = Checkout.Fields.BillingInfo.$credit_card_wrapper.find("#credit-card-form");
@@ -689,18 +732,44 @@ var Checkout = {
 				Checkout.Functions.Shared.CalculateTaxAmount();
 				Checkout.Data.checkout_details.grand_total = (Checkout.Data.checkout_details.subtotal - Checkout.Data.checkout_details.promo_amount + Checkout.Data.checkout_details.tax_amount + Checkout.Data.checkout_details.shipping_amount + Checkout.Data.checkout_details.shipping_tax_amount);
 			},
-			"GetAddressIndexById": function (id) {
-				var addressIndex = -1;
+			"GetAddressById": function (id) {
+				var address = undefined,
+					index = -1;
+				if (id > 0) {
+					$.each(Checkout.Data.addresses, function (i, item) {
+						if (item.id === id) {
+							index = i;
+							return false;
+						}
+					});
+					if (index > -1) {
+						address = Checkout.Data.addresses[index];
+					}
+				}
+				return address;
+			},
+			"GetDefaultShippingAddress": function () {
+				var address = undefined;
 				$.each(Checkout.Data.addresses, function (i, item) {
-					if (item.id === id) {
-						addressIndex = i;
+					if (item.default_shipping) {
+						address = item;
 						return false;
 					}
 				});
-				return addressIndex;
+				return address;
+			},
+			"GetDefaultBillingAddress": function () {
+				var address = undefined;
+				$.each(Checkout.Data.addresses, function (i, item) {
+					if (item.default_billing) {
+						address = item;
+						return false;
+					}
+				});
+				return address;
 			},
 			"UpdateAddress": function (addressData, $address_element, type) {
-				var addressDataEntry = Checkout.Data.addresses[Checkout.Functions.Shared.GetAddressIndexById(addressData.id)]
+				var addressDataEntry = Checkout.Functions.Shared.GetAddressById(addressData.id),
 				$shipping_address_items = type == "billing" ? Checkout.Fields.ShippingAddress.$address_list.children() : undefined,
 				$billing_address_items = type == "shipping" ? Checkout.Fields.BillingInfo.$billing_address_list.children() : undefined,
 				$default_cc_address = Checkout.Fields.BillingInfo.$default_payment.find(".address"),
@@ -803,6 +872,7 @@ var Checkout = {
 					Checkout.Functions.Shared.InitializeAddressData();
 					Checkout.Functions.BillingInfo.InitializeCreditCardData();
 					Checkout.Functions.Shared.UpdateOrderTotal();
+					Checkout.Fields.BillingInfo.$input_cc_expiration.mask("99/99");
 					jQuery.bbq.pushState("#" + Checkout.Settings.Shared.step_url_prefix + Checkout.Fields.Shared.$step_current.attr("id"), 2);
 					$(window).trigger('hashchange');
 				});
@@ -919,7 +989,7 @@ var Checkout = {
 				Checkout.Fields.ShippingAddress.$btnedit_address.on("click", function (e) {
 					var $this = $(this),
 						$parent = $this.parent().parent(),
-						data = Checkout.Data.addresses[Checkout.Functions.Shared.GetAddressIndexById($parent.data("addressId"))];
+						data = Checkout.Functions.Shared.GetAddressById($parent.data("addressId"));
 					e.stopPropagation();
 					$parent.find("input[type=radio]").attr("checked", "checked");
 					// Hide the new address button
@@ -1120,7 +1190,7 @@ var Checkout = {
 				$address_input.trigger("click");
 			},
 			"UpdateShippingAddressData": function (selected_address) {
-				var data = Checkout.Data.addresses[Checkout.Functions.Shared.GetAddressIndexById(selected_address.data("addressId"))];
+				var data = Checkout.Functions.Shared.GetAddressById(selected_address.data("addressId"));
 
 				Checkout.Data.checkout_details.shipping_address.name = data.name;
 				Checkout.Data.checkout_details.shipping_address.company = data.company;
@@ -1299,8 +1369,14 @@ var Checkout = {
 					content_element: Checkout.Fields.BillingInfo.$credit_card_form,
 					force_state: "hide",
 					pre_logic: function () {
-						Checkout.Fields.BillingInfo.$default_payment.insertAfter(Checkout.Fields.BillingInfo.$payment_option_list).wrap("<div class='grid'></div>").find("h3").hide();
-						Checkout.Functions.BillingInfo.BindEvents_EditDefaultCreditCardButton(true);
+						if (Checkout.Fields.BillingInfo.$default_payment.parent().hasClass("default-payment")) {
+							Checkout.Fields.BillingInfo.$default_payment = Checkout.Fields.BillingInfo.$default_payment.insertAfter(Checkout.Fields.BillingInfo.$payment_option_list).wrap("<div class='grid'></div>");
+							Checkout.Fields.BillingInfo.$default_payment.find("h3").hide();
+							Checkout.Fields.BillingInfo.$btnedit_default_credit_card = Checkout.Fields.BillingInfo.$default_payment.find("button.edit-credit-card");
+							Checkout.Functions.BillingInfo.BindEvents_EditDefaultCreditCardButton(true);
+							Checkout.Functions.BillingInfo.BindEvents_CreditCardItems(true);
+						}
+						Checkout.Fields.BillingInfo.$default_payment_item.trigger("click");
 					},
 					toggle_self: false
 				}).toggleContainer({
@@ -1355,7 +1431,7 @@ var Checkout = {
 							Checkout.Functions.BillingInfo.CreateNewCreditCardElement();
 						}
 						else {
-
+							Checkout.Functions.BillingInfo.UpdateCreditCardElement();
 						}
 					},
 					delay: Checkout.Settings.Shared.easing - 200,
@@ -1388,8 +1464,15 @@ var Checkout = {
 					toggle_self: false,
 					delay: Checkout.Settings.Shared.easing - 200,
 					post_toggle: function () {
+						var $selectedCard = undefined;
 						if (Checkout.Fields.BillingInfo.$payment_option_credit_card.is(":checked")) {
-							Checkout.Fields.BillingInfo.$credit_card_list.find("input[type=radio]:checked").parent().animatedScroll();
+							$selectedCard = Checkout.Fields.BillingInfo.$credit_card_list.find("input[type=radio]:checked");
+							if ($selectedCard !== undefined) {
+								$selectedCard.parent().animatedScroll();
+							}
+							else {
+								Checkout.Fields.BillingInfo.$credit_card_list.animatedScroll();
+							}
 						}
 						else {
 							Checkout.Fields.BillingInfo.$default_payment.animatedScroll();
@@ -1452,7 +1535,9 @@ var Checkout = {
 			},
 			"BindEvents_CreditCardItems": function (refreshSelector) {
 				if (refreshSelector) {
-					Checkout.Fields.BillingInfo.$credit_cards = $(Checkout.Fields.BillingInfo.$credit_cards.selector);
+					Checkout.Fields.BillingInfo.$default_payment_item = $(Checkout.Fields.BillingInfo.$default_payment_item.selector);
+					Checkout.Fields.BillingInfo.$credit_cards = Checkout.Fields.BillingInfo.$credit_card_list.find(".credit-card-item input[type=radio]");
+					Checkout.Fields.BillingInfo.$credit_cards = Checkout.Fields.BillingInfo.$credit_cards.add(Checkout.Fields.BillingInfo.$default_payment_item);
 				}
 
 				Checkout.Fields.BillingInfo.$credit_cards.on("click", function (e) {
@@ -1460,7 +1545,7 @@ var Checkout = {
 					e.stopPropagation();
 					Checkout.Data.checkout_details.billing_method = "Credit Card";
 					Checkout.Functions.BillingInfo.UpdateCreditCardData($parent.find(".credit-card"));
-					Checkout.Functions.BillingInfo.UpdateBillingAddressData($parent.find(".address"));
+					Checkout.Functions.BillingInfo.UpdateBillingAddressData($parent);
 					Checkout.Functions.Review.RefreshOrderReviewSelectionData();
 				}).toggleContainer({
 					content_element: Checkout.Fields.BillingInfo.$btncreate_credit_card,
@@ -1502,12 +1587,10 @@ var Checkout = {
 				Checkout.Fields.BillingInfo.$billing_address_items.toggleContainer({
 					content_element: Checkout.Fields.BillingInfo.$btnchange_billing_address,
 					pre_logic: function (self) {
-						var selected = $(self).parent().find(".address").clone();
-						selected.find(".name").remove();
-						selected.find(".company").remove();
-						selected.find(".country").remove();
-						selected.find(".phone").remove();
-						Checkout.Fields.BillingInfo.$card_billing_address_container.html("Billing Address:" + selected.html());
+						var address = Checkout.Functions.Shared.GetAddressById($(self).parent().data("addressId")),
+							mu = Checkout.Functions.BillingInfo.GetCreditCardAddressMarkup(address.street, address.city, address.state, address.postal);
+
+						Checkout.Fields.BillingInfo.$card_billing_address_container.data("addressId", address.id).html(mu);
 					},
 					toggle_self: false,
 					force_state: "show",
@@ -1605,6 +1688,9 @@ var Checkout = {
 						if (Checkout.Fields.BillingInfo.$billing_address_form.attr("data-mode") == "new") {
 							Checkout.Functions.BillingInfo.CreateNewAddressElement();
 						}
+						else {
+							Checkout.Functions.BillingInfo.EditAddressElement();
+						}
 					},
 					callback: function (element, event) {
 						Checkout.Functions.BillingInfo.ResetAddressForm();
@@ -1621,19 +1707,20 @@ var Checkout = {
 				}
 
 				Checkout.Fields.BillingInfo.$btnedit_address.on("click", function (e) {
-					var $this = $(this);
+					var $this = $(this),
+						addressData = Checkout.Functions.Shared.GetAddressById($this.parent().parent().data("addressId"));
 					e.stopPropagation();
 					$this.parent().parent().find("input[type=radio]").attr("checked", "checked");
 					// Set the input values
 					Checkout.Functions.BillingInfo.ToggleAddressFormMode("edit");
-					Checkout.Fields.BillingInfo.$input_country.val("CA");
-					Checkout.Fields.BillingInfo.$input_name.val("Editing Name");
-					Checkout.Fields.BillingInfo.$input_company.val("Editing Company");
-					Checkout.Fields.BillingInfo.$input_street.val("Editing Street Address");
-					Checkout.Fields.BillingInfo.$input_city.val("Editing City");
-					Checkout.Fields.BillingInfo.$input_state.val("Editing State");
-					Checkout.Fields.BillingInfo.$input_postal.val("Editing Postal Code");
-					Checkout.Fields.BillingInfo.$input_phone.val("Editing Phone");
+					Checkout.Fields.BillingInfo.$input_country.val(addressData.country_code);
+					Checkout.Fields.BillingInfo.$input_name.val(addressData.name);
+					Checkout.Fields.BillingInfo.$input_company.val(addressData.company);
+					Checkout.Fields.BillingInfo.$input_street.val(addressData.street);
+					Checkout.Fields.BillingInfo.$input_city.val(addressData.city);
+					Checkout.Fields.BillingInfo.$input_state.val(addressData.state);
+					Checkout.Fields.BillingInfo.$input_postal.val(addressData.postal);
+					Checkout.Fields.BillingInfo.$input_phone.val(addressData.phone);
 					Checkout.Fields.BillingInfo.$address_inputs.trigger("change");
 					Checkout.Fields.BillingInfo.$secondary_fields.css("display", "");
 
@@ -1665,75 +1752,10 @@ var Checkout = {
 			"InitializeCreditCardData": function () {
 				var $credit_cards = Checkout.Fields.BillingInfo.$credit_card_list.children();
 
-				Checkout.Fields.BillingInfo.$default_payment.data("credit-card", {
-					"name": "John Doe",
-					"type": "Visa",
-					"last_four": "8237",
-					"expiration": "10/16",
-					"address": {
-						"name": "John Doe",
-						"company": "",
-						"street": "123 A street",
-						"city": "Mobile",
-						"state": "AK",
-						"postal": "88739",
-						"country_code": "US",
-						"country_name": "United States",
-						"phone": "+1-222-333-4567"
-					}
-				});
-
-				$credit_cards.eq(0).data("credit-card", {
-					"name": "John Doe",
-					"type": "MasterCard",
-					"last_four": "7812",
-					"expiration": "01/13",
-					"address": {
-						"name": "John Doe",
-						"company": "",
-						"street": "123 A street",
-						"city": "Mobile",
-						"state": "AK",
-						"postal": "88739",
-						"country_code": "US",
-						"country_name": "United States",
-						"phone": "+1-222-333-4567"
-					}
-				});
-				$credit_cards.eq(1).data("credit-card", {
-					"name": "Jane Doe",
-					"type": "AMEX",
-					"last_four": "2254",
-					"expiration": "03/13",
-					"address": {
-						"name": "Jane Doe",
-						"company": "",
-						"street": "456 Hollow Dr.",
-						"city": "Lancaster",
-						"state": "PA",
-						"postal": "17603",
-						"country_code": "US",
-						"country_name": "United States",
-						"phone": "+1-444-444-3444"
-					}
-				});
-				$credit_cards.eq(2).data("credit-card", {
-					"name": "John Doe",
-					"type": "Visa",
-					"last_four": "8237",
-					"expiration": "10/16",
-					"address": {
-						"name": "John Doe",
-						"company": "",
-						"street": "123 A street",
-						"city": "Mobile",
-						"state": "AK",
-						"postal": "88739",
-						"country_code": "US",
-						"country_name": "United States",
-						"phone": "+1-222-333-4567"
-					}
-				});
+				Checkout.Fields.BillingInfo.$default_payment.data("credit-card-id", 1);
+				$credit_cards.eq(0).data("credit-card-id", 2);
+				$credit_cards.eq(1).data("credit-card-id", 3);
+				$credit_cards.eq(2).data("credit-card-id", 1);
 			},
 			"ToggleCreditCardFormMode": function (mode) {
 				// Set the mode on the form
@@ -1777,18 +1799,18 @@ var Checkout = {
 				}
 			},
 			"PopulateEditCardForm": function ($editedCard) {
+				var creditCardData = Checkout.Functions.BillingInfo.GetCreditCardById($editedCard.data("credit-card-id")),
+					addressData = Checkout.Functions.Shared.GetAddressById(creditCardData.addressId);
 				Checkout.Functions.BillingInfo.ResetCreditCardForm();
-				Checkout.Fields.BillingInfo.$edited_card_masked_number.text("ending in: " + $editedCard.data("credit-card").last_four);
-				Checkout.Fields.BillingInfo.$edited_card_type.removeClass("amex mastercard visa discover").addClass($editedCard.data("credit-card").type.toLowerCase()).text($editedCard.data("credit-card").type);
-				Checkout.Fields.BillingInfo.$input_cc_name.val($editedCard.data("credit-card").name);
-				Checkout.Fields.BillingInfo.$input_cc_expiration.val($editedCard.data("credit-card").expiration);
-				Checkout.Fields.BillingInfo.$card_billing_address_street.text($editedCard.data("credit-card").address.street);
-				Checkout.Fields.BillingInfo.$card_billing_address_city.text($editedCard.data("credit-card").address.city);
-				Checkout.Fields.BillingInfo.$card_billing_address_state.text($editedCard.data("credit-card").address.state);
-				Checkout.Fields.BillingInfo.$card_billing_address_postal.text($editedCard.data("credit-card").address.postal);
+				Checkout.Fields.BillingInfo.$edited_card_masked_number.text("ending in: " + creditCardData.last_four);
+				Checkout.Fields.BillingInfo.$edited_card_type.removeClass("amex mastercard visa discover").addClass(creditCardData.type.toLowerCase()).text(creditCardData.type);
+				Checkout.Fields.BillingInfo.$input_cc_name.val(creditCardData.name);
+				Checkout.Fields.BillingInfo.$input_cc_expiration.val(creditCardData.expiration);
+				Checkout.Fields.BillingInfo.$card_billing_address_container.data("addressId", addressData.id).html(Checkout.Functions.BillingInfo.GetCreditCardAddressMarkup(addressData.street, addressData.city, addressData.state, addressData.postal));
 				Checkout.Fields.BillingInfo.$credit_card_inputs.trigger("change");
 			},
 			"ResetCreditCardForm": function () {
+				var address = Checkout.Functions.Shared.GetDefaultBillingAddress();
 				Checkout.Fields.BillingInfo.$edited_card_masked_number.html("");
 				Checkout.Fields.BillingInfo.$edited_card_type.removeClass("visa mastercard amex discover").html("");
 				Checkout.Fields.BillingInfo.$input_cc_name.val("");
@@ -1796,6 +1818,7 @@ var Checkout = {
 				Checkout.Fields.BillingInfo.$input_cc_expiration.val("");
 				Checkout.Fields.BillingInfo.$input_cc_security_code.val("");
 				Checkout.Fields.BillingInfo.$input_cc_store_in_wallet.removeAttr("checked");
+				Checkout.Fields.BillingInfo.$card_billing_address_container.data("addressId", address.id).html(Checkout.Functions.BillingInfo.GetCreditCardAddressMarkup(address.street, address.city, address.state, address.postal));
 				Checkout.Fields.BillingInfo.$btnchange_billing_address.show();
 				Checkout.Fields.BillingInfo.$credit_card_inputs.trigger("change");
 			},
@@ -1811,68 +1834,233 @@ var Checkout = {
 				Checkout.Fields.BillingInfo.$secondary_fields.css("display", "none");
 				Checkout.Fields.BillingInfo.$billing_address_form.find("label").removeClass("notempty");
 			},
-			"CreateNewCreditCardElement": function () {
-				var $newCard,
-					mu = '<li class="default grid__item one-whole desk-one-half credit-card-item">';
-				mu += '<input type="radio" name="select-credit-card" id="card6" value="card6">';
-				mu += '<label for="card6" class="card incomplete">';
+			"GetCreditCardById": function (id) {
+				var card = undefined,
+					index = -1;
+				if (id > 0) {
+					$.each(Checkout.Data.credit_cards, function (i, item) {
+						if (item.id === id) {
+							index = i;
+							return false;
+						}
+					});
+					if (index > -1) {
+						card = Checkout.Data.credit_cards[index];
+					}
+				}
+				return card;
+			},
+			"GetCreditCardElementMarkup": function (id, is_default, name, cc_starting_digit, last_four, expiration, is_wallet_card, street, city, state, postal) {
+				var expDate = new Date("'01/" + expiration + "'"),
+					today = new Date(),
+					expired_class = expDate <= today ? " expired" : "",
+					mu = "",
+					type = "",
+					wallet_class = is_wallet_card ? "" : " incomplete";
+
+				if (is_default) {
+					id = id + "_default";
+				}
+
+				switch (cc_starting_digit) {
+					case 4:
+						type = "Visa";
+						break;
+					case 5:
+						type = "MasterCard";
+						break;
+					case 6:
+						type = "Discover";
+						break;
+					default:
+						type = "AMEX";
+						break;
+				}
+
+				mu = '<li class="grid__item one-whole desk-one-half credit-card-item' + (is_default ? " default" : "") + expired_class + '">';
+				mu += '<input type="radio" name="select-credit-card" id="card' + id + '" value="card' + id + '" ' + (expired_class == "" ? "checked" : "disabled") + '>';
+				mu += '<label for="card' + id + '" class="card' + wallet_class + '">';
 				mu += '<span class="btn paywiththis secondary small"></span>';
 				mu += '<button class="btn edit-credit-card tertiary small">Edit</button>';
 				mu += '<div class="credit-card">';
-				mu += '<span class="type visa">Visa</span>';
-				mu += '<span class="masked-number">ending in: ' + Checkout.Fields.BillingInfo.$input_cc_number.val().substring(Checkout.Fields.BillingInfo.$input_cc_number.val().length - 4) + '</span>';
-				mu += '<span class="expiration">Expires: ' + Checkout.Fields.BillingInfo.$input_cc_expiration.val() + '</span>';
-				mu += '</div><div class="address">Billing Address:';
-				mu += '<span class="street"></span>';
-				mu += '<span class="city"></span>';
-				mu += '<span class="state"></span>';
-				mu += '<span class="zip"></span>';
-				mu += '</div></label></li>';
+				mu += '<span class="type ' + type.toLowerCase() + '">' + type + '</span>';
+				mu += '<span class="masked-number">ending in: ' + last_four + '</span>';
+				mu += '<span class="expiration">Expires: ' + expiration + '</span>';
+				mu += '</div>'
+				mu += Checkout.Functions.BillingInfo.GetCreditCardAddressMarkup(street, city, state, postal);
+				mu += '</label></li>';
+				return mu;
+			},
+			"GetCreditCardAddressMarkup": function (street, city, state, postal) {
+				var mu = '<div class="address"><span class="label">Billing Address:</span>';
+				mu += '<span class="street">' + street + '</span>';
+				mu += '<span class="city">' + city + '</span>';
+				mu += '<span class="state">' + state + '</span>';
+				mu += '<span class="zip">' + postal + '</span>';
+				mu += '</div>';
+				return mu;
+			},
+			"CreateNewCreditCardElement": function () {
+				var $newCard,
+					id = Checkout.Data.credit_cards[Checkout.Data.credit_cards.length - 1].id + 1,
+					address = Checkout.Functions.Shared.GetDefaultBillingAddress();
+				name = Checkout.Fields.BillingInfo.$input_cc_name.val(),
+				cc_starting_digit = parseInt(Checkout.Fields.BillingInfo.$input_cc_number.val().substring(0, 1)),
+				last_four = Checkout.Fields.BillingInfo.$input_cc_number.val().substring(Checkout.Fields.BillingInfo.$input_cc_number.val().length - 4),
+				expiration = Checkout.Fields.BillingInfo.$input_cc_expiration.val(),
+				in_wallet = Checkout.Fields.BillingInfo.$input_cc_store_in_wallet.is(":checked"),
+				mu = Checkout.Functions.BillingInfo.GetCreditCardElementMarkup(id, false, name, cc_starting_digit, last_four, expiration, in_wallet, address.street, address.city, address.state, address.postal);
+
+				Checkout.Data.credit_cards.push({
+					"id": id,
+					"name": name,
+					"type": type,
+					"last_four": last_four,
+					"expiration": expiration,
+					"addressId": address.id,
+					"default": false,
+					"in_wallet": in_wallet
+				});
+
 				$newCard = $(mu);
+				$newCard.data("credit-card-id", id);
 				Checkout.Fields.BillingInfo.$credit_card_list.find("li:last-child").before($newCard);
 				Checkout.Functions.BillingInfo.BindEvents_EditCreditCardButton(true);
 				Checkout.Functions.BillingInfo.BindEvents_CreditCardItems(true);
 				$newCard.find("input[type=radio]").trigger("click");
 			},
 			"UpdateCreditCardElement": function () {
-				var $elementToUpdate = undefined;
+				var $elementToUpdate = undefined,
+					is_default = false,
+					cc_data = undefined,
+					id = 0,
+					addressId = Checkout.Fields.BillingInfo.$card_billing_address_container.data("addressId"),
+					address = Checkout.Functions.Shared.GetAddressById(addressId),
+					name = Checkout.Fields.BillingInfo.$input_cc_name.val(),
+					expiration = Checkout.Fields.BillingInfo.$input_cc_expiration.val(),
+					$newElement = undefined;
+
 				if (Checkout.Fields.BillingInfo.$payment_option_credit_card.is(":checked")) {
-					$elementToUpdate = Checkout.Fields.BillingInfo.$credit_card_list.find("input[type=radio]:checked").parent().animatedScroll();
+					$elementToUpdate = Checkout.Fields.BillingInfo.$credit_card_list.find("input[type=radio]:checked").parent();
 				}
 				else {
-					$elementToUpdate = Checkout.Fields.BillingInfo.$default_payment.animatedScroll();
+					$elementToUpdate = Checkout.Fields.BillingInfo.$default_payment;
 				}
 				if ($elementToUpdate !== undefined) {
-					$elementToUpdate.find(".expiration").text(Checkout.Fields.BillingInfo.$input_cc_expiration.val())
-
+					cc_data = Checkout.Functions.BillingInfo.GetCreditCardById($elementToUpdate.data("credit-card-id"));
+					id = cc_data.id;
+					switch (cc_data.type) {
+						case "Visa":
+							cc_starting_digit = 4;
+							break;
+						case "MasterCard":
+							cc_starting_digit = 5;
+							break;
+						case "Discover":
+							cc_starting_digit = 6;
+							break;
+						default:
+							cc_starting_digit = 7;
+							break;
+					}
+					// Update the credit card data
+					cc_data.addressId = addressId;
+					cc_data.name = name;
+					cc_data.expiration = expiration;
+					
+					is_default = $elementToUpdate.hasClass("default");
+					$newElement = $(Checkout.Functions.BillingInfo.GetCreditCardElementMarkup(id, is_default, name, cc_starting_digit, cc_data.last_four, expiration, cc_data.in_wallet, address.street, address.city, address.state, address.postal));
+					$elementToUpdate.html($newElement.html());
+					$elementToUpdate.attr("class", $newElement.attr("class"));
+					Checkout.Functions.BillingInfo.BindEvents_CreditCardItems(true);
+					Checkout.Functions.BillingInfo.BindEvents_EditCreditCardButton(true);
+					Checkout.Functions.BillingInfo.BindEvents_EditDefaultCreditCardButton(true);
+					$elementToUpdate.find("input[type=radio]").trigger("click");
 				}
 			},
 			"CreateNewAddressElement": function () {
 				var $newAddress,
+					id = Checkout.Data.addresses[Checkout.Data.addresses.length - 1].id + 1,
+					name = Checkout.Fields.BillingInfo.$input_name.val(),
+					company = Checkout.Fields.BillingInfo.$input_company.val(),
+					street = Checkout.Fields.BillingInfo.$input_street.val(),
+					city = Checkout.Fields.BillingInfo.$input_city.val(),
+					state = Checkout.Fields.BillingInfo.$input_state.val(),
+					postal = Checkout.Fields.BillingInfo.$input_postal.val(),
+					country_code = Checkout.Fields.BillingInfo.$input_country.val(),
+					country_name = Checkout.Fields.BillingInfo.$input_country.find("option:selected").text(),
+					phone = Checkout.Fields.BillingInfo.$input_phone.val(),
 					mu = '<li class="additional-address grid__item one-whole desk-one-half address-item">';
-				mu += '<input type="radio" name="select-address" id="billing-address9" value="billing-address9">';
-				mu += '<label for="billing-address9" class="card">';
+
+				mu += '<input type="radio" name="select-address" id="billing-address' + id + '" value="billing-address' + id + '">';
+				mu += '<label for="billing-address' + id + '" class="card">';
 				mu += '<span class="btn billtothis secondary small"></span>';
 				mu += '<button class="btn edit tertiary small">Edit</button>';
 				mu += '<div class="address">';
-				mu += '<span class="name">' + Checkout.Fields.BillingInfo.$input_name.val() + '</span>';
-				mu += '<span class="company">' + Checkout.Fields.BillingInfo.$input_company.val() + '</span>';
-				mu += '<span class="street">' + Checkout.Fields.BillingInfo.$input_street.val() + '</span>,';
-				mu += '<span class="city">' + Checkout.Fields.BillingInfo.$input_city.val() + '</span>';
-				mu += '<span class="state">' + Checkout.Fields.BillingInfo.$input_state.val() + '</span>';
-				mu += '<span class="zip">' + Checkout.Fields.BillingInfo.$input_postal.val() + '</span>';
-				mu += '<span class="country">' + Checkout.Fields.BillingInfo.$input_country.val() + '</span>';
-				mu += '<span class="phone">' + Checkout.Fields.BillingInfo.$input_phone.val() + '</span>';
+				mu += '<span class="name">' + name + '</span>';
+				mu += '<span class="company">' + company + '</span>';
+				mu += '<span class="street">' + street + '</span>,';
+				mu += '<span class="city">' + city + '</span>';
+				mu += '<span class="state">' + state + '</span>';
+				mu += '<span class="zip">' + postal + '</span>';
+				mu += '<span class="country">' + country_name + '</span>';
+				mu += '<span class="phone">' + phone + '</span>';
 				mu += '</div></label></li>';
+
+				Checkout.Data.addresses.push({
+					"id": id,
+					"name": name,
+					"company": company,
+					"street": street,
+					"city": city,
+					"state": state,
+					"postal": postal,
+					"country_code": country_code,
+					"country_name": country_name,
+					"phone": phone
+				});
+
 				$newAddress = $(mu);
+				$newAddress.data("addressId", id);
 				Checkout.Fields.BillingInfo.$billing_address_list.find("li:last-child").before($newAddress);
+				Checkout.Functions.BillingInfo.BindEvents_BillingAddressItem(true);
 				Checkout.Functions.BillingInfo.BindEvents_EditAddressButton(true);
 				$newAddress.find("input[type=radio]").trigger("click");
+			},
+			"EditAddressElement": function () {
+				var $address_input = Checkout.Fields.BillingInfo.$billing_address_items.filter("[checked]"),
+					$address_element = $address_input.parent(),
+					id = $address_element.data("addressId"),
+					name = Checkout.Fields.BillingInfo.$input_name.val(),
+					company = Checkout.Fields.BillingInfo.$input_company.val(),
+					street = Checkout.Fields.BillingInfo.$input_street.val(),
+					city = Checkout.Fields.BillingInfo.$input_city.val(),
+					state = Checkout.Fields.BillingInfo.$input_state.val(),
+					postal = Checkout.Fields.BillingInfo.$input_postal.val(),
+					country_code = Checkout.Fields.BillingInfo.$input_country.val(),
+					country_name = Checkout.Fields.BillingInfo.$input_country.find("option:selected").text(),
+					phone = Checkout.Fields.BillingInfo.$input_phone.val(),
+					addressData = {
+						"id": id,
+						"name": name,
+						"company": company,
+						"street": street,
+						"city": city,
+						"state": state,
+						"postal": postal,
+						"country_code": country_code,
+						"country_name": country_name,
+						"phone": phone
+					};
+
+				// Update the address data and markup
+				Checkout.Functions.Shared.UpdateAddress(addressData, $address_element, "billing");
+				$address_input.trigger("click");
 			},
 			"SelectDefaultOption": function () {
 				Checkout.Data.checkout_details.billing_method = "Credit Card";
 				Checkout.Functions.BillingInfo.UpdateCreditCardData(Checkout.Fields.BillingInfo.$default_payment.find(".credit-card"));
-				Checkout.Functions.BillingInfo.UpdateBillingAddressData(Checkout.Fields.BillingInfo.$default_payment.find(".address"));
+				Checkout.Functions.BillingInfo.UpdateBillingAddressData(Checkout.Fields.BillingInfo.$default_payment);
 				Checkout.Functions.Review.RefreshOrderReviewSelectionData();
 			},
 			"UpdateCreditCardData": function (selected_card) {
@@ -1884,25 +2072,19 @@ var Checkout = {
 				Checkout.Data.checkout_details.credit_card_data.last_four = $last_four.length > 0 ? $last_four.text().replace("ending in: ", "") : "";
 				Checkout.Data.checkout_details.credit_card_data.expiration = $expiration.length > 0 ? $expiration.text().replace("Expires: ", "") : "";
 			},
-			"UpdateBillingAddressData": function (selected_address) {
-				var $name = selected_address.find(".name"),
-					$company = selected_address.find(".company"),
-					$street = selected_address.find(".street"),
-					$city = selected_address.find(".city"),
-					$state = selected_address.find(".state"),
-					$postal = selected_address.find(".zip"),
-					$country = selected_address.find(".country"),
-					$phone = selected_address.find(".phone");
+			"UpdateBillingAddressData": function ($selected_card) {
+				var cardData = Checkout.Functions.BillingInfo.GetCreditCardById($selected_card.data("credit-card-id")),
+					addressData = Checkout.Functions.Shared.GetAddressById(cardData.addressId);
 
-				Checkout.Data.checkout_details.billing_address.name = $name.length > 0 ? $name.text() : "";
-				Checkout.Data.checkout_details.billing_address.company = $company.length > 0 ? $company.text() : "";
-				Checkout.Data.checkout_details.billing_address.street = $street.length > 0 ? $street.text() : "";
-				Checkout.Data.checkout_details.billing_address.city = $city.length > 0 ? $city.text() : "";
-				Checkout.Data.checkout_details.billing_address.state = $state.length > 0 ? $state.text() : "";
-				Checkout.Data.checkout_details.billing_address.postal_code = $postal.length > 0 ? $postal.text() : "";
-				Checkout.Data.checkout_details.billing_address.country = $country.length > 0 ? $country.text() : "";
-				Checkout.Data.checkout_details.billing_address.phone_number = $phone.length > 0 ? $phone.text() : "";
-			},
+				Checkout.Data.checkout_details.billing_address.name = addressData.name;
+				Checkout.Data.checkout_details.billing_address.company = addressData.company;
+				Checkout.Data.checkout_details.billing_address.street = addressData.street
+				Checkout.Data.checkout_details.billing_address.city = addressData.city;
+				Checkout.Data.checkout_details.billing_address.state = addressData.state;
+				Checkout.Data.checkout_details.billing_address.postal_code = addressData.postal;
+				Checkout.Data.checkout_details.billing_address.country = addressData.country_name;
+				Checkout.Data.checkout_details.billing_address.phone_number = addressData.phone;
+			}
 		},
 		"Review": {
 			"BindEvents_QuantityInputs": function (refreshSelector) {

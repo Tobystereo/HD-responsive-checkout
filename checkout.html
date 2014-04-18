@@ -11,6 +11,7 @@
     <script src="js/jquery-1.11.0.min.js"></script>
     <script src="js/jquery-migrate-1.2.1.js"></script>
     <script src="js/animatescroll.js"></script>
+    <script src="js/jquery.maskedinput.min.js"></script>
 </head>
 <body>
     <div class="checkout">
@@ -115,7 +116,7 @@
                             <ul class="grid__item add-edit-address form-fields one-whole card">
                                 <li class="field country ">
                                     <h2 data-new-text="Create a new address" data-edit-text="Edit address">Create a new address</h2>
-                                    <select class="" id="country-input">
+                                    <select class="required" id="country-input">
                                         <option value=""></option>
                                         <option value="US">United States</option>
                                         <option value="CA">Canada</option>
@@ -128,11 +129,11 @@
                                     <label for="name-input">Name</label>
                                 </li>
                                 <li class="field field__secondary company" style="display: none;">
-                                    <input type="text" class="text-input valid" id="company-input">
+                                    <input type="text" class="text-input" id="company-input">
                                     <label for="company-input">Company</label>
                                 </li>
                                 <li class="field field__secondary address" style="display: none;">
-                                    <textarea class="text-input error" id="address-input"></textarea>
+                                    <textarea class="text-input required" id="address-input"></textarea>
                                     <label for="address-input">Street Address</label>
                                 </li>
                                 <li class="field field__secondary city" style="display: none;">
@@ -140,7 +141,7 @@
                                     <label for="city-input">City</label>
                                 </li>
                                 <li class="field field__secondary state" style="display: none;">
-                                    <input type="text" class="text-input" id="state-input">
+                                    <input type="text" class="text-input required" id="state-input">
                                     <label for="state-input">State/Province</label>
                                 </li>
                                 <li class="field field__secondary postal-code" style="display: none;">
@@ -273,8 +274,8 @@
                     </div>
                     <div class="grid default-payment">
                         <div class="default grid__item one-whole desk-one-half credit-card-item">
-                            <input type="radio" name="standard-credit-card" id="card0" value="card0" checked>
-                            <label for="card0" class="card">
+                            <input type="radio" name="standard-credit-card" id="card1_default" value="card1_default" checked>
+                            <label for="card1_default" class="card">
                                 <span class="btn paywiththis secondary small"></span>
                                 <button class="btn edit-credit-card tertiary small">Edit</button>
                                 <div class="credit-card">
@@ -327,8 +328,8 @@
                         <div class="credit-card-wrapper">
                             <ul class="grid credit-card-list" style="display:none;">
                                 <li class="grid__item one-whole desk-one-half credit-card-item">
-                                    <input type="radio" name="select-credit-card" id="card1" value="card1" checked>
-                                    <label for="card1" class="card">
+                                    <input type="radio" name="select-credit-card" id="card2" value="card2" checked>
+                                    <label for="card2" class="card">
                                         <span class="btn paywiththis secondary small"></span>
                                         <button class="btn edit-credit-card tertiary small">Edit</button>
                                         <div class="credit-card">
@@ -346,8 +347,8 @@
                                     </label>
                                 </li>
                                 <li class="grid__item one-whole desk-one-half credit-card-item expired">
-                                    <input type="radio" name="select-credit-card" id="card2" value="card2" disabled="disabled">
-                                    <label for="card2" class="card">
+                                    <input type="radio" name="select-credit-card" id="card3" value="card3" disabled="disabled">
+                                    <label for="card3" class="card">
                                         <span class="btn paywiththis secondary small"></span>
                                         <button class="btn edit-credit-card tertiary small">Edit</button>
                                         <div class="credit-card">
@@ -364,9 +365,9 @@
                                         </div>
                                     </label>
                                 </li>
-                                <li class="default grid__item one-whole desk-one-half credit-card-item">
-                                    <input type="radio" name="select-credit-card" id="card3" value="card3">
-                                    <label for="card3" class="card">
+                                <li class="grid__item one-whole desk-one-half credit-card-item">
+                                    <input type="radio" name="select-credit-card" id="card1" value="card1">
+                                    <label for="card1" class="card">
                                         <span class="btn paywiththis secondary small"></span>
                                         <button class="btn edit-credit-card tertiary small">Edit</button>
                                         <div class="credit-card">
@@ -418,13 +419,13 @@
                                         <li>
                                             <ul class="grid">
                                                 <li class="field grid__item billing-address one-half">
-                                                    <p>
+                                                    <div class="address">
                                                         <span class="label">Billing Address:</span>
                                                         <span class="street">123 A street</span>,
                                                         <span class="city">Mobile</span>
                                                         <span class="state">AK</span>
                                                         <span class="zip">88739</span>
-                                                    </p>
+                                                    </div>
                                                 </li>
                                                 <li class="buttons grid__item one-whole lap-one-half  desk-one-half">
                                                     <button class="change-billing-address small btn taptarget tertiary one-whole">Change Address</button>
@@ -516,7 +517,7 @@
                                     <ul class="grid__item add-edit-address form-fields one-whole card">
                                         <li class="field country ">
                                             <h3 class="title" data-new-text="Create a new address" data-edit-text="Edit address">Create a new address</h3>
-                                            <select class="" id="country-input">
+                                            <select class="required" id="country-input">
                                                 <option value=""></option>
                                                 <option value="US">United States</option>
                                                 <option value="CA">Canada</option>
@@ -533,15 +534,15 @@
                                             <label for="company-input">Company</label>
                                         </li>
                                         <li class="field field__secondary address" style="display: none;">
-                                            <textarea class="text-input" id="address-input"></textarea>
+                                            <textarea class="text-input required" id="address-input"></textarea>
                                             <label for="address-input">Street Address</label>
                                         </li>
                                         <li class="field field__secondary city" style="display: none;">
-                                            <input type="text" class="text-input  required" id="city-input">
+                                            <input type="text" class="text-input required" id="city-input">
                                             <label for="city-input">City</label>
                                         </li>
                                         <li class="field field__secondary state" style="display: none;">
-                                            <input type="text" class="text-input" id="state-input">
+                                            <input type="text" class="text-input required" id="state-input">
                                             <label for="state-input">State/Province</label>
                                         </li>
                                         <li class="field field__secondary postal-code" style="display: none;">
@@ -767,7 +768,7 @@
                                     <h4>Payment Details</h4>
                                     <div class="billing-data">
                                         <div class="address">
-                                            Billing Address:
+                                            <span class="label">Billing Address:</span>
                                             <span class="name">Ethan Koser</span>
                                             <span class="company"></span>
                                             <span class="street">123 A street</span>,
