@@ -1433,6 +1433,18 @@ footer {
   }
 }
 
+#cancel-order-modal{
+  text-align: center;
+  
+  a {
+    display: block;
+    clear: both;
+    border-bottom: none;
+    margin-bottom: 1rem;
+    text-align: center;
+  }
+}
+
 
 // ORDER CONFIRMATION
 
