@@ -852,8 +852,13 @@ var Checkout = {
 						previousStep = e.originalEvent !== undefined ? jQuery.param.fragment(e.originalEvent.oldURL).replace(Checkout.Settings.Shared.step_url_prefix, "") : undefined,
 						stepNumber = jQuery.inArray(step, Checkout.Settings.Shared.steps);
 
+					if (previousStep !== undefined && previousStep.indexOf("-modal") > -1) {
+						// If coming from a modal we need to manually set the step sequence.
+						jQuery.bbq.pushState("#" + Checkout.Settings.Shared.step_url_prefix + Checkout.Fields.Shared.$step_current.attr("id"), 2);
+						$(window).trigger('hashchange');
+					}
 					// Check if the hash is a step
-					if (stepNumber > -1) {
+					else if (stepNumber > -1) {
 						Checkout.Fields.Shared.$step_previous = previousStep !== undefined ? $("#" + previousStep) : undefined;
 						Checkout.Fields.Shared.$step_current = $("#" + step);
 						if (previousStep == Checkout.Settings.Shared.confirmation_step_id) {
