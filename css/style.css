@@ -6609,53 +6609,57 @@ footer .shipping-policy a {
   margin-bottom: 1rem;
   text-align: center;
 }
+/* line 1446, ui/_checkout.scss */
+#cancel-order-modal a:hover {
+  background-color: #cbcbcb;
+}
 
-/* line 1451, ui/_checkout.scss */
+/* line 1455, ui/_checkout.scss */
 .order-confirmation {
   text-align: center;
 }
-/* line 1453, ui/_checkout.scss */
+/* line 1457, ui/_checkout.scss */
 .order-confirmation h2 {
   text-align: center;
   color: #4a993d;
 }
-/* line 1458, ui/_checkout.scss */
+/* line 1462, ui/_checkout.scss */
 .order-confirmation .order-number {
   font-weight: 700;
 }
-/* line 1462, ui/_checkout.scss */
+/* line 1466, ui/_checkout.scss */
 .order-confirmation button {
   margin-top: 3rem;
 }
 
 /* Colors */
-/* line 1468, ui/_checkout.scss */
+/* line 1472, ui/_checkout.scss */
 .bg-lightest {
   background-color: white;
 }
 
-/* line 1469, ui/_checkout.scss */
+/* line 1473, ui/_checkout.scss */
 .bg-lighter {
   background-color: #f1f1f1;
 }
 
-/* line 1470, ui/_checkout.scss */
+/* line 1474, ui/_checkout.scss */
 .bg-light {
   background-color: #cbcbcb;
 }
 
-/* line 1471, ui/_checkout.scss */
+/* line 1475, ui/_checkout.scss */
 .bg-dark {
   background-color: #727272;
 }
 
-/* line 1472, ui/_checkout.scss */
+/* line 1476, ui/_checkout.scss */
 .bg-darkest {
   background-color: black;
 }
 
 /* Typography */
-/* line 1479, ui/_checkout.scss */
+/* line 1483, ui/_checkout.scss */
 a, a:link, a:hover, a:active, a:focus {
   text-decoration: none;
   border-bottom: 1px solid;
