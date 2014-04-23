@@ -89,6 +89,8 @@ form {
         margin-top: -3.5em;
         letter-spacing: 0;
     }
+
+
     textarea, textarea.threelines {
 //        Standard size is 2x the standard text field height
         @include rem-height($formfieldheight * 2, important);
@@ -154,22 +156,27 @@ input[type=radio] {
     }
 
     &:checked + label.card {
-        @include transition;
         @extend .card.selected;
-
-        &:hover {
-            -webkit-transform: translateY(0);
-        }
-
-
-
     }
 }
 
-html.no-touch input[type=radio] + label.card:hover {
-  -webkit-transform: translateY(-.25em);
-  background-color: lighten($lighter, 2%);
+.no-touch input[type=radio] {
+
+  & + label.card:hover {
+    -webkit-transform: translateY(-.25em);
+    background-color: lighten($lighter, 2%);
+  }
+
+  &:checked + label.card {
+    @include transition;
+
+    &:hover {
+        -webkit-transform: translateY(0);
+        @include outline;
+    }
+  }
 }
+
 
 .card.selected {
   outline-color: green;

@@ -97,12 +97,15 @@
   box-shadow: 2px 2px 10px rgba(0,0,0,0.1);
   margin-bottom: 1em;
 
-  @include transition;
   background-color: $lighter;
 
   @media #{$desk} {
     margin-bottom: 2em;
   }
+}
+
+.no-touch .card {
+  @include transition;
 }
 
 .card.success {

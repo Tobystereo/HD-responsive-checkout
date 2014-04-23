@@ -5193,10 +5193,6 @@ xmp {
     height: 5em;
     margin: 0;
   }
-  /* line 169, ui/_checkout.scss */
-  .progress li:hover {
-    color: #8aadd1;
-  }
   /* line 173, ui/_checkout.scss */
   .progress li:before {
     -webkit-transition: all 0.3s ease-in-out;
@@ -5236,15 +5232,6 @@ xmp {
   transition: all 0.3s ease-in-out;
   color: #cbcbcb;
   text-decoration: none;
-}
-/* line 204, ui/_checkout.scss */
-.progress li a:hover {
-  color: #3e6d9d;
-}
-/* line 207, ui/_checkout.scss */
-.progress li a:hover:before {
-  background: #8aadd1;
-  color: white;
 }
 /* line 213, ui/_checkout.scss */
 .progress li a:visited {
@@ -5311,10 +5298,6 @@ xmp {
   .progress li.completed a {
     color: #8aadd1;
   }
-  /* line 272, ui/_checkout.scss */
-  .progress li.completed a:hover {
-    background-color: none !important;
-  }
 }
 /* line 283, ui/_checkout.scss */
 .progress .shipping a, .progress .method a {
@@ -5374,10 +5357,6 @@ xmp {
   line-height: 62.4px;
   line-height: 3.9rem;
   background-color: #993d3d;
-}
-/* line 332, ui/_checkout.scss */
-.cancel-order a:hover {
-  background-color: #3e1919;
 }
 
 /* line 340, ui/_checkout.scss */
@@ -6520,12 +6499,6 @@ footer .help a, footer .privacy-policy a, footer .shipping-policy a {
   text-align: center;
   width: 90%;
 }
-/* line 1356, ui/_checkout.scss */
-footer .help a:hover, footer .privacy-policy a:hover, footer .shipping-policy a:hover {
-  background-color: #cbcbcb !important;
-  color: #727272;
-  border-color: #727272;
-}
 @media only screen and (min-width: 30em) {
   /* line 1365, ui/_checkout.scss */
   footer .privacy-policy a {
@@ -6608,10 +6581,6 @@ footer .shipping-policy a {
   border-bottom: none;
   margin-bottom: 1rem;
   text-align: center;
-}
-/* line 1446, ui/_checkout.scss */
-#cancel-order-modal a:hover {
-  background-color: #cbcbcb;
 }
 
 /* line 1455, ui/_checkout.scss */
@@ -6800,9 +6769,6 @@ a, a:link, a:hover, a:active, a:focus {
   padding: 1em;
   box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
   margin-bottom: 1em;
-  -webkit-transition: all 0.15s ease-out 0;
-  -moz-transition: all 0.15s ease-out 0;
-  transition: all 0.15s ease-out 0;
   background-color: #f1f1f1;
 }
 @media only screen and (min-width: 50em) {
@@ -6812,44 +6778,51 @@ a, a:link, a:hover, a:active, a:focus {
   }
 }
 
-/* line 108, ui/_ui.scss */
+/* line 107, ui/_ui.scss */
+.no-touch .card, .no-touch input[type=radio] + label.card {
+  -webkit-transition: all 0.15s ease-out 0;
+  -moz-transition: all 0.15s ease-out 0;
+  transition: all 0.15s ease-out 0;
+}
+
+/* line 111, ui/_ui.scss */
 .card.success, input[type=radio] + label.success.card {
   outline-color: green;
   background: #e4f3e2;
   box-shadow: none;
 }
 
-/* line 114, ui/_ui.scss */
+/* line 117, ui/_ui.scss */
 .background-success, #promo-code-form.success .card, .success, .success > * {
   background-color: #e4f3e2;
 }
 
-/* line 118, ui/_ui.scss */
+/* line 121, ui/_ui.scss */
 .background-info, .info, .info > * {
   background-color: #f9f2c6;
 }
 
-/* line 122, ui/_ui.scss */
+/* line 125, ui/_ui.scss */
 .background-error, #promo-code-form.error .card, .remove, .error, .error > * {
   background-color: #f3e2e2;
 }
 
-/* line 126, ui/_ui.scss */
+/* line 129, ui/_ui.scss */
 .text-success, .success, .success > * {
   color: black;
 }
 
-/* line 130, ui/_ui.scss */
+/* line 133, ui/_ui.scss */
 .text-info, .info, .info > * {
   color: black;
 }
 
-/* line 134, ui/_ui.scss */
+/* line 137, ui/_ui.scss */
 .text-error, .error, .error > * {
   color: #3e1919;
 }
 
-/* line 154, ui/_ui.scss */
+/* line 157, ui/_ui.scss */
 .loading-panel {
   width: 200px;
   height: 100px;
@@ -6857,7 +6830,7 @@ a, a:link, a:hover, a:active, a:focus {
   margin: 0 auto;
   text-align: center;
 }
-/* line 161, ui/_ui.scss */
+/* line 164, ui/_ui.scss */
 .loading-panel p {
   display: block;
   clear: both;
@@ -6868,7 +6841,7 @@ a, a:link, a:hover, a:active, a:focus {
   animation: grey 2s infinite ease-in-out;
 }
 
-/* line 173, ui/_ui.scss */
+/* line 176, ui/_ui.scss */
 .ball {
   display: block;
   float: left;
@@ -6878,7 +6851,7 @@ a, a:link, a:hover, a:active, a:focus {
   border-radius: 50px;
 }
 
-/* line 181, ui/_ui.scss */
+/* line 184, ui/_ui.scss */
 .ball:nth-child(1) {
   background: #3e6d9d;
   -webkit-animation: right 1s infinite ease-in-out, blue 4s infinite ease-in-out;
@@ -6887,7 +6860,7 @@ a, a:link, a:hover, a:active, a:focus {
   margin-left: 25px;
 }
 
-/* line 189, ui/_ui.scss */
+/* line 192, ui/_ui.scss */
 .ball:nth-child(2) {
   background: #232e50;
   -webkit-animation: right 1.05s infinite ease-in-out, blue 4s infinite ease-in-out;
@@ -6895,7 +6868,7 @@ a, a:link, a:hover, a:active, a:focus {
   animation: right 1s infinite ease-in-out, blue 4s infinite ease-in-out;
 }
 
-/* line 196, ui/_ui.scss */
+/* line 199, ui/_ui.scss */
 .ball:nth-child(3) {
   background: #8aadd1;
   -webkit-animation: right 1.15s infinite ease-in-out, blue 3s infinite ease-in-out;
@@ -6903,7 +6876,7 @@ a, a:link, a:hover, a:active, a:focus {
   animation: right 1s infinite ease-in-out, blue 3s infinite ease-in-out;
 }
 
-/* line 203, ui/_ui.scss */
+/* line 206, ui/_ui.scss */
 .ball:nth-child(4) {
   background: #4a61a9;
   -webkit-animation: right 1s infinite ease-in-out, blue 4s infinite ease-in-out;
@@ -6911,7 +6884,7 @@ a, a:link, a:hover, a:active, a:focus {
   animation: right 1s infinite ease-in-out, blue 4s infinite ease-in-out;
 }
 
-/* line 210, ui/_ui.scss */
+/* line 213, ui/_ui.scss */
 .ball:nth-child(5) {
   background: #e5edf5;
   -webkit-animation: right 1.15s infinite ease-in-out, blue 5s infinite ease-in-out;
@@ -6919,7 +6892,7 @@ a, a:link, a:hover, a:active, a:focus {
   animation: right 1s infinite ease-in-out, blue 5s infinite ease-in-out;
 }
 
-/* line 217, ui/_ui.scss */
+/* line 220, ui/_ui.scss */
 .ball:nth-child(6) {
   background: #4a993d;
   -webkit-animation: right 1.05s infinite ease-in-out, blue 4s infinite ease-in-out;
@@ -6927,7 +6900,7 @@ a, a:link, a:hover, a:active, a:focus {
   animation: right 1.05s infinite ease-in-out, blue 4s infinite ease-in-out;
 }
 
-/* line 224, ui/_ui.scss */
+/* line 227, ui/_ui.scss */
 .ball:nth-child(7) {
   background: #3e6d9d;
   -webkit-animation: right 1s infinite ease-in-out, blue 4s infinite ease-in-out;
@@ -6936,223 +6909,223 @@ a, a:link, a:hover, a:active, a:focus {
 }
 
 @-webkit-keyframes right {
-  /* line 233, ui/_ui.scss */
+  /* line 236, ui/_ui.scss */
   0% {
     -webkit-transform: translateY(-15px);
   }
 
-  /* line 234, ui/_ui.scss */
+  /* line 237, ui/_ui.scss */
   50% {
     -webkit-transform: translateY(15px);
   }
 
-  /* line 235, ui/_ui.scss */
+  /* line 238, ui/_ui.scss */
   100% {
     -webkit-transform: translateY(-15px);
   }
 }
 @-webkit-keyframes left {
-  /* line 239, ui/_ui.scss */
+  /* line 242, ui/_ui.scss */
   0% {
     -webkit-transform: translateY(15px);
   }
 
-  /* line 240, ui/_ui.scss */
+  /* line 243, ui/_ui.scss */
   50% {
     -webkit-transform: translateY(-15px);
   }
 
-  /* line 241, ui/_ui.scss */
+  /* line 244, ui/_ui.scss */
   100% {
     -webkit-transform: translateY(15px);
   }
 }
 @-webkit-keyframes blue {
-  /* line 245, ui/_ui.scss */
+  /* line 248, ui/_ui.scss */
   0% {
     background: #3e6d9d;
   }
 
-  /* line 246, ui/_ui.scss */
+  /* line 249, ui/_ui.scss */
   25% {
     background: #232e50;
   }
 
-  /* line 247, ui/_ui.scss */
+  /* line 250, ui/_ui.scss */
   50% {
     background: #4a993d;
   }
 
-  /* line 248, ui/_ui.scss */
+  /* line 251, ui/_ui.scss */
   75% {
     background: #c3e5bd;
   }
 
-  /* line 249, ui/_ui.scss */
+  /* line 252, ui/_ui.scss */
   100% {
     background: #3e6d9d;
   }
 }
 @-webkit-keyframes grey {
-  /* line 253, ui/_ui.scss */
+  /* line 256, ui/_ui.scss */
   0% {
     color: #727272;
   }
 
-  /* line 254, ui/_ui.scss */
+  /* line 257, ui/_ui.scss */
   50% {
     color: #f1f1f1;
   }
 
-  /* line 255, ui/_ui.scss */
+  /* line 258, ui/_ui.scss */
   100% {
     color: #727272;
   }
 }
 @-moz-keyframes right {
-  /* line 259, ui/_ui.scss */
+  /* line 262, ui/_ui.scss */
   0% {
     -moz-transform: translateY(-15px);
   }
 
-  /* line 260, ui/_ui.scss */
+  /* line 263, ui/_ui.scss */
   50% {
     -moz-transform: translateY(15px);
   }
 
-  /* line 261, ui/_ui.scss */
+  /* line 264, ui/_ui.scss */
   100% {
     -moz-transform: translateY(-15px);
   }
 }
 @-moz-keyframes left {
-  /* line 265, ui/_ui.scss */
+  /* line 268, ui/_ui.scss */
   0% {
     -moz-transform: translateY(15px);
   }
 
-  /* line 266, ui/_ui.scss */
+  /* line 269, ui/_ui.scss */
   50% {
     -moz-transform: translateY(-15px);
   }
 
-  /* line 267, ui/_ui.scss */
+  /* line 270, ui/_ui.scss */
   100% {
     -moz-transform: translateY(15px);
   }
 }
 @-moz-keyframes blue {
-  /* line 271, ui/_ui.scss */
+  /* line 274, ui/_ui.scss */
   0% {
     background: #3e6d9d;
   }
 
-  /* line 272, ui/_ui.scss */
+  /* line 275, ui/_ui.scss */
   25% {
     background: #232e50;
   }
 
-  /* line 273, ui/_ui.scss */
+  /* line 276, ui/_ui.scss */
   50% {
     background: #4a993d;
   }
 
-  /* line 274, ui/_ui.scss */
+  /* line 277, ui/_ui.scss */
   75% {
     background: #993d3d;
   }
 
-  /* line 275, ui/_ui.scss */
+  /* line 278, ui/_ui.scss */
   100% {
     background: #3e6d9d;
   }
 }
 @-moz-keyframes grey {
-  /* line 279, ui/_ui.scss */
+  /* line 282, ui/_ui.scss */
   0% {
     color: #727272;
   }
 
-  /* line 280, ui/_ui.scss */
+  /* line 283, ui/_ui.scss */
   50% {
     color: #f1f1f1;
   }
 
-  /* line 281, ui/_ui.scss */
+  /* line 284, ui/_ui.scss */
   100% {
     color: #727272;
   }
 }
 @keyframes right {
-  /* line 285, ui/_ui.scss */
+  /* line 288, ui/_ui.scss */
   0% {
     transform: translateY(-15px);
   }
 
-  /* line 286, ui/_ui.scss */
+  /* line 289, ui/_ui.scss */
   50% {
     transform: translateY(15px);
   }
 
-  /* line 287, ui/_ui.scss */
+  /* line 290, ui/_ui.scss */
   100% {
     transform: translateY(-15px);
   }
 }
 @keyframes left {
-  /* line 291, ui/_ui.scss */
+  /* line 294, ui/_ui.scss */
   0% {
     transform: translateY(15px);
   }
 
-  /* line 292, ui/_ui.scss */
+  /* line 295, ui/_ui.scss */
   50% {
     transform: translateY(-15px);
   }
 
-  /* line 293, ui/_ui.scss */
+  /* line 296, ui/_ui.scss */
   100% {
     transform: translateY(15px);
   }
 }
 @keyframes blue {
-  /* line 297, ui/_ui.scss */
+  /* line 300, ui/_ui.scss */
   0% {
     background: #3e6d9d;
   }
 
-  /* line 298, ui/_ui.scss */
+  /* line 301, ui/_ui.scss */
   25% {
     background: #232e50;
   }
 
-  /* line 299, ui/_ui.scss */
+  /* line 302, ui/_ui.scss */
   50% {
     background: #4a993d;
   }
 
-  /* line 300, ui/_ui.scss */
+  /* line 303, ui/_ui.scss */
   75% {
     background: #993d3d;
   }
 
-  /* line 301, ui/_ui.scss */
+  /* line 304, ui/_ui.scss */
   100% {
     background: #3e6d9d;
   }
 }
 @keyframes grey {
-  /* line 305, ui/_ui.scss */
+  /* line 308, ui/_ui.scss */
   0% {
     color: #727272;
   }
 
-  /* line 306, ui/_ui.scss */
+  /* line 309, ui/_ui.scss */
   50% {
     color: #f1f1f1;
   }
 
-  /* line 307, ui/_ui.scss */
+  /* line 310, ui/_ui.scss */
   100% {
     color: #727272;
   }
@@ -7260,7 +7233,7 @@ input[type=text] + label, textarea + label, select + label {
   letter-spacing: 0;
 }
 
-/* line 92, ui/_forms.scss */
+/* line 94, ui/_forms.scss */
 textarea, textarea.threelines {
   height: 104px !important;
   height: 6.5rem !important;
@@ -7270,37 +7243,37 @@ textarea, textarea.threelines {
   resize: none;
   padding-top: 1.5em;
 }
-/* line 100, ui/_forms.scss */
+/* line 102, ui/_forms.scss */
 textarea + label, textarea.threelines + label {
   margin-top: -6.5em;
 }
-/* line 104, ui/_forms.scss */
+/* line 106, ui/_forms.scss */
 textarea:focus + label, textarea + label.notempty, textarea.threelines:focus + label, textarea.threelines + label.notempty {
   margin-top: -6.2rem;
 }
-/* line 108, ui/_forms.scss */
+/* line 110, ui/_forms.scss */
 textarea.fourlines, textarea.threelines.fourlines {
   height: 130px !important;
   height: 8.125rem !important;
 }
-/* line 111, ui/_forms.scss */
+/* line 113, ui/_forms.scss */
 textarea.fourlines + label, textarea.threelines.fourlines + label {
   margin-top: -7.5em;
 }
-/* line 115, ui/_forms.scss */
+/* line 117, ui/_forms.scss */
 textarea.fourlines:focus + label, textarea.fourlines:focus + label.notempty, textarea.threelines.fourlines:focus + label, textarea.threelines.fourlines:focus + label.notempty {
   margin-top: -7.8rem;
 }
-/* line 120, ui/_forms.scss */
+/* line 122, ui/_forms.scss */
 textarea.fivelines, textarea.threelines.fivelines {
   height: 156px !important;
   height: 9.75rem !important;
 }
-/* line 123, ui/_forms.scss */
+/* line 125, ui/_forms.scss */
 textarea.fivelines + label, textarea.threelines.fivelines + label {
   margin-top: -9.1em;
 }
-/* line 127, ui/_forms.scss */
+/* line 129, ui/_forms.scss */
 textarea.fivelines:focus + label, textarea.fivelines:focus + label.notempty, textarea.threelines.fivelines:focus + label, textarea.threelines.fivelines:focus + label.notempty {
   margin-top: -9.4rem;
 }
@@ -7310,40 +7283,41 @@ textarea.fivelines:focus + label, textarea.fivelines:focus + label.notempty, tex
 RADIO BUTTON CARD STYLE
 
 *********************************/
-/* line 141, ui/_forms.scss */
+/* line 143, ui/_forms.scss */
 input[type=radio] {
   display: none;
 }
-/* line 148, ui/_forms.scss */
+/* line 150, ui/_forms.scss */
 input[type=radio] + label.card:active {
   -webkit-transform: translateY(0em);
   background-color: #ececec;
   box-shadow: -2px -2px 10px rgba(0, 0, 0, 0.1);
 }
-/* line 156, ui/_forms.scss */
-input[type=radio]:checked + label.card {
+
+/* line 165, ui/_forms.scss */
+.no-touch input[type=radio] + label.card:hover {
+  -webkit-transform: translateY(-0.25em);
+  background-color: #f6f6f6;
+}
+/* line 170, ui/_forms.scss */
+.no-touch input[type=radio]:checked + label.card {
   -webkit-transition: all 0.15s ease-out 0;
   -moz-transition: all 0.15s ease-out 0;
   transition: all 0.15s ease-out 0;
 }
-/* line 160, ui/_forms.scss */
-input[type=radio]:checked + label.card:hover {
+/* line 173, ui/_forms.scss */
+.no-touch input[type=radio]:checked + label.card:hover {
   -webkit-transform: translateY(0);
+  outline: 1px solid red;
 }
 
-/* line 169, ui/_forms.scss */
-html.no-touch input[type=radio] + label.card:hover {
-  -webkit-transform: translateY(-0.25em);
-  background-color: #f6f6f6;
-}
-
-/* line 174, ui/_forms.scss */
+/* line 181, ui/_forms.scss */
 .card.selected, input[type=radio] + label.selected.card, input[type=radio]:checked + label.card {
   outline-color: green;
   background: #e4f3e2;
   box-shadow: none;
 }
-/* line 179, ui/_forms.scss */
+/* line 186, ui/_forms.scss */
 .card.selected:before, input[type=radio] + label.selected.card:before, input[type=radio]:checked + label.card:before {
   display: inline-block;
   position: relative;
@@ -7359,7 +7333,7 @@ html.no-touch input[type=radio] + label.card:hover {
   text-align: center;
   display: block;
 }
-/* line 190, ui/_forms.scss */
+/* line 197, ui/_forms.scss */
 .card.selected.label div:first-of-type:after, input[type=radio]:checked + label.label.card div:first-of-type:after {
   display: inline-block;
   position: relative;
@@ -7374,7 +7348,7 @@ html.no-touch input[type=radio] + label.card:hover {
   margin-right: 1em;
 }
 @media only screen and (min-width: 50em) {
-  /* line 190, ui/_forms.scss */
+  /* line 197, ui/_forms.scss */
   .card.selected.label div:first-of-type:after, input[type=radio]:checked + label.label.card div:first-of-type:after {
     margin-top: -1.725em;
   }
@@ -7385,12 +7359,12 @@ html.no-touch input[type=radio] + label.card:hover {
 DROP DOWN
 
 *********************************/
-/* line 211, ui/_forms.scss */
+/* line 218, ui/_forms.scss */
 select {
   -webkit-appearance: none;
 }
 
-/* line 215, ui/_forms.scss */
+/* line 222, ui/_forms.scss */
 .dropdownlabel {
   text-align: left;
 }
@@ -7400,7 +7374,7 @@ select {
 OTHER STYLES
 
 *********************************/
-/* line 226, ui/_forms.scss */
+/* line 233, ui/_forms.scss */
 .required:after, input[type=text].required + label:after, input[type=number].required + label:after, textarea.required + label:after, select.required + label:after, .required-field-message:after {
   display: inline-block;
   position: relative;
@@ -7412,7 +7386,7 @@ OTHER STYLES
   float: right;
 }
 
-/* line 233, ui/_forms.scss */
+/* line 240, ui/_forms.scss */
 .required-field-message {
   color: #993d3d;
   text-align: right;
