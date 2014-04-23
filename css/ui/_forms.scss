@@ -145,12 +145,6 @@ input[type=radio] {
 
         @extend .card;
 
-
-        &:hover {
-            -webkit-transform: translateY(-.25em);
-            background-color: lighten($lighter, 2%);
-        }
-
         &:active {
             -webkit-transform: translateY(.0em);
             background-color: darken($lighter, 2%);
@@ -170,6 +164,11 @@ input[type=radio] {
 
 
     }
+}
+
+html.no-touch input[type=radio] + label.card:hover {
+  -webkit-transform: translateY(-.25em);
+  background-color: lighten($lighter, 2%);
 }
 
 .card.selected {

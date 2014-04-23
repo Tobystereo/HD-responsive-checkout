@@ -43,7 +43,6 @@
 
 }
 
-
 .secondary {
     background-color: $light;
     color: $darker;
@@ -51,19 +50,45 @@
     @include transition;
 
     &:hover, &:focus {
-      background-color: $lightest;
+      background-color: $lighter;
     }
 }
 
 .tertiary {
-    background: none;
-    color: darken($light, 10%);
-    border: 1px solid darken($light, 10%) !important;
+    background: $lighter;
+    color: darken($dark, 10%);
+    border: 1px solid darken($dark, 10%) !important;
     @include transition;
 
     &:hover, &:focus {
-      background-color: $lightest;
+      background-color: $lighter;
     }
+}
+
+.add {
+  &:before {
+    @include pseudo(1.2em, 2em, "+");
+    text-align: center;
+    font-size: 1.25em;
+    font-weight: 300;
+  }
+}
+
+.remove {
+  @extend .background-error;
+  @include transition;
+
+  &:before {
+    @include pseudo(1.2em, 2em, "\2715");
+    text-align: left;
+    font-size: 1em;
+    font-weight: 300;
+  }
+}
+
+.no-touch .remove:hover {
+  background-color: $red;
+  color: $lightest;
 }
 
 .card {
