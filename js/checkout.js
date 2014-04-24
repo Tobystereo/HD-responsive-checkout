@@ -871,15 +871,27 @@ var Checkout = {
 
 				$shippingAddressButtons.addClass("shiptothis");
 				$billingAddressButtons.addClass("billtothis");
-				$billingAddressInputs.attr("id", "billing-" + $billingAddressInputs.attr("id")).val("billing-" + $billingAddressInputs.val());
-				$billingAddressLabels.attr("for", "billing-" + $billingAddressLabels.attr("for"));
 
-				$.each($shippingAddressInputs, function (index, item) {
-					var $item = $(item),
-						id = parseInt($item.attr("id").replace("address", ""));
+				$billingAddressInputs.each(function (index) {
+					var $this = $(this);
+					$this.attr("id", "billing-" + $this.attr("id")).val("billing-" + $this.val());
+				});
+
+				$billingAddressLabels.each(function (index) {
+					var $this = $(this);
+					$this.attr("for", "billing-" + $this.attr("for"));
+				});
+
+				$shippingAddressInputs.each(function (index) {
+					var $this = $(this),
+						id = parseInt($this.attr("id").replace("address", ""));
+
+					$this.attr("name", "billing-" + $this.attr("name"));
 					if (id === defaultShippingId) {
-						$item.attr("checked", "checked").parent().addClass("default");
-						return false;
+						$this.attr("checked", "checked").parent().addClass("default");
+					}
+					else {
+						$this.parent().addClass("additional-address").css("display", "none");
 					}
 				});
 
@@ -1359,10 +1371,7 @@ var Checkout = {
 				}).toggleContainer({
 					content_element: Checkout.Fields.BillingInfo.$credit_card_list,
 					force_state: "show",
-					toggle_self: false,
-					post_toggle: function () {
-						Checkout.Fields.BillingInfo.$credit_card_list.animatedScroll();
-					}
+					toggle_self: false
 				});
 			},
 			"BindEvents_PayPalOptionButton": function (refreshSelector) {
@@ -1395,10 +1404,7 @@ var Checkout = {
 				}).toggleContainer({
 					content_element: Checkout.Fields.BillingInfo.$paypal_container,
 					force_state: "show",
-					toggle_self: false,
-					post_toggle: function () {
-						Checkout.Fields.BillingInfo.$paypal_container.animatedScroll();
-					}
+					toggle_self: false
 				});
 			},
 			"BindEvents_CreateCreditCardButton": function (refreshSelector) {
@@ -1963,7 +1969,6 @@ var Checkout = {
 					$elementToUpdate.attr("class", $newElement.attr("class"));
 					Checkout.Functions.BillingInfo.BindEvents_CreditCardItems(true);
 					Checkout.Functions.BillingInfo.BindEvents_EditCreditCardButton(true);
-					Checkout.Functions.BillingInfo.BindEvents_EditDefaultCreditCardButton(true);
 					$elementToUpdate.find("input[type=radio]").trigger("click");
 				}
 			},
