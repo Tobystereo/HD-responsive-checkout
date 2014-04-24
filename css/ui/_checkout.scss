@@ -166,9 +166,9 @@ article {
               height: 5em;
               margin: 0;
 
-              &:hover {
-                  color: $light-blue-light;
-              }
+              // &:hover {
+              //     color: $light-blue-light;
+              // }
 
               &:before {
                   @include transition($transition);
@@ -201,14 +201,14 @@ article {
               color: $light;
               text-decoration: none;
 
-              &:hover {
-                  color: $light-blue;
-
-                  &:before {
-                      background: $light-blue-light;
-                      color: $lightest;
-                  }
-              }
+              // &:hover {
+              //     color: $light-blue;
+              //
+              //     &:before {
+              //         background: $light-blue-light;
+              //         color: $lightest;
+              //     }
+              // }
 
               &:visited {
                   background-color: $lighter;
@@ -269,9 +269,9 @@ article {
               @media #{$desk} {
                 color: $light-blue-light;
 
-                &:hover {
-                  background-color: none !important;
-                }
+                // &:hover {
+                //   background-color: none !important;
+                // }
               }
             }
         }
@@ -329,9 +329,9 @@ article {
             @include font(2, 100, 3);
             background-color: $red;
 
-            &:hover {
-              background-color: $dark-red;
-            }
+            // &:hover {
+            //   background-color: $dark-red;
+            // }
         }
     }
 
@@ -1353,11 +1353,11 @@ footer {
         @extend .btn;
         @extend .tertiary;
 
-        &:hover {
-          background-color: $light !important;
-          color: $dark;
-          border-color: $dark;
-        }
+        // &:hover {
+        //   background-color: $light !important;
+        //   color: $dark;
+        //   border-color: $dark;
+        // }
       }
     }
 
@@ -1430,6 +1430,22 @@ footer {
   h3 {
     padding: 0 !important;
     @extend .h4;
+  }
+}
+
+#cancel-order-modal{
+  text-align: center;
+
+  a {
+    display: block;
+    clear: both;
+    border-bottom: none;
+    margin-bottom: 1rem;
+    text-align: center;
+
+    // &:hover {
+    //   background-color: $light;
+    // }
   }
 }
 
