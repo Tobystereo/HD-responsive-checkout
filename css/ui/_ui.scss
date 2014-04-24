@@ -77,6 +77,10 @@
 .remove {
   @extend .background-error;
   @include transition;
+  padding-left: 0.25em;
+  @media #{$lap} {
+    padding-left: .75em;
+  }
 
   &:before {
     @include pseudo(1.2em, 2em, "\2715");
