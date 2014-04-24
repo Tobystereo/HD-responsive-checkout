@@ -329,9 +329,9 @@ article {
             @include font(2, 100, 3);
             background-color: $red;
 
-            // &:hover {
-            //   background-color: $dark-red;
-            // }
+            &:hover {
+              background-color: $dark-red;
+            }
         }
     }
 
@@ -339,11 +339,23 @@ article {
 
     .cta_bar {
 
-        @include rem-height($tapheight);
+        @include rem-height($tapheight*2);
+
+        @media #{$lap} {
+          @include rem-height($tapheight);
+        }
+
         background-color: $light;
 
-        & .grid__item {
+        .grid__item {
             @include rem-height($tapheight);
+
+            clear: both;
+            display: block;
+
+            @media #{$lap}{
+              clear: none;
+            }
         }
 
         .total {
@@ -359,6 +371,10 @@ article {
                 margin-right: .6em;
 
             }
+        }
+
+        .btn {
+          text-align: center;
         }
 
 

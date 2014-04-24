@@ -56,7 +56,7 @@
                         <div class="grid">
                             <div class="buttons grid__item one-whole desk-one-half">
                                 <button class="changeaddress btn taptarget tertiary one-whole">Use different address</button>
-                                <button class="createaddress btn taptarget tertiary one-whole" style="display: none;">Create new address</button>
+                                <button class="createaddress btn taptarget tertiary one-whole add" style="display: none;">Create new address</button>
                             </div>
                         </div>
                     </div>
@@ -243,12 +243,12 @@
                         <div class="credit-card-wrapper grid__item one-whole">
                             <ul class="grid credit-card-list">
                                 <li class="grid__item one-whole desk-one-half create-credit-card-wrapper">
-                                    <button class="create-credit-card btn taptarget tertiary one-whole">Add new credit card</button>
+                                    <button class="create-credit-card btn taptarget tertiary one-whole add">Add new credit card</button>
                                 </li>
                             </ul>
                             <div class="grid">
                                 <form id="credit-card-form" action="#" style="display: none;">
-                                    <h2 data-new-text="Add new credit card" data-edit-text="Edit credit card">Add new credit card</h2>
+                                    <h2 data-new-text="Add new credit card" data-edit-text="Edit credit card add">Add new credit card</h2>
                                     <ul class="grid__item add-edit-credit-card form-fields one-whole desk-one-half card">
                                         <li class="field card-number_read_only">
                                             <span class="type" style="display:none;"></span>
@@ -312,7 +312,7 @@
                                 <h3>Select a billing address</h3>
                                 <ul class="grid address-list">
                                     <li class="buttons grid__item one-whole desk-one-half">
-                                        <button class="create-billing-address btn taptarget tertiary one-whole" style="display: none;">Create new address</button>
+                                        <button class="create-billing-address btn taptarget tertiary one-whole add" style="display: none;">Create new address</button>
                                     </li>
                                 </ul>
                                 <div class="grid">
@@ -426,7 +426,7 @@
                                                 <span class="value">$9.95</span>
                                             </li>
                                             <li class="field buttons">
-                                                <button class="btn small remove-cart-item tertiary">Remove</button>
+                                                <button class="btn small remove-cart-item tertiary remove">Remove</button>
                                             </li>
                                         </ul>
                                     </li>
@@ -459,7 +459,7 @@
                                                 <span class="value">$29.80</span>
                                             </li>
                                             <li class="field buttons">
-                                                <button class="btn small remove-cart-item tertiary">Remove</button>
+                                                <button class="btn small remove-cart-item tertiary remove">Remove</button>
                                             </li>
                                         </ul>
                                     </li>
@@ -492,7 +492,7 @@
                                                 <span class="value">$24.75</span>
                                             </li>
                                             <li class="field buttons">
-                                                <button class="btn small remove-cart-item tertiary">Remove</button>
+                                                <button class="btn small remove-cart-item tertiary remove">Remove</button>
                                             </li>
                                         </ul>
                                     </li>
@@ -615,8 +615,10 @@
         <footer class="grid">
             <div class="cta_bar one-whole">
                 <div class="grid">
-                    <div class="total grid__item three-quarters"></div>
-                    <button class="btn btn--positive grid__item one-quarter primary" data-text-next="Next" data-text-complete="Submit Order">Next</button>
+                    <div class="total grid__item two-whole lap-three-quarters"></div>
+                    <div class="grid__item one-whole lap-one-quarter grid">
+                      <button class="btn btn--positive primary grid__item" data-text-next="Next" data-text-complete="Submit Order">Next</button>
+                    </div>
                 </div>
             </div>
             <div id="help-content" class="help grid__item one-whole greybox">
