@@ -223,22 +223,18 @@
                     </div>
                     <div class="payment-wrapper grid">
                         <div class="grid__item one-whole grid payment-option-list btn_group">
-
-                                <input type="radio" name="select-payment-option" id="payment-option-credit-card" value="credit-card" checked>
-                                <label for="payment-option-credit-card" class="grid__item one-half payment-option-item btn btn_group_item">
-                                    <div class="payment-option">
-                                        Credit Card
-                                    </div>
-                                </label>
-
-
-                                <input type="radio" name="select-payment-option" id="payment-option-paypal" value="paypal">
-                                <label for="payment-option-paypal" class="grid__item one-half payment-option-item btn btn_group_item">
-                                    <div class="payment-option">
-                                        PayPal
-                                    </div>
-                                </label>
-
+                            <input type="radio" name="select-payment-option" id="payment-option-credit-card" value="credit-card" checked>
+                            <label for="payment-option-credit-card" class="grid__item one-half payment-option-item btn btn_group_item">
+                                <div class="payment-option">
+                                    Credit Card
+                                </div>
+                            </label>
+                            <input type="radio" name="select-payment-option" id="payment-option-paypal" value="paypal">
+                            <label for="payment-option-paypal" class="grid__item one-half payment-option-item btn btn_group_item">
+                                <div class="payment-option">
+                                    PayPal
+                                </div>
+                            </label>
                         </div>
                         <div class="credit-card-wrapper grid__item one-whole">
                             <ul class="grid credit-card-list">
@@ -250,7 +246,7 @@
                                 <form id="credit-card-form" action="#" style="display: none;">
                                     <h2 data-new-text="Add new credit card" data-edit-text="Edit credit card add">Add new credit card</h2>
                                     <ul class="grid__item add-edit-credit-card form-fields one-whole desk-one-half card">
-                                      <li class="required-field-message">required fields</li>
+                                        <li class="required-field-message">required fields</li>
                                         <li class="field card-number_read_only">
                                             <span class="type" style="display:none;"></span>
                                             <span class="cc-number-masked" style="display: none;">xxxx-xxxx-xxxx-1234</span>
@@ -617,7 +613,7 @@
             <div class="cta_bar one-whole">
                 <div class="grid">
                     <div class="total grid__item one-whole lap-three-quarters desk-three-quarters"></div>
-                    <button class="grid__item one-whole lap-one-quarter desk-one-quarter btn btn--positive primary one-whole" data-text`-next="Next" data-text-complete="Submit Order">Next</button>
+                    <button class="grid__item one-whole lap-one-quarter desk-one-quarter btn btn--positive primary one-whole" data-text-next="Next" data-text-complete="Submit Order">Next</button>
                 </div>
             </div>
             <div id="help-content" class="help grid__item one-whole greybox">
@@ -877,8 +873,8 @@
     </script>
     <script src="js/checkout.js"></script>
     <script type="text/javascript">
-        Checkout.Settings.Shared.mode = "return";
-        //Checkout.Settings.Shared.mode = "new";
+        //Checkout.Settings.Shared.mode = "return";
+        Checkout.Settings.Shared.mode = "new";
         Checkout.Functions.Shared.Init();
     </script>
     <script type="text/javascript">

@@ -1415,14 +1415,6 @@ var Checkout = {
 					toggle_self: false
 				}).toggleContainer({
 					content_element: Checkout.Fields.BillingInfo.$credit_card_list,
-					toggle_condition: function () {
-						if (Checkout.Fields.BillingInfo.$credit_cards.length === 0) {
-							return false;
-						}
-						else {
-							return true;
-						}
-					},
 					force_state: "show",
 					toggle_self: false
 				});
@@ -1699,7 +1691,7 @@ var Checkout = {
 					toggle_self: false,
 					pre_logic: function () {
 						// Scroll to the progress bar
-						Checkout.Fields.BillingInfo.$billing_address_items.animatedScroll();
+						Checkout.Fields.BillingInfo.$billing_address_container.animatedScroll();
 					},
 					callback: function () {
 						Checkout.Functions.BillingInfo.ResetAddressForm();
@@ -1995,7 +1987,7 @@ var Checkout = {
 					addressId = Checkout.Fields.BillingInfo.$card_billing_address_container.data("addressId"),
 					name = Checkout.Fields.BillingInfo.$input_cc_name.val(),
 					expiration = Checkout.Fields.BillingInfo.$input_cc_expiration.val(),
-					newElement = undefined,
+					$newElement = undefined,
 					updatedElements = [],
 					$elementToReplace = Checkout.Fields.BillingInfo.$credit_card_list.find(".edit-mode");
 
@@ -2006,11 +1998,12 @@ var Checkout = {
 					cc_data.name = name;
 					cc_data.expiration = expiration;
 					updatedElements.push(Checkout.Functions.BillingInfo.GetCreditCardDataObject(cc_data));
-					newElement = Checkout.Settings.BillingInfo.credit_card_template(updatedElements);
-					$elementToReplace.replaceWith(newElement);
+					$newElement = $(Checkout.Settings.BillingInfo.credit_card_template(updatedElements));
+					$newElement.data("credit-card-id", cc_data.id);
+					$elementToReplace.replaceWith($newElement);
 					Checkout.Functions.BillingInfo.BindEvents_CreditCardItems(true);
 					Checkout.Functions.BillingInfo.BindEvents_EditCreditCardButton(true);
-					$elementToReplace.find("input[type=radio]").trigger("click");
+					$newElement.find("input[type=radio]").trigger("click");
 				}
 			},
 			"CreateNewAddressElement": function () {
