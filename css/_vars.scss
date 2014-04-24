@@ -114,6 +114,8 @@ $dark-blue-dark: darken($dark-blue, 25);
 $dark-blue-darker: darken($dark-blue, 50);
 $dark-blue-darkest: darken($dark-blue, 75);
 
+$borderradius: 5px;
+
 /* MEDIA QUERIES */
 $palm: "only screen and (max-width : 20em)";
 $lap: "only screen and (min-width : 30em)";

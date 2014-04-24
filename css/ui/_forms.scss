@@ -12,7 +12,7 @@ form {
         width: 100%;
         @include border;
         background: none;
-        border-radius: 5px;
+        border-radius: $borderradius;
         position: relative;
         top: 0;
         left: 0;

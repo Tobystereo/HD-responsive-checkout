@@ -61,7 +61,7 @@
     @include transition;
 
     &:hover, &:focus {
-      background-color: $lighter;
+      background-color: $lightest;
     }
 }
 
@@ -84,12 +84,51 @@
     font-size: 1em;
     font-weight: 300;
   }
+
+  &:hover {
+    background-color: $red;
+    color: $lightest;
+  }
+
 }
 
-.no-touch .remove:hover {
-  background-color: $red;
-  color: $lightest;
+
+.disabled {
+    background: none;
+    color: darken($light, 10%);
+    border: 1px solid darken($light, 10%) !important;
+    @include transition;
+
+    &:hover, &:focus {
+      background: none !important;
+    }
 }
+
+
+.btn_group {
+  margin-bottom: 2em;
+
+  .btn_group_item {
+    border-radius: 0;
+
+    &:first-of-type {
+      border-top-left-radius: $borderradius;
+      border-bottom-left-radius: $borderradius;
+    }
+
+    &:last-of-type {
+      border-top-right-radius: $borderradius;
+      border-bottom-right-radius: $borderradius;
+    }
+  }
+
+  input[type=radio]:checked + label {
+    &.btn_group_item {
+      background-color: $light-green !important;
+    }
+  }
+}
+
 
 .card {
   overflow: hidden;
