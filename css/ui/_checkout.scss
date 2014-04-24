@@ -349,7 +349,6 @@ article {
 
         .grid__item {
             @include rem-height($tapheight);
-            @include outline;
             clear: both;
             display: block;
 
@@ -357,10 +356,11 @@ article {
               clear: none;
             }
 
-            &:last-of-type {
+
               text-align: center;
-              float: right;
-            }
+              float: left;
+
+
         }
 
         .total {
@@ -376,6 +376,15 @@ article {
                 margin-right: .6em;
 
             }
+        }
+
+        .btn {
+          text-indent: 1em;  
+
+          @media #{$lap} {
+            text-indent: 0;
+          }
+
         }
 
 
