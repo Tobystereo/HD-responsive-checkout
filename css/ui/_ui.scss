@@ -19,7 +19,7 @@
 
 }
 
-.btn.active, .primary {
+.primary {
     background-color: $green;
     color: $lightest;
     @include font-size(1.5);
@@ -41,6 +41,24 @@
         @include font-size(1);
     }
 
+}
+
+.btn.active {
+  background-color: $green;
+  color: $lightest;
+  @include transition;
+
+  &:hover, &:focus {
+      background-color: lighten($green, 10%);
+  }
+
+  &:active {
+      background-color: darken($green, 10%);
+  }
+
+  &.small {
+      @include font-size(1);
+  }
 }
 
 .secondary {
