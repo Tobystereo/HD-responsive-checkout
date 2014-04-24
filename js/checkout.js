@@ -222,7 +222,7 @@ var Checkout = {
 				"name": "John Doe",
 				"type": "MasterCard",
 				"last_four": "7812",
-				"expiration": "01/13",
+				"expiration": "03/16",
 				"addressId": 1,
 				"default": false,
 				"in_wallet": true
@@ -857,7 +857,7 @@ var Checkout = {
 				Checkout.Functions.BillingInfo.BindCreditCardElements();
 			},
 			"BindAddressElements": function () {
-				var addressHtml = Checkout.Settings.Shared.addresses_template(Checkout.Data),
+				var addressHtml = Checkout.Settings.Shared.addresses_template(Checkout.Data.addresses),
 					$shippingAddressesMarkup = $(addressHtml),
 					$billingAddressesMarkup = $shippingAddressesMarkup.clone(),
 					$shippingAddressItems = $shippingAddressesMarkup.filter("li.address-item"),
@@ -1443,7 +1443,13 @@ var Checkout = {
 					},
 					delay: Checkout.Settings.Shared.easing - 200,
 					post_toggle: function () {
-						Checkout.Fields.BillingInfo.$credit_card_list.find("input[type=radio]:checked").parent().animatedScroll();
+						var $checked = Checkout.Fields.BillingInfo.$credit_card_list.find("input:checked");
+						if ($checked !== undefined && $checked.length > 0) {
+							$checked.animatedScroll();
+						}
+						else {
+							Checkout.Fields.BillingInfo.$credit_card_list.find(".edit-mode").animatedScroll();
+						}
 					}
 				}).toggleContainer({
 					content_element: Checkout.Fields.BillingInfo.$credit_card_form,
@@ -1452,6 +1458,10 @@ var Checkout = {
 				}).toggleContainer({
 					content_element: Checkout.Fields.BillingInfo.$billing_address_container,
 					force_state: "hide",
+					toggle_self: false
+				}).toggleContainer({
+					content_element: Checkout.Fields.BillingInfo.$btncreate_credit_card,
+					force_state: "show",
 					toggle_self: false
 				});
 			},
@@ -1491,9 +1501,15 @@ var Checkout = {
 				}
 				if (Checkout.Fields.BillingInfo.$btnedit_credit_card !== undefined) {
 					Checkout.Fields.BillingInfo.$btnedit_credit_card.on("click", function (e) {
-						var $parent = $(this).parent().parent();
+						var $parent = $(this).parent().parent(),
+							$radioBtn = $parent.find("input[type=radio]");
+
 						e.stopPropagation();
-						$parent.find("input[type=radio]").attr("checked", "checked");
+						$parent.parent().find("li").removeClass("edit-mode").find("input[type=radio]").removeAttr("checked");
+						$parent.addClass("edit-mode");
+						if ($radioBtn.attr("disabled") === undefined) {
+							$radioBtn.attr("checked", "checked");
+						}
 						Checkout.Fields.BillingInfo.$btncreate_credit_card.slideUp(Checkout.Settings.Shared.easing - 200);
 						Checkout.Functions.BillingInfo.ToggleCreditCardFormMode("edit");
 						Checkout.Functions.BillingInfo.PopulateEditCardForm($parent);
@@ -1735,23 +1751,31 @@ var Checkout = {
 					creditCardMarkup = undefined;
 
 				$.each(Checkout.Data.credit_cards, function (index, item) {
-					var addressData = Checkout.Functions.Shared.GetAddressById(item.addressId);
-
-					creditCardData.push({
-						"id": item.id,
-						"type": item.type,
-						"last_four": item.last_four,
-						"expiration": item.expiration,
-						"street": addressData.street,
-						"city": addressData.city,
-						"state": addressData.state,
-						"postal": addressData.postal,
-						"default": item.default ? "default" : "",
-						"default_checked": item.default ? "checked" : ""
-					});
+					creditCardData.push(Checkout.Functions.BillingInfo.GetCreditCardDataObject(item));
 				});
+
 				creditCardMarkup = Checkout.Settings.BillingInfo.credit_card_template(creditCardData);
 				Checkout.Fields.BillingInfo.$credit_card_list.prepend(creditCardMarkup);
+			},
+			"GetCreditCardDataObject": function (credit_card_item) {
+				var addressData = Checkout.Functions.Shared.GetAddressById(credit_card_item.addressId),
+						isExpired = Checkout.Functions.BillingInfo.IsDateExpired(credit_card_item.expiration);
+
+				return {
+					"id": credit_card_item.id,
+					"type": credit_card_item.type,
+					"last_four": credit_card_item.last_four,
+					"expiration": credit_card_item.expiration,
+					"street": addressData.street,
+					"city": addressData.city,
+					"state": addressData.state,
+					"postal": addressData.postal,
+					"default": credit_card_item.default ? "default" : "",
+					"default_checked": credit_card_item.default ? "checked" : "",
+					"disabled": isExpired ? "disabled=disabled" : "",
+					"expired_class": isExpired ? " expired" : "",
+					"incomplete_class": credit_card_item.in_wallet ? "" : " incomplete"
+				};
 			},
 			"ToggleCreditCardFormMode": function (mode) {
 				// Set the mode on the form
@@ -1850,17 +1874,33 @@ var Checkout = {
 				}
 				return card;
 			},
-			"GetCreditCardElementMarkup": function (id, is_default, name, cc_starting_digit, last_four, expiration, is_wallet_card, street, city, state, postal) {
+			"IsDateExpired": function (expiration) {
 				var expDate = new Date("'01/" + expiration + "'"),
-					today = new Date(),
-					expired_class = expDate <= today ? " expired" : "",
-					mu = "",
+					today = new Date();
+				return expDate <= today;
+			},
+			"GetCreditCardAddressMarkup": function (street, city, state, postal) {
+				var mu = '<div class="address"><span class="label">Billing Address:</span>';
+				mu += '<span class="street">' + street + '</span>';
+				mu += '<span class="city">' + city + '</span>';
+				mu += '<span class="state">' + state + '</span>';
+				mu += '<span class="zip">' + postal + '</span>';
+				mu += '</div>';
+				return mu;
+			},
+			"CreateNewCreditCardElement": function () {
+				var $newCard,
+					id = Checkout.Data.credit_cards[Checkout.Data.credit_cards.length - 1].id + 1,
+					addressId = Checkout.Fields.BillingInfo.$card_billing_address_container.data("addressId"),
+					name = Checkout.Fields.BillingInfo.$input_cc_name.val(),
+					cc_starting_digit = parseInt(Checkout.Fields.BillingInfo.$input_cc_number.val().substring(0, 1)),
+					last_four = Checkout.Fields.BillingInfo.$input_cc_number.val().substring(Checkout.Fields.BillingInfo.$input_cc_number.val().length - 4),
+					expiration = Checkout.Fields.BillingInfo.$input_cc_expiration.val(),
+					in_wallet = Checkout.Fields.BillingInfo.$input_cc_store_in_wallet.is(":checked"),
 					type = "",
-					wallet_class = is_wallet_card ? "" : " incomplete";
-
-				if (is_default) {
-					id = id + "_default";
-				}
+					cc_data = {},
+					new_card_markup = undefined,
+					cards_to_add = [];
 
 				switch (cc_starting_digit) {
 					case 4:
@@ -1876,53 +1916,19 @@ var Checkout = {
 						type = "AMEX";
 						break;
 				}
-
-				mu = '<li class="grid__item one-whole desk-one-half credit-card-item' + (is_default ? " default" : "") + expired_class + '">';
-				mu += '<input type="radio" name="select-credit-card" id="card' + id + '" value="card' + id + '" ' + (expired_class == "" ? "checked" : "disabled") + '>';
-				mu += '<label for="card' + id + '" class="card' + wallet_class + '">';
-				mu += '<span class="btn paywiththis secondary small"></span>';
-				mu += '<button class="btn edit-credit-card tertiary small">Edit</button>';
-				mu += '<div class="credit-card">';
-				mu += '<span class="type ' + type.toLowerCase() + '">' + type + '</span>';
-				mu += '<span class="masked-number">ending in: ' + last_four + '</span>';
-				mu += '<span class="expiration">Expires: ' + expiration + '</span>';
-				mu += '</div>'
-				mu += Checkout.Functions.BillingInfo.GetCreditCardAddressMarkup(street, city, state, postal);
-				mu += '</label></li>';
-				return mu;
-			},
-			"GetCreditCardAddressMarkup": function (street, city, state, postal) {
-				var mu = '<div class="address"><span class="label">Billing Address:</span>';
-				mu += '<span class="street">' + street + '</span>';
-				mu += '<span class="city">' + city + '</span>';
-				mu += '<span class="state">' + state + '</span>';
-				mu += '<span class="zip">' + postal + '</span>';
-				mu += '</div>';
-				return mu;
-			},
-			"CreateNewCreditCardElement": function () {
-				var $newCard,
-					id = Checkout.Data.credit_cards[Checkout.Data.credit_cards.length - 1].id + 1,
-					address = Checkout.Functions.Shared.GetDefaultBillingAddress();
-				name = Checkout.Fields.BillingInfo.$input_cc_name.val(),
-				cc_starting_digit = parseInt(Checkout.Fields.BillingInfo.$input_cc_number.val().substring(0, 1)),
-				last_four = Checkout.Fields.BillingInfo.$input_cc_number.val().substring(Checkout.Fields.BillingInfo.$input_cc_number.val().length - 4),
-				expiration = Checkout.Fields.BillingInfo.$input_cc_expiration.val(),
-				in_wallet = Checkout.Fields.BillingInfo.$input_cc_store_in_wallet.is(":checked"),
-				mu = Checkout.Functions.BillingInfo.GetCreditCardElementMarkup(id, false, name, cc_starting_digit, last_four, expiration, in_wallet, address.street, address.city, address.state, address.postal);
-
-				Checkout.Data.credit_cards.push({
+				cc_data = {
 					"id": id,
 					"name": name,
 					"type": type,
 					"last_four": last_four,
 					"expiration": expiration,
-					"addressId": address.id,
+					"addressId": addressId,
 					"default": false,
 					"in_wallet": in_wallet
-				});
-
-				$newCard = $(mu);
+				},
+				Checkout.Data.credit_cards.push(cc_data);
+				cards_to_add.push(Checkout.Functions.BillingInfo.GetCreditCardDataObject(cc_data));
+				$newCard = $(Checkout.Settings.BillingInfo.credit_card_template(cards_to_add));
 				$newCard.data("credit-card-id", id);
 				Checkout.Fields.BillingInfo.$credit_card_list.find("li:last-child").before($newCard);
 				Checkout.Functions.BillingInfo.BindEvents_EditCreditCardButton(true);
@@ -1931,45 +1937,26 @@ var Checkout = {
 			},
 			"UpdateCreditCardElement": function () {
 				var $elementToUpdate = undefined,
-					is_default = false,
 					cc_data = undefined,
-					id = 0,
 					addressId = Checkout.Fields.BillingInfo.$card_billing_address_container.data("addressId"),
-					address = Checkout.Functions.Shared.GetAddressById(addressId),
 					name = Checkout.Fields.BillingInfo.$input_cc_name.val(),
 					expiration = Checkout.Fields.BillingInfo.$input_cc_expiration.val(),
-					$newElement = undefined;				
-					$elementToUpdate = Checkout.Fields.BillingInfo.$credit_card_list.find("input[type=radio]:checked").parent();
+					newElement = undefined,
+					updatedElements = [],
+					$elementToReplace = Checkout.Fields.BillingInfo.$credit_card_list.find(".edit-mode");
 
-					if ($elementToUpdate !== undefined) {
-					cc_data = Checkout.Functions.BillingInfo.GetCreditCardById($elementToUpdate.data("credit-card-id"));
-					id = cc_data.id;
-					switch (cc_data.type) {
-						case "Visa":
-							cc_starting_digit = 4;
-							break;
-						case "MasterCard":
-							cc_starting_digit = 5;
-							break;
-						case "Discover":
-							cc_starting_digit = 6;
-							break;
-						default:
-							cc_starting_digit = 7;
-							break;
-					}
+				if ($elementToReplace !== undefined && $elementToReplace.length > 0) {
+					cc_data = Checkout.Functions.BillingInfo.GetCreditCardById($elementToReplace.data("credit-card-id"));
 					// Update the credit card data
 					cc_data.addressId = addressId;
 					cc_data.name = name;
 					cc_data.expiration = expiration;
-
-					is_default = $elementToUpdate.hasClass("default");
-					$newElement = $(Checkout.Functions.BillingInfo.GetCreditCardElementMarkup(id, is_default, name, cc_starting_digit, cc_data.last_four, expiration, cc_data.in_wallet, address.street, address.city, address.state, address.postal));
-					$elementToUpdate.html($newElement.html());
-					$elementToUpdate.attr("class", $newElement.attr("class"));
+					updatedElements.push(Checkout.Functions.BillingInfo.GetCreditCardDataObject(cc_data));
+					newElement = Checkout.Settings.BillingInfo.credit_card_template(updatedElements);
+					$elementToReplace.replaceWith(newElement);
 					Checkout.Functions.BillingInfo.BindEvents_CreditCardItems(true);
 					Checkout.Functions.BillingInfo.BindEvents_EditCreditCardButton(true);
-					$elementToUpdate.find("input[type=radio]").trigger("click");
+					$elementToReplace.find("input[type=radio]").trigger("click");
 				}
 			},
 			"CreateNewAddressElement": function () {
