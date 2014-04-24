@@ -582,16 +582,14 @@ var Checkout = {
 				Checkout.Fields.Review.$btnchange_selection = Checkout.Fields.Shared.$step_review.find(".selection-container button.change");
 			},
 			"GetDynamicFields": function () {
-				if (Checkout.Settings.Shared.mode !== "new") {
-					Checkout.Fields.ShippingAddress.$default_address = Checkout.Fields.ShippingAddress.$address_list.find(".default");
-					Checkout.Fields.ShippingAddress.$additional_addresses = Checkout.Fields.ShippingAddress.$address_list.find(".additional-address");
-					Checkout.Fields.ShippingAddress.$address_items = Checkout.Fields.ShippingAddress.$address_list.find("input[type=radio]");
-					Checkout.Fields.ShippingAddress.$btnedit_address = Checkout.Fields.ShippingAddress.$address_list.find(".address-item button");
-					Checkout.Fields.BillingInfo.$billing_address_items = Checkout.Fields.BillingInfo.$billing_address_container.find("input[type=radio]");
-					Checkout.Fields.BillingInfo.$btnedit_address = Checkout.Fields.BillingInfo.$billing_address_list.find("button.edit");
-					Checkout.Fields.BillingInfo.$credit_cards = Checkout.Fields.BillingInfo.$credit_card_list.find(".credit-card-item input[type=radio]");
-					Checkout.Fields.BillingInfo.$btnedit_credit_card = Checkout.Fields.BillingInfo.$credit_card_list.find("button.edit-credit-card");
-				}
+				Checkout.Fields.ShippingAddress.$default_address = Checkout.Fields.ShippingAddress.$address_list.find(".default");
+				Checkout.Fields.ShippingAddress.$additional_addresses = Checkout.Fields.ShippingAddress.$address_list.find(".additional-address");
+				Checkout.Fields.ShippingAddress.$address_items = Checkout.Fields.ShippingAddress.$address_list.find("input[type=radio]");
+				Checkout.Fields.ShippingAddress.$btnedit_address = Checkout.Fields.ShippingAddress.$address_list.find(".address-item button");
+				Checkout.Fields.BillingInfo.$billing_address_items = Checkout.Fields.BillingInfo.$billing_address_container.find("input[type=radio]");
+				Checkout.Fields.BillingInfo.$btnedit_address = Checkout.Fields.BillingInfo.$billing_address_list.find("button.edit");
+				Checkout.Fields.BillingInfo.$credit_cards = Checkout.Fields.BillingInfo.$credit_card_list.find(".credit-card-item input[type=radio]");
+				Checkout.Fields.BillingInfo.$btnedit_credit_card = Checkout.Fields.BillingInfo.$credit_card_list.find("button.edit-credit-card");
 			},
 			"WireEvents": function () {
 				/// <summary>Wire up control events</summary>
@@ -1097,6 +1095,18 @@ var Checkout = {
 					if (Checkout.Fields.ShippingAddress.$additional_addresses.is(":visible")) {
 						Checkout.Fields.ShippingAddress.$btnadd_address.slideDown(Checkout.Settings.Shared.easing - 200);
 					}
+				}).toggleContainer({
+					toggle_condition: function () {
+						if (Checkout.Fields.ShippingAddress.$btnchangeaddress.is(":visible")) {
+							return false;
+						}
+						else {
+							return true;
+						}
+					},
+					content_element: Checkout.Fields.ShippingAddress.$btnadd_address,
+					delay: Checkout.Settings.Shared.easing - 200,
+					toggle_self: false
 				}).toggleContainer({
 					content_element: Checkout.Fields.ShippingAddress.$new_address_form,
 					toggle_self: false,
