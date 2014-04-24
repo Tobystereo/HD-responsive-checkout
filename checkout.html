@@ -833,7 +833,7 @@
     <script src="js/jquery.ba-bbq.js"></script>
     <script src="js/handlebars-v1.3.0.js"></script>
     <script id="customer-addresses-template" type="text/x-handlebars-template">
-        {{#each addresses}}
+        {{#each this}}
         <li class="grid__item one-whole desk-one-half address-item">
             <input type="radio" name="select-address" id="address{{id}}" value="address{{id}}">
             <label for="address{{id}}" class="card">
@@ -856,8 +856,8 @@
     <script id="customer-credit-card-template" type="text/x-handlebars-template">
         {{#each this}}
         <li class="{{default}} grid__item one-whole desk-one-half credit-card-item">
-            <input type="radio" name="select-credit-card" id="card{{id}}" value="card{{id}}" {{default_checked}}>
-            <label for="card{{id}}" class="card">
+            <input type="radio" name="select-credit-card" id="card{{id}}" value="card{{id}}" {{default_checked}} {{disabled}}>
+            <label for="card{{id}}" class="card {{expired_class}} {{incomplete_class}}">
                 <span class="btn paywiththis secondary small"></span>
                 <button class="btn edit-credit-card tertiary small">Edit</button>
                 <div class="credit-card">
