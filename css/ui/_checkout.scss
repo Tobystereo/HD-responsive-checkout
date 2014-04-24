@@ -961,6 +961,12 @@ input[type=radio]:checked + label.card {
   background-size: auto 20px;
   margin-left: 1em;
   margin-bottom: -4px;
+  @media #{$palm} {
+    display: none;
+  }
+  @media #{$lap} {
+    display: inline-block;
+  }
 }
 
 #payment-option-paypal + label .payment-option:after {
@@ -971,6 +977,13 @@ input[type=radio]:checked + label.card {
   background-position: -120px 0;
   margin-left: 1em;
   margin-bottom: -4px;
+
+  @media #{$palm} {
+    display: none;
+  }
+  @media #{$lap} {
+    display: inline-block;
+  }
 }
 
 #payment-option-default + label .type {
