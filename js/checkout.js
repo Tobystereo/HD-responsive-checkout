@@ -775,7 +775,9 @@ var Checkout = {
 				Checkout.Fields.ShippingAddress.$new_address_form.slideDown(Checkout.Settings.Shared.easing);
 				Checkout.Functions.ShippingAddress.ToggleAddressFormMode("new");
 				// Configure billing info step
-
+				Checkout.Fields.BillingInfo.$btncreate_credit_card.hide();
+				Checkout.Functions.BillingInfo.ToggleCreditCardFormMode("new");
+				Checkout.Fields.BillingInfo.$credit_card_form.show();
 			},
 			"UpdateAddress": function (addressData, $address_element, type) {
 				var addressDataEntry = Checkout.Functions.Shared.GetAddressById(addressData.id),
@@ -931,6 +933,9 @@ var Checkout = {
 					Checkout.Functions.Shared.GetFields();
 					if (Checkout.Settings.Shared.mode === "return") {
 						Checkout.Functions.Shared.BindUIElements();
+					}
+					else {
+						Checkout.Functions.Shared.CompileUITemplates();
 					}
 					Checkout.Functions.Shared.GetDynamicFields();
 					Checkout.Functions.Shared.WireEvents();
@@ -1198,7 +1203,7 @@ var Checkout = {
 			},
 			"CreateNewAddressElement": function () {
 				var $newAddress,
-					id = Checkout.Data.addresses.length == 0 ? 1 : Checkout.Data.addresses[Checkout.Data.addresses.length - 1].id + 1,
+					id = Checkout.Data.addresses.length === 0 ? 1 : Checkout.Data.addresses[Checkout.Data.addresses.length - 1].id + 1,
 					name = Checkout.Fields.ShippingAddress.$input_name.val(),
 					company = Checkout.Fields.ShippingAddress.$input_company.val(),
 					street = Checkout.Fields.ShippingAddress.$input_street.val(),
@@ -1235,7 +1240,9 @@ var Checkout = {
 					"postal": postal,
 					"country_code": country_code,
 					"country_name": country_name,
-					"phone": phone
+					"phone": phone,
+					"default_shipping": Checkout.Data.addresses.length === 0 ? true : false,
+					"default_billing": Checkout.Data.addresses.length === 0 ? true : false
 				});
 
 				$newAddress = $(mu);
@@ -1372,14 +1379,50 @@ var Checkout = {
 					toggle_self: false
 				}).toggleContainer({
 					content_element: Checkout.Fields.BillingInfo.$credit_card_form,
+					toggle_condition: function () {
+						if (Checkout.Fields.BillingInfo.$credit_cards.length === 0) {
+							return false;
+						}
+						else {
+							return true;
+						}
+					},
 					force_state: "hide",
 					toggle_self: false
 				}).toggleContainer({
+					content_element: Checkout.Fields.BillingInfo.$credit_card_form,
+					toggle_condition: function () {
+						if (Checkout.Fields.BillingInfo.$credit_cards.length === 0) {
+							return true;
+						}
+						else {
+							return false;
+						}
+					},
+					force_state: "show",
+					toggle_self: false
+				}).toggleContainer({
 					content_element: Checkout.Fields.BillingInfo.$btncreate_credit_card,
+					toggle_condition: function () {
+						if (Checkout.Fields.BillingInfo.$credit_cards.length === 0) {
+							return false;
+						}
+						else {
+							return true;
+						}
+					},
 					force_state: "show",
 					toggle_self: false
 				}).toggleContainer({
 					content_element: Checkout.Fields.BillingInfo.$credit_card_list,
+					toggle_condition: function () {
+						if (Checkout.Fields.BillingInfo.$credit_cards.length === 0) {
+							return false;
+						}
+						else {
+							return true;
+						}
+					},
 					force_state: "show",
 					toggle_self: false
 				});
@@ -1900,7 +1943,7 @@ var Checkout = {
 			},
 			"CreateNewCreditCardElement": function () {
 				var $newCard,
-					id = Checkout.Data.credit_cards[Checkout.Data.credit_cards.length - 1].id + 1,
+					id = Checkout.Data.credit_cards.length > 0 ? Checkout.Data.credit_cards[Checkout.Data.credit_cards.length - 1].id + 1 : 1,
 					addressId = Checkout.Fields.BillingInfo.$card_billing_address_container.data("addressId"),
 					name = Checkout.Fields.BillingInfo.$input_cc_name.val(),
 					cc_starting_digit = parseInt(Checkout.Fields.BillingInfo.$input_cc_number.val().substring(0, 1)),
@@ -1912,6 +1955,7 @@ var Checkout = {
 					new_card_markup = undefined,
 					cards_to_add = [];
 
+				addressId = addressId === undefined ? Checkout.Functions.Shared.GetDefaultBillingAddress().id : addressId;
 				switch (cc_starting_digit) {
 					case 4:
 						type = "Visa";
