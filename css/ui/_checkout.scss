@@ -379,7 +379,7 @@ article {
         }
 
         .btn {
-          text-indent: 1em;  
+          text-indent: 1em;
 
           @media #{$lap} {
             text-indent: 0;
@@ -982,35 +982,60 @@ input[type=radio]:checked + label.card {
 }
 
 
-#payment-option-credit-card + label .payment-option:after {
-  @include pseudo(119px, 20px, "\ ");
-  background: url("../images/creditcards.png");
-  // background: url("../images/creditcards.svg");
-  background-size: auto 20px;
-  margin-left: 1em;
-  margin-bottom: -4px;
-  @media #{$palm} {
-    display: none;
+#payment-option-credit-card + label {
+  min-height: 5rem;
+  @media #{$lap}{
+    min-height: 3rem;
   }
-  @media #{$lap} {
-    display: inline-block;
+
+  .payment-option {
+
+    float: left;
+
+    &:after {
+      @include pseudo(119px, 20px, "\ ");
+      background: url("../images/creditcards.png");
+      // background: url("../images/creditcards.svg");
+      background-size: auto 20px;
+      margin-left: 1em;
+      margin-bottom: -4px;
+      @media #{$palm} {
+        display: block;
+        clear: both;
+        margin-left: 0;
+      }
+      @media #{$lap} {
+        display: inline-block;
+      }
+    }
   }
 }
 
-#payment-option-paypal + label .payment-option:after {
-  @include pseudo(30px, 20px, "\ ");
-  background: url("../images/creditcards.png") no-repeat;
-  // background: url("../images/creditcards.svg") no-repeat;
-  background-size: auto 20px;
-  background-position: -120px 0;
-  margin-left: 1em;
-  margin-bottom: -4px;
-
-  @media #{$palm} {
-    display: none;
+#payment-option-paypal + label {
+  min-height: 5rem;
+  @media #{$lap}{
+    min-height: 3rem;
   }
-  @media #{$lap} {
-    display: inline-block;
+
+  .payment-option {
+    &:after {
+      @include pseudo(30px, 20px, "\ ");
+      background: url("../images/creditcards.png") no-repeat;
+      // background: url("../images/creditcards.svg") no-repeat;
+      background-size: auto 20px;
+      background-position: -120px 0;
+      margin-left: 1em;
+      margin-bottom: -4px;
+
+      @media #{$palm} {
+        display: block;
+        clear: both;
+        margin-left: 0;
+      }
+      @media #{$lap} {
+        display: inline-block;
+      }
+    }
   }
 }
 
@@ -1023,10 +1048,11 @@ input[type=radio]:checked + label.card {
 }
 
 .paypal-container {
+  margin-top: -1em;
   margin-bottom: 2em;
-  padding: 1em;
+
   p {
-    margin: 1em;
+    padding: 1em;
     color: $dark-yellow !important;
   }
 }
