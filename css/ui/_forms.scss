@@ -172,7 +172,6 @@ input[type=radio] {
 
     &:hover {
         -webkit-transform: translateY(0);
-        @include outline;
     }
   }
 }
