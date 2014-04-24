@@ -329,9 +329,9 @@ article {
             @include font(2, 100, 3);
             background-color: $red;
 
-            // &:hover {
-            //   background-color: $dark-red;
-            // }
+            &:hover {
+              background-color: $dark-red;
+            }
         }
     }
 
@@ -339,11 +339,23 @@ article {
 
     .cta_bar {
 
-        @include rem-height($tapheight);
+        @include rem-height($tapheight*2);
+
+        @media #{$lap} {
+          @include rem-height($tapheight);
+        }
+
         background-color: $light;
 
-        & .grid__item {
+        .grid__item {
             @include rem-height($tapheight);
+
+            clear: both;
+            display: block;
+
+            @media #{$lap}{
+              clear: none;
+            }
         }
 
         .total {
@@ -359,6 +371,10 @@ article {
                 margin-right: .6em;
 
             }
+        }
+
+        .btn {
+          text-align: center;
         }
 
 
@@ -961,6 +977,12 @@ input[type=radio]:checked + label.card {
   background-size: auto 20px;
   margin-left: 1em;
   margin-bottom: -4px;
+  @media #{$palm} {
+    display: none;
+  }
+  @media #{$lap} {
+    display: inline-block;
+  }
 }
 
 #payment-option-paypal + label .payment-option:after {
@@ -971,6 +993,13 @@ input[type=radio]:checked + label.card {
   background-position: -120px 0;
   margin-left: 1em;
   margin-bottom: -4px;
+
+  @media #{$palm} {
+    display: none;
+  }
+  @media #{$lap} {
+    display: inline-block;
+  }
 }
 
 #payment-option-default + label .type {
