@@ -222,24 +222,24 @@
                         </div>
                     </div>
                     <div class="payment-wrapper grid">
-                        <ul class="grid__item one-whole grid payment-option-list btn_group">
-                            <li class="grid__item one-half payment-option-item btn btn_group_item">
+                        <div class="grid__item one-whole grid payment-option-list btn_group">
+
                                 <input type="radio" name="select-payment-option" id="payment-option-credit-card" value="credit-card" checked>
-                                <label for="payment-option-credit-card">
+                                <label for="payment-option-credit-card" class="grid__item one-half payment-option-item btn btn_group_item">
                                     <div class="payment-option">
                                         Credit Card
                                     </div>
                                 </label>
-                            </li>
-                            <li class="grid__item one-half payment-option-item btn btn_group_item">
+
+
                                 <input type="radio" name="select-payment-option" id="payment-option-paypal" value="paypal">
-                                <label for="payment-option-paypal">
+                                <label for="payment-option-paypal" class="grid__item one-half payment-option-item btn btn_group_item">
                                     <div class="payment-option">
                                         PayPal
                                     </div>
                                 </label>
-                            </li>
-                        </ul>
+
+                        </div>
                         <div class="credit-card-wrapper grid__item one-whole">
                             <ul class="grid credit-card-list">
                                 <li class="grid__item one-whole desk-one-half create-credit-card-wrapper">
@@ -365,9 +365,9 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="paypal-container info" style="display:none;">
-                            <p>When you click Next, you’ll be taken to Paypal’s site. Follow Paypal’s instructions, then you’ll be sent right back here to review and confirm your order.</p>
-                        </div>  
+                        <div class="paypal-container info grid__item one-whole" style="display:none;">
+                            <p class="grid__item one-whole">When you click Next, you’ll be taken to Paypal’s site. Follow Paypal’s instructions, then you’ll be sent right back here to review and confirm your order.</p>
+                        </div>
                     </div>
                 </div>
                 <div id="order-review" class="order-review grid__item one-whole" style="display:none;">
