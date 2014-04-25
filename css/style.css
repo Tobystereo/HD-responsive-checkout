@@ -6875,7 +6875,7 @@ a, a:link, a:hover, a:active, a:focus {
 }
 
 /* line 118, ui/_ui.scss */
-.disabled {
+button:disabled, .disabled {
   background: none;
   color: #b2b2b2;
   border: 1px solid #b2b2b2 !important;
@@ -6884,7 +6884,7 @@ a, a:link, a:hover, a:active, a:focus {
   transition: all 0.15s ease-out 0;
 }
 /* line 124, ui/_ui.scss */
-.disabled:hover, .disabled:focus {
+button:disabled:hover, button:disabled:focus, .disabled:hover, .disabled:focus {
   background: none !important;
 }
 

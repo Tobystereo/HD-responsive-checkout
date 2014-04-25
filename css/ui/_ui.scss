@@ -115,7 +115,7 @@
 }
 
 
-.disabled {
+button:disabled, .disabled {
     background: none;
     color: darken($light, 10%);
     border: 1px solid darken($light, 10%) !important;
