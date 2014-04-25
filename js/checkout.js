@@ -778,6 +778,7 @@ var Checkout = {
 				Checkout.Fields.BillingInfo.$btncreate_credit_card.hide();
 				Checkout.Functions.BillingInfo.ToggleCreditCardFormMode("new");
 				Checkout.Fields.BillingInfo.$credit_card_form.show();
+				Checkout.Fields.BillingInfo.$btncancel_credit_card.attr("disabled", "disabled");
 			},
 			"UpdateAddress": function (addressData, $address_element, type) {
 				var addressDataEntry = Checkout.Functions.Shared.GetAddressById(addressData.id),
@@ -1515,6 +1516,11 @@ var Checkout = {
 					}
 				}).toggleContainer({
 					content_element: Checkout.Fields.BillingInfo.$credit_card_form,
+					post_toggle: function () {
+						if (Checkout.Data.credit_cards.length > 0) {
+							Checkout.Fields.BillingInfo.$btncancel_credit_card.removeAttr("disabled");
+						}
+					},
 					toggle_self: false,
 					force_state: "hide"
 				}).toggleContainer({
@@ -1627,6 +1633,33 @@ var Checkout = {
 					callback: function () {
 						Checkout.Fields.BillingInfo.$billing_address_container.animatedScroll();
 					}
+				}).toggleContainer({
+					content_element: Checkout.Fields.BillingInfo.$btnadd_billing_address,
+					toggle_condition: function () {
+						if (Checkout.Data.addresses.length > 1) {
+							return false;
+						}
+						else {
+							return true;
+						}
+					},
+					force_state: "hide",
+					toggle_self: false
+				}).toggleContainer({
+					content_element: Checkout.Fields.BillingInfo.$billing_address_form,
+					toggle_condition: function () {
+						if (Checkout.Data.addresses.length > 1) {
+							return false;
+						}
+						else {
+							return true;
+						}
+					},
+					pre_logic: function () {
+						Checkout.Functions.BillingInfo.ToggleAddressFormMode("new");
+					},
+					force_state: "show",
+					toggle_self: false
 				});
 			},
 			"BindEvents_BillingAddressItem": function (refreshSelector) {
@@ -2054,6 +2087,7 @@ var Checkout = {
 				addresses_to_add.push(new_address_data);
 				$newAddress = $(Checkout.Settings.Shared.addresses_template(addresses_to_add));
 				$newAddress.data("addressId", id);
+				$newAddress.find("span.btn").addClass("billtothis");
 				Checkout.Fields.BillingInfo.$billing_address_list.find("li:last-child").before($newAddress);
 				Checkout.Functions.BillingInfo.BindEvents_BillingAddressItem(true);
 				Checkout.Functions.BillingInfo.BindEvents_EditAddressButton(true);
