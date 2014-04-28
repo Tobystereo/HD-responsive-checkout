@@ -6966,8 +6966,8 @@ button:disabled:hover, button:disabled:focus, .disabled:hover, .disabled:focus {
 }
 
 /* line 198, ui/_ui.scss */
-.text-error, .error, .error > * {
-  color: #3e1919;
+.text-error, .error, .error > *, .required-field-message {
+  color: #993d3d;
 }
 
 /* line 218, ui/_ui.scss */
@@ -7535,8 +7535,53 @@ OTHER STYLES
 
 /* line 239, ui/_forms.scss */
 .required-field-message {
-  color: #993d3d;
   text-align: right;
+}
+
+/********************************
+
+VALIDATION
+
+*********************************/
+/* line 252, ui/_forms.scss */
+.error-container {
+  padding-left: 1.5em;
+}
+/* line 255, ui/_forms.scss */
+.error-container .message {
+  font-size: 24px;
+  font-size: 1.5rem;
+  font-family: 'Helvetica Neue', Helvetica, sans-serif;
+  font-weight: 300;
+  letter-spacing: 0;
+  line-height: 31.2px;
+  line-height: 1.95rem;
+}
+@media only screen and (min-width: 50em) {
+  /* line 255, ui/_forms.scss */
+  .error-container .message {
+    font-size: 32px;
+    font-size: 2rem;
+    font-family: 'Helvetica Neue', Helvetica, sans-serif;
+    font-weight: 300;
+    letter-spacing: 0;
+    line-height: 41.6px;
+    line-height: 2.6rem;
+  }
+}
+/* line 263, ui/_forms.scss */
+.error-container .details {
+  font-weight: 700;
+}
+/* line 265, ui/_forms.scss */
+.error-container .details ul {
+  margin-top: 0.5em;
+}
+/* line 267, ui/_forms.scss */
+.error-container .details ul li {
+  line-height: 26px;
+  line-height: 1.625rem;
+  font-weight: 300;
 }
 
 /* line 1, ui/_typography.scss */
