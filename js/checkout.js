@@ -970,8 +970,11 @@ var Checkout = {
 			"ValidateRequiredField": function ($element) {
 				var isValid = true;
 				if ($element.val() === "") {
-					$element.addClass(Checkout.Settings.Shared.error_class).one("keypress change", function () {
-						Checkout.Functions.Shared.ValidateRequiredField($(this));
+					$element.addClass(Checkout.Settings.Shared.error_class).one("keydown change", function () {
+						var $this = $(this)
+						setTimeout(function () {
+							Checkout.Functions.Shared.ValidateRequiredField($this);
+						}, 50);
 					});
 					isValid = false;
 				}
