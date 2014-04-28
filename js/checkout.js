@@ -298,7 +298,10 @@ var Checkout = {
 			"$step_previous": undefined,
 			"$form_inputs": undefined,
 			"$footer": undefined,
-			"$order_total": undefined
+			"$order_total": undefined,
+			"$error_container": undefined,
+			"$error_message": undefined,
+			"$error_details": undefined
 		},
 		"ShippingAddress": {
 			"$shipping_address_instructions": undefined,
@@ -323,7 +326,8 @@ var Checkout = {
 			"$input_postal": undefined,
 			"$input_phone": undefined,
 			"$secondary_fields": undefined,
-			"$address_inputs": undefined
+			"$address_inputs": undefined,
+			"$required_address_inputs": undefined
 		},
 		"ShippingMethod": {
 			"$loading_panel": undefined,
@@ -429,6 +433,7 @@ var Checkout = {
 			"easing": 300,
 			"step_url_prefix": "checkout-",
 			"absoluteClassName": "absolute",
+			"error_class": "error",
 			"shipping_address_step_id": "shipping-address",
 			"shipping_option_step_id": "shipping-method",
 			"billing_step_id": "billing-information",
@@ -437,6 +442,9 @@ var Checkout = {
 			"active_class": "active",
 			"steps": [],
 			"addresses_template": undefined
+		},
+		"ShippingAddress": {
+			"is_step_valid": true
 		},
 		"ShippingMethod": {
 			"loading_panel_timeout": undefined
@@ -475,6 +483,9 @@ var Checkout = {
 				Checkout.Fields.Shared.$cta_bar = Checkout.Fields.Shared.$footer.find(".cta_bar");
 				Checkout.Fields.Shared.$btn_next = Checkout.Fields.Shared.$cta_bar.find("button");
 				Checkout.Fields.Shared.$order_total = Checkout.Fields.Shared.$cta_bar.find(".total");
+				Checkout.Fields.Shared.$error_container = $("#error-container");
+				Checkout.Fields.Shared.$error_message = Checkout.Fields.Shared.$error_container.find(".message");
+				Checkout.Fields.Shared.$error_details = Checkout.Fields.Shared.$error_container.find(".details");
 				Checkout.Fields.ShippingAddress.$shipping_address_instructions = Checkout.Fields.Shared.$step_shipping_address.find(".instructions");
 				Checkout.Fields.ShippingAddress.$btnchangeaddress = Checkout.Fields.Shared.$step_shipping_address.find("button.changeaddress");
 				Checkout.Fields.ShippingAddress.$btnadd_address = Checkout.Fields.Shared.$step_shipping_address.find("button.createaddress");
@@ -482,6 +493,7 @@ var Checkout = {
 				Checkout.Fields.ShippingAddress.$address_list = Checkout.Fields.ShippingAddress.$address_wrapper.find(".address-list");
 				Checkout.Fields.ShippingAddress.$new_address_form = Checkout.Fields.Shared.$step_shipping_address.find("#new-address-form");
 				Checkout.Fields.ShippingAddress.$new_address_form_title = Checkout.Fields.ShippingAddress.$new_address_form.find("h2");
+				Checkout.Fields.ShippingAddress.$required_address_inputs = Checkout.Fields.ShippingAddress.$new_address_form.find("input.required, select.required, textarea.required");
 				Checkout.Fields.ShippingAddress.$btncancel_address = Checkout.Fields.Shared.$step_shipping_address.find(".add-edit-address button.cancel");
 				Checkout.Fields.ShippingAddress.$btnsave_address = Checkout.Fields.Shared.$step_shipping_address.find(".add-edit-address button.save");
 				Checkout.Fields.ShippingAddress.$input_country = Checkout.Fields.Shared.$step_shipping_address.find("#country-input");
@@ -772,6 +784,7 @@ var Checkout = {
 			"ConfigureNewUserVersion": function () {
 				// Configure shipping address step
 				Checkout.Fields.ShippingAddress.$btnchangeaddress.hide();
+				Checkout.Fields.ShippingAddress.$btncancel_address.attr("disabled", "disabled");
 				Checkout.Fields.ShippingAddress.$new_address_form.slideDown(Checkout.Settings.Shared.easing);
 				Checkout.Functions.ShippingAddress.ToggleAddressFormMode("new");
 				// Configure billing info step
@@ -799,14 +812,14 @@ var Checkout = {
 				addressDataEntry.phone = addressData.phone;
 
 				// Update the supplied element
-				$updatedElement = Checkout.Functions.Shared.UpdateAddressMarkup($address_element, addressData, "full");
+				$updatedElement = Checkout.Functions.Shared.UpdateAddressMarkup($address_element, addressData, "full-" + type);
 
 				// Update shipping address element
 				if ($shipping_address_items !== undefined) {
 					$.each($shipping_address_items, function (i, element) {
 						var $element = $(element);
 						if ($element.data("addressId") === addressData.id) {
-							Checkout.Functions.Shared.UpdateAddressMarkup($element, addressData, "full");
+							Checkout.Functions.Shared.UpdateAddressMarkup($element, addressData, "full-" + type);
 							return false;
 						}
 					});
@@ -816,7 +829,7 @@ var Checkout = {
 					$.each($billing_address_items, function (i, element) {
 						var $element = $(element);
 						if ($element.data("addressId") === addressData.id) {
-							Checkout.Functions.Shared.UpdateAddressMarkup($element, addressData, "full");
+							Checkout.Functions.Shared.UpdateAddressMarkup($element, addressData, "full-" + type);
 							return false;
 						}
 					});
@@ -856,9 +869,14 @@ var Checkout = {
 					updatedElements.push(data);
 					$newElement = $(Checkout.Settings.Shared.addresses_template(updatedElements));
 					$newElement.data("addressId", data.id);
-					
+
 					switch (type) {
-						case "full":
+						case "full-shipping":
+							$newElement.find("span.btn").addClass("shiptothis");
+							$element.replaceWith($newElement);
+							break;
+						case "full-billing":
+							$newElement.find("span.btn").addClass("billtothis");
 							$element.replaceWith($newElement);
 							break;
 						case "partial":
@@ -930,6 +948,37 @@ var Checkout = {
 				/// <param name="number" type="String">The string to convert.</param>
 				/// <returns type="Decimal" />
 				return parseFloat(Math.round(number * 100) / 100);
+			},
+			"ValidateForm": function () {
+				var isValid = true;
+
+				switch (Checkout.Fields.Shared.$step_current.attr("id")) {
+					case Checkout.Settings.Shared.shipping_address_step_id:
+						
+						break;
+					case Checkout.Settings.Shared.shipping_option_step_id:
+						break;
+					case Checkout.Settings.Shared.billing_step_id:
+						break;
+					case Checkout.Settings.Shared.review_step_id:
+						break;
+					case Checkout.Settings.Shared.confirmation_step_id:
+						break;
+				}
+				return isValid;
+			},
+			"ValidateRequiredField": function ($element) {
+				var isValid = true;
+				if ($element.val() === "") {
+					$element.addClass(Checkout.Settings.Shared.error_class).one("keypress change", function () {
+						Checkout.Functions.Shared.ValidateRequiredField($(this));
+					});
+					isValid = false;
+				}
+				else {
+					$element.removeClass(Checkout.Settings.Shared.error_class);
+				}
+				return isValid;
 			},
 			"BindEvents_Window": function () {
 				$(window).bind('hashchange', function (e) {
@@ -1007,12 +1056,34 @@ var Checkout = {
 				}
 
 				Checkout.Fields.Shared.$btn_next.on("click", function () {
-					var currentStepHref = "#" + Checkout.Settings.Shared.step_url_prefix + Checkout.Fields.Shared.$step_current.attr("id");
-					// Mark the current step as completed
-					Checkout.Fields.Shared.$progress_bar_items.filter("[href=" + currentStepHref + "]").parent().addClass("completed");
-					// Progress to the next step
-					jQuery.bbq.pushState("#" + Checkout.Settings.Shared.step_url_prefix + Checkout.Fields.Shared.$step_current.next().attr("id"), 2);
-					// Mark the new step as active.
+					var currentStepHref = "#" + Checkout.Settings.Shared.step_url_prefix + Checkout.Fields.Shared.$step_current.attr("id"),
+						isValid = true,
+						errorDetails = "";
+
+					switch (Checkout.Fields.Shared.$step_current.attr("id")) {
+						case Checkout.Settings.Shared.shipping_address_step_id:
+							if (Checkout.Fields.ShippingAddress.$new_address_form.is(":visible")) {
+								isValid = Checkout.Fields.ShippingAddress.$btnsave_address.trigger("click");
+							}
+							break;
+						case Checkout.Settings.Shared.shipping_option_step_id:
+							break;
+						case Checkout.Settings.Shared.billing_step_id:
+							break;
+						case Checkout.Settings.Shared.review_step_id:
+							break;
+						case Checkout.Settings.Shared.confirmation_step_id:
+							break;
+					}
+
+					isValid = Checkout.Functions.Shared.ValidateForm();
+					if (isValid && Checkout.Settings.ShippingAddress.is_step_valid) {
+						// Mark the current step as completed
+						Checkout.Fields.Shared.$progress_bar_items.filter("[href=" + currentStepHref + "]").parent().addClass("completed");
+						// Progress to the next step
+						jQuery.bbq.pushState("#" + Checkout.Settings.Shared.step_url_prefix + Checkout.Fields.Shared.$step_current.next().attr("id"), 2);
+						// Mark the new step as active.
+					}
 				});
 			},
 			"BindEvents_ProgressBarItems": function (refreshSelector) {
@@ -1153,9 +1224,11 @@ var Checkout = {
 				if (refreshSelector) {
 					Checkout.Fields.ShippingAddress.$btnsave_address = $(Checkout.Fields.ShippingAddress.$btnsave_address.selector);
 				}
-				Checkout.Fields.ShippingAddress.$btnsave_address.toggleContainer({
+				Checkout.Fields.ShippingAddress.$btnsave_address.on("click", function () {
+					Checkout.Settings.ShippingAddress.is_step_valid = Checkout.Functions.ShippingAddress.ValidateAddressForm();
+				}).toggleContainer({
 					toggle_condition: function () {
-						if (Checkout.Fields.ShippingAddress.$btnchangeaddress.is(":visible")) {
+						if (Checkout.Fields.Shared.$error_container.is(":visible") || Checkout.Fields.ShippingAddress.$btnchangeaddress.is(":visible")) {
 							return false;
 						}
 						else {
@@ -1167,6 +1240,14 @@ var Checkout = {
 					toggle_self: false
 				}).toggleContainer({
 					content_element: Checkout.Fields.ShippingAddress.$new_address_form,
+					toggle_condition: function () {
+						if (Checkout.Fields.Shared.$error_container.is(":visible")) {
+							return false;
+						}
+						else {
+							return true;
+						}
+					},
 					toggle_self: false,
 					force_state: "hide",
 					pre_logic: function () {
@@ -1176,6 +1257,9 @@ var Checkout = {
 						else {
 							Checkout.Functions.ShippingAddress.EditAddressElement();
 						}
+					},
+					post_toggle: function () {
+						Checkout.Fields.ShippingAddress.$btncancel_address.removeAttr("disabled");
 					},
 					callback: function (element, event) {
 						Checkout.Functions.ShippingAddress.ResetAddressForm();
@@ -1323,6 +1407,40 @@ var Checkout = {
 				Checkout.Fields.ShippingAddress.$input_phone.val("");
 				Checkout.Fields.ShippingAddress.$address_inputs.trigger("change");
 				Checkout.Fields.ShippingAddress.$secondary_fields.css("display", "none");
+			},
+			"ValidateAddressForm": function () {
+				var isFormValid = true,
+					isFieldValid = true,
+					errorDetails = "";
+
+				if (Checkout.Fields.ShippingAddress.$new_address_form.is(":visible")) {
+					Checkout.Fields.ShippingAddress.$required_address_inputs.each(function (index) {
+						isFieldValid = Checkout.Functions.Shared.ValidateRequiredField($(this));
+						if (!isFieldValid) {
+							isFormValid = false;
+						}
+					});
+					if (!isFormValid) {
+						Checkout.Fields.Shared.$error_message.text("All required fields must be completed prior to proceeding to the next step.");
+						errorDetails = "Please complete the following fields: <ul>";
+						Checkout.Fields.ShippingAddress.$required_address_inputs.filter(".error").each(function (index) {
+							var fieldName = $(this).next().text();
+							errorDetails += "<li>" + fieldName + "</li>";
+						});
+						errorDetails += "</ul>";
+						Checkout.Fields.Shared.$error_details.html(errorDetails);
+						Checkout.Fields.Shared.$error_container.slideDown(Checkout.Settings.Shared.easing).animatedScroll();
+					}
+					else {
+						//Checkout.Fields.Shared.$error_container.slideUp(Checkout.Settings.Shared.easing);
+						Checkout.Fields.Shared.$error_container.hide();
+						Checkout.Fields.Shared.$error_message.text("");
+						Checkout.Fields.Shared.$error_details.html("");
+					}
+					return isFormValid;
+				}
+
+				return isValid;
 			}
 		},
 		"ShippingOption": {
@@ -1625,41 +1743,23 @@ var Checkout = {
 					content_element: Checkout.Fields.BillingInfo.$billing_address_container,
 					pre_logic: function () {
 						Checkout.Fields.BillingInfo.$billing_address_items.removeAttr("checked");
-						Checkout.Fields.BillingInfo.$btnadd_billing_address.show();
-						Checkout.Fields.BillingInfo.$billing_address_form.hide();
+						if (Checkout.Data.addresses.length > 1) {
+							// TODO: Hide the address item currently associated to the credit card.
+
+							Checkout.Fields.BillingInfo.$btnadd_billing_address.show();
+							Checkout.Fields.BillingInfo.$billing_address_form.hide();
+						}
+						else {
+							Checkout.Fields.BillingInfo.$btnadd_billing_address.hide();
+							Checkout.Functions.BillingInfo.ToggleAddressFormMode("new");
+							Checkout.Fields.BillingInfo.$billing_address_form.show();
+						}
 					},
 					self_toggle_delay_offset: -Checkout.Settings.Shared.easing,
 					force_state: "show",
 					callback: function () {
 						Checkout.Fields.BillingInfo.$billing_address_container.animatedScroll();
 					}
-				}).toggleContainer({
-					content_element: Checkout.Fields.BillingInfo.$btnadd_billing_address,
-					toggle_condition: function () {
-						if (Checkout.Data.addresses.length > 1) {
-							return false;
-						}
-						else {
-							return true;
-						}
-					},
-					force_state: "hide",
-					toggle_self: false
-				}).toggleContainer({
-					content_element: Checkout.Fields.BillingInfo.$billing_address_form,
-					toggle_condition: function () {
-						if (Checkout.Data.addresses.length > 1) {
-							return false;
-						}
-						else {
-							return true;
-						}
-					},
-					pre_logic: function () {
-						Checkout.Functions.BillingInfo.ToggleAddressFormMode("new");
-					},
-					force_state: "show",
-					toggle_self: false
 				});
 			},
 			"BindEvents_BillingAddressItem": function (refreshSelector) {
