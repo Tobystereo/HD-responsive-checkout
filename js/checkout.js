@@ -957,7 +957,7 @@ var Checkout = {
 						
 						break;
 					case Checkout.Settings.Shared.shipping_option_step_id:
-						break;
+							break;
 					case Checkout.Settings.Shared.billing_step_id:
 						break;
 					case Checkout.Settings.Shared.review_step_id:
