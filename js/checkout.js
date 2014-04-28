@@ -2259,17 +2259,19 @@ var Checkout = {
 				if (refreshSelector) {
 					Checkout.Fields.Review.$quantity_inputs = $(Checkout.Fields.Review.$quantity_inputs.selector);
 				}
-				Checkout.Fields.Review.$quantity_inputs.on("change", function () {
-					var $this = $(this),
+				Checkout.Fields.Review.$quantity_inputs.on("keydown", function () {
+					var $this = $(this);
+					setTimeout(function () {
 						val = parseInt($this.val()),
 						orig_val = parseInt($this.attr("data-orig-val"));
 
-					if (val === orig_val) {
-						$this.next().addClass("tertiary").removeClass("secondary");
-					}
-					else {
-						$this.next().addClass("secondary").removeClass("tertiary");
-					}
+						if (val === orig_val) {
+							$this.next().addClass("tertiary").removeClass("secondary");
+						}
+						else {
+							$this.next().addClass("secondary").removeClass("tertiary");
+						}
+					}, 50);
 				});
 			},
 			"BindEvents_UpdateCartItemButton": function (refreshSelector) {
