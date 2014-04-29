@@ -576,6 +576,10 @@ input[type=radio] + label.card {
 
 input[type=radio]:checked + label.card {
 
+    &:hover {
+      background-color: $lighter-green !important;
+    }
+
     .shiptothis, .paywiththis {
         background: none;
         margin-top: 0.5em;
@@ -1112,7 +1116,6 @@ input[type=radio]:checked + label.card {
 
   .cart-item {
     width: 100%;
-    overflow: auto;
 
     &:nth-of-type(odd) {
       background-color: $lighter;

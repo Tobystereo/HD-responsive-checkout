@@ -222,6 +222,8 @@ select {
   // }
 }
 
+
+
 .select2-choice {
   height: 3rem !important;
 
@@ -242,6 +244,15 @@ select {
       color: $dark;
       margin-top: -2.75em !important;
     }
+  }
+}
+
+.select2-container.error {
+  @extend .error;
+
+  .select2-choice {
+    border-color: $red !important;
+    background: $lighter-red;
   }
 }
 
