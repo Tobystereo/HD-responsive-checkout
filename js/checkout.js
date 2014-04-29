@@ -287,6 +287,24 @@ var Checkout = {
 				"in_wallet": true
 			}
 		],
+		"countries": [
+			{
+				"name": "United States",
+				"value": "US"
+			},
+			{
+				"name": "Canada",
+				"value": "CA"
+			},
+			{
+				"name": "Germany",
+				"value": "DE"
+			},
+			{
+				"name": "United Kingdom",
+				"value": "UK"
+			}
+		],
 		"checkout_details": {
 			"subtotal": 0,
 			"tax_rate": 0,
@@ -1032,6 +1050,9 @@ var Checkout = {
 				}
 				return isValid;
 			},
+			"InitializeCountryDropdown": function () {
+				Checkout.Fields.ShippingAddress.$input_country.select2();
+			},
 			"BindEvents_Window": function () {
 				$(window).bind('hashchange', function (e) {
 					var step = e.fragment.replace(Checkout.Settings.Shared.step_url_prefix, ""),
@@ -1059,6 +1080,7 @@ var Checkout = {
 			"BindEvents_Document": function () {
 				$(document).ready(function () {
 					Checkout.Functions.Shared.GetFields();
+					Checkout.Functions.Shared.InitializeCountryDropdown();
 					if (Checkout.Settings.Shared.mode === "return") {
 						Checkout.Functions.Shared.BindUIElements();
 					}
