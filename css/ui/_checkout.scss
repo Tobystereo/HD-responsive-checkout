@@ -1108,7 +1108,12 @@ input[type=radio]:checked + label.card {
 
 // REVIEW STEP
 .cart-items {
+  width: 100%;
+
   .cart-item {
+    width: 100%;
+    overflow: auto;
+
     &:nth-of-type(odd) {
       background-color: $lighter;
     }
@@ -1172,8 +1177,10 @@ input[type=radio]:checked + label.card {
             width: 25%;
           }
           .update-cart-item {
-            width: auto;
+            width: 25%;
+            text-align: center;
             margin-left: 1em;
+            padding: 0;
             @media #{$desk} {
               margin-top: .7em;
               margin-left: 0;
@@ -1191,7 +1198,9 @@ input[type=radio]:checked + label.card {
 
         &.buttons {
           width: 30%;
+
           float: right;
+          text-align: center;
 
           button {
             width: 100%;
@@ -1509,10 +1518,73 @@ footer {
     border-bottom: none;
     margin-bottom: 1rem;
     text-align: center;
+  }
+}
 
-    // &:hover {
-    //   background-color: $light;
-    // }
+.remove-confirmation {
+  .remove-cart-item {
+    @include transition;
+    -webkit-transform: translateY(0);
+    opacity: 1;
+  }
+
+  span {
+    display: block;
+    @include transition;
+    margin-top: 0;
+    -webkit-transform: translateY(100px);
+    opacity: 0;
+    height: 0;
+  }
+
+  &.confirm {
+    .remove-cart-item {
+      -webkit-transform: translateY(-30px);
+      opacity: 0;
+    }
+
+    span {
+      display: block;
+      opacity: 1;
+      -webkit-transform: translateY(0px);
+      height: auto;
+
+      margin-top: -145px;
+
+      @media #{$lap} {
+        margin-top: -95px;
+      }
+
+      @media #{$desk} {
+        margin-top: -25px;
+      }
+
+      p {
+        display: block;
+        clear: both;
+        margin-bottom: 0;
+        @media #{$lap} {
+          margin-bottom: 10px;
+        }
+      }
+
+      button {
+        position: relative;
+        margin-top: 10px !important;
+      }
+
+      .yes {
+        @extend .error;
+        @media #{$lap} {
+          margin-bottom: 10px;
+        }
+      }
+
+      .no {
+        @extend .success;
+      }
+
+    }
   }
 }
 
