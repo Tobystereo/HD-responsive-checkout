@@ -7591,7 +7591,41 @@ select {
   -webkit-appearance: none;
 }
 
-/* line 221, ui/_forms.scss */
+/* line 225, ui/_forms.scss */
+.select2-choice {
+  height: 3rem !important;
+}
+/* line 228, ui/_forms.scss */
+.select2-choice .select2-chosen {
+  line-height: 3em;
+  text-align: left;
+  margin-left: 7px;
+  font-size: 16px;
+  font-size: 1rem;
+  font-family: 'Helvetica Neue', Helvetica, sans-serif;
+  font-weight: 300;
+  letter-spacing: 0;
+  line-height: 62.4px;
+  line-height: 3.9rem;
+}
+/* line 235, ui/_forms.scss */
+.select2-choice .select2-arrow {
+  width: 4rem !important;
+}
+/* line 238, ui/_forms.scss */
+.select2-choice .select2-arrow:after {
+  display: inline-block;
+  position: relative;
+  content: "\25BC";
+  width: 4em;
+  height: 3em;
+  display: block;
+  line-height: 3em;
+  color: #727272;
+  margin-top: -2.75em !important;
+}
+
+/* line 248, ui/_forms.scss */
 .dropdownlabel {
   text-align: left;
 }
@@ -7601,8 +7635,8 @@ select {
 OTHER STYLES
 
 *********************************/
-/* line 232, ui/_forms.scss */
-.required:after, input[type=text].required + label:after, input[type=number].required + label:after, textarea.required + label:after, select.required + label:after, .required-field-message:after {
+/* line 259, ui/_forms.scss */
+.required_indicator:after, input[type=text].required + label:after, input[type=number].required + label:after, textarea.required + label:after, select.required + label:after, .required-field-message:after {
   display: inline-block;
   position: relative;
   content: "*";
@@ -7613,7 +7647,7 @@ OTHER STYLES
   float: right;
 }
 
-/* line 239, ui/_forms.scss */
+/* line 266, ui/_forms.scss */
 .required-field-message {
   text-align: right;
 }
@@ -7623,11 +7657,11 @@ OTHER STYLES
 VALIDATION
 
 *********************************/
-/* line 252, ui/_forms.scss */
+/* line 279, ui/_forms.scss */
 .error-container {
   padding-left: 1.5em;
 }
-/* line 255, ui/_forms.scss */
+/* line 282, ui/_forms.scss */
 .error-container .message {
   font-size: 24px;
   font-size: 1.5rem;
@@ -7638,7 +7672,7 @@ VALIDATION
   line-height: 1.95rem;
 }
 @media only screen and (min-width: 50em) {
-  /* line 255, ui/_forms.scss */
+  /* line 282, ui/_forms.scss */
   .error-container .message {
     font-size: 32px;
     font-size: 2rem;
@@ -7649,15 +7683,15 @@ VALIDATION
     line-height: 2.6rem;
   }
 }
-/* line 263, ui/_forms.scss */
+/* line 290, ui/_forms.scss */
 .error-container .details {
   font-weight: 700;
 }
-/* line 265, ui/_forms.scss */
+/* line 292, ui/_forms.scss */
 .error-container .details ul {
   margin-top: 0.5em;
 }
-/* line 267, ui/_forms.scss */
+/* line 294, ui/_forms.scss */
 .error-container .details ul li {
   line-height: 26px;
   line-height: 1.625rem;
