@@ -122,6 +122,55 @@
 
 		return this;
 	};
+
+	$.fn.requireConfirmation = function (options) {
+		// Default options
+		var settings = $.extend({
+			action: undefined,
+			firing_events: "click",
+			callback: undefined,
+			delay: 300,
+			yes_text: "Yes",
+			no_text: "No",
+			confirm_class: "confirm",
+			confirm_text: "Are you sure?"
+		}, options),
+		$wrapper = $("<div class='remove-confirmation'></div>"),
+		$confirm_element = $("<span><p>" + settings.confirm_text + "</p><button class='btn small secondary yes'>" + settings.yes_text + "</button>" + "<button class='btn small tertiary no'>" + settings.no_text + "</button></span>");
+
+		this.each(function (index) {
+			var $current_button = $(this),
+				$new_button = $current_button.clone(),
+				$current_wrapper = $wrapper.clone(),
+				$current_confirm_element = $confirm_element.clone();
+			// wire initiator action
+			$new_button.on(settings.firing_events, function (e) {
+				e.preventDefault();
+				$(this).parent().addClass(settings.confirm_class);
+			});
+
+			// wire confirm action
+			if (settings.action !== undefined) {
+				$current_confirm_element.find(".yes").on(settings.firing_events, function (e) {
+					e.preventDefault();
+					settings.action($(this));
+				});
+			}
+			// wire cancel action
+			$current_confirm_element.find(".no").on(settings.firing_events, function (e) {
+				e.preventDefault();
+				$(this).parent().parent().removeClass(settings.confirm_class);
+			});
+
+			// Put the elements in the wrapper
+			$current_wrapper.append($new_button);
+			$current_wrapper.append($current_confirm_element);
+			$current_button.replaceWith($current_wrapper);
+		});
+
+		return this;
+	};
+
 }(jQuery));
 
 //#endregion PLUGINS
@@ -954,10 +1003,10 @@ var Checkout = {
 
 				switch (Checkout.Fields.Shared.$step_current.attr("id")) {
 					case Checkout.Settings.Shared.shipping_address_step_id:
-						
+
 						break;
 					case Checkout.Settings.Shared.shipping_option_step_id:
-							break;
+						break;
 					case Checkout.Settings.Shared.billing_step_id:
 						break;
 					case Checkout.Settings.Shared.review_step_id:
@@ -2293,11 +2342,11 @@ var Checkout = {
 				if (refreshSelector) {
 					Checkout.Fields.Review.$btnremove_cart_item = $(Checkout.Fields.Review.$btnremove_cart_item.selector);
 				}
-				Checkout.Fields.Review.$btnremove_cart_item.on("click", function (e) {
-					var $this = $(this),
-						$cart_item = $this.parents("li.cart-item");
-					e.preventDefault();
-					Checkout.Functions.Review.RemoveCartItem($cart_item);
+				Checkout.Fields.Review.$btnremove_cart_item.requireConfirmation({
+					action: function ($remove_button) {
+						var $cart_item = $remove_button.parents("li.cart-item");
+						Checkout.Functions.Review.RemoveCartItem($cart_item);
+					},
 				});
 			},
 			"BindEvents_ChangeSelectionButton": function (refreshSelector) {
