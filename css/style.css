@@ -5962,14 +5962,14 @@ input[type=radio]:checked + label.card .shiptothis:after, input[type=radio]:chec
 }
 
 /* line 843, ui/_checkout.scss */
-#promo-code-form.success .card .promo-details {
+#promo-code-form.success .card .promo-details, .remove-confirmation.confirm span #promo-code-form.no .card .promo-details {
   display: block !important;
   color: #4a993d;
   width: 60%;
   float: left;
 }
 /* line 848, ui/_checkout.scss */
-#promo-code-form.success .card .promo-details span {
+#promo-code-form.success .card .promo-details span, .remove-confirmation.confirm span #promo-code-form.no .card .promo-details span {
   font-weight: 700;
 }
 
@@ -6248,37 +6248,46 @@ input[type=radio]:checked + label.card .shiptothis:after, input[type=radio]:chec
   margin-right: 0.5em;
 }
 
-/* line 1112, ui/_checkout.scss */
+/* line 1110, ui/_checkout.scss */
+.cart-items {
+  width: 100%;
+}
+/* line 1113, ui/_checkout.scss */
+.cart-items .cart-item {
+  width: 100%;
+  overflow: auto;
+}
+/* line 1117, ui/_checkout.scss */
 .cart-items .cart-item:nth-of-type(odd) {
   background-color: #f1f1f1;
 }
-/* line 1116, ui/_checkout.scss */
+/* line 1121, ui/_checkout.scss */
 .cart-items .cart-item.header {
   display: none;
 }
 @media only screen and (min-width: 50em) {
-  /* line 1116, ui/_checkout.scss */
+  /* line 1121, ui/_checkout.scss */
   .cart-items .cart-item.header {
     display: block;
     background-color: #cbcbcb;
   }
-  /* line 1123, ui/_checkout.scss */
+  /* line 1128, ui/_checkout.scss */
   .cart-items .cart-item.header .field {
     margin-top: 0 !important;
     margin-bottom: 0 !important;
   }
-  /* line 1128, ui/_checkout.scss */
+  /* line 1133, ui/_checkout.scss */
   .cart-items .cart-item.header .label {
     display: block !important;
     font-weight: 700 !important;
   }
 }
-/* line 1135, ui/_checkout.scss */
+/* line 1140, ui/_checkout.scss */
 .cart-items .cart-item .thumbnail {
   width: 30%;
 }
 @media only screen and (min-width: 30em) {
-  /* line 1135, ui/_checkout.scss */
+  /* line 1140, ui/_checkout.scss */
   .cart-items .cart-item .thumbnail {
     width: 30%;
     float: left;
@@ -6286,139 +6295,142 @@ input[type=radio]:checked + label.card .shiptothis:after, input[type=radio]:chec
   }
 }
 @media only screen and (min-width: 50em) {
-  /* line 1135, ui/_checkout.scss */
+  /* line 1140, ui/_checkout.scss */
   .cart-items .cart-item .thumbnail {
     width: 20%;
     float: none;
   }
 }
-/* line 1150, ui/_checkout.scss */
+/* line 1155, ui/_checkout.scss */
 .cart-items .cart-item .form-fields {
   width: 100%;
 }
-/* line 1153, ui/_checkout.scss */
+/* line 1158, ui/_checkout.scss */
 .cart-items .cart-item .form-fields .label {
   float: left;
   width: 26%;
   margin-right: 1em;
 }
 @media only screen and (min-width: 50em) {
-  /* line 1153, ui/_checkout.scss */
+  /* line 1158, ui/_checkout.scss */
   .cart-items .cart-item .form-fields .label {
     display: none;
   }
 }
-/* line 1163, ui/_checkout.scss */
+/* line 1168, ui/_checkout.scss */
 .cart-items .cart-item .form-fields .field {
   margin-bottom: 1em;
 }
-/* line 1167, ui/_checkout.scss */
+/* line 1172, ui/_checkout.scss */
 .cart-items .cart-item .form-fields .field.quantity .label {
   width: 100%;
   margin-bottom: 0.25em;
 }
-/* line 1171, ui/_checkout.scss */
+/* line 1176, ui/_checkout.scss */
 .cart-items .cart-item .form-fields .field.quantity input[type=text], .cart-items .cart-item .form-fields .field.quantity input[type=number] {
   width: 25%;
 }
-/* line 1174, ui/_checkout.scss */
+/* line 1179, ui/_checkout.scss */
 .cart-items .cart-item .form-fields .field.quantity .update-cart-item {
-  width: auto;
+  width: 25%;
+  text-align: center;
   margin-left: 1em;
+  padding: 0;
 }
 @media only screen and (min-width: 50em) {
-  /* line 1174, ui/_checkout.scss */
+  /* line 1179, ui/_checkout.scss */
   .cart-items .cart-item .form-fields .field.quantity .update-cart-item {
     margin-top: .7em;
     margin-left: 0;
   }
 }
 @media only screen and (min-width: 50em) {
-  /* line 1183, ui/_checkout.scss */
+  /* line 1190, ui/_checkout.scss */
   .cart-items .cart-item .form-fields .field.quantity input[type=text], .cart-items .cart-item .form-fields .field.quantity input[type=number] {
     width: 100%;
   }
-  /* line 1186, ui/_checkout.scss */
+  /* line 1193, ui/_checkout.scss */
   .cart-items .cart-item .form-fields .field.quantity .update-cart-item {
     width: 100%;
   }
 }
-/* line 1192, ui/_checkout.scss */
+/* line 1199, ui/_checkout.scss */
 .cart-items .cart-item .form-fields .field.buttons {
   width: 30%;
   float: right;
+  text-align: center;
 }
-/* line 1196, ui/_checkout.scss */
+/* line 1205, ui/_checkout.scss */
 .cart-items .cart-item .form-fields .field.buttons button {
   width: 100%;
   margin-top: -11em;
 }
 @media only screen and (min-width: 50em) {
-  /* line 1196, ui/_checkout.scss */
+  /* line 1205, ui/_checkout.scss */
   .cart-items .cart-item .form-fields .field.buttons button {
     margin-top: 0 !important;
   }
 }
 @media only screen and (min-width: 50em) {
-  /* line 1163, ui/_checkout.scss */
+  /* line 1168, ui/_checkout.scss */
   .cart-items .cart-item .form-fields .field {
     display: block;
     float: left;
     margin-right: 1em;
   }
-  /* line 1207, ui/_checkout.scss */
+  /* line 1216, ui/_checkout.scss */
   .cart-items .cart-item .form-fields .field.name {
     width: 35%;
   }
-  /* line 1211, ui/_checkout.scss */
+  /* line 1220, ui/_checkout.scss */
   .cart-items .cart-item .form-fields .field.price, .cart-items .cart-item .form-fields .field.quantity, .cart-items .cart-item .form-fields .field.total {
     width: 12.5%;
   }
-  /* line 1215, ui/_checkout.scss */
+  /* line 1224, ui/_checkout.scss */
   .cart-items .cart-item .form-fields .field.buttons {
     width: 15%;
     margin-top: 0.5em;
   }
-  /* line 1220, ui/_checkout.scss */
+  /* line 1229, ui/_checkout.scss */
   .cart-items .cart-item .form-fields .field.name, .cart-items .cart-item .form-fields .field.price, .cart-items .cart-item .form-fields .field.total {
     margin-top: 1em;
   }
 }
 
-/* line 1236, ui/_checkout.scss */
+/* line 1245, ui/_checkout.scss */
 .cost-breakdown .field {
   margin-bottom: 0;
 }
-/* line 1240, ui/_checkout.scss */
+/* line 1249, ui/_checkout.scss */
 .cost-breakdown .label {
   width: 30%;
 }
 @media only screen and (min-width: 30em) {
-  /* line 1240, ui/_checkout.scss */
+  /* line 1249, ui/_checkout.scss */
   .cost-breakdown .label {
     width: 50%;
     text-align: right;
   }
 }
 @media only screen and (min-width: 50em) {
-  /* line 1240, ui/_checkout.scss */
+  /* line 1249, ui/_checkout.scss */
   .cost-breakdown .label {
     width: 71%;
   }
 }
-/* line 1252, ui/_checkout.scss */
+/* line 1261, ui/_checkout.scss */
 .cost-breakdown .label p {
   margin-left: 1em;
 }
-/* line 1256, ui/_checkout.scss */
+/* line 1265, ui/_checkout.scss */
 .cost-breakdown .label span {
   font-weight: 300;
 }
-/* line 1261, ui/_checkout.scss */
+/* line 1270, ui/_checkout.scss */
 .cost-breakdown .value {
   width: 29%;
 }
-/* line 1265, ui/_checkout.scss */
+/* line 1274, ui/_checkout.scss */
 .cost-breakdown .total {
   border-top: 1px solid #727272;
   padding-top: .5em;
@@ -6430,11 +6442,11 @@ input[type=radio]:checked + label.card .shiptothis:after, input[type=radio]:chec
   line-height: 41.6px;
   line-height: 2.6rem;
 }
-/* line 1270, ui/_checkout.scss */
+/* line 1279, ui/_checkout.scss */
 .cost-breakdown .total p {
   margin-left: 1rem;
 }
-/* line 1277, ui/_checkout.scss */
+/* line 1286, ui/_checkout.scss */
 .cost-breakdown .discount .value:before {
   display: inline-block;
   position: relative;
@@ -6445,85 +6457,85 @@ input[type=radio]:checked + label.card .shiptothis:after, input[type=radio]:chec
   margin-right: 0;
 }
 
-/* line 1288, ui/_checkout.scss */
+/* line 1297, ui/_checkout.scss */
 .selection-container h3 {
   padding-left: 1rem;
 }
-/* line 1292, ui/_checkout.scss */
+/* line 1301, ui/_checkout.scss */
 .selection-container h4 {
   margin-bottom: 1rem;
 }
-/* line 1296, ui/_checkout.scss */
+/* line 1305, ui/_checkout.scss */
 .selection-container button {
   float: right;
   margin-top: -5.25rem;
 }
-/* line 1302, ui/_checkout.scss */
+/* line 1311, ui/_checkout.scss */
 .selection-container .billing-information h4 {
   margin-bottom: 4rem;
 }
-/* line 1306, ui/_checkout.scss */
+/* line 1315, ui/_checkout.scss */
 .selection-container .billing-information button {
   margin-top: -6.25rem;
 }
 
-/* line 1315, ui/_checkout.scss */
+/* line 1324, ui/_checkout.scss */
 .order-review .card, .order-review input[type=radio] + label.card {
   min-height: 150px;
 }
-/* line 1319, ui/_checkout.scss */
+/* line 1328, ui/_checkout.scss */
 .order-review .card .address span {
   display: block;
   float: left;
   margin: 0 0.25em 0 0;
 }
-/* line 1324, ui/_checkout.scss */
+/* line 1333, ui/_checkout.scss */
 .order-review .card .address .company, .order-review .card .address .street, .order-review .card .address .city, .order-review .card .address .country, .order-review .card .address .phone {
   clear: left;
 }
-/* line 1328, ui/_checkout.scss */
+/* line 1337, ui/_checkout.scss */
 .order-review .card .address .name {
   margin-right: 0;
 }
-/* line 1332, ui/_checkout.scss */
+/* line 1341, ui/_checkout.scss */
 .order-review .card .address .phone, .order-review .card .address .street {
   margin-top: 1em;
 }
-/* line 1337, ui/_checkout.scss */
+/* line 1346, ui/_checkout.scss */
 .order-review .card .change {
   margin: 0;
   float: right;
 }
-/* line 1344, ui/_checkout.scss */
+/* line 1353, ui/_checkout.scss */
 .order-review .shipping-option span {
   display: block;
   float: left;
   margin-right: 1em;
 }
-/* line 1350, ui/_checkout.scss */
+/* line 1359, ui/_checkout.scss */
 .order-review .shipping-option .delivery-date, .order-review .shipping-option .price {
   clear: left;
 }
-/* line 1354, ui/_checkout.scss */
+/* line 1363, ui/_checkout.scss */
 .order-review .shipping-option .carrier {
   width: 30% !important;
   padding-right: 0;
   text-align: left;
   padding-left: 2.5em;
 }
-/* line 1360, ui/_checkout.scss */
+/* line 1369, ui/_checkout.scss */
 .order-review .shipping-option .carrier:before {
   display: inline-block !important;
   margin-top: -2px;
   margin-left: -2.5em;
 }
-/* line 1367, ui/_checkout.scss */
+/* line 1376, ui/_checkout.scss */
 .order-review .shipping-option .delivery-date, .order-review .shipping-option .price {
   width: 100%;
   display: block;
   margin-top: 1em;
 }
-/* line 1372, ui/_checkout.scss */
+/* line 1381, ui/_checkout.scss */
 .order-review .shipping-option .delivery-date:before, .order-review .shipping-option .price:before {
   font-weight: 500;
   display: inline-block;
@@ -6534,30 +6546,30 @@ input[type=radio]:checked + label.card .shiptothis:after, input[type=radio]:chec
   margin-right: 1em;
   text-align: left;
 }
-/* line 1380, ui/_checkout.scss */
+/* line 1389, ui/_checkout.scss */
 .order-review .shipping-option .delivery-date:before {
   content: "Delivery date: ";
 }
-/* line 1384, ui/_checkout.scss */
+/* line 1393, ui/_checkout.scss */
 .order-review .shipping-option .price:before {
   content: "Shipping cost: ";
 }
 
-/* line 1392, ui/_checkout.scss */
+/* line 1401, ui/_checkout.scss */
 footer .help {
   min-height: 3em;
 }
-/* line 1394, ui/_checkout.scss */
+/* line 1403, ui/_checkout.scss */
 footer .help h2, footer .help p {
   text-align: center;
   margin: 2rem;
 }
-/* line 1399, ui/_checkout.scss */
+/* line 1408, ui/_checkout.scss */
 footer .help h2 {
   font-weight: 100;
   margin-bottom: 0;
 }
-/* line 1404, ui/_checkout.scss */
+/* line 1413, ui/_checkout.scss */
 footer .help p {
   margin-top: 1rem;
   margin-bottom: 0;
@@ -6569,7 +6581,7 @@ footer .help p {
   line-height: 24.96px;
   line-height: 1.56rem;
 }
-/* line 1412, ui/_checkout.scss */
+/* line 1421, ui/_checkout.scss */
 footer .help a, footer .privacy-policy a, footer .shipping-policy a {
   margin-left: auto !important;
   margin-right: auto !important;
@@ -6583,32 +6595,32 @@ footer .help a, footer .privacy-policy a, footer .shipping-policy a {
   width: 90%;
 }
 @media only screen and (min-width: 30em) {
-  /* line 1432, ui/_checkout.scss */
+  /* line 1441, ui/_checkout.scss */
   footer .privacy-policy a {
     margin-bottom: 2em !important;
   }
 }
-/* line 1440, ui/_checkout.scss */
+/* line 1449, ui/_checkout.scss */
 footer .shipping-policy a {
   margin-bottom: 2em !important;
 }
 
-/* line 1449, ui/_checkout.scss */
+/* line 1458, ui/_checkout.scss */
 .modal-inner header {
   padding: 1em 3em !important;
 }
 
-/* line 1454, ui/_checkout.scss */
+/* line 1463, ui/_checkout.scss */
 .semantic-content.is-active:before {
   background: #727272 !important;
 }
 
-/* line 1458, ui/_checkout.scss */
+/* line 1467, ui/_checkout.scss */
 .modal-close {
   color: #727272;
 }
 @media only screen and (min-width: 30em) {
-  /* line 1458, ui/_checkout.scss */
+  /* line 1467, ui/_checkout.scss */
   .modal-close {
     text-align: center;
     font-size: 48px;
@@ -6622,42 +6634,42 @@ footer .shipping-policy a {
   }
 }
 @media only screen and (min-width: 30em) {
-  /* line 1468, ui/_checkout.scss */
+  /* line 1477, ui/_checkout.scss */
   .modal-close:after {
     width: 50px;
     height: 50px;
   }
 }
 @media only screen and (min-width: 50em) {
-  /* line 1468, ui/_checkout.scss */
+  /* line 1477, ui/_checkout.scss */
   .modal-close:after {
     margin-left: 275px !important;
   }
 }
 
-/* line 1482, ui/_checkout.scss */
+/* line 1491, ui/_checkout.scss */
 .modal-content {
   padding: 3em !important;
 }
-/* line 1485, ui/_checkout.scss */
+/* line 1494, ui/_checkout.scss */
 .modal-content h1 {
   padding: 0;
   margin-top: 0 !important;
 }
-/* line 1492, ui/_checkout.scss */
+/* line 1501, ui/_checkout.scss */
 .modal-content h2 {
   padding: 0  !important;
 }
-/* line 1497, ui/_checkout.scss */
+/* line 1506, ui/_checkout.scss */
 .modal-content h3 {
   padding: 0 !important;
 }
 
-/* line 1503, ui/_checkout.scss */
+/* line 1512, ui/_checkout.scss */
 #cancel-order-modal {
   text-align: center;
 }
-/* line 1506, ui/_checkout.scss */
+/* line 1515, ui/_checkout.scss */
 #cancel-order-modal a {
   display: block;
   clear: both;
@@ -6666,52 +6678,120 @@ footer .shipping-policy a {
   text-align: center;
 }
 
-/* line 1522, ui/_checkout.scss */
+/* line 1525, ui/_checkout.scss */
+.remove-confirmation .remove-cart-item {
+  -webkit-transition: all 0.15s ease-out 0;
+  -moz-transition: all 0.15s ease-out 0;
+  transition: all 0.15s ease-out 0;
+  -webkit-transform: translateY(0);
+  opacity: 1;
+}
+/* line 1531, ui/_checkout.scss */
+.remove-confirmation span {
+  display: block;
+  -webkit-transition: all 0.15s ease-out 0;
+  -moz-transition: all 0.15s ease-out 0;
+  transition: all 0.15s ease-out 0;
+  margin-top: 0;
+  -webkit-transform: translateY(100px);
+  opacity: 0;
+  height: 0;
+}
+/* line 1541, ui/_checkout.scss */
+.remove-confirmation.confirm .remove-cart-item {
+  -webkit-transform: translateY(-30px);
+  opacity: 0;
+}
+/* line 1546, ui/_checkout.scss */
+.remove-confirmation.confirm span {
+  display: block;
+  opacity: 1;
+  -webkit-transform: translateY(0px);
+  height: auto;
+  margin-top: -145px;
+}
+@media only screen and (min-width: 30em) {
+  /* line 1546, ui/_checkout.scss */
+  .remove-confirmation.confirm span {
+    margin-top: -95px;
+  }
+}
+@media only screen and (min-width: 50em) {
+  /* line 1546, ui/_checkout.scss */
+  .remove-confirmation.confirm span {
+    margin-top: -25px;
+  }
+}
+/* line 1562, ui/_checkout.scss */
+.remove-confirmation.confirm span p {
+  display: block;
+  clear: both;
+  margin-bottom: 0;
+}
+@media only screen and (min-width: 30em) {
+  /* line 1562, ui/_checkout.scss */
+  .remove-confirmation.confirm span p {
+    margin-bottom: 10px;
+  }
+}
+/* line 1571, ui/_checkout.scss */
+.remove-confirmation.confirm span button {
+  position: relative;
+  margin-top: 10px !important;
+}
+@media only screen and (min-width: 30em) {
+  /* line 1576, ui/_checkout.scss */
+  .remove-confirmation.confirm span .yes {
+    margin-bottom: 10px;
+  }
+}
+
+/* line 1594, ui/_checkout.scss */
 .order-confirmation {
   text-align: center;
 }
-/* line 1524, ui/_checkout.scss */
+/* line 1596, ui/_checkout.scss */
 .order-confirmation h2 {
   text-align: center;
   color: #4a993d;
 }
-/* line 1529, ui/_checkout.scss */
+/* line 1601, ui/_checkout.scss */
 .order-confirmation .order-number {
   font-weight: 700;
 }
-/* line 1533, ui/_checkout.scss */
+/* line 1605, ui/_checkout.scss */
 .order-confirmation button {
   margin-top: 3rem;
 }
 
 /* Colors */
-/* line 1539, ui/_checkout.scss */
+/* line 1611, ui/_checkout.scss */
 .bg-lightest {
   background-color: white;
 }
 
-/* line 1540, ui/_checkout.scss */
+/* line 1612, ui/_checkout.scss */
 .bg-lighter {
   background-color: #f1f1f1;
 }
 
-/* line 1541, ui/_checkout.scss */
+/* line 1613, ui/_checkout.scss */
 .bg-light {
   background-color: #cbcbcb;
 }
 
-/* line 1542, ui/_checkout.scss */
+/* line 1614, ui/_checkout.scss */
 .bg-dark {
   background-color: #727272;
 }
 
-/* line 1543, ui/_checkout.scss */
+/* line 1615, ui/_checkout.scss */
 .bg-darkest {
   background-color: black;
 }
 
 /* Typography */
-/* line 1550, ui/_checkout.scss */
+/* line 1622, ui/_checkout.scss */
 a, a:link, a:hover, a:active, a:focus {
   text-decoration: none;
   border-bottom: 1px solid;
@@ -6934,14 +7014,14 @@ button:disabled:hover, button:disabled:focus, .disabled:hover, .disabled:focus {
 }
 
 /* line 172, ui/_ui.scss */
-.card.success, input[type=radio] + label.success.card {
+.card.success, .remove-confirmation.confirm span .card.no, input[type=radio] + label.success.card {
   outline-color: green;
   background: #e4f3e2;
   box-shadow: none;
 }
 
 /* line 178, ui/_ui.scss */
-.background-success, #promo-code-form.success .card, .success, .success > * {
+.background-success, #promo-code-form.success .card, .remove-confirmation.confirm span #promo-code-form.no .card, .success, .remove-confirmation.confirm span .no, .success > *, .remove-confirmation.confirm span .no > * {
   background-color: #e4f3e2;
 }
 
@@ -6951,12 +7031,12 @@ button:disabled:hover, button:disabled:focus, .disabled:hover, .disabled:focus {
 }
 
 /* line 186, ui/_ui.scss */
-.background-error, #promo-code-form.error .card, .remove, .error, .error > * {
+.background-error, #promo-code-form.error .card, .remove-confirmation.confirm span #promo-code-form.yes .card, .remove, .error, .remove-confirmation.confirm span .yes, .error > *, .remove-confirmation.confirm span .yes > * {
   background-color: #f3e2e2;
 }
 
 /* line 190, ui/_ui.scss */
-.text-success, .success, .success > * {
+.text-success, .success, .remove-confirmation.confirm span .no, .success > *, .remove-confirmation.confirm span .no > * {
   color: black;
 }
 
@@ -6966,7 +7046,7 @@ button:disabled:hover, button:disabled:focus, .disabled:hover, .disabled:focus {
 }
 
 /* line 198, ui/_ui.scss */
-.text-error, .error, .error > *, .required-field-message {
+.text-error, .error, .remove-confirmation.confirm span .yes, .error > *, .remove-confirmation.confirm span .yes > *, .required-field-message {
   color: #993d3d;
 }
 
@@ -7325,16 +7405,16 @@ input[type=text].valid + label, input[type=number].valid + label, textarea.valid
   color: #4a993d !important;
 }
 /* line 50, ui/_forms.scss */
-input[type=text].error, input[type=number].error, textarea.error, select.error {
+input[type=text].error, .remove-confirmation.confirm span input[type=text].yes, input[type=number].error, .remove-confirmation.confirm span input[type=number].yes, textarea.error, .remove-confirmation.confirm span textarea.yes, select.error, .remove-confirmation.confirm span select.yes {
   background-color: #f3e2e2 !important;
   border-color: #993d3d !important;
 }
 /* line 54, ui/_forms.scss */
-input[type=text].error:focus, input[type=number].error:focus, textarea.error:focus, select.error:focus {
+input[type=text].error:focus, .remove-confirmation.confirm span input[type=text].yes:focus, input[type=number].error:focus, .remove-confirmation.confirm span input[type=number].yes:focus, textarea.error:focus, .remove-confirmation.confirm span textarea.yes:focus, select.error:focus, .remove-confirmation.confirm span select.yes:focus {
   background-color: #e5bdbd !important;
 }
 /* line 58, ui/_forms.scss */
-input[type=text].error + label, input[type=number].error + label, textarea.error + label, select.error + label {
+input[type=text].error + label, .remove-confirmation.confirm span input[type=text].yes + label, input[type=number].error + label, .remove-confirmation.confirm span input[type=number].yes + label, textarea.error + label, .remove-confirmation.confirm span textarea.yes + label, select.error + label, .remove-confirmation.confirm span select.yes + label {
   color: #993d3d !important;
 }
 /* line 63, ui/_forms.scss */
@@ -7511,7 +7591,41 @@ select {
   -webkit-appearance: none;
 }
 
-/* line 221, ui/_forms.scss */
+/* line 225, ui/_forms.scss */
+.select2-choice {
+  height: 3rem !important;
+}
+/* line 228, ui/_forms.scss */
+.select2-choice .select2-chosen {
+  line-height: 3em;
+  text-align: left;
+  margin-left: 7px;
+  font-size: 16px;
+  font-size: 1rem;
+  font-family: 'Helvetica Neue', Helvetica, sans-serif;
+  font-weight: 300;
+  letter-spacing: 0;
+  line-height: 62.4px;
+  line-height: 3.9rem;
+}
+/* line 235, ui/_forms.scss */
+.select2-choice .select2-arrow {
+  width: 4rem !important;
+}
+/* line 238, ui/_forms.scss */
+.select2-choice .select2-arrow:after {
+  display: inline-block;
+  position: relative;
+  content: "\25BC";
+  width: 4em;
+  height: 3em;
+  display: block;
+  line-height: 3em;
+  color: #727272;
+  margin-top: -2.75em !important;
+}
+
+/* line 248, ui/_forms.scss */
 .dropdownlabel {
   text-align: left;
 }
@@ -7521,8 +7635,8 @@ select {
 OTHER STYLES
 
 *********************************/
-/* line 232, ui/_forms.scss */
-.required:after, input[type=text].required + label:after, input[type=number].required + label:after, textarea.required + label:after, select.required + label:after, .required-field-message:after {
+/* line 259, ui/_forms.scss */
+.required_indicator:after, input[type=text].required + label:after, input[type=number].required + label:after, textarea.required + label:after, select.required + label:after, .required-field-message:after {
   display: inline-block;
   position: relative;
   content: "*";
@@ -7533,7 +7647,7 @@ OTHER STYLES
   float: right;
 }
 
-/* line 239, ui/_forms.scss */
+/* line 266, ui/_forms.scss */
 .required-field-message {
   text-align: right;
 }
@@ -7543,11 +7657,11 @@ OTHER STYLES
 VALIDATION
 
 *********************************/
-/* line 252, ui/_forms.scss */
+/* line 279, ui/_forms.scss */
 .error-container {
   padding-left: 1.5em;
 }
-/* line 255, ui/_forms.scss */
+/* line 282, ui/_forms.scss */
 .error-container .message {
   font-size: 24px;
   font-size: 1.5rem;
@@ -7558,7 +7672,7 @@ VALIDATION
   line-height: 1.95rem;
 }
 @media only screen and (min-width: 50em) {
-  /* line 255, ui/_forms.scss */
+  /* line 282, ui/_forms.scss */
   .error-container .message {
     font-size: 32px;
     font-size: 2rem;
@@ -7569,15 +7683,15 @@ VALIDATION
     line-height: 2.6rem;
   }
 }
-/* line 263, ui/_forms.scss */
+/* line 290, ui/_forms.scss */
 .error-container .details {
   font-weight: 700;
 }
-/* line 265, ui/_forms.scss */
+/* line 292, ui/_forms.scss */
 .error-container .details ul {
   margin-top: 0.5em;
 }
-/* line 267, ui/_forms.scss */
+/* line 294, ui/_forms.scss */
 .error-container .details ul li {
   line-height: 26px;
   line-height: 1.625rem;
