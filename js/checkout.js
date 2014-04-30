@@ -1064,11 +1064,12 @@ var Checkout = {
 						Checkout.Fields.Shared.$error_details.html(errorDetails);
 						Checkout.Fields.Shared.$error_container.slideDown(Checkout.Settings.Shared.easing).animatedScroll();
 					}
-					else {
-						Checkout.Fields.Shared.$error_container.hide();
-						Checkout.Fields.Shared.$error_message.text("");
-						Checkout.Fields.Shared.$error_details.html("");
-					}
+				}
+
+				if (isFormValid) {
+					Checkout.Fields.Shared.$error_container.hide();
+					Checkout.Fields.Shared.$error_message.text("");
+					Checkout.Fields.Shared.$error_details.html("");
 				}
 
 				return isFormValid;
@@ -1091,6 +1092,7 @@ var Checkout = {
 			},
 			"InitializeCountryDropdown": function () {
 				Checkout.Fields.ShippingAddress.$input_country.select2();
+				Checkout.Fields.ShippingAddress.$input_country.next().attr("for", Checkout.Fields.ShippingAddress.$input_country.select2("container").attr("id"));
 			},
 			"IsErrorPanelHidden": function () {
 				if (Checkout.Fields.Shared.$error_container.is(":visible")) {
@@ -1276,6 +1278,7 @@ var Checkout = {
 					content_element: Checkout.Fields.ShippingAddress.$new_address_form,
 					self_toggle_delay_offset: -Checkout.Settings.Shared.easing,
 					pre_logic: function () {
+						Checkout.Fields.ShippingAddress.$address_items.removeAttr("checked");
 						Checkout.Functions.ShippingAddress.ResetAddressForm();
 						Checkout.Functions.ShippingAddress.ToggleAddressFormMode("new");
 					},
@@ -1346,7 +1349,8 @@ var Checkout = {
 					},
 					post_toggle: function () {
 						Checkout.Functions.ShippingAddress.ResetAddressForm();
-						Checkout.Functions.ShippingAddress.ValidateAddressForm();
+						Checkout.Settings.ShippingAddress.is_step_valid = Checkout.Functions.ShippingAddress.ValidateAddressForm();
+						$(Checkout.Fields.ShippingAddress.$address_items[0]).trigger("click");
 					}
 				});
 			},

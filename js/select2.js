@@ -1192,84 +1192,87 @@ the specific language governing permissions and limitations under the Apache Lic
                 css,
                 resultsListNode;
 
-            // always prefer the current above/below alignment, unless there is not enough room
-            if (aboveNow) {
-                above = true;
-                if (!enoughRoomAbove && enoughRoomBelow) {
-                    changeDirection = true;
-                    above = false;
-                }
-            } else {
-                above = false;
-                if (!enoughRoomBelow && enoughRoomAbove) {
-                    changeDirection = true;
-                    above = true;
-                }
-            }
+            if ($dropdown.is(":visible")) {
 
-            //if we are changing direction we need to get positions when dropdown is hidden;
-            if (changeDirection) {
-                $dropdown.hide();
-                offset = this.container.offset();
-                height = this.container.outerHeight(false);
-                width = this.container.outerWidth(false);
-                dropHeight = $dropdown.outerHeight(false);
-                viewPortRight = $window.scrollLeft() + windowWidth;
-                viewportBottom = $window.scrollTop() + windowHeight;
-                dropTop = offset.top + height;
-                dropLeft = offset.left;
-                dropWidth = $dropdown.outerWidth(false);
-                enoughRoomOnRight = dropLeft + dropWidth <= viewPortRight;
-                $dropdown.show();
-            }
+            	// always prefer the current above/below alignment, unless there is not enough room
+            	if (aboveNow) {
+            		above = true;
+            		if (!enoughRoomAbove && enoughRoomBelow) {
+            			changeDirection = true;
+            			above = false;
+            		}
+            	} else {
+            		above = false;
+            		if (!enoughRoomBelow && enoughRoomAbove) {
+            			changeDirection = true;
+            			above = true;
+            		}
+            	}
 
-            if (this.opts.dropdownAutoWidth) {
-                resultsListNode = $('.select2-results', $dropdown)[0];
-                $dropdown.addClass('select2-drop-auto-width');
-                $dropdown.css('width', '');
-                // Add scrollbar width to dropdown if vertical scrollbar is present
-                dropWidth = $dropdown.outerWidth(false) + (resultsListNode.scrollHeight === resultsListNode.clientHeight ? 0 : scrollBarDimensions.width);
-                dropWidth > width ? width = dropWidth : dropWidth = width;
-                enoughRoomOnRight = dropLeft + dropWidth <= viewPortRight;
-            }
-            else {
-                this.container.removeClass('select2-drop-auto-width');
-            }
+            	//if we are changing direction we need to get positions when dropdown is hidden;
+            	if (changeDirection) {
+            		$dropdown.hide();
+            		offset = this.container.offset();
+            		height = this.container.outerHeight(false);
+            		width = this.container.outerWidth(false);
+            		dropHeight = $dropdown.outerHeight(false);
+            		viewPortRight = $window.scrollLeft() + windowWidth;
+            		viewportBottom = $window.scrollTop() + windowHeight;
+            		dropTop = offset.top + height;
+            		dropLeft = offset.left;
+            		dropWidth = $dropdown.outerWidth(false);
+            		enoughRoomOnRight = dropLeft + dropWidth <= viewPortRight;
+            		$dropdown.show();
+            	}
 
-            //console.log("below/ droptop:", dropTop, "dropHeight", dropHeight, "sum", (dropTop+dropHeight)+" viewport bottom", viewportBottom, "enough?", enoughRoomBelow);
-            //console.log("above/ offset.top", offset.top, "dropHeight", dropHeight, "top", (offset.top-dropHeight), "scrollTop", this.body().scrollTop(), "enough?", enoughRoomAbove);
+            	if (this.opts.dropdownAutoWidth) {
+            		resultsListNode = $('.select2-results', $dropdown)[0];
+            		$dropdown.addClass('select2-drop-auto-width');
+            		$dropdown.css('width', '');
+            		// Add scrollbar width to dropdown if vertical scrollbar is present
+            		dropWidth = $dropdown.outerWidth(false) + (resultsListNode.scrollHeight === resultsListNode.clientHeight ? 0 : scrollBarDimensions.width);
+            		dropWidth > width ? width = dropWidth : dropWidth = width;
+            		enoughRoomOnRight = dropLeft + dropWidth <= viewPortRight;
+            	}
+            	else {
+            		this.container.removeClass('select2-drop-auto-width');
+            	}
 
-            // fix positioning when body has an offset and is not position: static
-            if (this.body().css('position') !== 'static') {
-                bodyOffset = this.body().offset();
-                dropTop -= bodyOffset.top;
-                dropLeft -= bodyOffset.left;
+            	//console.log("below/ droptop:", dropTop, "dropHeight", dropHeight, "sum", (dropTop+dropHeight)+" viewport bottom", viewportBottom, "enough?", enoughRoomBelow);
+            	//console.log("above/ offset.top", offset.top, "dropHeight", dropHeight, "top", (offset.top-dropHeight), "scrollTop", this.body().scrollTop(), "enough?", enoughRoomAbove);
+
+            	// fix positioning when body has an offset and is not position: static
+            	if (this.body().css('position') !== 'static') {
+            		bodyOffset = this.body().offset();
+            		dropTop -= bodyOffset.top;
+            		dropLeft -= bodyOffset.left;
+            	}
+
+            	if (!enoughRoomOnRight) {
+            		dropLeft = offset.left + this.container.outerWidth(false) - dropWidth;
+            	}
+
+            	css = {
+            		left: dropLeft,
+            		width: width
+            	};
+
+            	if (above) {
+            		css.top = offset.top - dropHeight;
+            		css.bottom = 'auto';
+            		this.container.addClass("select2-drop-above");
+            		$dropdown.addClass("select2-drop-above");
+            	}
+            	else {
+            		css.top = dropTop;
+            		css.bottom = 'auto';
+            		this.container.removeClass("select2-drop-above");
+            		$dropdown.removeClass("select2-drop-above");
+            	}
+            	css = $.extend(css, evaluate(this.opts.dropdownCss));
+
+            	$dropdown.css(css);
             }
-
-            if (!enoughRoomOnRight) {
-                dropLeft = offset.left + this.container.outerWidth(false) - dropWidth;
-            }
-
-            css =  {
-                left: dropLeft,
-                width: width
-            };
-
-            if (above) {
-                css.top = offset.top - dropHeight;
-                css.bottom = 'auto';
-                this.container.addClass("select2-drop-above");
-                $dropdown.addClass("select2-drop-above");
-            }
-            else {
-                css.top = dropTop;
-                css.bottom = 'auto';
-                this.container.removeClass("select2-drop-above");
-                $dropdown.removeClass("select2-drop-above");
-            }
-            css = $.extend(css, evaluate(this.opts.dropdownCss));
-
-            $dropdown.css(css);
         },
 
         // abstract
