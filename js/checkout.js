@@ -617,7 +617,7 @@ var Checkout = {
 				Checkout.Fields.BillingInfo.$btnadd_billing_address = Checkout.Fields.BillingInfo.$billing_address_container.find(".create-billing-address");
 				Checkout.Fields.BillingInfo.$billing_address_form = Checkout.Fields.BillingInfo.$billing_address_container.find("#billing-address-form");
 				Checkout.Fields.BillingInfo.$billing_address_form_title = Checkout.Fields.BillingInfo.$billing_address_container.find("h3.title");
-				Checkout.Fields.BillingInfo.$input_country = Checkout.Fields.BillingInfo.$billing_address_form.find("#country-input");
+				Checkout.Fields.BillingInfo.$input_country = Checkout.Fields.BillingInfo.$billing_address_form.find("#billing-country-input");
 				Checkout.Fields.BillingInfo.$input_name = Checkout.Fields.BillingInfo.$billing_address_form.find("#name-input");
 				Checkout.Fields.BillingInfo.$input_company = Checkout.Fields.BillingInfo.$billing_address_form.find("#company-input");
 				Checkout.Fields.BillingInfo.$input_street = Checkout.Fields.BillingInfo.$billing_address_form.find("#address-input");
@@ -626,7 +626,7 @@ var Checkout = {
 				Checkout.Fields.BillingInfo.$input_postal = Checkout.Fields.BillingInfo.$billing_address_form.find("#postal-code-input");
 				Checkout.Fields.BillingInfo.$input_phone = Checkout.Fields.BillingInfo.$billing_address_form.find("#phone-input");
 				Checkout.Fields.BillingInfo.$secondary_fields = Checkout.Fields.BillingInfo.$billing_address_form.find(".field__secondary");
-				Checkout.Fields.BillingInfo.$address_inputs = Checkout.Fields.BillingInfo.$billing_address_form.find("input[type=text], textarea, #country-input");
+				Checkout.Fields.BillingInfo.$address_inputs = Checkout.Fields.BillingInfo.$billing_address_form.find("input[type=text], textarea, #billing-country-input");
 				Checkout.Fields.BillingInfo.$required_address_inputs = Checkout.Fields.BillingInfo.$billing_address_form.find("input.required, select.required, textarea.required");
 				Checkout.Fields.BillingInfo.$credit_card_inputs = Checkout.Fields.BillingInfo.$credit_card_form.find("input[type=text], textarea");
 				Checkout.Fields.BillingInfo.$btncancel_address = Checkout.Fields.BillingInfo.$billing_address_form.find("button.cancel");
@@ -1064,18 +1064,19 @@ var Checkout = {
 						Checkout.Fields.Shared.$error_details.html(errorDetails);
 						Checkout.Fields.Shared.$error_container.slideDown(Checkout.Settings.Shared.easing).animatedScroll();
 					}
-					else {
-						Checkout.Fields.Shared.$error_container.hide();
-						Checkout.Fields.Shared.$error_message.text("");
-						Checkout.Fields.Shared.$error_details.html("");
-					}
+				}
+
+				if (isFormValid) {
+					Checkout.Fields.Shared.$error_container.hide();
+					Checkout.Fields.Shared.$error_message.text("");
+					Checkout.Fields.Shared.$error_details.html("");
 				}
 
 				return isFormValid;
 			},
 			"ValidateRequiredField": function ($element) {
 				var isValid = true;
-				if ($element.val() === "") {
+				if ($element.is(":visible") && $element.val() === "") {
 					$element.addClass(Checkout.Settings.Shared.error_class).one("keydown change", function () {
 						var $this = $(this)
 						setTimeout(function () {
@@ -1088,9 +1089,6 @@ var Checkout = {
 					$element.removeClass(Checkout.Settings.Shared.error_class);
 				}
 				return isValid;
-			},
-			"InitializeCountryDropdown": function () {
-				Checkout.Fields.ShippingAddress.$input_country.select2();
 			},
 			"IsErrorPanelHidden": function () {
 				if (Checkout.Fields.Shared.$error_container.is(":visible")) {
@@ -1127,7 +1125,8 @@ var Checkout = {
 			"BindEvents_Document": function () {
 				$(document).ready(function () {
 					Checkout.Functions.Shared.GetFields();
-					Checkout.Functions.Shared.InitializeCountryDropdown();
+					Checkout.Functions.ShippingAddress.InitializeCountryDropdown();
+					Checkout.Functions.BillingInfo.InitializeCountryDropdown();
 					if (Checkout.Settings.Shared.mode === "return") {
 						Checkout.Functions.Shared.BindUIElements();
 					}
@@ -1276,6 +1275,7 @@ var Checkout = {
 					content_element: Checkout.Fields.ShippingAddress.$new_address_form,
 					self_toggle_delay_offset: -Checkout.Settings.Shared.easing,
 					pre_logic: function () {
+						Checkout.Fields.ShippingAddress.$address_items.removeAttr("checked");
 						Checkout.Functions.ShippingAddress.ResetAddressForm();
 						Checkout.Functions.ShippingAddress.ToggleAddressFormMode("new");
 					},
@@ -1346,7 +1346,8 @@ var Checkout = {
 					},
 					post_toggle: function () {
 						Checkout.Functions.ShippingAddress.ResetAddressForm();
-						Checkout.Functions.ShippingAddress.ValidateAddressForm();
+						Checkout.Settings.ShippingAddress.is_step_valid = Checkout.Functions.ShippingAddress.ValidateAddressForm();
+						$(Checkout.Fields.ShippingAddress.$address_items[0]).trigger("click");
 					}
 				});
 			},
@@ -1533,6 +1534,10 @@ var Checkout = {
 			},
 			"ValidateAddressForm": function () {
 				return Checkout.Functions.Shared.ValidateFormRequiredFields(Checkout.Fields.ShippingAddress.$new_address_form, Checkout.Fields.ShippingAddress.$required_address_inputs);
+			},
+			"InitializeCountryDropdown": function () {
+				Checkout.Fields.ShippingAddress.$input_country.select2();
+				Checkout.Fields.ShippingAddress.$input_country.next().attr("for", Checkout.Fields.ShippingAddress.$input_country.select2("container").attr("id"));
 			}
 		},
 		"ShippingOption": {
@@ -1707,6 +1712,9 @@ var Checkout = {
 					Checkout.Settings.BillingInfo.is_credit_card_valid = Checkout.Functions.BillingInfo.ValidateCreditCardForm();
 					if (!Checkout.Settings.BillingInfo.is_credit_card_valid || !Checkout.Settings.BillingInfo.is_address_valid) {
 						Checkout.Settings.BillingInfo.is_step_valid = false;
+					}
+					else {
+						Checkout.Settings.BillingInfo.is_step_valid = true;
 					}
 				}).toggleContainer({
 					content_element: Checkout.Fields.BillingInfo.$btncreate_credit_card,
@@ -2050,6 +2058,10 @@ var Checkout = {
 				$credit_cards.eq(0).data("credit-card-id", 1);
 				$credit_cards.eq(1).data("credit-card-id", 2);
 				$credit_cards.eq(2).data("credit-card-id", 3);
+			},
+			"InitializeCountryDropdown": function () {
+				Checkout.Fields.BillingInfo.$input_country.select2();
+				Checkout.Fields.BillingInfo.$input_country.next().attr("for", Checkout.Fields.BillingInfo.$input_country.select2("container").attr("id"));
 			},
 			"BindCreditCardElements": function () {
 				var creditCardData = [],
