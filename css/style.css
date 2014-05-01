@@ -7626,15 +7626,16 @@ select {
   line-height: 3em;
   color: #727272;
   margin-top: -2.75em !important;
+  text-align: center;
 }
 
-/* line 253, ui/_forms.scss */
+/* line 254, ui/_forms.scss */
 .remove-confirmation.confirm span .select2-container.yes .select2-choice, .select2-container.error .select2-choice {
   border-color: #993d3d !important;
   background: #f3e2e2;
 }
 
-/* line 259, ui/_forms.scss */
+/* line 260, ui/_forms.scss */
 .dropdownlabel {
   text-align: left;
 }
@@ -7644,7 +7645,7 @@ select {
 OTHER STYLES
 
 *********************************/
-/* line 270, ui/_forms.scss */
+/* line 271, ui/_forms.scss */
 .required_indicator:after, input[type=text].required + label:after, input[type=number].required + label:after, textarea.required + label:after, select.required + label:after, .required-field-message:after {
   display: inline-block;
   position: relative;
@@ -7656,7 +7657,7 @@ OTHER STYLES
   float: right;
 }
 
-/* line 277, ui/_forms.scss */
+/* line 278, ui/_forms.scss */
 .required-field-message {
   text-align: right;
 }
@@ -7666,11 +7667,11 @@ OTHER STYLES
 VALIDATION
 
 *********************************/
-/* line 290, ui/_forms.scss */
+/* line 291, ui/_forms.scss */
 .error-container {
   padding-left: 1.5em;
 }
-/* line 293, ui/_forms.scss */
+/* line 294, ui/_forms.scss */
 .error-container .message {
   font-size: 24px;
   font-size: 1.5rem;
@@ -7681,7 +7682,7 @@ VALIDATION
   line-height: 1.95rem;
 }
 @media only screen and (min-width: 50em) {
-  /* line 293, ui/_forms.scss */
+  /* line 294, ui/_forms.scss */
   .error-container .message {
     font-size: 32px;
     font-size: 2rem;
@@ -7692,15 +7693,15 @@ VALIDATION
     line-height: 2.6rem;
   }
 }
-/* line 301, ui/_forms.scss */
+/* line 302, ui/_forms.scss */
 .error-container .details {
   font-weight: 700;
 }
-/* line 303, ui/_forms.scss */
+/* line 304, ui/_forms.scss */
 .error-container .details ul {
   margin-top: 0.5em;
 }
-/* line 305, ui/_forms.scss */
+/* line 306, ui/_forms.scss */
 .error-container .details ul li {
   line-height: 26px;
   line-height: 1.625rem;
