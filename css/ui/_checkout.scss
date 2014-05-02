@@ -1115,7 +1115,7 @@ input[type=radio]:checked + label.card {
   width: 100%;
 
   .cart-item {
-    width: 100%;
+    width: 100%; 
 
     &:nth-of-type(odd) {
       background-color: $lighter;
