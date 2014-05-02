@@ -2881,11 +2881,11 @@ the specific language governing permissions and limitations under the Apache Lic
         // multi
         onSelect: function (data, options) {
 
-            if (!this.triggerSelect(data)) { return; }
+            //if (!this.triggerSelect(data)) { return; }
 
             this.addSelectedChoice(data);
 
-            this.opts.element.trigger({ type: "selected", val: this.id(data), choice: data });
+            //this.opts.element.trigger({ type: "selected", val: this.id(data), choice: data });
 
             // keep track of the search's value before it gets cleared
             this.nextSearchTerm = this.opts.nextSearchTerm(data, this.search.val());
@@ -2924,7 +2924,7 @@ the specific language governing permissions and limitations under the Apache Lic
 
             // since its not possible to select an element that has already been
             // added we do not need to check if this is a new element before firing change
-            this.triggerChange({ added: data });
+            //this.triggerChange({ added: data });
 
             //if (!options || !options.noFocus)
             //    this.focusSearch();
