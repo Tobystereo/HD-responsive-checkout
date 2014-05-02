@@ -1386,28 +1386,28 @@ the specific language governing permissions and limitations under the Apache Lic
 
         // abstract
         close: function () {
-            if (!this.opened()) return;
+            //if (!this.opened()) return;
 
-            var cid = this.containerId,
-                scroll = "scroll." + cid,
-                resize = "resize."+cid,
-                orient = "orientationchange."+cid;
+            //var cid = this.containerId,
+            //    scroll = "scroll." + cid,
+            //    resize = "resize."+cid,
+            //    orient = "orientationchange."+cid;
 
-            // unbind event listeners
-            this.container.parents().add(window).each(function () { $(this).off(scroll).off(resize).off(orient); });
+            //// unbind event listeners
+            //this.container.parents().add(window).each(function () { $(this).off(scroll).off(resize).off(orient); });
 
-            this.clearDropdownAlignmentPreference();
+            //this.clearDropdownAlignmentPreference();
 
-            $("#select2-drop-mask").hide();
-            this.dropdown.removeAttr("id"); // only the active dropdown has the select2-drop id
+            //$("#select2-drop-mask").hide();
+            //this.dropdown.removeAttr("id"); // only the active dropdown has the select2-drop id
             this.dropdown.hide();
-            this.container.removeClass("select2-dropdown-open").removeClass("select2-container-active");
-            this.results.empty();
+            //this.container.removeClass("select2-dropdown-open").removeClass("select2-container-active");
+            //this.results.empty();
 
 
-            this.clearSearch();
-            this.search.removeClass("select2-active");
-            this.opts.element.trigger($.Event("select2-close"));
+            //this.clearSearch();
+            //this.search.removeClass("select2-active");
+            //this.opts.element.trigger($.Event("select2-close"));
         },
 
         /**
