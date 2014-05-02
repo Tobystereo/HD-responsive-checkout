@@ -2883,21 +2883,21 @@ the specific language governing permissions and limitations under the Apache Lic
 
             //if (!this.triggerSelect(data)) { return; }
 
-            this.addSelectedChoice(data);
+            //this.addSelectedChoice(data);
 
             //this.opts.element.trigger({ type: "selected", val: this.id(data), choice: data });
 
             // keep track of the search's value before it gets cleared
-            this.nextSearchTerm = this.opts.nextSearchTerm(data, this.search.val());
+            //this.nextSearchTerm = this.opts.nextSearchTerm(data, this.search.val());
 
-            this.clearSearch();
-            this.updateResults();
+            //this.clearSearch();
+            //this.updateResults();
 
             //if (this.select || !this.opts.closeOnSelect) this.postprocessResults(data, false, this.opts.closeOnSelect===true);
 
             //if (this.opts.closeOnSelect) {
                 this.close();
-                this.search.width(10);
+                //this.search.width(10);
             //} else {
             //    if (this.countSelectableResults()>0) {
             //        this.search.width(10);
