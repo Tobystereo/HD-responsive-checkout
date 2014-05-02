@@ -49,11 +49,7 @@
         </header>
         <article>
             <div class="grid">
-                <div id="error-container" class="error-container grid__item one-whole grid" style="display: none;">
-                  <div class="grid__item one-whole error card ">
-                    <p class="message"></p>
-                    <p class="details"></p>
-                  </div>
+                <div id="error-container" class="error-container grid grid__item one-whole card error" style="display: none;">
                 </div>
                 <div id="shipping-address" class="grid__item one-whole">
                     <h2 class="instructions">
@@ -111,7 +107,7 @@
                                 </li>
                                 <li class="field__secondary buttons" style="display: none;">
                                     <button class="cancel btn btn--small taptarget tertiary">Cancel</button>
-                                    <button class="save btn btn--small taptarget secondary">Save Address</button>
+                                    <button class="save btn btn--small taptarget secondary" disabled="disabled">Save Address</button>
                                 </li>
                             </ul>
                         </form>
@@ -828,6 +824,21 @@
     <script src="js/modal.js"></script>
     <script src="js/jquery.ba-bbq.js"></script>
     <script src="js/handlebars-v1.3.0.js"></script>
+    <script id="error-message-template" type="text/x-handlebars-template">
+        <div class="grid__item one-whole">
+            <p class="message">{{message}}</p>
+            {{#if detail_message}}
+            <p class="details">
+                {{detail_message}}
+                <ul>
+                    {{#each this.field_names}}
+                    <li>{{this}}</li>
+                    {{/each}}
+                </ul>
+            </p>
+            {{/if}}
+        </div>
+    </script>
     <script id="customer-addresses-template" type="text/x-handlebars-template">
         {{#each this}}
         <li class="grid__item one-whole desk-one-half address-item">
