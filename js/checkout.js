@@ -1592,6 +1592,7 @@ var Checkout = {
 				Checkout.Fields.ShippingAddress.$input_state.val("");
 				Checkout.Fields.ShippingAddress.$input_postal.val("");
 				Checkout.Fields.ShippingAddress.$input_phone.val("");
+				Checkout.Fields.ShippingAddress.$required_address_inputs.removeClass(Checkout.Settings.Shared.error_class).removeClass(Checkout.Settings.Shared.complete_class);
 				Checkout.Fields.ShippingAddress.$address_inputs.trigger("change");
 				Checkout.Fields.ShippingAddress.$secondary_fields.css("display", "none");
 			},

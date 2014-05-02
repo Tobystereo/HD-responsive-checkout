@@ -3316,7 +3316,7 @@ the specific language governing permissions and limitations under the Apache Lic
         width: "copy",
         loadMorePadding: 0,
         closeOnSelect: true,
-        openOnEnter: true,
+        openOnEnter: false,
         containerCss: {},
         dropdownCss: {},
         containerCssClass: "",
