@@ -696,6 +696,7 @@ var Checkout = {
 				Checkout.Functions.ShippingAddress.BindEvents_SaveAddressButton(false);
 				Checkout.Functions.ShippingAddress.BindEvents_AddressForm(false);
 				Checkout.Functions.ShippingAddress.BindEvents_CountrySelect(false);
+				Checkout.Functions.ShippingAddress.BindEvents_RequiredAddressFields(false);
 				Checkout.Functions.ShippingOption.BindEvents_ShippingOptionItems(false);
 				Checkout.Functions.BillingInfo.BindEvents_PromoCodeForm(false);
 				Checkout.Functions.BillingInfo.BindEvents_PromoCodeButton(false);
@@ -1457,18 +1458,21 @@ var Checkout = {
 				}
 				Checkout.Fields.ShippingAddress.$required_address_inputs.on("change", function () {
 					var isFormComplete = true;
-					Checkout.Fields.ShippingAddress.$required_address_inputs.each(function () {
-						if (!$(this).hasClass("completed")) {
-							isFormComplete = false;
-							return false;
+					setTimeout(function () {
+						Checkout.Fields.ShippingAddress.$required_address_inputs.each(function () {
+							var $this = $(this);
+							if (!$this.hasClass(Checkout.Settings.Shared.complete_class)) {
+								isFormComplete = false;
+								return false;
+							}
+						});
+						if (isFormComplete) {
+							Checkout.Fields.ShippingAddress.$btnsave_address.removeAttr("disabled");
 						}
-					});
-					if (isFormComplete) {
-						Checkout.Fields.ShippingAddress.$btnsave_address.removeAttr("disabled");
-					}
-					else {
-						Checkout.Fields.ShippingAddress.$btnsave_address.attr("disabled", "disabled");
-					}
+						else {
+							Checkout.Fields.ShippingAddress.$btnsave_address.attr("disabled", "disabled");
+						}
+					}, 50);
 				});
 			},
 			"EvaluateSelectedAddress": function ($address) {
