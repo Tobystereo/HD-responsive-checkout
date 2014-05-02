@@ -1386,28 +1386,28 @@ the specific language governing permissions and limitations under the Apache Lic
 
         // abstract
         close: function () {
-            //if (!this.opened()) return;
+            if (!this.opened()) return;
 
-            //var cid = this.containerId,
-            //    scroll = "scroll." + cid,
-            //    resize = "resize."+cid,
-            //    orient = "orientationchange."+cid;
+            var cid = this.containerId,
+                scroll = "scroll." + cid,
+                resize = "resize."+cid,
+                orient = "orientationchange."+cid;
 
-            //// unbind event listeners
-            //this.container.parents().add(window).each(function () { $(this).off(scroll).off(resize).off(orient); });
+            // unbind event listeners
+            this.container.parents().add(window).each(function () { $(this).off(scroll).off(resize).off(orient); });
 
-            //this.clearDropdownAlignmentPreference();
+            this.clearDropdownAlignmentPreference();
 
-            //$("#select2-drop-mask").hide();
-            //this.dropdown.removeAttr("id"); // only the active dropdown has the select2-drop id
+            $("#select2-drop-mask").hide();
+            this.dropdown.removeAttr("id"); // only the active dropdown has the select2-drop id
             this.dropdown.hide();
-            //this.container.removeClass("select2-dropdown-open").removeClass("select2-container-active");
-            //this.results.empty();
+            this.container.removeClass("select2-dropdown-open").removeClass("select2-container-active");
+            this.results.empty();
 
 
-            //this.clearSearch();
-            //this.search.removeClass("select2-active");
-            //this.opts.element.trigger($.Event("select2-close"));
+            this.clearSearch();
+            this.search.removeClass("select2-active");
+            this.opts.element.trigger($.Event("select2-close"));
         },
 
         /**
@@ -2881,53 +2881,53 @@ the specific language governing permissions and limitations under the Apache Lic
         // multi
         onSelect: function (data, options) {
 
-            //if (!this.triggerSelect(data)) { return; }
+            if (!this.triggerSelect(data)) { return; }
 
-            //this.addSelectedChoice(data);
+            this.addSelectedChoice(data);
 
-            //this.opts.element.trigger({ type: "selected", val: this.id(data), choice: data });
+            this.opts.element.trigger({ type: "selected", val: this.id(data), choice: data });
 
             // keep track of the search's value before it gets cleared
-            //this.nextSearchTerm = this.opts.nextSearchTerm(data, this.search.val());
+            this.nextSearchTerm = this.opts.nextSearchTerm(data, this.search.val());
 
-            //this.clearSearch();
-            //this.updateResults();
+            this.clearSearch();
+            this.updateResults();
 
-            //if (this.select || !this.opts.closeOnSelect) this.postprocessResults(data, false, this.opts.closeOnSelect===true);
+            if (this.select || !this.opts.closeOnSelect) this.postprocessResults(data, false, this.opts.closeOnSelect===true);
 
-            //if (this.opts.closeOnSelect) {
+            if (this.opts.closeOnSelect) {
                 this.close();
-                //this.search.width(10);
-            //} else {
-            //    if (this.countSelectableResults()>0) {
-            //        this.search.width(10);
-            //        this.resizeSearch();
-            //        if (this.getMaximumSelectionSize() > 0 && this.val().length >= this.getMaximumSelectionSize()) {
-            //            // if we reached max selection size repaint the results so choices
-            //            // are replaced with the max selection reached message
-            //            this.updateResults(true);
-            //        } else {
-            //            // initializes search's value with nextSearchTerm and update search result
-            //            if(this.nextSearchTerm != undefined){
-            //                this.search.val(this.nextSearchTerm);
-            //                this.updateResults();
-            //                this.search.select();
-            //            }
-            //        }
-            //        this.positionDropdown();
-            //    } else {
-            //        // if nothing left to select close
-            //        this.close();
-            //        this.search.width(10);
-            //    }
-            //}
+                this.search.width(10);
+            } else {
+                if (this.countSelectableResults()>0) {
+                    this.search.width(10);
+                    this.resizeSearch();
+                    if (this.getMaximumSelectionSize() > 0 && this.val().length >= this.getMaximumSelectionSize()) {
+                        // if we reached max selection size repaint the results so choices
+                        // are replaced with the max selection reached message
+                        this.updateResults(true);
+                    } else {
+                        // initializes search's value with nextSearchTerm and update search result
+                        if(this.nextSearchTerm != undefined){
+                            this.search.val(this.nextSearchTerm);
+                            this.updateResults();
+                            this.search.select();
+                        }
+                    }
+                    this.positionDropdown();
+                } else {
+                    // if nothing left to select close
+                    this.close();
+                    this.search.width(10);
+                }
+            }
 
             // since its not possible to select an element that has already been
             // added we do not need to check if this is a new element before firing change
-            //this.triggerChange({ added: data });
+            this.triggerChange({ added: data });
 
-            //if (!options || !options.noFocus)
-            //    this.focusSearch();
+            if (!options || !options.noFocus)
+                this.focusSearch();
         },
 
         // multi
