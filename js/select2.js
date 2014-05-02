@@ -2926,8 +2926,8 @@ the specific language governing permissions and limitations under the Apache Lic
             // added we do not need to check if this is a new element before firing change
             this.triggerChange({ added: data });
 
-            if (!options || !options.noFocus)
-                this.focusSearch();
+            //if (!options || !options.noFocus)
+            //    this.focusSearch();
         },
 
         // multi
