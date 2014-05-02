@@ -2895,32 +2895,32 @@ the specific language governing permissions and limitations under the Apache Lic
 
             if (this.select || !this.opts.closeOnSelect) this.postprocessResults(data, false, this.opts.closeOnSelect===true);
 
-            if (this.opts.closeOnSelect) {
+            //if (this.opts.closeOnSelect) {
                 this.close();
                 this.search.width(10);
-            } else {
-                if (this.countSelectableResults()>0) {
-                    this.search.width(10);
-                    this.resizeSearch();
-                    if (this.getMaximumSelectionSize() > 0 && this.val().length >= this.getMaximumSelectionSize()) {
-                        // if we reached max selection size repaint the results so choices
-                        // are replaced with the max selection reached message
-                        this.updateResults(true);
-                    } else {
-                        // initializes search's value with nextSearchTerm and update search result
-                        if(this.nextSearchTerm != undefined){
-                            this.search.val(this.nextSearchTerm);
-                            this.updateResults();
-                            this.search.select();
-                        }
-                    }
-                    this.positionDropdown();
-                } else {
-                    // if nothing left to select close
-                    this.close();
-                    this.search.width(10);
-                }
-            }
+            //} else {
+            //    if (this.countSelectableResults()>0) {
+            //        this.search.width(10);
+            //        this.resizeSearch();
+            //        if (this.getMaximumSelectionSize() > 0 && this.val().length >= this.getMaximumSelectionSize()) {
+            //            // if we reached max selection size repaint the results so choices
+            //            // are replaced with the max selection reached message
+            //            this.updateResults(true);
+            //        } else {
+            //            // initializes search's value with nextSearchTerm and update search result
+            //            if(this.nextSearchTerm != undefined){
+            //                this.search.val(this.nextSearchTerm);
+            //                this.updateResults();
+            //                this.search.select();
+            //            }
+            //        }
+            //        this.positionDropdown();
+            //    } else {
+            //        // if nothing left to select close
+            //        this.close();
+            //        this.search.width(10);
+            //    }
+            //}
 
             // since its not possible to select an element that has already been
             // added we do not need to check if this is a new element before firing change
