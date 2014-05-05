@@ -1104,6 +1104,7 @@ the specific language governing permissions and limitations under the Apache Lic
             details= $.extend({}, details, { type: "change", val: this.val() });
             // prevents recursive triggering
             this.opts.element.data("select2-change-triggered", true);
+            alert(details);
             this.opts.element.trigger(details);
             this.opts.element.data("select2-change-triggered", false);
 
