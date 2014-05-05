@@ -2354,9 +2354,9 @@ the specific language governing permissions and limitations under the Apache Lic
             this.nextSearchTerm = this.opts.nextSearchTerm(data, this.search.val());
             this.close();
 
-            if ((!options || !options.noFocus) && this.opts.shouldFocusInput(this)) {
-                this.focusser.focus();
-            }
+            //if ((!options || !options.noFocus) && this.opts.shouldFocusInput(this)) {
+            //    this.focusser.focus();
+            //}
 
             if (!equal(old, this.id(data))) {
                 this.triggerChange({ added: data, removed: oldData });
