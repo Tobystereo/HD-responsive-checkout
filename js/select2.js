@@ -1105,12 +1105,12 @@ the specific language governing permissions and limitations under the Apache Lic
             // prevents recursive triggering
             this.opts.element.data("select2-change-triggered", true);
            
-            //this.opts.element.trigger(details);
+            this.opts.element.trigger(details);
             this.opts.element.data("select2-change-triggered", false);
 
             // some validation frameworks ignore the change event and listen instead to keyup, click for selects
             // so here we trigger the click event manually
-            //this.opts.element.click();
+            this.opts.element.click();
 
             // ValidationEngine ignores the change event and listens instead to blur
             // so here we trigger the blur event manually if so desired
@@ -2342,7 +2342,7 @@ the specific language governing permissions and limitations under the Apache Lic
         // single
         onSelect: function (data, options) {
 
-            //if (!this.triggerSelect(data)) { return; }
+            if (!this.triggerSelect(data)) { return; }
 
             var old = this.opts.element.val(),
                 oldData = this.data();
@@ -2352,12 +2352,12 @@ the specific language governing permissions and limitations under the Apache Lic
 
             this.opts.element.trigger({ type: "select2-selected", val: this.id(data), choice: data });
 
-            //this.nextSearchTerm = this.opts.nextSearchTerm(data, this.search.val());
+            this.nextSearchTerm = this.opts.nextSearchTerm(data, this.search.val());
             this.close();
 
-            //if ((!options || !options.noFocus) && this.opts.shouldFocusInput(this)) {
-            //    this.focusser.focus();
-            //}
+            if ((!options || !options.noFocus) && this.opts.shouldFocusInput(this)) {
+                this.focusser.focus();
+            }
 
             if (!equal(old, this.id(data))) {
                 this.triggerChange({ added: data, removed: oldData });
