@@ -2349,7 +2349,7 @@ the specific language governing permissions and limitations under the Apache Lic
             this.opts.element.val(this.id(data));
             this.updateSelection(data);
 
-            //this.opts.element.trigger({ type: "select2-selected", val: this.id(data), choice: data });
+            this.opts.element.trigger({ type: "select2-selected", val: this.id(data), choice: data });
 
             //this.nextSearchTerm = this.opts.nextSearchTerm(data, this.search.val());
             this.close();
