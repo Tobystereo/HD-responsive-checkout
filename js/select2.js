@@ -2341,17 +2341,17 @@ the specific language governing permissions and limitations under the Apache Lic
         // single
         onSelect: function (data, options) {
 
-            if (!this.triggerSelect(data)) { return; }
+            //if (!this.triggerSelect(data)) { return; }
 
-            var old = this.opts.element.val(),
-                oldData = this.data();
+            //var old = this.opts.element.val(),
+            //    oldData = this.data();
 
-            this.opts.element.val(this.id(data));
-            this.updateSelection(data);
+            //this.opts.element.val(this.id(data));
+            //this.updateSelection(data);
 
-            this.opts.element.trigger({ type: "select2-selected", val: this.id(data), choice: data });
+            //this.opts.element.trigger({ type: "select2-selected", val: this.id(data), choice: data });
 
-            this.nextSearchTerm = this.opts.nextSearchTerm(data, this.search.val());
+            //this.nextSearchTerm = this.opts.nextSearchTerm(data, this.search.val());
             this.close();
 
             //if ((!options || !options.noFocus) && this.opts.shouldFocusInput(this)) {
