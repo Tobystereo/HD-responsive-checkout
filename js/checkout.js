@@ -1446,9 +1446,14 @@ var Checkout = {
 					Checkout.Fields.ShippingAddress.$input_country = $(Checkout.Fields.ShippingAddress.$input_country.selector);
 				}
 				Checkout.Fields.ShippingAddress.$input_country.on("select2-open", function () {
-					Checkout.Fields.ShippingAddress.$address_inputs.not(this).css("pointer-events", "none");
+					Checkout.Fields.ShippingAddress.$address_inputs.not(this).each(function () {
+						$(this).next().css("pointer-events", "none");
+					});
 				}).on("select2-close", function () {
-					//Checkout.Fields.ShippingAddress.$address_inputs.not(this).css("pointer-events", "auto");
+					Checkout.Fields.ShippingAddress.$input_country.on("select2-open", function () {
+						Checkout.Fields.ShippingAddress.$address_inputs.not(this).each(function () {
+							$(this).next().css("pointer-events", "auto");
+						});
 				}).toggleContainer({
 					content_element: Checkout.Fields.ShippingAddress.$secondary_fields,
 					firing_events: "change",
