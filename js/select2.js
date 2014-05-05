@@ -1785,19 +1785,11 @@ the specific language governing permissions and limitations under the Apache Lic
                 data = highlighted.closest('.select2-result').data("select2-data");
 
             if (data) {
-            	this.highlight(index);
-            	this.onSelect(data, options);
-            	this.close();
+                this.highlight(index);
+                this.onSelect(data, options);
             } else if (options && options.noFocus) {
-            	this.close();
+                this.close();
             }
-
-            //if (data) {
-            //    this.highlight(index);
-            //    this.onSelect(data, options);
-            //} else if (options && options.noFocus) {
-            //    this.close();
-            //}
         },
 
         // abstract

@@ -1445,7 +1445,11 @@ var Checkout = {
 				if (refreshSelector) {
 					Checkout.Fields.ShippingAddress.$input_country = $(Checkout.Fields.ShippingAddress.$input_country.selector);
 				}
-				Checkout.Fields.ShippingAddress.$input_country.toggleContainer({
+				Checkout.Fields.ShippingAddress.$input_country.on("select2-open", function () {
+					Checkout.Fields.ShippingAddress.$address_inputs.not(this).css("pointer-events", "none");
+				}).on("select2-close", function () {
+					Checkout.Fields.ShippingAddress.$address_inputs.not(this).css("pointer-events", "auto");
+				}).toggleContainer({
 					content_element: Checkout.Fields.ShippingAddress.$secondary_fields,
 					firing_events: "change",
 					force_state: "show",
@@ -1604,9 +1608,6 @@ var Checkout = {
 				Checkout.Fields.ShippingAddress.$input_country.select2();
 				$container = Checkout.Fields.ShippingAddress.$input_country.select2("container")
 				Checkout.Fields.ShippingAddress.$input_country.next().attr("for", $container.attr("id"));
-
-				//Checkout.Fields.ShippingAddress.$input_country.
-
 				$container.addClass("." + Checkout.Settings.Shared.required_class);
 				Checkout.Fields.Shared.$required_fields = Checkout.Fields.Shared.$required_fields.add($container);
 			}
