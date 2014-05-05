@@ -2343,8 +2343,8 @@ the specific language governing permissions and limitations under the Apache Lic
 
             //if (!this.triggerSelect(data)) { return; }
 
-            //var old = this.opts.element.val(),
-            //    oldData = this.data();
+            var old = this.opts.element.val(),
+                oldData = this.data();
 
             this.opts.element.val(this.id(data));
             this.updateSelection(data);
