@@ -261,6 +261,81 @@ select {
   text-align: left;
 }
 
+.show-all {
+  width: 4rem;
+  height: 50px;
+  border: none;
+  border-radius: $borderradius;
+  line-height: 3rem;
+  margin-top: -51px;
+  position: absolute;
+  z-index: 999;
+  right: 1px !important;
+
+  @media #{$lap} {
+    // right: 17px !important;
+    right: 2.225% !important;
+  }
+
+  @media #{$desk}{
+    right: auto !important;
+    margin-left: 379px !important;
+  }
+
+
+}
+
+.error ~ .show-all {
+  background: $red;
+  color: $light-red;
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+}
+
+.show-all ~ .ui-autocomplete {
+  list-style: none;
+  li {
+    display: block;
+    width: 100%;
+    height: 2rem;
+    line-height: 2rem;
+    border-left: 1px solid $dark;
+    border-right: 1px solid $dark;
+
+    a {
+      border: none !important;      
+    }
+
+    &:nth-of-type(odd) {
+      background: $lightest;
+      &:hover {
+        background: darken($lightest, 10);
+      }
+    }
+
+    &:nth-of-type(even) {
+      background: $lighter;
+      &:hover {
+        background: darken($lighter, 10);
+      }
+    }
+
+    &:first-of-type {
+      border-top-left-radius: $borderradius;
+      border-top-right-radius: $borderradius;
+      border-top: 1px solid $light;
+    }
+
+    &:last-of-type {
+      border-bottom-left-radius: $borderradius;
+      border-bottom-right-radius: $borderradius;
+      border-bottom: 1px solid $dark;
+    }
+
+    // @include outline;
+  }
+}
+
 
 /********************************
 
@@ -316,13 +391,14 @@ input.error, textarea.error {
   border-bottom-right-radius: 0;
 }
 
-input + .error, label + .error {
+input ~ .error, label ~ .error {
   display: block;
-  background: darken($light-red, 5);
+  background: $light-red;
   padding: 1em;
   font-weight: bold;
   border-bottom-left-radius: $borderradius;
   border-bottom-right-radius: $borderradius;
   @include border(all, $lineweight, $linetype, $red);
   @include border(top, 0);
+  text-align: left;
 }

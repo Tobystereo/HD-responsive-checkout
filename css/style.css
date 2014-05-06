@@ -7640,12 +7640,92 @@ select {
   text-align: left;
 }
 
+/* line 264, ui/_forms.scss */
+.show-all {
+  width: 4rem;
+  height: 50px;
+  border: none;
+  border-radius: 5px;
+  line-height: 3rem;
+  margin-top: -51px;
+  position: absolute;
+  z-index: 999;
+  right: 1px !important;
+}
+@media only screen and (min-width: 30em) {
+  /* line 264, ui/_forms.scss */
+  .show-all {
+    right: 2.225% !important;
+  }
+}
+@media only screen and (min-width: 50em) {
+  /* line 264, ui/_forms.scss */
+  .show-all {
+    right: auto !important;
+    margin-left: 379px !important;
+  }
+}
+
+/* line 288, ui/_forms.scss */
+.error ~ .show-all, .remove-confirmation.confirm span .yes ~ .show-all {
+  background: #993d3d;
+  color: #e5bdbd;
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+}
+
+/* line 295, ui/_forms.scss */
+.show-all ~ .ui-autocomplete {
+  list-style: none;
+}
+/* line 297, ui/_forms.scss */
+.show-all ~ .ui-autocomplete li {
+  display: block;
+  width: 100%;
+  height: 2rem;
+  line-height: 2rem;
+  border-left: 1px solid #727272;
+  border-right: 1px solid #727272;
+}
+/* line 305, ui/_forms.scss */
+.show-all ~ .ui-autocomplete li a {
+  border: none !important;
+}
+/* line 309, ui/_forms.scss */
+.show-all ~ .ui-autocomplete li:nth-of-type(odd) {
+  background: white;
+}
+/* line 311, ui/_forms.scss */
+.show-all ~ .ui-autocomplete li:nth-of-type(odd):hover {
+  background: #e6e6e6;
+}
+/* line 316, ui/_forms.scss */
+.show-all ~ .ui-autocomplete li:nth-of-type(even) {
+  background: #f1f1f1;
+}
+/* line 318, ui/_forms.scss */
+.show-all ~ .ui-autocomplete li:nth-of-type(even):hover {
+  background: #d8d8d8;
+}
+/* line 323, ui/_forms.scss */
+.show-all ~ .ui-autocomplete li:first-of-type {
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  border-top: 1px solid #cbcbcb;
+}
+/* line 329, ui/_forms.scss */
+.show-all ~ .ui-autocomplete li:last-of-type {
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+  border-bottom: 1px solid #727272;
+}
+
 /********************************
 
 OTHER STYLES
 
 *********************************/
-/* line 271, ui/_forms.scss */
+/* line 346, ui/_forms.scss */
 .required_indicator:after, input[type=text].required + label:after, input[type=number].required + label:after, textarea.required + label:after, select.required + label:after, .required-field-message:after {
   display: inline-block;
   position: relative;
@@ -7657,7 +7737,7 @@ OTHER STYLES
   float: right;
 }
 
-/* line 278, ui/_forms.scss */
+/* line 353, ui/_forms.scss */
 .required-field-message {
   text-align: right;
 }
@@ -7667,11 +7747,11 @@ OTHER STYLES
 VALIDATION
 
 *********************************/
-/* line 291, ui/_forms.scss */
+/* line 366, ui/_forms.scss */
 .error-container {
   padding-left: 1.5em;
 }
-/* line 294, ui/_forms.scss */
+/* line 369, ui/_forms.scss */
 .error-container .message {
   font-size: 24px;
   font-size: 1.5rem;
@@ -7682,7 +7762,7 @@ VALIDATION
   line-height: 1.95rem;
 }
 @media only screen and (min-width: 50em) {
-  /* line 294, ui/_forms.scss */
+  /* line 369, ui/_forms.scss */
   .error-container .message {
     font-size: 32px;
     font-size: 2rem;
@@ -7693,37 +7773,38 @@ VALIDATION
     line-height: 2.6rem;
   }
 }
-/* line 302, ui/_forms.scss */
+/* line 377, ui/_forms.scss */
 .error-container .details {
   font-weight: 700;
 }
-/* line 304, ui/_forms.scss */
+/* line 379, ui/_forms.scss */
 .error-container .details ul {
   margin-top: 0.5em;
 }
-/* line 306, ui/_forms.scss */
+/* line 381, ui/_forms.scss */
 .error-container .details ul li {
   line-height: 26px;
   line-height: 1.625rem;
   font-weight: 300;
 }
 
-/* line 314, ui/_forms.scss */
+/* line 389, ui/_forms.scss */
 input.error, .remove-confirmation.confirm span input.yes, input.select2-container.error, textarea.error, .remove-confirmation.confirm span textarea.yes, textarea.select2-container.error {
   border-bottom-left-radius: 0;
   border-bottom-right-radius: 0;
 }
 
-/* line 319, ui/_forms.scss */
-input + .error, .remove-confirmation.confirm span input + .yes, input + .select2-container.error, label + .error, .remove-confirmation.confirm span label + .yes, label + .select2-container.error {
+/* line 394, ui/_forms.scss */
+input ~ .error, .remove-confirmation.confirm span input ~ .yes, input ~ .select2-container.error, label ~ .error, .remove-confirmation.confirm span label ~ .yes, label ~ .select2-container.error {
   display: block;
-  background: #deabab;
+  background: #e5bdbd;
   padding: 1em;
   font-weight: bold;
   border-bottom-left-radius: 5px;
   border-bottom-right-radius: 5px;
   border: 1px solid #993d3d;
   border-top: 0 solid #727272;
+  text-align: left;
 }
 
 /* line 1, ui/_typography.scss */
