@@ -515,6 +515,7 @@ var Checkout = {
 			"active_class": "active",
 			"steps": [],
 			"addresses_template": undefined,
+			"country_select_template": undefined,
 			"error_item_template": undefined
 		},
 		"ShippingAddress": {
@@ -969,11 +970,13 @@ var Checkout = {
 			},
 			"CompileUITemplates": function () {
 				Checkout.Settings.Shared.error_item_template = Handlebars.compile($("#error-message-template").html());
+				Checkout.Settings.Shared.country_select_template = Handlebars.compile($("#country-select-template").html());
 				Checkout.Settings.Shared.addresses_template = Handlebars.compile($("#customer-addresses-template").html());
 				Checkout.Settings.BillingInfo.credit_card_template = Handlebars.compile($("#customer-credit-card-template").html());
 			},
 			"BindUIElements": function () {
 				Checkout.Functions.Shared.CompileUITemplates();
+				Checkout.Functions.Shared.BindCountryElements();
 				Checkout.Functions.Shared.BindAddressElements();
 				Checkout.Functions.BillingInfo.BindCreditCardElements();
 			},
@@ -1023,6 +1026,22 @@ var Checkout = {
 
 				Checkout.Fields.ShippingAddress.$address_list.html($shippingAddressesMarkup);
 				Checkout.Fields.BillingInfo.$billing_address_list.prepend($billingAddressesMarkup);
+			},
+			"BindCountryElements": function () {
+				var shippingContext = {
+					"id": "country-input",
+					"countries": Checkout.Data.countries
+				},
+				billingContext = {
+					"id": "billing-country-input",
+					"countries": Checkout.Data.countries
+				},
+				shipping_markup = Checkout.Settings.Shared.country_select_template(shippingContext),
+				billing_markup = Checkout.Settings.Shared.country_select_template(billingContext);
+				Checkout.Fields.ShippingAddress.$input_country.replaceWith(shipping_markup);
+				Checkout.Fields.BillingInfo.$input_country.replaceWith(billing_markup);
+				Checkout.Fields.ShippingAddress.$input_country = $(Checkout.Fields.ShippingAddress.$input_country.selector);
+				Checkout.Fields.BillingInfo.$input_country = $(Checkout.Fields.BillingInfo.$input_country.selector);
 			},
 			"GetDecimal": function (number) {
 				/// <summary>Converts a string to a decimal (2 places).</summary>
@@ -1152,14 +1171,9 @@ var Checkout = {
 			"BindEvents_Document": function () {
 				$(document).ready(function () {
 					Checkout.Functions.Shared.GetFields();
+					Checkout.Functions.Shared.BindUIElements();
 					Checkout.Functions.ShippingAddress.InitializeCountryDropdown();
 					Checkout.Functions.BillingInfo.InitializeCountryDropdown();
-					if (Checkout.Settings.Shared.mode === "return") {
-						Checkout.Functions.Shared.BindUIElements();
-					}
-					else {
-						Checkout.Functions.Shared.CompileUITemplates();
-					}
 					Checkout.Functions.Shared.GetDynamicFields();
 					Checkout.Functions.Shared.WireEvents();
 					if (Checkout.Settings.Shared.mode == "new") {
@@ -1608,12 +1622,32 @@ var Checkout = {
 				return Checkout.Functions.Shared.ValidateFormRequiredFields(Checkout.Fields.ShippingAddress.$new_address_form, Checkout.Fields.ShippingAddress.$required_address_inputs);
 			},
 			"InitializeCountryDropdown": function () {
-				var $container = undefined;
-				Checkout.Fields.ShippingAddress.$input_country.select2();
-				$container = Checkout.Fields.ShippingAddress.$input_country.select2("container")
-				Checkout.Fields.ShippingAddress.$input_country.next().attr("for", $container.attr("id"));
-				$container.addClass("." + Checkout.Settings.Shared.required_class);
-				Checkout.Fields.Shared.$required_fields = Checkout.Fields.Shared.$required_fields.add($container);
+				var $country_autocomplete = undefined;
+
+				Checkout.Fields.ShippingAddress.$input_country.selectToAutocomplete({
+					"remove-valueless-options": false,
+					"copy-attributes-to-text-field": false,
+					"input_class": Checkout.Settings.Shared.required_class + " text-input",
+					"appendTo": Checkout.Fields.ShippingAddress.$input_country.parent()
+				});
+				$country_autocomplete = Checkout.Fields.ShippingAddress.$input_country.siblings("input.autocomplete");
+				$country_autocomplete.next().attr("for", $country_autocomplete.attr("id"));
+				$country_autocomplete.on("blur", function () {
+					var $this = $(this);
+					if ($this.val() !== "") {
+						$this.siblings("label").addClass("notempty");
+					}
+					else {
+						$this.siblings("label").removeClass("notempty");
+					}
+				});
+				Checkout.Fields.Shared.$required_fields = Checkout.Fields.Shared.$required_fields.add($country_autocomplete);
+				//var $container = undefined;
+				//Checkout.Fields.ShippingAddress.$input_country.select2();
+				//$container = Checkout.Fields.ShippingAddress.$input_country.select2("container")
+				//Checkout.Fields.ShippingAddress.$input_country.next().attr("for", $container.attr("id"));
+				//$container.addClass("." + Checkout.Settings.Shared.required_class);
+				//Checkout.Fields.Shared.$required_fields = Checkout.Fields.Shared.$required_fields.add($container);
 			}
 		},
 		"ShippingOption": {
@@ -2151,8 +2185,7 @@ var Checkout = {
 				$credit_cards.eq(2).data("credit-card-id", 3);
 			},
 			"InitializeCountryDropdown": function () {
-				Checkout.Fields.BillingInfo.$input_country.select2();
-				Checkout.Fields.BillingInfo.$input_country.next().attr("for", Checkout.Fields.BillingInfo.$input_country.select2("container").attr("id"));
+				
 			},
 			"BindCreditCardElements": function () {
 				var creditCardData = [],
@@ -2487,7 +2520,7 @@ var Checkout = {
 					isValid = true,
 					dateValid = true,
 					lengthValid = true
-					$error_element = undefined;
+				$error_element = undefined;
 
 				// Verify the length
 				if (expiration.length !== 5) {

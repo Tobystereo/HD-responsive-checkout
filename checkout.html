@@ -7,14 +7,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="css/style.css" rel="stylesheet" />
     <link href="css/modal.css" rel="stylesheet" />
-    <link href="css/select2.css" rel="stylesheet" />
     <script src="js/modernizr-2.6.2.js"></script>
     <script src="js/jquery-1.11.0.min.js"></script>
     <script src="js/jquery-migrate-1.2.1.js"></script>
     <script src="js/animatescroll.js"></script>
     <script src="js/jquery.maskedinput.min.js"></script>
     <script src="js/handlebars-v1.3.0.js"></script>
-    <script src="js/select2.js"></script>
+    <script src="js/jquery-ui-autocomplete.js"></script>
+    <script src="js/jquery.select-to-autocomplete.js"></script>
 </head>
 <body>
     <div class="checkout">
@@ -34,7 +34,6 @@
                         <p>
                             <a class="need-help">Need Help?</a>
                         </p>
-
                     </div>
                 </div>
             </nav>
@@ -70,17 +69,13 @@
                                 <li class="field country ">
                                     <h2 data-new-text="Create a new address" data-edit-text="Edit address">Create a new address</h2>
                                     <select class="required" id="country-input">
-                                        <option value=""></option>
-                                        <option value="US">United States</option>
-                                        <option value="CA">Canada</option>
                                     </select>
                                     <label for="country-input" class="dropdownlabel">Country</label>
-                                    <br /><br /><br /><br />
                                 </li>
                                 <li class="required-field-message">required fields</li>
                                 <li class="field field__secondary name" style="display: none;">
-                                    <input type="text" class="text-input required" id="name-input" title="Name" style="pointer-events: none;">
-                                    <label for="name-input" style="pointer-events: none;">Name</label>
+                                    <input type="text" class="text-input required" id="name-input" title="Name">
+                                    <label for="name-input">Name</label>
                                 </li>
                                 <li class="field field__secondary company" style="display: none;">
                                     <input type="text" class="text-input" id="company-input">
@@ -316,11 +311,8 @@
                                             <li class="field country ">
                                                 <h3 class="title" data-new-text="Create a new address" data-edit-text="Edit address">Create a new address</h3>
                                                 <select class="required" id="billing-country-input">
-                                                    <option value=""></option>
-                                                    <option value="US">United States</option>
-                                                    <option value="CA">Canada</option>
                                                 </select>
-                                                <label for="billing-country-input" class="dropdownlabel">Country</label>
+                                                <label for="billing-country-input">Country</label>
                                             </li>
                                             <li class="required-field-message">required fields</li>
                                             <li class="field field__secondary name" style="display: none;">
@@ -839,6 +831,14 @@
             </p>
             {{/if}}
         </div>
+    </script>
+    <script id="country-select-template" type="text/x-handlebars-template">
+        <select class="required" id="{{id}}">
+            <option value=""></option>
+            {{#each this.countries}}
+            <option value="{{value}}">{{name}}</option>
+            {{/each}}
+        </select>
     </script>
     <script id="customer-addresses-template" type="text/x-handlebars-template">
         {{#each this}}
