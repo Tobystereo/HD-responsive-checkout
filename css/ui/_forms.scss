@@ -310,3 +310,19 @@ VALIDATION
     }
   }
 }
+
+input.error, textarea.error {
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+}
+
+input + .error, label + .error {
+  display: block;
+  background: darken($light-red, 5);
+  padding: 1em;
+  font-weight: bold;
+  border-bottom-left-radius: $borderradius;
+  border-bottom-right-radius: $borderradius;
+  @include border(all, $lineweight, $linetype, $red);
+  @include border(top, 0);
+}

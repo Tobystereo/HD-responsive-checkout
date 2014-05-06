@@ -7708,6 +7708,24 @@ VALIDATION
   font-weight: 300;
 }
 
+/* line 314, ui/_forms.scss */
+input.error, .remove-confirmation.confirm span input.yes, input.select2-container.error, textarea.error, .remove-confirmation.confirm span textarea.yes, textarea.select2-container.error {
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+}
+
+/* line 319, ui/_forms.scss */
+input + .error, .remove-confirmation.confirm span input + .yes, input + .select2-container.error, label + .error, .remove-confirmation.confirm span label + .yes, label + .select2-container.error {
+  display: block;
+  background: #deabab;
+  padding: 1em;
+  font-weight: bold;
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+  border: 1px solid #993d3d;
+  border-top: 0 solid #727272;
+}
+
 /* line 1, ui/_typography.scss */
 .heading, h1, .h1, h2, .h2, .modal-content h1, h3, .h3, .modal-content h2, h4, .h4, .modal-content h3 {
   margin-top: 1em;
