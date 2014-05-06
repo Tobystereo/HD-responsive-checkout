@@ -68,9 +68,8 @@
                             <ul class="grid__item add-edit-address form-fields one-whole card">
                                 <li class="field country ">
                                     <h2 data-new-text="Create a new address" data-edit-text="Edit address">Create a new address</h2>
-                                    <select class="required" id="country-input">
-                                    </select>
-                                    <label for="country-input" class="dropdownlabel">Country</label>
+                                    <select class="required" id="country-input"></select>
+                                    <label for="country-input">Country</label>
                                 </li>
                                 <li class="required-field-message">required fields</li>
                                 <li class="field field__secondary name" style="display: none;">
@@ -92,6 +91,10 @@
                                 <li class="field field__secondary state" style="display: none;">
                                     <input type="text" class="text-input required" id="state-input">
                                     <label for="state-input">State/Province</label>
+                                </li>
+                                <li class="field field__secondary state-select" style="display: none;">
+                                    <select class="required" id="state-input-select"></select>
+                                    <label for="state-input-select">State/Province</label>
                                 </li>
                                 <li class="field field__secondary postal-code" style="display: none;">
                                     <input type="text" class="text-input required" id="postal-code-input">
@@ -836,6 +839,14 @@
         <select class="required" id="{{id}}">
             <option value=""></option>
             {{#each this.countries}}
+            <option value="{{value}}">{{name}}</option>
+            {{/each}}
+        </select>
+    </script>
+    <script id="state-select-template" type="text/x-handlebars-template">
+        <select class="required" id="{{id}}">
+            <option value=""></option>
+            {{#each this.states}}
             <option value="{{value}}">{{name}}</option>
             {{/each}}
         </select>
