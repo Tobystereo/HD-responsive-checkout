@@ -294,19 +294,22 @@ select {
 
 .show-all ~ .ui-autocomplete {
   list-style: none;
+  height: 6rem;
+  overflow: scroll;
+  border: 1px solid $dark;
+  border-radius: $borderradius;
+
   li {
     display: block;
     width: 100%;
     height: 2rem;
     line-height: 2rem;
-    border-left: 1px solid $dark;
-    border-right: 1px solid $dark;
 
     a {
       border: none !important;
       width: 100%;
       display: block;
-      cursor: default;      
+      cursor: default;
     }
 
     &:nth-of-type(odd) {
@@ -322,20 +325,6 @@ select {
         background: darken($lighter, 10);
       }
     }
-
-    &:first-of-type {
-      border-top-left-radius: $borderradius;
-      border-top-right-radius: $borderradius;
-      border-top: 1px solid $light;
-    }
-
-    &:last-of-type {
-      border-bottom-left-radius: $borderradius;
-      border-bottom-right-radius: $borderradius;
-      border-bottom: 1px solid $dark;
-    }
-
-    // @include outline;
   }
 }
 
