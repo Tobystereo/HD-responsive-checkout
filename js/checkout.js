@@ -1043,6 +1043,31 @@ var Checkout = {
 				Checkout.Fields.ShippingAddress.$input_country = $(Checkout.Fields.ShippingAddress.$input_country.selector);
 				Checkout.Fields.BillingInfo.$input_country = $(Checkout.Fields.BillingInfo.$input_country.selector);
 			},
+			"InitAutoComplete": function ($select_element) {
+				var $autocomplete_field = undefined,
+					required = $select_element.hasClass(Checkout.Settings.Shared.required_class);
+
+				$select_element.selectToAutocomplete({
+					"remove-valueless-options": false,
+					"copy-attributes-to-text-field": false,
+					"input_class": required ? Checkout.Settings.Shared.required_class : "" + " text-input",
+					"appendTo": $select_element.parent()
+				});
+				$autocomplete_field = $select_element.siblings("input.autocomplete");
+				$autocomplete_field.next().attr("for", $autocomplete_field.attr("id"));
+				$autocomplete_field.on("blur", function () {
+					var $this = $(this);
+					if ($this.val() !== "") {
+						$this.siblings("label").addClass("notempty");
+					}
+					else {
+						$this.siblings("label").removeClass("notempty");
+					}
+				});
+				if (required) {
+					Checkout.Fields.Shared.$required_fields = Checkout.Fields.Shared.$required_fields.add($autocomplete_field);
+				}
+			},
 			"GetDecimal": function (number) {
 				/// <summary>Converts a string to a decimal (2 places).</summary>
 				/// <param name="number" type="String">The string to convert.</param>
@@ -1622,32 +1647,7 @@ var Checkout = {
 				return Checkout.Functions.Shared.ValidateFormRequiredFields(Checkout.Fields.ShippingAddress.$new_address_form, Checkout.Fields.ShippingAddress.$required_address_inputs);
 			},
 			"InitializeCountryDropdown": function () {
-				var $country_autocomplete = undefined;
-
-				Checkout.Fields.ShippingAddress.$input_country.selectToAutocomplete({
-					"remove-valueless-options": false,
-					"copy-attributes-to-text-field": false,
-					"input_class": Checkout.Settings.Shared.required_class + " text-input",
-					"appendTo": Checkout.Fields.ShippingAddress.$input_country.parent()
-				});
-				$country_autocomplete = Checkout.Fields.ShippingAddress.$input_country.siblings("input.autocomplete");
-				$country_autocomplete.next().attr("for", $country_autocomplete.attr("id"));
-				$country_autocomplete.on("blur", function () {
-					var $this = $(this);
-					if ($this.val() !== "") {
-						$this.siblings("label").addClass("notempty");
-					}
-					else {
-						$this.siblings("label").removeClass("notempty");
-					}
-				});
-				Checkout.Fields.Shared.$required_fields = Checkout.Fields.Shared.$required_fields.add($country_autocomplete);
-				//var $container = undefined;
-				//Checkout.Fields.ShippingAddress.$input_country.select2();
-				//$container = Checkout.Fields.ShippingAddress.$input_country.select2("container")
-				//Checkout.Fields.ShippingAddress.$input_country.next().attr("for", $container.attr("id"));
-				//$container.addClass("." + Checkout.Settings.Shared.required_class);
-				//Checkout.Fields.Shared.$required_fields = Checkout.Fields.Shared.$required_fields.add($container);
+				Checkout.Functions.Shared.InitAutoComplete(Checkout.Fields.ShippingAddress.$input_country);
 			}
 		},
 		"ShippingOption": {
@@ -2185,7 +2185,7 @@ var Checkout = {
 				$credit_cards.eq(2).data("credit-card-id", 3);
 			},
 			"InitializeCountryDropdown": function () {
-				
+				Checkout.Functions.Shared.InitAutoComplete(Checkout.Fields.BillingInfo.$input_country);
 			},
 			"BindCreditCardElements": function () {
 				var creditCardData = [],

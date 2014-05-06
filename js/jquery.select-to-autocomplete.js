@@ -85,19 +85,15 @@ THE SOFTWARE.
 			if ($show_button !== undefined) {
 				$show_button.on("click", function (e) {
 					var $this = $(this),
-						$search_input = $this.siblings("input.autocomplete");
+						$search_input = $this.siblings("input.autocomplete"),
+						options_displayed = $this.siblings(".ui-autocomplete").is(":visible");
 					e.preventDefault();
-					$this.toggleClass("open");
-					if ($this.hasClass("open")) {
+					if (!options_displayed) {
 						$search_input.autocomplete("search", "");
 					}
 					else {
 						$search_input.autocomplete("close");
 					}
-				}).on("focusout", function () {
-					var $this = $(this);
-					$this.removeClass("open");
-					$this.siblings("input.autocomplete").autocomplete("close");
 				});
 				$field_label = $text_field.siblings("label");
 				if ($field_label !== undefined) {
