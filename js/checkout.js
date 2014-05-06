@@ -385,6 +385,7 @@ var Checkout = {
 			"$btnsave_address": undefined,
 			"$btnedit_address": undefined,
 			"$input_country": undefined,
+			"$autocomplete_county": undefined,
 			"$input_name": undefined,
 			"$input_company": undefined,
 			"$input_street": undefined,
@@ -442,6 +443,7 @@ var Checkout = {
 			"$billing_address_form": undefined,
 			"$billing_address_form_title": undefined,
 			"$input_country": undefined,
+			"$autocomplete_county": undefined,
 			"$input_name": undefined,
 			"$input_company": undefined,
 			"$input_street": undefined,
@@ -1067,6 +1069,7 @@ var Checkout = {
 				if (required) {
 					Checkout.Fields.Shared.$required_fields = Checkout.Fields.Shared.$required_fields.add($autocomplete_field);
 				}
+				return $autocomplete_field;
 			},
 			"GetDecimal": function (number) {
 				/// <summary>Converts a string to a decimal (2 places).</summary>
@@ -1375,6 +1378,7 @@ var Checkout = {
 						Checkout.Fields.ShippingAddress.$btnadd_address.slideUp(Checkout.Settings.Shared.easing_duration - 200);
 						// Set the input values
 						Checkout.Fields.ShippingAddress.$input_country.val(data.country_code);
+						Checkout.Fields.ShippingAddress.$autocomplete_county.val(Checkout.Fields.ShippingAddress.$input_country.find(":selected").text());
 						Checkout.Fields.ShippingAddress.$input_name.val(data.name);
 						Checkout.Fields.ShippingAddress.$input_company.val(data.company);
 						Checkout.Fields.ShippingAddress.$input_street.val(data.street);
@@ -1484,15 +1488,7 @@ var Checkout = {
 				if (refreshSelector) {
 					Checkout.Fields.ShippingAddress.$input_country = $(Checkout.Fields.ShippingAddress.$input_country.selector);
 				}
-				Checkout.Fields.ShippingAddress.$input_country.on("select2-open", function () {
-					//Checkout.Fields.ShippingAddress.$address_inputs.not(this).css("pointer-events", "none").each(function () {
-					//	$(this).next().css("pointer-events", "none");
-					//});
-				}).on("select2-close", function () {
-					//Checkout.Fields.ShippingAddress.$address_inputs.not(this).css("pointer-events", "auto").each(function () {
-					//	$(this).next().css("pointer-events", "auto");
-					//});
-				}).toggleContainer({
+				Checkout.Fields.ShippingAddress.$input_country.toggleContainer({
 					content_element: Checkout.Fields.ShippingAddress.$secondary_fields,
 					firing_events: "change",
 					force_state: "show",
@@ -1647,7 +1643,9 @@ var Checkout = {
 				return Checkout.Functions.Shared.ValidateFormRequiredFields(Checkout.Fields.ShippingAddress.$new_address_form, Checkout.Fields.ShippingAddress.$required_address_inputs);
 			},
 			"InitializeCountryDropdown": function () {
-				Checkout.Functions.Shared.InitAutoComplete(Checkout.Fields.ShippingAddress.$input_country);
+				Checkout.Fields.ShippingAddress.$autocomplete_county = Checkout.Functions.Shared.InitAutoComplete(Checkout.Fields.ShippingAddress.$input_country);
+				Checkout.Fields.Shared.$form_inputs = Checkout.Fields.Shared.$form_inputs.add(Checkout.Fields.ShippingAddress.$autocomplete_county);
+				Checkout.Fields.ShippingAddress.$address_inputs = Checkout.Fields.ShippingAddress.$address_inputs.add(Checkout.Fields.ShippingAddress.$autocomplete_county);
 			}
 		},
 		"ShippingOption": {
@@ -2129,6 +2127,7 @@ var Checkout = {
 						// Set the input values
 						Checkout.Functions.BillingInfo.ToggleAddressFormMode("edit");
 						Checkout.Fields.BillingInfo.$input_country.val(addressData.country_code);
+						Checkout.Fields.BillingInfo.$autocomplete_county.val(Checkout.Fields.BillingInfo.$input_country.find(":selected").text());
 						Checkout.Fields.BillingInfo.$input_name.val(addressData.name);
 						Checkout.Fields.BillingInfo.$input_company.val(addressData.company);
 						Checkout.Fields.BillingInfo.$input_street.val(addressData.street);
@@ -2185,7 +2184,9 @@ var Checkout = {
 				$credit_cards.eq(2).data("credit-card-id", 3);
 			},
 			"InitializeCountryDropdown": function () {
-				Checkout.Functions.Shared.InitAutoComplete(Checkout.Fields.BillingInfo.$input_country);
+				Checkout.Fields.BillingInfo.$autocomplete_county = Checkout.Functions.Shared.InitAutoComplete(Checkout.Fields.BillingInfo.$input_country);
+				Checkout.Fields.Shared.$form_inputs = Checkout.Fields.Shared.$form_inputs.add(Checkout.Fields.BillingInfo.$autocomplete_county);
+				Checkout.Fields.BillingInfo.$address_inputs = Checkout.Fields.BillingInfo.$address_inputs.add(Checkout.Fields.BillingInfo.$autocomplete_county);
 			},
 			"BindCreditCardElements": function () {
 				var creditCardData = [],
