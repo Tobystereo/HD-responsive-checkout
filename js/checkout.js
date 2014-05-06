@@ -290,11 +290,88 @@ var Checkout = {
 		"countries": [
 			{
 				"name": "United States",
-				"value": "US"
+				"value": "US",
+				"states": [
+					{ "name": "Alabama", "value": "AL" },
+					{ "name": "Alaska", "value": "AK" },
+					{ "name": "Arizona", "value": "AZ" },
+					{ "name": "Arkansas", "value": "AR" },
+					{ "name": "California", "value": "CA" },
+					{ "name": "Colorado", "value": "CO" },
+					{ "name": "Connecticut", "value": "CT" },
+					{ "name": "Delaware", "value": "DE" },
+					{ "name": "Florida", "value": "FL" },
+					{ "name": "Georgia", "value": "GA" },
+					{ "name": "Guam", "value": "GU" },
+					{ "name": "Hawaii", "value": "HI" },
+					{ "name": "Idaho", "value": "ID" },
+					{ "name": "Illinois", "value": "IL" },
+					{ "name": "Indiana", "value": "IN" },
+					{ "name": "Iowa", "value": "IA" },
+					{ "name": "Kansas", "value": "KS" },
+					{ "name": "Kentucky", "value": "KY" },
+					{ "name": "Louisiana", "value": "LA" },
+					{ "name": "Maine", "value": "ME" },
+					{ "name": "Maryland", "value": "MD" },
+					{ "name": "Marshall Islands", "value": "MH" },
+					{ "name": "Massachusetts", "value": "MA" },
+					{ "name": "Michigan", "value": "MI" },
+					{ "name": "Minnesota", "value": "MN" },
+					{ "name": "Mississippi", "value": "MS" },
+					{ "name": "Missouri", "value": "MO" },
+					{ "name": "Montana", "value": "MT" },
+					{ "name": "Nebraska", "value": "NE" },
+					{ "name": "Nevada", "value": "NV" },
+					{ "name": "New Hampshire", "value": "NH" },
+					{ "name": "New Jersey", "value": "NJ" },
+					{ "name": "New Mexico", "value": "NM" },
+					{ "name": "New York", "value": "NY" },
+					{ "name": "North Carolina", "value": "NC" },
+					{ "name": "North Dakota", "value": "ND" },
+					{ "name": "Ohio", "value": "OH" },
+					{ "name": "Oklahoma", "value": "OK" },
+					{ "name": "Oregon", "value": "OR" },
+					{ "name": "Pennsylvania", "value": "PA" },
+					{ "name": "Rhode Island", "value": "RI" },
+					{ "name": "Puerto Rico", "value": "PR" },
+					{ "name": "South Carolina", "value": "SC" },
+					{ "name": "South Dakota", "value": "SD" },
+					{ "name": "Tennessee", "value": "TN" },
+					{ "name": "Texas", "value": "TX" },
+					{ "name": "Utah", "value": "UT" },
+					{ "name": "Vermont", "value": "VT" },
+					{ "name": "Virgin Islands", "value": "VI" },
+					{ "name": "Virginia", "value": "VA" },
+					{ "name": "Washington", "value": "WA" },
+					{ "name": "West Virginia", "value": "WV" },
+					{ "name": "Wisconsin", "value": "WI" },
+					{ "name": "Wyoming", "value": "WY" },
+					{ "name": "American Samoa", "value": "AS" },
+					{ "name": "Micronesia", "value": "FM" },
+					{ "name": "Armed Forces Pacific", "value": "AP" },
+					{ "name": "District of Columbia", "value": "DC" },
+					{ "name": "Armed Forces Americas", "value": "AA" },
+					{ "name": "Armed Forces Europe", "value": "AE" }
+				]
 			},
 			{
 				"name": "Canada",
-				"value": "CA"
+				"value": "CA",
+				"states": [
+					{ "name": "Alberta", "value": "AB" },
+					{ "name": "British Columbia", "value": "BC" },
+					{ "name": "Manitoba", "value": "MB" },
+					{ "name": "New Brunswick", "value": "NB" },
+					{ "name": "Newfoundland and Labrador", "value": "NL" },
+					{ "name": "Northwest Territories", "value": "NT" },
+					{ "name": "Nova Scotia", "value": "NS" },
+					{ "name": "Nunavut", "value": "NU" },
+					{ "name": "Ontario", "value": "ON" },
+					{ "name": "Prince Edward Island", "value": "PE" },
+					{ "name": "Quebec", "value": "QC" },
+					{ "name": "Saskatchewan", "value": "SK" },
+					{ "name": "Yukon", "value": "YT" },
+				]
 			},
 			{
 				"name": "Germany",
@@ -391,6 +468,7 @@ var Checkout = {
 			"$input_street": undefined,
 			"$input_city": undefined,
 			"$input_state": undefined,
+			"$input_state_select": undefined,
 			"$input_postal": undefined,
 			"$input_phone": undefined,
 			"$secondary_fields": undefined,
@@ -518,6 +596,7 @@ var Checkout = {
 			"steps": [],
 			"addresses_template": undefined,
 			"country_select_template": undefined,
+			"state_select_template": undefined,
 			"error_item_template": undefined
 		},
 		"ShippingAddress": {
@@ -581,6 +660,7 @@ var Checkout = {
 				Checkout.Fields.ShippingAddress.$input_street = Checkout.Fields.Shared.$step_shipping_address.find("#address-input");
 				Checkout.Fields.ShippingAddress.$input_city = Checkout.Fields.Shared.$step_shipping_address.find("#city-input");
 				Checkout.Fields.ShippingAddress.$input_state = Checkout.Fields.Shared.$step_shipping_address.find("#state-input");
+				Checkout.Fields.ShippingAddress.$input_state_select = Checkout.Fields.Shared.$step_shipping_address.find("#state-input-select");
 				Checkout.Fields.ShippingAddress.$input_postal = Checkout.Fields.Shared.$step_shipping_address.find("#postal-code-input");
 				Checkout.Fields.ShippingAddress.$input_phone = Checkout.Fields.Shared.$step_shipping_address.find("#phone-input");
 				Checkout.Fields.ShippingAddress.$secondary_fields = Checkout.Fields.Shared.$step_shipping_address.find(".field__secondary");
@@ -1134,7 +1214,7 @@ var Checkout = {
 			},
 			"ValidateRequiredField": function ($element) {
 				var isValid = true,
-					$error_element = $element.hasClass("select2-offscreen") ? $($element.siblings(".error")[1]) : $element.siblings(".error"),
+					$error_element = $element.siblings(".error"),
 					$element_label = $element.siblings("label");
 				if ($element.is(":visible") && $element.val() === "") {
 					isValid = false;
@@ -1146,7 +1226,7 @@ var Checkout = {
 					});
 					if ($error_element === undefined || $error_element.length === 0) {
 						$error_element = $("<div style='display:none;' class='error'>" + $element_label.text() + " is required</div>");
-						$element_label.after($error_element);
+						$element.parent().append($error_element);
 					}
 					$error_element.slideDown(Checkout.Settings.Shared.easing_duration);
 				}
@@ -1491,6 +1571,19 @@ var Checkout = {
 				Checkout.Fields.ShippingAddress.$input_country.toggleContainer({
 					content_element: Checkout.Fields.ShippingAddress.$secondary_fields,
 					firing_events: "change",
+					pre_logic: function () {
+						var country_value = Checkout.Fields.ShippingAddress.$input_country.val();
+						if (country_value === "CA" || country_value === "US") {
+
+							Checkout.Fields.ShippingAddress.$input_state.removeClass(Checkout.Settings.Shared.required_class);
+							Checkout.Fields.ShippingAddress.$input_state_select.addClass(Checkout.Settings.Shared.required_class);
+						}
+						else {
+							Checkout.Fields.ShippingAddress.$input_state_select.removeClass(Checkout.Settings.Shared.required_class);
+							Checkout.Fields.ShippingAddress.$input_state.addClass(Checkout.Settings.Shared.required_class);
+						}
+						Checkout.Functions.Shared.BindEvents_RequiredFields(true);
+					},
 					force_state: "show",
 					toggle_self: false
 				})
