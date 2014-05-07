@@ -309,6 +309,7 @@ input.autocomplete {
   border: 1px solid $dark;
   border-bottom-right-radius: $borderradius;
   border-bottom-left-radius: $borderradius;
+  border-top: 0;
 
   li {
     display: block;
@@ -343,6 +344,17 @@ input.autocomplete {
 .error ~ .ui-autocomplete {
   border-bottom-left-radius: 0;
   border-bottom-right-radius: 0;
+  border-color: $red;
+
+  li {
+    background: lighten($light-red, 5);
+    border-bottom: 1px solid $light-red;
+    color: $red;
+
+    &:nth-of-type(even) {
+      background: $light-red;
+    }
+  }
 }
 
 /********************************
