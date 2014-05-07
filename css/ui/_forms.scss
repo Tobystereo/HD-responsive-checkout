@@ -289,8 +289,11 @@ input.autocomplete {
   @include border;
   border-top-right-radius: $borderradius;
   border-bottom-right-radius: $borderradius;
+  border-bottom-left-radius: 0;
+  border-top-left-radius: 0;
   line-height: 3rem;
   border-left: none;
+  text-align: center;
 
 }
 
