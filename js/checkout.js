@@ -1168,7 +1168,7 @@ var Checkout = {
 					}
 				}
 			},
-			"InitAutoComplete": function ($select_element) {
+			"InitAutoComplete": function ($select_element, on_select) {
 				var $autocomplete_field = undefined,
 					required = $select_element.hasClass(Checkout.Settings.Shared.required_class);
 
@@ -1184,6 +1184,9 @@ var Checkout = {
 					"appendTo": $select_element.parent()
 				});
 				$autocomplete_field = $select_element.siblings("input.autocomplete");
+				$autocomplete_field.on("autocompleteselect", function (event, ui) {
+					on_select();
+				});
 				$autocomplete_field.next().attr("for", $autocomplete_field.attr("id"));
 				$autocomplete_field.on("blur", function () {
 					Checkout.Functions.Shared.EvaluateFieldCompleteness($(this), false);
@@ -1658,7 +1661,9 @@ var Checkout = {
 					// Refresh the state drop down variable
 					Checkout.Fields.ShippingAddress.$input_state_select = $(Checkout.Fields.ShippingAddress.$input_state_select.selector);
 					// Make the state drop down field an auto-complete field.
-					Checkout.Fields.ShippingAddress.$autocomplete_state = Checkout.Functions.Shared.InitAutoComplete(Checkout.Fields.ShippingAddress.$input_state_select);
+					Checkout.Fields.ShippingAddress.$autocomplete_state = Checkout.Functions.Shared.InitAutoComplete(Checkout.Fields.ShippingAddress.$input_state_select, function () {
+						Checkout.Fields.ShippingAddress.$autocomplete_state.trigger("change");
+					});
 					// Add the new auto-complete input to the collection of form inputs
 					Checkout.Fields.Shared.$form_inputs = Checkout.Fields.Shared.$form_inputs.add(Checkout.Fields.ShippingAddress.$autocomplete_state);
 					// Add the new auto-complete input to the collection of address inputs
@@ -1810,7 +1815,9 @@ var Checkout = {
 				return Checkout.Functions.Shared.ValidateFormRequiredFields(Checkout.Fields.ShippingAddress.$new_address_form, Checkout.Fields.ShippingAddress.$required_address_inputs);
 			},
 			"InitializeCountryDropdown": function () {
-				Checkout.Fields.ShippingAddress.$autocomplete_county = Checkout.Functions.Shared.InitAutoComplete(Checkout.Fields.ShippingAddress.$input_country);
+				Checkout.Fields.ShippingAddress.$autocomplete_county = Checkout.Functions.Shared.InitAutoComplete(Checkout.Fields.ShippingAddress.$input_country, function () {
+					Checkout.Fields.ShippingAddress.$autocomplete_county.trigger("change");
+				});
 				Checkout.Fields.Shared.$form_inputs = Checkout.Fields.Shared.$form_inputs.add(Checkout.Fields.ShippingAddress.$autocomplete_county);
 				Checkout.Fields.ShippingAddress.$address_inputs = Checkout.Fields.ShippingAddress.$address_inputs.add(Checkout.Fields.ShippingAddress.$autocomplete_county);
 			}
