@@ -50,7 +50,7 @@ THE SOFTWARE.
 		},
 		insert_text_field: function (context) {
 			var $text_field = $("<input type='text' id='" + (settings.input_id !== "" ? settings.input_id : context.$select_field.attr("id") + "-ac") + "'></input>"),
-				$show_button = settings.include_show_button ? $("<button class='show-all'>&#x25BC;</button>") : undefined,
+				$show_button = settings.include_show_button ? $("<div class='show-all btn secondary'>&#x25BC;</div>") : undefined,
 				$field_label = undefined;
 
 			if (settings['copy_attributes_to_text_field']) {
