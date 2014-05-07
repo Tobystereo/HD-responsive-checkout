@@ -292,10 +292,10 @@ select {
   border-bottom-right-radius: 0;
 }
 
-.show-all ~ .ui-autocomplete {
+.ui-autocomplete {
   list-style: none;
-  height: 6rem;
-  overflow: scroll;
+  height: 7rem;
+  overflow-y: scroll;
   border: 1px solid $dark;
   border-radius: $borderradius;
 
@@ -312,11 +312,10 @@ select {
       cursor: default;
     }
 
-    &:nth-of-type(odd) {
-      background: $lightest;
-      &:hover {
+    background: $lightest;
+    border-bottom: 1px solid $lighter;
+    &:hover {
         background: darken($lightest, 10);
-      }
     }
 
     &:nth-of-type(even) {
