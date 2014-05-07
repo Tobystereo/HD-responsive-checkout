@@ -7654,11 +7654,10 @@ input.autocomplete + label {
   clear: both;
   float: none;
   display: block;
-  outline: 1px solid red;
   margin-top: 0 !important;
 }
 
-/* line 283, ui/_forms.scss */
+/* line 282, ui/_forms.scss */
 .show-all {
   width: 8%;
   margin: 0 !important;
@@ -7673,7 +7672,7 @@ input.autocomplete + label {
   border-left: none;
 }
 
-/* line 298, ui/_forms.scss */
+/* line 297, ui/_forms.scss */
 .error ~ .show-all, .remove-confirmation.confirm span .yes ~ .show-all {
   background: #993d3d;
   color: #e5bdbd;
@@ -7681,7 +7680,7 @@ input.autocomplete + label {
   border-bottom-right-radius: 0;
 }
 
-/* line 305, ui/_forms.scss */
+/* line 304, ui/_forms.scss */
 .ui-autocomplete {
   width: 100% !important;
   list-style: none;
@@ -7691,36 +7690,38 @@ input.autocomplete + label {
   border-bottom-right-radius: 5px;
   border-bottom-left-radius: 5px;
 }
-/* line 314, ui/_forms.scss */
+/* line 313, ui/_forms.scss */
 .ui-autocomplete li {
   display: block;
   width: 100%;
   height: 2rem;
   line-height: 2rem;
+  text-align: left !important;
+  text-indent: 1em;
   background: white;
   border-bottom: 1px solid #f1f1f1;
 }
-/* line 320, ui/_forms.scss */
+/* line 321, ui/_forms.scss */
 .ui-autocomplete li a {
   border: none !important;
   width: 100%;
   display: block;
   cursor: default;
 }
-/* line 329, ui/_forms.scss */
+/* line 330, ui/_forms.scss */
 .ui-autocomplete li:hover {
   background: #e6e6e6;
 }
-/* line 333, ui/_forms.scss */
+/* line 334, ui/_forms.scss */
 .ui-autocomplete li:nth-of-type(even) {
   background: #f1f1f1;
 }
-/* line 335, ui/_forms.scss */
+/* line 336, ui/_forms.scss */
 .ui-autocomplete li:nth-of-type(even):hover {
   background: #d8d8d8;
 }
 
-/* line 342, ui/_forms.scss */
+/* line 343, ui/_forms.scss */
 .error ~ .ui-autocomplete, .remove-confirmation.confirm span .yes ~ .ui-autocomplete {
   border-bottom-left-radius: 0;
   border-bottom-right-radius: 0;
@@ -7731,7 +7732,7 @@ input.autocomplete + label {
 OTHER STYLES
 
 *********************************/
-/* line 353, ui/_forms.scss */
+/* line 354, ui/_forms.scss */
 .required_indicator:after, input[type=text].required + label:after, input[type=number].required + label:after, textarea.required + label:after, select.required + label:after, .required-field-message:after {
   display: inline-block;
   position: relative;
@@ -7743,7 +7744,7 @@ OTHER STYLES
   float: right;
 }
 
-/* line 360, ui/_forms.scss */
+/* line 361, ui/_forms.scss */
 .required-field-message {
   text-align: right;
 }
@@ -7753,11 +7754,11 @@ OTHER STYLES
 VALIDATION
 
 *********************************/
-/* line 373, ui/_forms.scss */
+/* line 374, ui/_forms.scss */
 .error-container {
   padding-left: 1.5em;
 }
-/* line 376, ui/_forms.scss */
+/* line 377, ui/_forms.scss */
 .error-container .message {
   font-size: 24px;
   font-size: 1.5rem;
@@ -7768,7 +7769,7 @@ VALIDATION
   line-height: 1.95rem;
 }
 @media only screen and (min-width: 50em) {
-  /* line 376, ui/_forms.scss */
+  /* line 377, ui/_forms.scss */
   .error-container .message {
     font-size: 32px;
     font-size: 2rem;
@@ -7779,28 +7780,28 @@ VALIDATION
     line-height: 2.6rem;
   }
 }
-/* line 384, ui/_forms.scss */
+/* line 385, ui/_forms.scss */
 .error-container .details {
   font-weight: 700;
 }
-/* line 386, ui/_forms.scss */
+/* line 387, ui/_forms.scss */
 .error-container .details ul {
   margin-top: 0.5em;
 }
-/* line 388, ui/_forms.scss */
+/* line 389, ui/_forms.scss */
 .error-container .details ul li {
   line-height: 26px;
   line-height: 1.625rem;
   font-weight: 300;
 }
 
-/* line 396, ui/_forms.scss */
+/* line 397, ui/_forms.scss */
 input.error, .remove-confirmation.confirm span input.yes, input.select2-container.error, textarea.error, .remove-confirmation.confirm span textarea.yes, textarea.select2-container.error {
   border-bottom-left-radius: 0;
   border-bottom-right-radius: 0;
 }
 
-/* line 401, ui/_forms.scss */
+/* line 402, ui/_forms.scss */
 input ~ .error, .remove-confirmation.confirm span input ~ .yes, input ~ .select2-container.error, label ~ .error, .remove-confirmation.confirm span label ~ .yes, label ~ .select2-container.error {
   display: block;
   clear: both;
