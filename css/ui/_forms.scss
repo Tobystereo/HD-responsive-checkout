@@ -262,8 +262,17 @@ select {
 }
 
 input.autocomplete {
+  width: 85%;
+
+  @media #{$lap} {
+    width: 88%;
+  }
+
+  @media #{$desk} {
+    width: 92%;
+  }
+
   margin: 0;
-  width: 92%;
   float: left;
   border-top-right-radius: 0;
   border-bottom-right-radius: 0;
@@ -280,9 +289,21 @@ input.autocomplete {
 
 
 .show-all {
-  width: 8%;
+  width: 15%;
+
+  @media #{$lap} {
+    width: 12%;
+  }
+
+  @media #{$desk} {
+    width: 8%;
+  }
+
+
+
   margin: 0 !important;
   height: 52px;
+  padding: 0;
   border: none;
   display: block;
   float: right;
