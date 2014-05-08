@@ -1352,12 +1352,11 @@ var Checkout = {
 			},
 			"BindEvents_RequiredFields": function (refreshSelector) {
 				if (refreshSelector) {
-					Checkout.Fields.Shared.$form_inputs = $("input[type=text], textarea, #country-input, #billing-country-input");;
-					Checkout.Fields.Shared.$required_fields = Checkout.Fields.Shared.$form_inputs.filter("." + Checkout.Settings.Shared.required_class);
+					Checkout.Fields.Shared.$required_fields = $("." + Checkout.Settings.Shared.required_class);
 				}
 
-				Checkout.Fields.Shared.$required_fields.on("blur select2-close", function () {
-					Checkout.Functions.Shared.ValidateRequiredField($(this))
+				Checkout.Fields.Shared.$required_fields.on("blur", function () {
+					Checkout.Functions.Shared.ValidateRequiredField($(this));
 				});
 			},
 			"BindEvents_NeedHelp": function (refreshSelector) {
@@ -1633,21 +1632,8 @@ var Checkout = {
 					Checkout.Fields.ShippingAddress.$required_address_inputs = $(Checkout.Fields.ShippingAddress.$required_address_inputs.selector);
 				}
 				Checkout.Fields.ShippingAddress.$required_address_inputs.on("change", function () {
-					var isFormComplete = true;
 					setTimeout(function () {
-						Checkout.Fields.ShippingAddress.$required_address_inputs.each(function () {
-							var $this = $(this);
-							if ($this.is(":visible") && !$this.hasClass(Checkout.Settings.Shared.complete_class)) {
-								isFormComplete = false;
-								return false;
-							}
-						});
-						if (isFormComplete) {
-							Checkout.Fields.ShippingAddress.$btnsave_address.removeAttr("disabled");
-						}
-						else {
-							Checkout.Fields.ShippingAddress.$btnsave_address.attr("disabled", "disabled");
-						}
+						Checkout.Functions.ShippingAddress.EvaluateAddressFormCompleteness();
 					}, 50);
 				});
 			},
@@ -1662,7 +1648,11 @@ var Checkout = {
 					Checkout.Fields.ShippingAddress.$input_state_select = $(Checkout.Fields.ShippingAddress.$input_state_select.selector);
 					// Make the state drop down field an auto-complete field.
 					Checkout.Fields.ShippingAddress.$autocomplete_state = Checkout.Functions.Shared.InitAutoComplete(Checkout.Fields.ShippingAddress.$input_state_select, function () {
-						Checkout.Fields.ShippingAddress.$autocomplete_state.trigger("change");
+						setTimeout(function () {
+							Checkout.Fields.ShippingAddress.$autocomplete_state.addClass(Checkout.Settings.Shared.complete_class);
+							Checkout.Functions.Shared.ValidateRequiredField(Checkout.Fields.ShippingAddress.$autocomplete_state);
+							Checkout.Functions.ShippingAddress.EvaluateAddressFormCompleteness();
+						}, 50);
 					});
 					// Add the new auto-complete input to the collection of form inputs
 					Checkout.Fields.Shared.$form_inputs = Checkout.Fields.Shared.$form_inputs.add(Checkout.Fields.ShippingAddress.$autocomplete_state);
@@ -1682,6 +1672,23 @@ var Checkout = {
 				Checkout.Functions.Shared.BindEvents_FormInputs(false);
 				Checkout.Functions.Shared.BindEvents_RequiredFields(true);
 				Checkout.Functions.ShippingAddress.BindEvents_RequiredAddressFields(true);
+			},
+			"EvaluateAddressFormCompleteness": function () {
+				var isFormComplete = true;
+
+				Checkout.Fields.ShippingAddress.$required_address_inputs.each(function () {
+					var $this = $(this);
+					if ($this.is(":visible") && !$this.hasClass(Checkout.Settings.Shared.complete_class)) {
+						isFormComplete = false;
+						return false;
+					}
+				});
+				if (isFormComplete) {
+					Checkout.Fields.ShippingAddress.$btnsave_address.removeAttr("disabled");
+				}
+				else {
+					Checkout.Fields.ShippingAddress.$btnsave_address.attr("disabled", "disabled");
+				}
 			},
 			"EvaluateSelectedAddress": function ($address) {
 				var $state = $address.find("span.state");
@@ -1757,10 +1764,10 @@ var Checkout = {
 					company = Checkout.Fields.ShippingAddress.$input_company.val(),
 					street = Checkout.Fields.ShippingAddress.$input_street.val(),
 					city = Checkout.Fields.ShippingAddress.$input_city.val(),
-					state = Checkout.Fields.ShippingAddress.$input_state.val(),
 					postal = Checkout.Fields.ShippingAddress.$input_postal.val(),
 					country_code = Checkout.Fields.ShippingAddress.$input_country.val(),
 					country_name = Checkout.Fields.ShippingAddress.$input_country.find("option:selected").text(),
+					state = (country_code === "US" || country_code === "CA") ? Checkout.Fields.ShippingAddress.$input_state_select.val() : Checkout.Fields.ShippingAddress.$input_state.val(),
 					phone = Checkout.Fields.ShippingAddress.$input_phone.val(),
 					addressData = {
 						"id": id,
@@ -1808,7 +1815,9 @@ var Checkout = {
 				Checkout.Fields.ShippingAddress.$input_postal.val("");
 				Checkout.Fields.ShippingAddress.$input_phone.val("");
 				Checkout.Fields.ShippingAddress.$required_address_inputs.removeClass(Checkout.Settings.Shared.error_class).removeClass(Checkout.Settings.Shared.complete_class);
-				Checkout.Fields.ShippingAddress.$address_inputs.trigger("change");
+				Checkout.Fields.ShippingAddress.$address_inputs.each(function () {
+					Checkout.Functions.Shared.EvaluateFieldCompleteness($(this), false);
+				});
 				Checkout.Fields.ShippingAddress.$secondary_fields.css("display", "none");
 			},
 			"ValidateAddressForm": function () {
