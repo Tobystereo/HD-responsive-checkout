@@ -272,7 +272,7 @@ input.autocomplete {
     width: 92%;
   }
 
-  margin: 0;
+  margin: 0 !important;
   float: left;
   border-top-right-radius: 0;
   border-bottom-right-radius: 0;
@@ -304,17 +304,17 @@ input.autocomplete {
   margin: 0 !important;
   height: 52px;
   padding: 0;
-  border: none;
   display: block;
-  float: right;
+  float: left;
   @include border;
   border-top-right-radius: $borderradius;
   border-bottom-right-radius: $borderradius;
   border-bottom-left-radius: 0;
   border-top-left-radius: 0;
   line-height: 3rem;
-  border-left: none;
+  border-left: 0;
   text-align: center;
+  // @include outline;
 
 }
 

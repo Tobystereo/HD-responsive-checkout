@@ -7643,7 +7643,7 @@ select {
 /* line 264, ui/_forms.scss */
 input.autocomplete {
   width: 85%;
-  margin: 0;
+  margin: 0 !important;
   float: left;
   border-top-right-radius: 0;
   border-bottom-right-radius: 0;
@@ -7675,16 +7675,15 @@ input.autocomplete + label {
   margin: 0 !important;
   height: 52px;
   padding: 0;
-  border: none;
   display: block;
-  float: right;
+  float: left;
   border: 1px solid #727272;
   border-top-right-radius: 5px;
   border-bottom-right-radius: 5px;
   border-bottom-left-radius: 0;
   border-top-left-radius: 0;
   line-height: 3rem;
-  border-left: none;
+  border-left: 0;
   text-align: center;
 }
 @media only screen and (min-width: 30em) {
