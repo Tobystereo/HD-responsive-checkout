@@ -1184,9 +1184,12 @@ var Checkout = {
 					"appendTo": $select_element.parent()
 				});
 				$autocomplete_field = $select_element.siblings("input.autocomplete");
-				$autocomplete_field.on("autocompleteselect", function (event, ui) {
-					on_select();
-				});
+
+				if (on_select !== undefined) {
+					$autocomplete_field.on("autocompleteselect", function (event, ui) {
+						on_select();
+					});
+				}
 				$autocomplete_field.next().attr("for", $autocomplete_field.attr("id"));
 				$autocomplete_field.on("blur", function () {
 					Checkout.Functions.Shared.EvaluateFieldCompleteness($(this), false);
