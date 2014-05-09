@@ -7468,7 +7468,7 @@ label.notempty {
   font-size: 9.6px !important;
   font-size: 0.6rem !important;
   line-height: 1rem !important;
-  margin-top: -3.2rem !important;
+  margin-top: -3rem !important;
   font-weight: 500 !important;
 }
 
@@ -7492,7 +7492,7 @@ textarea:focus + label, textarea.threelines:focus + label {
 }
 /* line 124, ui/_forms.scss */
 textarea + label.notempty, textarea.threelines + label.notempty {
-  margin-top: -6.4rem !important;
+  margin-top: -6.2rem !important;
 }
 /* line 129, ui/_forms.scss */
 textarea.fourlines, textarea.threelines.fourlines {
@@ -7509,7 +7509,7 @@ textarea.fourlines:focus + label, textarea.threelines.fourlines:focus + label {
 }
 /* line 140, ui/_forms.scss */
 textarea.fourlines + label.notempty, textarea.threelines.fourlines + label.notempty {
-  margin-top: -8rem !important;
+  margin-top: -7.8rem !important;
 }
 /* line 145, ui/_forms.scss */
 textarea.fivelines, textarea.threelines.fivelines {
@@ -7526,7 +7526,7 @@ textarea.fivelines:focus + label, textarea.threelines.fivelines:focus + label {
 }
 /* line 156, ui/_forms.scss */
 textarea.fivelines + label.notempty, textarea.threelines.fivelines + label.notempty {
-  margin-top: -9.6rem !important;
+  margin-top: -9.4rem !important;
 }
 
 /********************************

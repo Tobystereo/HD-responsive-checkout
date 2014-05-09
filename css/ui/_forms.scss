@@ -100,7 +100,7 @@ label.notempty {
   @extend %textinputlabel;
   @include font-size(0.6, important);
   line-height: 1rem !important;
-  margin-top: -3.2rem !important;
+  margin-top: -3rem !important;
   font-weight: 500 !important;
 }
 
@@ -122,7 +122,7 @@ label.notempty {
         }
 
         & + label.notempty {
-          margin-top: -6.4rem !important;
+          margin-top: -6.2rem !important;
         }
 
 
@@ -138,7 +138,7 @@ label.notempty {
             }
 
             & + label.notempty {
-              margin-top: -8rem !important;
+              margin-top: -7.8rem !important;
             }
         }
 
@@ -154,7 +154,7 @@ label.notempty {
             }
 
             & + label.notempty {
-              margin-top: -9.6rem !important;
+              margin-top: -9.4rem !important;
             }
         }
 
