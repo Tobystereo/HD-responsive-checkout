@@ -532,6 +532,8 @@ var Checkout = {
 			"$input_street": undefined,
 			"$input_city": undefined,
 			"$input_state": undefined,
+			"$autocomplete_state": undefined,
+			"$input_state_select": undefined,
 			"$input_postal": undefined,
 			"$input_phone": undefined,
 			"$secondary_fields": undefined,
@@ -643,7 +645,7 @@ var Checkout = {
 				Checkout.Fields.Shared.$step_current = Checkout.Fields.Shared.$step_shipping_address;
 				Checkout.Fields.Shared.$step_next = Checkout.Fields.Shared.$step_shipping_option;
 				Checkout.Fields.Shared.$step_previous = Checkout.Fields.Shared.$step_current.prev();
-				Checkout.Fields.Shared.$form_inputs = $("input[type=text], textarea, #country-input, #billing-country-input");
+				Checkout.Fields.Shared.$form_inputs = $("input[type=text], input[type=tel], textarea, #country-input, #billing-country-input");
 				Checkout.Fields.Shared.$required_fields = Checkout.Fields.Shared.$form_inputs.filter("." + Checkout.Settings.Shared.required_class);
 				Checkout.Fields.Shared.$footer = $(".checkout > footer");
 				Checkout.Fields.Shared.$cta_bar = Checkout.Fields.Shared.$footer.find(".cta_bar");
@@ -658,19 +660,19 @@ var Checkout = {
 				Checkout.Fields.ShippingAddress.$new_address_form = Checkout.Fields.Shared.$step_shipping_address.find("#new-address-form");
 				Checkout.Fields.ShippingAddress.$new_address_form_title = Checkout.Fields.ShippingAddress.$new_address_form.find("h2");
 				Checkout.Fields.ShippingAddress.$required_address_inputs = Checkout.Fields.ShippingAddress.$new_address_form.find("input.required, select.required, textarea.required");
-				Checkout.Fields.ShippingAddress.$btncancel_address = Checkout.Fields.Shared.$step_shipping_address.find(".add-edit-address button.cancel");
-				Checkout.Fields.ShippingAddress.$btnsave_address = Checkout.Fields.Shared.$step_shipping_address.find(".add-edit-address button.save");
-				Checkout.Fields.ShippingAddress.$input_country = Checkout.Fields.Shared.$step_shipping_address.find("#country-input");
-				Checkout.Fields.ShippingAddress.$input_name = Checkout.Fields.Shared.$step_shipping_address.find("#name-input");
-				Checkout.Fields.ShippingAddress.$input_company = Checkout.Fields.Shared.$step_shipping_address.find("#company-input");
-				Checkout.Fields.ShippingAddress.$input_street = Checkout.Fields.Shared.$step_shipping_address.find("#address-input");
-				Checkout.Fields.ShippingAddress.$input_city = Checkout.Fields.Shared.$step_shipping_address.find("#city-input");
-				Checkout.Fields.ShippingAddress.$input_state = Checkout.Fields.Shared.$step_shipping_address.find("#state-input");
-				Checkout.Fields.ShippingAddress.$input_state_select = Checkout.Fields.Shared.$step_shipping_address.find("#state-input-select");
-				Checkout.Fields.ShippingAddress.$input_postal = Checkout.Fields.Shared.$step_shipping_address.find("#postal-code-input");
-				Checkout.Fields.ShippingAddress.$input_phone = Checkout.Fields.Shared.$step_shipping_address.find("#phone-input");
-				Checkout.Fields.ShippingAddress.$secondary_fields = Checkout.Fields.Shared.$step_shipping_address.find(".field__secondary");
-				Checkout.Fields.ShippingAddress.$address_inputs = Checkout.Fields.Shared.$step_shipping_address.find("input[type=text], textarea, #country-input");
+				Checkout.Fields.ShippingAddress.$btncancel_address = Checkout.Fields.ShippingAddress.$new_address_form.find(".add-edit-address button.cancel");
+				Checkout.Fields.ShippingAddress.$btnsave_address = Checkout.Fields.ShippingAddress.$new_address_form.find(".add-edit-address button.save");
+				Checkout.Fields.ShippingAddress.$input_country = Checkout.Fields.ShippingAddress.$new_address_form.find("#country-input");
+				Checkout.Fields.ShippingAddress.$input_name = Checkout.Fields.ShippingAddress.$new_address_form.find("#name-input");
+				Checkout.Fields.ShippingAddress.$input_company = Checkout.Fields.ShippingAddress.$new_address_form.find("#company-input");
+				Checkout.Fields.ShippingAddress.$input_street = Checkout.Fields.ShippingAddress.$new_address_form.find("#address-input");
+				Checkout.Fields.ShippingAddress.$input_city = Checkout.Fields.ShippingAddress.$new_address_form.find("#city-input");
+				Checkout.Fields.ShippingAddress.$input_state = Checkout.Fields.ShippingAddress.$new_address_form.find("#state-input");
+				Checkout.Fields.ShippingAddress.$input_state_select = Checkout.Fields.ShippingAddress.$new_address_form.find("#state-input-select");
+				Checkout.Fields.ShippingAddress.$input_postal = Checkout.Fields.ShippingAddress.$new_address_form.find("#postal-code-input");
+				Checkout.Fields.ShippingAddress.$input_phone = Checkout.Fields.ShippingAddress.$new_address_form.find("#phone-input");
+				Checkout.Fields.ShippingAddress.$secondary_fields = Checkout.Fields.ShippingAddress.$new_address_form.find(".field__secondary");
+				Checkout.Fields.ShippingAddress.$address_inputs = Checkout.Fields.ShippingAddress.$new_address_form.find("input[type=text], input[type=tel], textarea, #country-input");
 				Checkout.Fields.ShippingMethod.$loading_panel = Checkout.Fields.Shared.$step_shipping_option.find(".loading-panel");
 				Checkout.Fields.ShippingMethod.$shipping_option_wrapper = Checkout.Fields.Shared.$step_shipping_option.find(".shipping-option-wrapper");
 				Checkout.Fields.ShippingMethod.$shipping_option_items = Checkout.Fields.ShippingMethod.$shipping_option_wrapper.find(".shipping-option-item input[type=radio]");
@@ -716,10 +718,11 @@ var Checkout = {
 				Checkout.Fields.BillingInfo.$input_street = Checkout.Fields.BillingInfo.$billing_address_form.find("#address-input");
 				Checkout.Fields.BillingInfo.$input_city = Checkout.Fields.BillingInfo.$billing_address_form.find("#city-input");
 				Checkout.Fields.BillingInfo.$input_state = Checkout.Fields.BillingInfo.$billing_address_form.find("#state-input");
+				Checkout.Fields.BillingInfo.$input_state_select = Checkout.Fields.BillingInfo.$billing_address_form.find("#state-input-select");
 				Checkout.Fields.BillingInfo.$input_postal = Checkout.Fields.BillingInfo.$billing_address_form.find("#postal-code-input");
 				Checkout.Fields.BillingInfo.$input_phone = Checkout.Fields.BillingInfo.$billing_address_form.find("#phone-input");
 				Checkout.Fields.BillingInfo.$secondary_fields = Checkout.Fields.BillingInfo.$billing_address_form.find(".field__secondary");
-				Checkout.Fields.BillingInfo.$address_inputs = Checkout.Fields.BillingInfo.$billing_address_form.find("input[type=text], textarea, #billing-country-input");
+				Checkout.Fields.BillingInfo.$address_inputs = Checkout.Fields.BillingInfo.$billing_address_form.find("input[type=text], input[type=tel], textarea, #billing-country-input");
 				Checkout.Fields.BillingInfo.$required_address_inputs = Checkout.Fields.BillingInfo.$billing_address_form.find("input.required, select.required, textarea.required");
 				Checkout.Fields.BillingInfo.$credit_card_inputs = Checkout.Fields.BillingInfo.$credit_card_form.find("input[type=text], textarea");
 				Checkout.Fields.BillingInfo.$btncancel_address = Checkout.Fields.BillingInfo.$billing_address_form.find("button.cancel");
@@ -2363,16 +2366,11 @@ var Checkout = {
 				}
 				Checkout.Fields.BillingInfo.$input_cc_expiration.on("keydown", function () {
 					setTimeout(function () {
-						console.log(Date.now() + ": Expiration Date KEYDOWN fired");
 						Checkout.Functions.BillingInfo.ValidateExpirationDate();
 					}, 50)
+				}).on("blur", function () {
+					Checkout.Functions.BillingInfo.ValidateExpirationDate();
 				});
-				//	.on("blur", function () {
-				//	setTimeout(function () {
-				//		console.log(Date.now() + ": Expiration Date BLUR fired");
-				//		Checkout.Functions.BillingInfo.ValidateExpirationDate();
-				//	}, 50)
-				//});
 			},
 			"InitializeCreditCardData": function () {
 				var $credit_cards = Checkout.Fields.BillingInfo.$credit_card_list.children();
@@ -2719,32 +2717,39 @@ var Checkout = {
 					isValid = true,
 					dateValid = true,
 					lengthValid = true,
-					$error_element = Checkout.Fields.BillingInfo.$input_cc_expiration.siblings(".error");
+					$error_element = Checkout.Fields.BillingInfo.$input_cc_expiration.siblings(".error"),
+					$error_label = Checkout.Fields.BillingInfo.$input_cc_expiration.siblings("label"),
+					error_message = "";
 
 				// Verify the length
 				if (expiration === Checkout.Fields.BillingInfo.$input_cc_expiration.attr("data-masked-text") || expiration.length !== 5) {
 					lengthValid = false;
 					isValid = false;
+					error_message = $error_label.text() + " is required.";
 				}
 				if (lengthValid) {
 					// Check the date
 					dateValid = !Checkout.Functions.BillingInfo.IsDateExpired(expiration);
 					if (!dateValid) {
 						isValid = false;
-						Checkout.Fields.BillingInfo.$input_cc_expiration.removeClass(Checkout.Settings.Shared.success_class).addClass(Checkout.Settings.Shared.error_class);
-						if ($error_element.length === 0) {
-							$error_element = $("<div style='display:none;' class='error'>Cannot enter an expired date</div>");
-							Checkout.Fields.BillingInfo.$input_cc_expiration.siblings("label").after($error_element);
-						}
-						else {
-							$error_element.text("Cannot enter an expired date");
-						}
-						$error_element.slideDown(Checkout.Settings.Shared.easing_duration);
+						error_message = "Cannot enter an expired date";	
+					}
+				}
+
+				if (!isValid) {
+					Checkout.Fields.BillingInfo.$input_cc_expiration.removeClass(Checkout.Settings.Shared.success_class).addClass(Checkout.Settings.Shared.error_class);
+					if ($error_element.length === 0) {
+						$error_element = $("<div style='display:none;' class='error'>" + error_message + "</div>");
+						Checkout.Fields.BillingInfo.$input_cc_expiration.siblings("label").after($error_element);
 					}
 					else {
-						Checkout.Fields.BillingInfo.$input_cc_expiration.removeClass(Checkout.Settings.Shared.error_class).addClass(Checkout.Settings.Shared.success_class);
-						Checkout.Fields.BillingInfo.$input_cc_expiration.siblings(".error").slideUp(Checkout.Settings.Shared.easing_duration);
+						$error_element.text(error_message);
 					}
+					$error_element.slideDown(Checkout.Settings.Shared.easing_duration);
+				}
+				else {
+					Checkout.Fields.BillingInfo.$input_cc_expiration.removeClass(Checkout.Settings.Shared.error_class).addClass(Checkout.Settings.Shared.success_class);
+					Checkout.Fields.BillingInfo.$input_cc_expiration.siblings(".error").slideUp(Checkout.Settings.Shared.easing_duration);
 				}
 				return isValid;
 			},
