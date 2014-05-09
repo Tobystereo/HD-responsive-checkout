@@ -602,7 +602,8 @@ var Checkout = {
 			"addresses_template": undefined,
 			"country_select_template": undefined,
 			"state_select_template": undefined,
-			"error_item_template": undefined
+			"error_item_template": undefined,
+			"required_field_slide_up_exceptions": ["cc-expiration-input"]
 		},
 		"ShippingAddress": {
 			"is_step_valid": true
@@ -1103,7 +1104,6 @@ var Checkout = {
 					var $this = $(this),
 						id = parseInt($this.attr("id").replace("address", ""));
 
-					$this.attr("name", "billing-" + $this.attr("name"));
 					if (id === defaultShippingId) {
 						$this.attr("checked", "checked").parent().addClass("default");
 					}
@@ -1260,8 +1260,9 @@ var Checkout = {
 			"ValidateRequiredField": function ($element) {
 				var isValid = true,
 					$error_element = $element.siblings(".error"),
-					$element_label = $element.siblings("label");
-				if ($element.is(":visible") && $element.val() === "") {
+					$element_label = $element.siblings("label"),
+					masked_text = $element.attr("data-masked-text");
+				if ($element.is(":visible") && ($element.val() === "" || $element.val() === masked_text)) {
 					isValid = false;
 					$element.removeClass(Checkout.Settings.Shared.success_class).removeClass(Checkout.Settings.Shared.complete_class).addClass(Checkout.Settings.Shared.error_class).one("keydown change", function () {
 						var $this = $(this);
@@ -1280,7 +1281,9 @@ var Checkout = {
 						$element.removeClass(Checkout.Settings.Shared.error_class).addClass(Checkout.Settings.Shared.success_class);
 					}
 					$element.addClass(Checkout.Settings.Shared.complete_class);
-					$error_element.slideUp(Checkout.Settings.Shared.easing_duration);
+					if ($.inArray($element.attr("id"), Checkout.Settings.Shared.required_field_slide_up_exceptions) === -1) {
+						$error_element.slideUp(Checkout.Settings.Shared.easing_duration);
+					}
 				}
 				return isValid;
 			},
@@ -1504,16 +1507,19 @@ var Checkout = {
 						Checkout.Functions.ShippingAddress.InitializeStateField();
 						if (data.country_code === "US" || data.country_code === "CA") {
 							Checkout.Fields.ShippingAddress.$input_state_select.val(data.state);
-							Checkout.Fields.ShippingAddress.$autocomplete_state.val(Checkout.Fields.ShippingAddress.$input_state_select.find(":selected").text());
+							Checkout.Fields.ShippingAddress.$autocomplete_state.val(Checkout.Fields.ShippingAddress.$input_state_select.find("[value=" + Checkout.Fields.ShippingAddress.$input_state_select.val() + "]").text());
 						}
 						else {
 							Checkout.Fields.ShippingAddress.$input_state.val(data.state);
 						}
 						Checkout.Fields.ShippingAddress.$input_postal.val(data.postal);
 						Checkout.Fields.ShippingAddress.$input_phone.val(data.phone);
-						//Checkout.Fields.ShippingAddress.$address_inputs.trigger("change");
 						Checkout.Fields.ShippingAddress.$address_inputs.each(function () {
-							Checkout.Functions.Shared.EvaluateFieldCompleteness($(this), true);
+							var $this = $(this);
+							if ($this.hasClass(Checkout.Settings.Shared.required_class)) {
+								Checkout.Functions.Shared.ValidateRequiredField($this);
+							}
+							Checkout.Functions.Shared.EvaluateFieldCompleteness($this, true);
 						});
 						Checkout.Fields.ShippingAddress.$secondary_fields.css("display", "");
 						Checkout.Fields.ShippingAddress.$btnsave_address.removeAttr("disabled");
@@ -2353,11 +2359,16 @@ var Checkout = {
 				}
 				Checkout.Fields.BillingInfo.$input_cc_expiration.on("keydown", function () {
 					setTimeout(function () {
+						console.log(Date.now() + ": Expiration Date KEYDOWN fired");
 						Checkout.Functions.BillingInfo.ValidateExpirationDate();
 					}, 50)
-				}).on("blur", function () {
-					Checkout.Functions.BillingInfo.ValidateExpirationDate();
 				});
+				//	.on("blur", function () {
+				//	setTimeout(function () {
+				//		console.log(Date.now() + ": Expiration Date BLUR fired");
+				//		Checkout.Functions.BillingInfo.ValidateExpirationDate();
+				//	}, 50)
+				//});
 			},
 			"InitializeCreditCardData": function () {
 				var $credit_cards = Checkout.Fields.BillingInfo.$credit_card_list.children();
@@ -2703,11 +2714,11 @@ var Checkout = {
 				var expiration = Checkout.Fields.BillingInfo.$input_cc_expiration.val(),
 					isValid = true,
 					dateValid = true,
-					lengthValid = true
-				$error_element = undefined;
+					lengthValid = true,
+					$error_element = Checkout.Fields.BillingInfo.$input_cc_expiration.siblings(".error");
 
 				// Verify the length
-				if (expiration.length !== 5) {
+				if (expiration === Checkout.Fields.BillingInfo.$input_cc_expiration.attr("data-masked-text") || expiration.length !== 5) {
 					lengthValid = false;
 					isValid = false;
 				}
@@ -2717,10 +2728,12 @@ var Checkout = {
 					if (!dateValid) {
 						isValid = false;
 						Checkout.Fields.BillingInfo.$input_cc_expiration.removeClass(Checkout.Settings.Shared.success_class).addClass(Checkout.Settings.Shared.error_class);
-						$error_element = Checkout.Fields.BillingInfo.$input_cc_expiration.siblings(".error");
 						if ($error_element.length === 0) {
 							$error_element = $("<div style='display:none;' class='error'>Cannot enter an expired date</div>");
 							Checkout.Fields.BillingInfo.$input_cc_expiration.siblings("label").after($error_element);
+						}
+						else {
+							$error_element.text("Cannot enter an expired date");
 						}
 						$error_element.slideDown(Checkout.Settings.Shared.easing_duration);
 					}
