@@ -4,11 +4,11 @@ form {
     width: 100%;
     padding-left: 1.5em;
 }
-    input[type=text], input[type=number], select {
+    input[type=text], input[type=tel], input[type=number], select {
         @include rem-height($formfieldheight);
     }
 
-    input[type=text] + label, textarea + label, select + label {
+    input[type=text], input[type=tel] + label, textarea + label, select + label {
         @include transition($transition);
         position: absolute;
         @include font(1,300,3);
@@ -19,7 +19,7 @@ form {
         letter-spacing: 0;
     }
 
-    input[type=text], input[type=number], textarea, select {
+    input[type=text], input[type=tel], input[type=number], textarea, select {
         width: 100%;
         @include border;
         background: none;

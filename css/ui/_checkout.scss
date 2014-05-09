@@ -1176,7 +1176,7 @@ input[type=radio]:checked + label.card {
             width: 100%;
             margin-bottom: 0.25em;
           }
-          input[type=text], input[type=number] {
+          input[type=text], input[type=tel], input[type=number] {
             width: 25%;
           }
           .update-cart-item {
@@ -1190,7 +1190,7 @@ input[type=radio]:checked + label.card {
             }
           }
           @media #{$desk} {
-            input[type=text], input[type=number] {
+            input[type=text], input[type=tel], input[type=number] {
               width: 100%;
             }
             .update-cart-item {

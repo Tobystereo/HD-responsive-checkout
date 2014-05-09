@@ -5344,9 +5344,9 @@ xmp {
 }
 /* line 326, ui/_checkout.scss */
 .cancel-order a {
-  -webkit-transition: all 0.15s ease-out 0;
-  -moz-transition: all 0.15s ease-out 0;
-  transition: all 0.15s ease-out 0;
+  -webkit-transition: all 0.3s ease-in-out;
+  -moz-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
   height: 64px;
   height: 4rem;
   font-size: 32px;
@@ -6330,7 +6330,7 @@ input[type=radio]:checked + label.card .shiptothis:after, input[type=radio]:chec
   margin-bottom: 0.25em;
 }
 /* line 1179, ui/_checkout.scss */
-.cart-items .cart-item .form-fields .field.quantity input[type=text], .cart-items .cart-item .form-fields .field.quantity input[type=number] {
+.cart-items .cart-item .form-fields .field.quantity input[type=text], .cart-items .cart-item .form-fields .field.quantity input[type=tel], .cart-items .cart-item .form-fields .field.quantity input[type=number] {
   width: 25%;
 }
 /* line 1182, ui/_checkout.scss */
@@ -6349,7 +6349,7 @@ input[type=radio]:checked + label.card .shiptothis:after, input[type=radio]:chec
 }
 @media only screen and (min-width: 50em) {
   /* line 1193, ui/_checkout.scss */
-  .cart-items .cart-item .form-fields .field.quantity input[type=text], .cart-items .cart-item .form-fields .field.quantity input[type=number] {
+  .cart-items .cart-item .form-fields .field.quantity input[type=text], .cart-items .cart-item .form-fields .field.quantity input[type=tel], .cart-items .cart-item .form-fields .field.quantity input[type=number] {
     width: 100%;
   }
   /* line 1196, ui/_checkout.scss */
@@ -6683,18 +6683,18 @@ footer .shipping-policy a {
 
 /* line 1528, ui/_checkout.scss */
 .remove-confirmation .remove-cart-item {
-  -webkit-transition: all 0.15s ease-out 0;
-  -moz-transition: all 0.15s ease-out 0;
-  transition: all 0.15s ease-out 0;
+  -webkit-transition: all 0.3s ease-in-out;
+  -moz-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
   -webkit-transform: translateY(0);
   opacity: 1;
 }
 /* line 1534, ui/_checkout.scss */
 .remove-confirmation span {
   display: block;
-  -webkit-transition: all 0.15s ease-out 0;
-  -moz-transition: all 0.15s ease-out 0;
-  transition: all 0.15s ease-out 0;
+  -webkit-transition: all 0.3s ease-in-out;
+  -moz-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
   margin-top: 0;
   -webkit-transform: translateY(100px);
   opacity: 0;
@@ -7368,13 +7368,13 @@ form {
 }
 
 /* line 7, ui/_forms.scss */
-input[type=text], input[type=number], select {
+input[type=text], input[type=tel], input[type=number], select {
   height: 52px;
   height: 3.25rem;
 }
 
 /* line 11, ui/_forms.scss */
-input[type=text] + label, textarea + label, select + label {
+input[type=text], input[type=tel] + label, textarea + label, select + label {
   -webkit-transition: all 0.3s ease-in-out;
   -moz-transition: all 0.3s ease-in-out;
   transition: all 0.3s ease-in-out;
@@ -7394,7 +7394,7 @@ input[type=text] + label, textarea + label, select + label {
 }
 
 /* line 22, ui/_forms.scss */
-input[type=text], input[type=number], textarea, select {
+input[type=text], input[type=tel], input[type=number], textarea, select {
   width: 100%;
   border: 1px solid #727272;
   background: none;
@@ -7411,45 +7411,45 @@ input[type=text], input[type=number], textarea, select {
   transition: all 0.3s ease-in-out;
 }
 /* line 33, ui/_forms.scss */
-input[type=text].nolabel, input[type=number].nolabel, textarea.nolabel, select.nolabel {
+input[type=text].nolabel, input[type=tel].nolabel, input[type=number].nolabel, textarea.nolabel, select.nolabel {
   padding-top: 0;
 }
 /* line 49, ui/_forms.scss */
-input[type=text].valid, input[type=number].valid, textarea.valid, select.valid {
+input[type=text].valid, input[type=tel].valid, input[type=number].valid, textarea.valid, select.valid {
   background-color: #e4f3e2 !important;
   border-color: #4a993d !important;
 }
 /* line 53, ui/_forms.scss */
-input[type=text].valid:focus, input[type=number].valid:focus, textarea.valid:focus, select.valid:focus {
+input[type=text].valid:focus, input[type=tel].valid:focus, input[type=number].valid:focus, textarea.valid:focus, select.valid:focus {
   background-color: #c3e5bd !important;
 }
 /* line 57, ui/_forms.scss */
-input[type=text].valid + label, input[type=number].valid + label, textarea.valid + label, select.valid + label {
+input[type=text].valid + label, input[type=tel].valid + label, input[type=number].valid + label, textarea.valid + label, select.valid + label {
   color: #4a993d !important;
 }
 /* line 62, ui/_forms.scss */
-input[type=text].error, .remove-confirmation.confirm span input[type=text].yes, input[type=number].error, .remove-confirmation.confirm span input[type=number].yes, textarea.error, .remove-confirmation.confirm span textarea.yes, textarea.select2-container.error, select.error, .remove-confirmation.confirm span select.yes, select.select2-container.error {
+input[type=text].error, .remove-confirmation.confirm span input[type=text].yes, input[type=tel].error, .remove-confirmation.confirm span input[type=tel].yes, input[type=number].error, .remove-confirmation.confirm span input[type=number].yes, textarea.error, .remove-confirmation.confirm span textarea.yes, textarea.select2-container.error, select.error, .remove-confirmation.confirm span select.yes, select.select2-container.error {
   background-color: #f3e2e2 !important;
   border-color: #993d3d !important;
 }
 /* line 66, ui/_forms.scss */
-input[type=text].error:focus, .remove-confirmation.confirm span input[type=text].yes:focus, input[type=number].error:focus, .remove-confirmation.confirm span input[type=number].yes:focus, textarea.error:focus, .remove-confirmation.confirm span textarea.yes:focus, select.error:focus, .remove-confirmation.confirm span select.yes:focus {
+input[type=text].error:focus, .remove-confirmation.confirm span input[type=text].yes:focus, input[type=tel].error:focus, .remove-confirmation.confirm span input[type=tel].yes:focus, input[type=number].error:focus, .remove-confirmation.confirm span input[type=number].yes:focus, textarea.error:focus, .remove-confirmation.confirm span textarea.yes:focus, select.error:focus, .remove-confirmation.confirm span select.yes:focus {
   background-color: #e5bdbd !important;
 }
 /* line 70, ui/_forms.scss */
-input[type=text].error + label, .remove-confirmation.confirm span input[type=text].yes + label, input[type=number].error + label, .remove-confirmation.confirm span input[type=number].yes + label, textarea.error + label, .remove-confirmation.confirm span textarea.yes + label, textarea.select2-container.error + label, select.error + label, .remove-confirmation.confirm span select.yes + label, select.select2-container.error + label {
+input[type=text].error + label, .remove-confirmation.confirm span input[type=text].yes + label, input[type=tel].error + label, .remove-confirmation.confirm span input[type=tel].yes + label, input[type=number].error + label, .remove-confirmation.confirm span input[type=number].yes + label, textarea.error + label, .remove-confirmation.confirm span textarea.yes + label, textarea.select2-container.error + label, select.error + label, .remove-confirmation.confirm span select.yes + label, select.select2-container.error + label {
   color: #993d3d !important;
 }
 /* line 75, ui/_forms.scss */
-input[type=text]:valid, input[type=number]:valid, textarea:valid, select:valid {
+input[type=text]:valid, input[type=tel]:valid, input[type=number]:valid, textarea:valid, select:valid {
   background: white;
 }
 /* line 80, ui/_forms.scss */
-input[type=text]:focus, input[type=number]:focus, textarea:focus, select:focus {
+input[type=text]:focus, input[type=tel]:focus, input[type=number]:focus, textarea:focus, select:focus {
   background-color: #f1f1f1;
 }
 /* line 84, ui/_forms.scss */
-input[type=text]:focus + label, input[type=text]:active + label, input[type=text] label.notempty, input[type=number]:focus + label, input[type=number]:active + label, input[type=number] label.notempty, textarea:focus + label, textarea:active + label, textarea label.notempty, select:focus + label, select:active + label, select label.notempty {
+input[type=text]:focus + label, input[type=text]:active + label, input[type=text] label.notempty, input[type=tel]:focus + label, input[type=tel]:active + label, input[type=tel] label.notempty, input[type=number]:focus + label, input[type=number]:active + label, input[type=number] label.notempty, textarea:focus + label, textarea:active + label, textarea label.notempty, select:focus + label, select:active + label, select label.notempty {
   padding: 0 1rem;
   font-size: 9.6px;
   font-size: 0.6rem;
@@ -7774,7 +7774,7 @@ OTHER STYLES
 
 *********************************/
 /* line 395, ui/_forms.scss */
-.required_indicator:after, input[type=text].required + label:after, input[type=number].required + label:after, textarea.required + label:after, select.required + label:after, .required-field-message:after {
+.required_indicator:after, input[type=text].required + label:after, input[type=tel].required + label:after, input[type=number].required + label:after, textarea.required + label:after, select.required + label:after, .required-field-message:after {
   display: inline-block;
   position: relative;
   content: "*";
