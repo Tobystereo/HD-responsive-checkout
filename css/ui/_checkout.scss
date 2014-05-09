@@ -324,7 +324,7 @@ article {
         @include rem-height($tapheight);
 
         a {
-            @include transition;
+            @include transition($transition);
             @include rem-height($tapheight);
             @include font(2, 100, 3);
             background-color: $red;
@@ -1115,7 +1115,7 @@ input[type=radio]:checked + label.card {
   width: 100%;
 
   .cart-item {
-    width: 100%; 
+    width: 100%;
 
     &:nth-of-type(odd) {
       background-color: $lighter;
@@ -1526,14 +1526,14 @@ footer {
 
 .remove-confirmation {
   .remove-cart-item {
-    @include transition;
+    @include transition($transition);
     -webkit-transform: translateY(0);
     opacity: 1;
   }
 
   span {
     display: block;
-    @include transition;
+    @include transition($transition);
     margin-top: 0;
     -webkit-transform: translateY(100px);
     opacity: 0;
