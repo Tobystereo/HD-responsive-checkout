@@ -8,7 +8,7 @@ form {
         @include rem-height($formfieldheight);
     }
 
-    input[type=text], input[type=tel] + label, textarea + label, select + label {
+    input[type=text] + label, input[type=tel] + label, textarea + label, select + label {
         @include transition($transition);
         position: absolute;
         @include font(1,300,3);

@@ -7374,7 +7374,7 @@ input[type=text], input[type=tel], input[type=number], select {
 }
 
 /* line 11, ui/_forms.scss */
-input[type=text], input[type=tel] + label, textarea + label, select + label {
+input[type=text] + label, input[type=tel] + label, textarea + label, select + label {
   -webkit-transition: all 0.3s ease-in-out;
   -moz-transition: all 0.3s ease-in-out;
   transition: all 0.3s ease-in-out;
