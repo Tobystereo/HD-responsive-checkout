@@ -7375,9 +7375,6 @@ input[type=text], input[type=tel], input[type=number], select {
 
 /* line 11, ui/_forms.scss */
 input[type=text] + label, input[type=tel] + label, textarea + label, select + label {
-  -webkit-transition: all 0.3s ease-in-out;
-  -moz-transition: all 0.3s ease-in-out;
-  transition: all 0.3s ease-in-out;
   position: absolute;
   font-size: 16px;
   font-size: 1rem;
@@ -7393,7 +7390,7 @@ input[type=text] + label, input[type=tel] + label, textarea + label, select + la
   letter-spacing: 0;
 }
 
-/* line 22, ui/_forms.scss */
+/* line 21, ui/_forms.scss */
 input[type=text], input[type=tel], input[type=number], textarea, select {
   width: 100%;
   border: 1px solid #727272;
@@ -7410,62 +7407,46 @@ input[type=text], input[type=tel], input[type=number], textarea, select {
   -moz-transition: all 0.3s ease-in-out;
   transition: all 0.3s ease-in-out;
 }
-/* line 33, ui/_forms.scss */
+/* line 32, ui/_forms.scss */
 input[type=text].nolabel, input[type=tel].nolabel, input[type=number].nolabel, textarea.nolabel, select.nolabel {
   padding-top: 0;
 }
-/* line 49, ui/_forms.scss */
+/* line 48, ui/_forms.scss */
 input[type=text].valid, input[type=tel].valid, input[type=number].valid, textarea.valid, select.valid {
   background-color: #e4f3e2 !important;
   border-color: #4a993d !important;
 }
-/* line 53, ui/_forms.scss */
+/* line 52, ui/_forms.scss */
 input[type=text].valid:focus, input[type=tel].valid:focus, input[type=number].valid:focus, textarea.valid:focus, select.valid:focus {
   background-color: #c3e5bd !important;
 }
-/* line 57, ui/_forms.scss */
+/* line 56, ui/_forms.scss */
 input[type=text].valid + label, input[type=tel].valid + label, input[type=number].valid + label, textarea.valid + label, select.valid + label {
   color: #4a993d !important;
 }
-/* line 62, ui/_forms.scss */
+/* line 61, ui/_forms.scss */
 input[type=text].error, .remove-confirmation.confirm span input[type=text].yes, input[type=tel].error, .remove-confirmation.confirm span input[type=tel].yes, input[type=number].error, .remove-confirmation.confirm span input[type=number].yes, textarea.error, .remove-confirmation.confirm span textarea.yes, textarea.select2-container.error, select.error, .remove-confirmation.confirm span select.yes, select.select2-container.error {
   background-color: #f3e2e2 !important;
   border-color: #993d3d !important;
 }
-/* line 66, ui/_forms.scss */
+/* line 65, ui/_forms.scss */
 input[type=text].error:focus, .remove-confirmation.confirm span input[type=text].yes:focus, input[type=tel].error:focus, .remove-confirmation.confirm span input[type=tel].yes:focus, input[type=number].error:focus, .remove-confirmation.confirm span input[type=number].yes:focus, textarea.error:focus, .remove-confirmation.confirm span textarea.yes:focus, select.error:focus, .remove-confirmation.confirm span select.yes:focus {
   background-color: #e5bdbd !important;
 }
-/* line 70, ui/_forms.scss */
+/* line 69, ui/_forms.scss */
 input[type=text].error + label, .remove-confirmation.confirm span input[type=text].yes + label, input[type=tel].error + label, .remove-confirmation.confirm span input[type=tel].yes + label, input[type=number].error + label, .remove-confirmation.confirm span input[type=number].yes + label, textarea.error + label, .remove-confirmation.confirm span textarea.yes + label, textarea.select2-container.error + label, select.error + label, .remove-confirmation.confirm span select.yes + label, select.select2-container.error + label {
   color: #993d3d !important;
 }
-/* line 75, ui/_forms.scss */
+/* line 74, ui/_forms.scss */
 input[type=text]:valid, input[type=tel]:valid, input[type=number]:valid, textarea:valid, select:valid {
   background: white;
 }
-/* line 80, ui/_forms.scss */
+/* line 79, ui/_forms.scss */
 input[type=text]:focus, input[type=tel]:focus, input[type=number]:focus, textarea:focus, select:focus {
   background-color: #f1f1f1;
 }
-/* line 84, ui/_forms.scss */
-input[type=text]:focus + label, input[type=text]:active + label, input[type=text] label.notempty, input[type=tel]:focus + label, input[type=tel]:active + label, input[type=tel] label.notempty, input[type=number]:focus + label, input[type=number]:active + label, input[type=number] label.notempty, textarea:focus + label, textarea:active + label, textarea label.notempty, select:focus + label, select:active + label, select label.notempty {
-  padding: 0 1rem;
-  font-size: 9.6px;
-  font-size: 0.6rem;
-  font-family: 'Helvetica Neue', Helvetica, sans-serif;
-  font-weight: 500;
-  letter-spacing: 0;
-  line-height: 20.8px;
-  line-height: 1.3rem;
-  z-index: 2;
-  text-transform: uppercase;
-  margin-top: -3rem;
-  letter-spacing: 1px;
-  pointer-events: none;
-}
-/* line 93, ui/_forms.scss */
-input[type=text]:focus + label:active, input[type=text]:active + label:active, input[type=text] label.notempty:active, input[type=tel]:focus + label:active, input[type=tel]:active + label:active, input[type=tel] label.notempty:active, input[type=number]:focus + label:active, input[type=number]:active + label:active, input[type=number] label.notempty:active, textarea:focus + label:active, textarea:active + label:active, textarea label.notempty:active, select:focus + label:active, select:active + label:active, select label.notempty:active {
+/* line 83, ui/_forms.scss */
+input[type=text]:focus + label, input[type=text] label.notempty, input[type=tel]:focus + label, input[type=tel] label.notempty, input[type=number]:focus + label, input[type=number] label.notempty, textarea:focus + label, textarea label.notempty, select:focus + label, select label.notempty {
   padding: 0 1rem;
   font-size: 9.6px;
   font-size: 0.6rem;
@@ -7481,7 +7462,7 @@ input[type=text]:focus + label:active, input[type=text]:active + label:active, i
   pointer-events: none;
 }
 
-/* line 108, ui/_forms.scss */
+/* line 97, ui/_forms.scss */
 textarea, textarea.threelines {
   height: 104px !important;
   height: 6.5rem !important;
@@ -7491,37 +7472,37 @@ textarea, textarea.threelines {
   resize: none;
   padding-top: 1.5rem;
 }
-/* line 116, ui/_forms.scss */
+/* line 105, ui/_forms.scss */
 textarea + label, textarea.threelines + label {
   margin-top: -6.5rem;
 }
-/* line 120, ui/_forms.scss */
+/* line 109, ui/_forms.scss */
 textarea:focus + label, textarea + label.notempty, textarea.threelines:focus + label, textarea.threelines + label.notempty {
   margin-top: -6.2rem;
 }
-/* line 124, ui/_forms.scss */
+/* line 113, ui/_forms.scss */
 textarea.fourlines, textarea.threelines.fourlines {
   height: 130px !important;
   height: 8.125rem !important;
 }
-/* line 127, ui/_forms.scss */
+/* line 116, ui/_forms.scss */
 textarea.fourlines + label, textarea.threelines.fourlines + label {
   margin-top: -7.5rem;
 }
-/* line 131, ui/_forms.scss */
+/* line 120, ui/_forms.scss */
 textarea.fourlines:focus + label, textarea.fourlines:focus + label.notempty, textarea.threelines.fourlines:focus + label, textarea.threelines.fourlines:focus + label.notempty {
   margin-top: -7.8rem;
 }
-/* line 136, ui/_forms.scss */
+/* line 125, ui/_forms.scss */
 textarea.fivelines, textarea.threelines.fivelines {
   height: 156px !important;
   height: 9.75rem !important;
 }
-/* line 139, ui/_forms.scss */
+/* line 128, ui/_forms.scss */
 textarea.fivelines + label, textarea.threelines.fivelines + label {
   margin-top: -9.1rem;
 }
-/* line 143, ui/_forms.scss */
+/* line 132, ui/_forms.scss */
 textarea.fivelines:focus + label, textarea.fivelines:focus + label.notempty, textarea.threelines.fivelines:focus + label, textarea.threelines.fivelines:focus + label.notempty {
   margin-top: -9.4rem;
 }
@@ -7531,40 +7512,40 @@ textarea.fivelines:focus + label, textarea.fivelines:focus + label.notempty, tex
 RADIO BUTTON CARD STYLE
 
 *********************************/
-/* line 157, ui/_forms.scss */
+/* line 146, ui/_forms.scss */
 input[type=radio] {
   display: none;
 }
-/* line 164, ui/_forms.scss */
+/* line 153, ui/_forms.scss */
 input[type=radio] + label.card:active {
   -webkit-transform: translateY(0em);
   background-color: #ececec;
   box-shadow: -2px -2px 10px rgba(0, 0, 0, 0.1);
 }
 
-/* line 179, ui/_forms.scss */
+/* line 168, ui/_forms.scss */
 .no-touch input[type=radio] + label.card:hover {
   -webkit-transform: translateY(-0.25em);
   background-color: #f6f6f6;
 }
-/* line 184, ui/_forms.scss */
+/* line 173, ui/_forms.scss */
 .no-touch input[type=radio]:checked + label.card {
   -webkit-transition: all 0.3s ease-in-out;
   -moz-transition: all 0.3s ease-in-out;
   transition: all 0.3s ease-in-out;
 }
-/* line 187, ui/_forms.scss */
+/* line 176, ui/_forms.scss */
 .no-touch input[type=radio]:checked + label.card:hover {
   -webkit-transform: translateY(0);
 }
 
-/* line 194, ui/_forms.scss */
+/* line 183, ui/_forms.scss */
 .card.selected, input[type=radio] + label.selected.card, input[type=radio]:checked + label.card {
   outline-color: green;
   background: #e4f3e2;
   box-shadow: none;
 }
-/* line 199, ui/_forms.scss */
+/* line 188, ui/_forms.scss */
 .card.selected:before, input[type=radio] + label.selected.card:before, input[type=radio]:checked + label.card:before {
   display: inline-block;
   position: relative;
@@ -7580,7 +7561,7 @@ input[type=radio] + label.card:active {
   text-align: center;
   display: block;
 }
-/* line 210, ui/_forms.scss */
+/* line 199, ui/_forms.scss */
 .card.selected.label div:first-of-type:after, input[type=radio]:checked + label.label.card div:first-of-type:after {
   display: inline-block;
   position: relative;
@@ -7595,7 +7576,7 @@ input[type=radio] + label.card:active {
   margin-right: 1em;
 }
 @media only screen and (min-width: 50em) {
-  /* line 210, ui/_forms.scss */
+  /* line 199, ui/_forms.scss */
   .card.selected.label div:first-of-type:after, input[type=radio]:checked + label.label.card div:first-of-type:after {
     margin-top: -1.725em;
   }
@@ -7606,16 +7587,16 @@ input[type=radio] + label.card:active {
 DROP DOWN
 
 *********************************/
-/* line 231, ui/_forms.scss */
+/* line 220, ui/_forms.scss */
 select {
   -webkit-appearance: none;
 }
 
-/* line 241, ui/_forms.scss */
+/* line 230, ui/_forms.scss */
 .select2-choice {
   height: 3rem !important;
 }
-/* line 244, ui/_forms.scss */
+/* line 233, ui/_forms.scss */
 .select2-choice .select2-chosen {
   line-height: 3em;
   text-align: left;
@@ -7628,11 +7609,11 @@ select {
   line-height: 62.4px;
   line-height: 3.9rem;
 }
-/* line 251, ui/_forms.scss */
+/* line 240, ui/_forms.scss */
 .select2-choice .select2-arrow {
   width: 4rem !important;
 }
-/* line 254, ui/_forms.scss */
+/* line 243, ui/_forms.scss */
 .select2-choice .select2-arrow:after {
   display: inline-block;
   position: relative;
@@ -7646,18 +7627,18 @@ select {
   text-align: center;
 }
 
-/* line 268, ui/_forms.scss */
+/* line 257, ui/_forms.scss */
 .remove-confirmation.confirm span .select2-container.yes .select2-choice, .select2-container.error .select2-choice {
   border-color: #993d3d !important;
   background: #f3e2e2;
 }
 
-/* line 274, ui/_forms.scss */
+/* line 263, ui/_forms.scss */
 .dropdownlabel {
   text-align: left;
 }
 
-/* line 278, ui/_forms.scss */
+/* line 267, ui/_forms.scss */
 input.autocomplete {
   width: 85%;
   margin: 0 !important;
@@ -7666,18 +7647,18 @@ input.autocomplete {
   border-bottom-right-radius: 0;
 }
 @media only screen and (min-width: 30em) {
-  /* line 278, ui/_forms.scss */
+  /* line 267, ui/_forms.scss */
   input.autocomplete {
     width: 88%;
   }
 }
 @media only screen and (min-width: 50em) {
-  /* line 278, ui/_forms.scss */
+  /* line 267, ui/_forms.scss */
   input.autocomplete {
     width: 92%;
   }
 }
-/* line 294, ui/_forms.scss */
+/* line 283, ui/_forms.scss */
 input.autocomplete + label {
   height: 52px;
   clear: both;
@@ -7686,7 +7667,7 @@ input.autocomplete + label {
   margin-top: 0 !important;
 }
 
-/* line 305, ui/_forms.scss */
+/* line 294, ui/_forms.scss */
 .show-all {
   width: 15%;
   margin: 0 !important;
@@ -7704,19 +7685,19 @@ input.autocomplete + label {
   text-align: center;
 }
 @media only screen and (min-width: 30em) {
-  /* line 305, ui/_forms.scss */
+  /* line 294, ui/_forms.scss */
   .show-all {
     width: 12%;
   }
 }
 @media only screen and (min-width: 50em) {
-  /* line 305, ui/_forms.scss */
+  /* line 294, ui/_forms.scss */
   .show-all {
     width: 8%;
   }
 }
 
-/* line 335, ui/_forms.scss */
+/* line 324, ui/_forms.scss */
 .error ~ .show-all, .remove-confirmation.confirm span .yes ~ .show-all {
   background: #993d3d;
   color: #e5bdbd;
@@ -7724,7 +7705,7 @@ input.autocomplete + label {
   border-bottom-right-radius: 0;
 }
 
-/* line 342, ui/_forms.scss */
+/* line 331, ui/_forms.scss */
 .ui-autocomplete {
   width: 100% !important;
   list-style: none;
@@ -7735,7 +7716,7 @@ input.autocomplete + label {
   border-bottom-left-radius: 5px;
   border-top: 0;
 }
-/* line 352, ui/_forms.scss */
+/* line 341, ui/_forms.scss */
 .ui-autocomplete li {
   display: block;
   width: 100%;
@@ -7746,39 +7727,39 @@ input.autocomplete + label {
   background: white;
   border-bottom: 1px solid #f1f1f1;
 }
-/* line 360, ui/_forms.scss */
+/* line 349, ui/_forms.scss */
 .ui-autocomplete li a {
   border: none !important;
   width: 100%;
   display: block;
   cursor: default;
 }
-/* line 369, ui/_forms.scss */
+/* line 358, ui/_forms.scss */
 .ui-autocomplete li:hover {
   background: #e6e6e6;
 }
-/* line 373, ui/_forms.scss */
+/* line 362, ui/_forms.scss */
 .ui-autocomplete li:nth-of-type(even) {
   background: #f1f1f1;
 }
-/* line 375, ui/_forms.scss */
+/* line 364, ui/_forms.scss */
 .ui-autocomplete li:nth-of-type(even):hover {
   background: #d8d8d8;
 }
 
-/* line 382, ui/_forms.scss */
+/* line 371, ui/_forms.scss */
 .error ~ .ui-autocomplete, .remove-confirmation.confirm span .yes ~ .ui-autocomplete {
   border-bottom-left-radius: 0;
   border-bottom-right-radius: 0;
   border-color: #993d3d;
 }
-/* line 387, ui/_forms.scss */
+/* line 376, ui/_forms.scss */
 .error ~ .ui-autocomplete li, .remove-confirmation.confirm span .yes ~ .ui-autocomplete li {
   background: #eccfcf;
   border-bottom: 1px solid #e5bdbd;
   color: #993d3d;
 }
-/* line 392, ui/_forms.scss */
+/* line 381, ui/_forms.scss */
 .error ~ .ui-autocomplete li:nth-of-type(even), .remove-confirmation.confirm span .yes ~ .ui-autocomplete li:nth-of-type(even) {
   background: #e5bdbd;
 }
@@ -7788,7 +7769,7 @@ input.autocomplete + label {
 OTHER STYLES
 
 *********************************/
-/* line 404, ui/_forms.scss */
+/* line 393, ui/_forms.scss */
 .required_indicator:after, input[type=text].required + label:after, input[type=tel].required + label:after, input[type=number].required + label:after, textarea.required + label:after, select.required + label:after, .required-field-message:after {
   display: inline-block;
   position: relative;
@@ -7800,7 +7781,7 @@ OTHER STYLES
   float: right;
 }
 
-/* line 411, ui/_forms.scss */
+/* line 400, ui/_forms.scss */
 .required-field-message {
   text-align: right;
 }
@@ -7810,11 +7791,11 @@ OTHER STYLES
 VALIDATION
 
 *********************************/
-/* line 424, ui/_forms.scss */
+/* line 413, ui/_forms.scss */
 .error-container {
   padding-left: 1.5em;
 }
-/* line 427, ui/_forms.scss */
+/* line 416, ui/_forms.scss */
 .error-container .message {
   font-size: 24px;
   font-size: 1.5rem;
@@ -7825,7 +7806,7 @@ VALIDATION
   line-height: 1.95rem;
 }
 @media only screen and (min-width: 50em) {
-  /* line 427, ui/_forms.scss */
+  /* line 416, ui/_forms.scss */
   .error-container .message {
     font-size: 32px;
     font-size: 2rem;
@@ -7836,28 +7817,28 @@ VALIDATION
     line-height: 2.6rem;
   }
 }
-/* line 435, ui/_forms.scss */
+/* line 424, ui/_forms.scss */
 .error-container .details {
   font-weight: 700;
 }
-/* line 437, ui/_forms.scss */
+/* line 426, ui/_forms.scss */
 .error-container .details ul {
   margin-top: 0.5em;
 }
-/* line 439, ui/_forms.scss */
+/* line 428, ui/_forms.scss */
 .error-container .details ul li {
   line-height: 26px;
   line-height: 1.625rem;
   font-weight: 300;
 }
 
-/* line 447, ui/_forms.scss */
+/* line 436, ui/_forms.scss */
 input.error, .remove-confirmation.confirm span input.yes, input.select2-container.error, textarea.error, .remove-confirmation.confirm span textarea.yes, textarea.select2-container.error {
   border-bottom-left-radius: 0;
   border-bottom-right-radius: 0;
 }
 
-/* line 452, ui/_forms.scss */
+/* line 441, ui/_forms.scss */
 input ~ .error, .remove-confirmation.confirm span input ~ .yes, input ~ .select2-container.error, label ~ .error, .remove-confirmation.confirm span label ~ .yes, label ~ .select2-container.error {
   display: block;
   clear: both;

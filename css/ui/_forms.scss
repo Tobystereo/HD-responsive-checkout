@@ -9,7 +9,6 @@ form {
     }
 
     input[type=text] + label, input[type=tel] + label, textarea + label, select + label {
-        @include transition($transition);
         position: absolute;
         @include font(1,300,3);
         z-index: 99;
@@ -81,7 +80,7 @@ form {
             background-color: $lighter
         }
 
-        &:focus + label, &:active + label, label.notempty {
+        &:focus + label, label.notempty {
             padding: 0 1rem;
             @include font(0.6, 500, 1);
             z-index: 2;
@@ -89,16 +88,6 @@ form {
             margin-top: -3rem;
             letter-spacing: 1px;
             pointer-events:none;
-
-            &:active {
-              padding: 0 1rem;
-              @include font(0.6, 500, 1);
-              z-index: 2;
-              text-transform: uppercase;
-              margin-top: -3rem;
-              letter-spacing: 1px;
-              pointer-events:none;
-            }
         }
     }
 
