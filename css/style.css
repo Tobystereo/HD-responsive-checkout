@@ -7462,7 +7462,6 @@ input[type=text]:focus + label, input[type=text]:active + label, input[type=text
   text-transform: uppercase;
   margin-top: -3rem;
   letter-spacing: 1px;
-  outline: 1px solid red;
   pointer-events: none;
 }
 
