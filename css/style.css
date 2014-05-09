@@ -6079,7 +6079,7 @@ input[type=radio]:checked + label.card .shiptothis:after, input[type=radio]:chec
   line-height: 41.6px;
   line-height: 2.6rem;
 }
-/* line 96, _mixins.scss */
+/* line 101, _mixins.scss */
 .add-edit-credit-card .billing-address .street:after {
   display: inline-block;
   position: relative;
@@ -7445,8 +7445,9 @@ input[type=text]:valid, input[type=tel]:valid, input[type=number]:valid, textare
 input[type=text]:focus, input[type=tel]:focus, input[type=number]:focus, textarea:focus, select:focus {
   background-color: #f1f1f1;
 }
-/* line 83, ui/_forms.scss */
-input[type=text]:focus + label, input[type=text] label.notempty, input[type=tel]:focus + label, input[type=tel] label.notempty, input[type=number]:focus + label, input[type=number] label.notempty, textarea:focus + label, textarea label.notempty, select:focus + label, select label.notempty {
+
+/* line 89, ui/_forms.scss */
+input[type=text]:focus + label, input[type=tel]:focus + label, input[type=number]:focus + label, textarea:focus + label, select:focus + label, label.notempty {
   padding: 0 1rem;
   font-size: 9.6px;
   font-size: 0.6rem;
@@ -7455,14 +7456,23 @@ input[type=text]:focus + label, input[type=text] label.notempty, input[type=tel]
   letter-spacing: 0;
   line-height: 20.8px;
   line-height: 1.3rem;
-  z-index: 2;
+  height: 1rem;
   text-transform: uppercase;
   margin-top: -3rem;
-  letter-spacing: 1px;
+  letter-spacing: 1px !important;
   pointer-events: none;
 }
 
-/* line 97, ui/_forms.scss */
+/* line 99, ui/_forms.scss */
+label.notempty {
+  font-size: 9.6px !important;
+  font-size: 0.6rem !important;
+  line-height: 1rem !important;
+  margin-top: -3.2rem !important;
+  font-weight: 500 !important;
+}
+
+/* line 108, ui/_forms.scss */
 textarea, textarea.threelines {
   height: 104px !important;
   height: 6.5rem !important;
@@ -7472,39 +7482,51 @@ textarea, textarea.threelines {
   resize: none;
   padding-top: 1.5rem;
 }
-/* line 105, ui/_forms.scss */
+/* line 116, ui/_forms.scss */
 textarea + label, textarea.threelines + label {
   margin-top: -6.5rem;
 }
-/* line 109, ui/_forms.scss */
-textarea:focus + label, textarea + label.notempty, textarea.threelines:focus + label, textarea.threelines + label.notempty {
+/* line 120, ui/_forms.scss */
+textarea:focus + label, textarea.threelines:focus + label {
   margin-top: -6.2rem;
 }
-/* line 113, ui/_forms.scss */
+/* line 124, ui/_forms.scss */
+textarea + label.notempty, textarea.threelines + label.notempty {
+  margin-top: -6.4rem !important;
+}
+/* line 129, ui/_forms.scss */
 textarea.fourlines, textarea.threelines.fourlines {
   height: 130px !important;
   height: 8.125rem !important;
 }
-/* line 116, ui/_forms.scss */
+/* line 132, ui/_forms.scss */
 textarea.fourlines + label, textarea.threelines.fourlines + label {
   margin-top: -7.5rem;
 }
-/* line 120, ui/_forms.scss */
-textarea.fourlines:focus + label, textarea.fourlines:focus + label.notempty, textarea.threelines.fourlines:focus + label, textarea.threelines.fourlines:focus + label.notempty {
+/* line 136, ui/_forms.scss */
+textarea.fourlines:focus + label, textarea.threelines.fourlines:focus + label {
   margin-top: -7.8rem;
 }
-/* line 125, ui/_forms.scss */
+/* line 140, ui/_forms.scss */
+textarea.fourlines + label.notempty, textarea.threelines.fourlines + label.notempty {
+  margin-top: -8rem !important;
+}
+/* line 145, ui/_forms.scss */
 textarea.fivelines, textarea.threelines.fivelines {
   height: 156px !important;
   height: 9.75rem !important;
 }
-/* line 128, ui/_forms.scss */
+/* line 148, ui/_forms.scss */
 textarea.fivelines + label, textarea.threelines.fivelines + label {
   margin-top: -9.1rem;
 }
-/* line 132, ui/_forms.scss */
-textarea.fivelines:focus + label, textarea.fivelines:focus + label.notempty, textarea.threelines.fivelines:focus + label, textarea.threelines.fivelines:focus + label.notempty {
+/* line 152, ui/_forms.scss */
+textarea.fivelines:focus + label, textarea.threelines.fivelines:focus + label {
   margin-top: -9.4rem;
+}
+/* line 156, ui/_forms.scss */
+textarea.fivelines + label.notempty, textarea.threelines.fivelines + label.notempty {
+  margin-top: -9.6rem !important;
 }
 
 /********************************
@@ -7512,40 +7534,40 @@ textarea.fivelines:focus + label, textarea.fivelines:focus + label.notempty, tex
 RADIO BUTTON CARD STYLE
 
 *********************************/
-/* line 146, ui/_forms.scss */
+/* line 170, ui/_forms.scss */
 input[type=radio] {
   display: none;
 }
-/* line 153, ui/_forms.scss */
+/* line 177, ui/_forms.scss */
 input[type=radio] + label.card:active {
   -webkit-transform: translateY(0em);
   background-color: #ececec;
   box-shadow: -2px -2px 10px rgba(0, 0, 0, 0.1);
 }
 
-/* line 168, ui/_forms.scss */
+/* line 192, ui/_forms.scss */
 .no-touch input[type=radio] + label.card:hover {
   -webkit-transform: translateY(-0.25em);
   background-color: #f6f6f6;
 }
-/* line 173, ui/_forms.scss */
+/* line 197, ui/_forms.scss */
 .no-touch input[type=radio]:checked + label.card {
   -webkit-transition: all 0.3s ease-in-out;
   -moz-transition: all 0.3s ease-in-out;
   transition: all 0.3s ease-in-out;
 }
-/* line 176, ui/_forms.scss */
+/* line 200, ui/_forms.scss */
 .no-touch input[type=radio]:checked + label.card:hover {
   -webkit-transform: translateY(0);
 }
 
-/* line 183, ui/_forms.scss */
+/* line 207, ui/_forms.scss */
 .card.selected, input[type=radio] + label.selected.card, input[type=radio]:checked + label.card {
   outline-color: green;
   background: #e4f3e2;
   box-shadow: none;
 }
-/* line 188, ui/_forms.scss */
+/* line 212, ui/_forms.scss */
 .card.selected:before, input[type=radio] + label.selected.card:before, input[type=radio]:checked + label.card:before {
   display: inline-block;
   position: relative;
@@ -7561,7 +7583,7 @@ input[type=radio] + label.card:active {
   text-align: center;
   display: block;
 }
-/* line 199, ui/_forms.scss */
+/* line 223, ui/_forms.scss */
 .card.selected.label div:first-of-type:after, input[type=radio]:checked + label.label.card div:first-of-type:after {
   display: inline-block;
   position: relative;
@@ -7576,7 +7598,7 @@ input[type=radio] + label.card:active {
   margin-right: 1em;
 }
 @media only screen and (min-width: 50em) {
-  /* line 199, ui/_forms.scss */
+  /* line 223, ui/_forms.scss */
   .card.selected.label div:first-of-type:after, input[type=radio]:checked + label.label.card div:first-of-type:after {
     margin-top: -1.725em;
   }
@@ -7587,16 +7609,16 @@ input[type=radio] + label.card:active {
 DROP DOWN
 
 *********************************/
-/* line 220, ui/_forms.scss */
+/* line 244, ui/_forms.scss */
 select {
   -webkit-appearance: none;
 }
 
-/* line 230, ui/_forms.scss */
+/* line 254, ui/_forms.scss */
 .select2-choice {
   height: 3rem !important;
 }
-/* line 233, ui/_forms.scss */
+/* line 257, ui/_forms.scss */
 .select2-choice .select2-chosen {
   line-height: 3em;
   text-align: left;
@@ -7609,11 +7631,11 @@ select {
   line-height: 62.4px;
   line-height: 3.9rem;
 }
-/* line 240, ui/_forms.scss */
+/* line 264, ui/_forms.scss */
 .select2-choice .select2-arrow {
   width: 4rem !important;
 }
-/* line 243, ui/_forms.scss */
+/* line 267, ui/_forms.scss */
 .select2-choice .select2-arrow:after {
   display: inline-block;
   position: relative;
@@ -7627,18 +7649,18 @@ select {
   text-align: center;
 }
 
-/* line 257, ui/_forms.scss */
+/* line 281, ui/_forms.scss */
 .remove-confirmation.confirm span .select2-container.yes .select2-choice, .select2-container.error .select2-choice {
   border-color: #993d3d !important;
   background: #f3e2e2;
 }
 
-/* line 263, ui/_forms.scss */
+/* line 287, ui/_forms.scss */
 .dropdownlabel {
   text-align: left;
 }
 
-/* line 267, ui/_forms.scss */
+/* line 291, ui/_forms.scss */
 input.autocomplete {
   width: 85%;
   margin: 0 !important;
@@ -7647,18 +7669,18 @@ input.autocomplete {
   border-bottom-right-radius: 0;
 }
 @media only screen and (min-width: 30em) {
-  /* line 267, ui/_forms.scss */
+  /* line 291, ui/_forms.scss */
   input.autocomplete {
     width: 88%;
   }
 }
 @media only screen and (min-width: 50em) {
-  /* line 267, ui/_forms.scss */
+  /* line 291, ui/_forms.scss */
   input.autocomplete {
     width: 92%;
   }
 }
-/* line 283, ui/_forms.scss */
+/* line 307, ui/_forms.scss */
 input.autocomplete + label {
   height: 52px;
   clear: both;
@@ -7667,7 +7689,7 @@ input.autocomplete + label {
   margin-top: 0 !important;
 }
 
-/* line 294, ui/_forms.scss */
+/* line 318, ui/_forms.scss */
 .show-all {
   width: 15%;
   margin: 0 !important;
@@ -7685,19 +7707,19 @@ input.autocomplete + label {
   text-align: center;
 }
 @media only screen and (min-width: 30em) {
-  /* line 294, ui/_forms.scss */
+  /* line 318, ui/_forms.scss */
   .show-all {
     width: 12%;
   }
 }
 @media only screen and (min-width: 50em) {
-  /* line 294, ui/_forms.scss */
+  /* line 318, ui/_forms.scss */
   .show-all {
     width: 8%;
   }
 }
 
-/* line 324, ui/_forms.scss */
+/* line 348, ui/_forms.scss */
 .error ~ .show-all, .remove-confirmation.confirm span .yes ~ .show-all {
   background: #993d3d;
   color: #e5bdbd;
@@ -7705,7 +7727,7 @@ input.autocomplete + label {
   border-bottom-right-radius: 0;
 }
 
-/* line 331, ui/_forms.scss */
+/* line 355, ui/_forms.scss */
 .ui-autocomplete {
   width: 100% !important;
   list-style: none;
@@ -7716,7 +7738,7 @@ input.autocomplete + label {
   border-bottom-left-radius: 5px;
   border-top: 0;
 }
-/* line 341, ui/_forms.scss */
+/* line 365, ui/_forms.scss */
 .ui-autocomplete li {
   display: block;
   width: 100%;
@@ -7727,39 +7749,39 @@ input.autocomplete + label {
   background: white;
   border-bottom: 1px solid #f1f1f1;
 }
-/* line 349, ui/_forms.scss */
+/* line 373, ui/_forms.scss */
 .ui-autocomplete li a {
   border: none !important;
   width: 100%;
   display: block;
   cursor: default;
 }
-/* line 358, ui/_forms.scss */
+/* line 382, ui/_forms.scss */
 .ui-autocomplete li:hover {
   background: #e6e6e6;
 }
-/* line 362, ui/_forms.scss */
+/* line 386, ui/_forms.scss */
 .ui-autocomplete li:nth-of-type(even) {
   background: #f1f1f1;
 }
-/* line 364, ui/_forms.scss */
+/* line 388, ui/_forms.scss */
 .ui-autocomplete li:nth-of-type(even):hover {
   background: #d8d8d8;
 }
 
-/* line 371, ui/_forms.scss */
+/* line 395, ui/_forms.scss */
 .error ~ .ui-autocomplete, .remove-confirmation.confirm span .yes ~ .ui-autocomplete {
   border-bottom-left-radius: 0;
   border-bottom-right-radius: 0;
   border-color: #993d3d;
 }
-/* line 376, ui/_forms.scss */
+/* line 400, ui/_forms.scss */
 .error ~ .ui-autocomplete li, .remove-confirmation.confirm span .yes ~ .ui-autocomplete li {
   background: #eccfcf;
   border-bottom: 1px solid #e5bdbd;
   color: #993d3d;
 }
-/* line 381, ui/_forms.scss */
+/* line 405, ui/_forms.scss */
 .error ~ .ui-autocomplete li:nth-of-type(even), .remove-confirmation.confirm span .yes ~ .ui-autocomplete li:nth-of-type(even) {
   background: #e5bdbd;
 }
@@ -7769,7 +7791,7 @@ input.autocomplete + label {
 OTHER STYLES
 
 *********************************/
-/* line 393, ui/_forms.scss */
+/* line 417, ui/_forms.scss */
 .required_indicator:after, input[type=text].required + label:after, input[type=tel].required + label:after, input[type=number].required + label:after, textarea.required + label:after, select.required + label:after, .required-field-message:after {
   display: inline-block;
   position: relative;
@@ -7781,7 +7803,7 @@ OTHER STYLES
   float: right;
 }
 
-/* line 400, ui/_forms.scss */
+/* line 424, ui/_forms.scss */
 .required-field-message {
   text-align: right;
 }
@@ -7791,11 +7813,11 @@ OTHER STYLES
 VALIDATION
 
 *********************************/
-/* line 413, ui/_forms.scss */
+/* line 437, ui/_forms.scss */
 .error-container {
   padding-left: 1.5em;
 }
-/* line 416, ui/_forms.scss */
+/* line 440, ui/_forms.scss */
 .error-container .message {
   font-size: 24px;
   font-size: 1.5rem;
@@ -7806,7 +7828,7 @@ VALIDATION
   line-height: 1.95rem;
 }
 @media only screen and (min-width: 50em) {
-  /* line 416, ui/_forms.scss */
+  /* line 440, ui/_forms.scss */
   .error-container .message {
     font-size: 32px;
     font-size: 2rem;
@@ -7817,28 +7839,28 @@ VALIDATION
     line-height: 2.6rem;
   }
 }
-/* line 424, ui/_forms.scss */
+/* line 448, ui/_forms.scss */
 .error-container .details {
   font-weight: 700;
 }
-/* line 426, ui/_forms.scss */
+/* line 450, ui/_forms.scss */
 .error-container .details ul {
   margin-top: 0.5em;
 }
-/* line 428, ui/_forms.scss */
+/* line 452, ui/_forms.scss */
 .error-container .details ul li {
   line-height: 26px;
   line-height: 1.625rem;
   font-weight: 300;
 }
 
-/* line 436, ui/_forms.scss */
+/* line 460, ui/_forms.scss */
 input.error, .remove-confirmation.confirm span input.yes, input.select2-container.error, textarea.error, .remove-confirmation.confirm span textarea.yes, textarea.select2-container.error {
   border-bottom-left-radius: 0;
   border-bottom-right-radius: 0;
 }
 
-/* line 441, ui/_forms.scss */
+/* line 465, ui/_forms.scss */
 input ~ .error, .remove-confirmation.confirm span input ~ .yes, input ~ .select2-container.error, label ~ .error, .remove-confirmation.confirm span label ~ .yes, label ~ .select2-container.error {
   display: block;
   clear: both;

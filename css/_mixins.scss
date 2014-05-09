@@ -1,6 +1,11 @@
-@mixin font-size($size) {
+@mixin font-size($size, $important: null) {
+  @if $important == important {
+    font-size: ($size * $rootfontsize) + px !important;
+    font-size: $size + rem !important;
+  }  @else {
     font-size: ($size * $rootfontsize) + px;
     font-size: $size + rem;
+  }
 }
 
 @mixin line-height($size, $auto: false) {
