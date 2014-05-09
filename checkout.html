@@ -11,7 +11,7 @@
     <script src="js/jquery-1.11.0.min.js"></script>
     <script src="js/jquery-migrate-1.2.1.js"></script>
     <script src="js/animatescroll.js"></script>
-    <script src="js/jquery.maskedinput.min.js"></script>
+    <script src="js/jquery.maskedinput.js"></script>
     <script src="js/handlebars-v1.3.0.js"></script>
     <script src="js/jquery-ui-autocomplete.js"></script>
     <script src="js/jquery.select-to-autocomplete.js"></script>
@@ -101,7 +101,7 @@
                                     <label for="postal-code-input">Postal Code</label>
                                 </li>
                                 <li class="field field__secondary phone" style="display: none;">
-                                    <input type="text" class="text-input required" id="phone-input">
+                                    <input type="tel" class="text-input required" id="phone-input">
                                     <label for="phone-input">Phone</label>
                                 </li>
                                 <li class="field__secondary buttons" style="display: none;">
@@ -252,24 +252,24 @@
                                         <li class="required-field-message">required fields</li>
                                         <li class="field card-number_read_only">
                                             <span class="type" style="display:none;"></span>
-                                            <span class="cc-number-masked" style="display: none;">xxxx-xxxx-xxxx-1234</span>
+                                            <span class="cc-number-masked" style="display: none;"></span>
                                         </li>
                                         <li class="field name">
                                             <input type="text" class="text-input required" id="cc-name-input" title="Name">
                                             <label for="cc-name-input">Name</label>
                                         </li>
                                         <li class="field card-number">
-                                            <input type="text" class="text-input required" id="cc-number-input" title="Card Number">
+                                            <input type="text" class="text-input required" id="cc-number-input" title="Card Number" pattern="\d*">
                                             <label for="cc-number-input">Card Number</label>
                                         </li>
                                         <li>
                                             <ul class="grid">
                                                 <li class="field grid__item one-half card-expiration">
-                                                    <input type="text" class="text-input required" id="cc-expiration-input" title="Expiration">
+                                                    <input type="text" class="text-input required" id="cc-expiration-input" title="Expiration" pattern="\d*">
                                                     <label for="cc-expiration-input">MM/YY</label>
                                                 </li>
                                                 <li class="field grid__item one-half card-security">
-                                                    <input type="text" class="text-input required" id="cc-security-code-input" title="Security Code">
+                                                    <input type="text" class="text-input required" id="cc-security-code-input" title="Security Code" pattern="\d*">
                                                     <label for="cc-security-code-input">Security Code</label>
                                                 </li>
                                             </ul>
@@ -295,7 +295,6 @@
                                                 <li class="cancel_button grid__item one-whole lap-one-half  desk-one-half">
                                                     <button class="cancel btn btn--small taptarget tertiary one-whole">Cancel</button>
                                                 </li>
-
                                             </ul>
                                         </li>
                                     </ul>
@@ -343,7 +342,7 @@
                                                 <label for="postal-code-input">Postal Code</label>
                                             </li>
                                             <li class="field field__secondary phone" style="display: none;">
-                                                <input type="text" class="text-input required" id="phone-input">
+                                                <input type="tel" class="text-input required" id="phone-input">
                                                 <label for="phone-input">Phone</label>
                                             </li>
                                             <li class="field__secondary buttons" style="display: none;">
@@ -408,7 +407,7 @@
                                             <li class="field quantity">
                                                 <span class="label">Quantity:</span>
                                                 <span class="value">
-                                                    <input type="number" name="product_1_quantity" value="1" min="0" max="999" class="nolabel" data-orig-val="1"><button class="btn small update-cart-item tertiary">Update</button>
+                                                    <input type="number" name="product_1_quantity" value="1" min="0" max="999" class="nolabel" data-orig-val="1" pattern="\d*"><button class="btn small update-cart-item tertiary">Update</button>
                                                 </span>
                                             </li>
                                             <li class="field total">
@@ -441,7 +440,7 @@
                                             <li class="field quantity">
                                                 <span class="label">Quantity:</span>
                                                 <span class="value">
-                                                    <input type="number" name="product_2_quantity" value="2" min="0" max="999" class="nolabel" data-orig-val="2"><button class="btn small update-cart-item tertiary">Update</button>
+                                                    <input type="number" name="product_2_quantity" value="2" min="0" max="999" class="nolabel" data-orig-val="2" pattern="\d*"><button class="btn small update-cart-item tertiary">Update</button>
                                                 </span>
                                             </li>
                                             <li class="field total">
@@ -474,7 +473,7 @@
                                             <li class="field quantity">
                                                 <span class="label">Quantity:</span>
                                                 <span class="value">
-                                                    <input type="number" name="product_3_quantity" value="5" min="0" max="999" class="nolabel" data-orig-val="5"><button class="btn small update-cart-item tertiary">Update</button>
+                                                    <input type="number" name="product_3_quantity" value="5" min="0" max="999" class="nolabel" data-orig-val="5" pattern="\d*"><button class="btn small update-cart-item tertiary">Update</button>
                                                 </span>
                                             </li>
                                             <li class="field total">
