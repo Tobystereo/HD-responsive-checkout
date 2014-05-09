@@ -1341,6 +1341,7 @@ var Checkout = {
 					}
 					Checkout.Functions.Shared.UpdateOrderTotal();
 					Checkout.Fields.BillingInfo.$input_cc_expiration.mask("99/99");
+					Checkout.Fields.BillingInfo.$input_cc_number.mask("9999-9999-9999-9999");
 					jQuery.bbq.pushState("#" + Checkout.Settings.Shared.step_url_prefix + Checkout.Fields.Shared.$step_current.attr("id"), 2);
 					$(window).trigger('hashchange');
 				});
