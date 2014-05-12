@@ -2601,6 +2601,9 @@ var Checkout = {
 			"IsDateExpired": function (expiration) {
 				var expDate = new Date("'01/" + expiration + "'"),
 					today = new Date();
+
+				alert("expDate: " + expDate + " | today: " + today);
+
 				return expDate <= today;
 			},
 			"GetCreditCardAddressMarkup": function (street, city, state, postal) {
@@ -2817,16 +2820,13 @@ var Checkout = {
 				if (lengthValid) {
 					// Check the date
 					dateValid = !Checkout.Functions.BillingInfo.IsDateExpired(expiration);
-					alert("dateValid: " + dateValid);
 					if (!dateValid) {
-						alert("date is invalid");
 						isValid = false;
 						error_message = "Cannot enter an expired date";
 					}
 				}
 
 				if (!isValid) {
-					alert("field is now invalid");
 					Checkout.Fields.BillingInfo.$input_cc_expiration.removeClass(Checkout.Settings.Shared.success_class).addClass(Checkout.Settings.Shared.error_class);
 					if ($error_element.length === 0) {
 						$error_element = $("<div style='display:none;' class='error'>" + error_message + "</div>");
