@@ -2609,12 +2609,14 @@ var Checkout = {
 				try {
 					parts = expiration.split('/');
 					if (parts.length !== 2) {
+						alert("parts.length is not 2: " + parts.length);
 						isValid = false;
 					}
 					else {
 						month - parts[0];
 						year = parts[1];
 						expDate = new Date(year, month);
+						alert("month: " + month + " | year: " + year + " | expDate: " + expDate.getTime())
 						isValid = today.getTime() <= expDate.getTime();
 					}
 				}
