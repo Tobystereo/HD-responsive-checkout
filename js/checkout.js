@@ -2613,7 +2613,7 @@ var Checkout = {
 						isValid = false;
 					}
 					else {
-						month - parts[0];
+						month = parts[0];
 						year = parts[1];
 						expDate = new Date(year, month);
 						alert("month: " + month + " | year: " + year + " | expDate: " + expDate.getTime())
