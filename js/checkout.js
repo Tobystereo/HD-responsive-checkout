@@ -2807,8 +2807,6 @@ var Checkout = {
 					$error_label = Checkout.Fields.BillingInfo.$input_cc_expiration.siblings("label"),
 					error_message = "";
 
-				alert("expiration: " + expiration + " | mask: " + Checkout.Fields.BillingInfo.$input_cc_expiration.attr("data-masked-text") + " | length: " + expiration.length);
-
 				// Verify the length
 				if (expiration === Checkout.Fields.BillingInfo.$input_cc_expiration.attr("data-masked-text") || expiration.length !== 5) {
 					lengthValid = false;
@@ -2819,6 +2817,7 @@ var Checkout = {
 				if (lengthValid) {
 					// Check the date
 					dateValid = !Checkout.Functions.BillingInfo.IsDateExpired(expiration);
+					alert("dateValid: " + dateValid);
 					if (!dateValid) {
 						alert("date is invalid");
 						isValid = false;
