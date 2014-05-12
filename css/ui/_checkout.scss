@@ -985,31 +985,34 @@ input[type=radio]:checked + label.card {
 
 }
 
-
 #payment-option-credit-card + label {
   min-height: 5rem;
+
   @media #{$lap}{
     min-height: 3rem;
   }
 
   .payment-option {
-
+    text-align: center;
+    width: 100%;
     float: left;
+
+    @media #{$lap} {
+      text-align: left;
+    }
 
     &:after {
       @include pseudo(119px, 20px, "\ ");
+      display: block;
       background: url("../images/creditcards.png");
-      // background: url("../images/creditcards.svg");
       background-size: auto 20px;
-      margin-left: 1em;
+      margin: 0 auto;
       margin-bottom: -4px;
-      @media #{$palm} {
-        display: block;
-        clear: both;
-        margin-left: 0;
-      }
+      clear: both;
+
       @media #{$lap} {
         display: inline-block;
+        margin-left: 1em;
       }
     }
   }
@@ -1017,27 +1020,35 @@ input[type=radio]:checked + label.card {
 
 #payment-option-paypal + label {
   min-height: 5rem;
+  text-align: center;
+
   @media #{$lap}{
     min-height: 3rem;
+    text-align: left;
   }
 
   .payment-option {
+    text-align: center;
+    width: 100%;
+    float: left;
+
+    @media #{$lap} {
+      text-align: left;
+    }
+
     &:after {
       @include pseudo(30px, 20px, "\ ");
-      background: url("../images/creditcards.png") no-repeat;
-      // background: url("../images/creditcards.svg") no-repeat;
-      background-size: auto 20px;
+      display: block;
+      margin: 0 auto;
+      background: url("../images/creditcards.png");
       background-position: -120px 0;
-      margin-left: 1em;
+      background-size: auto 20px;
       margin-bottom: -4px;
+      clear: both;
 
-      @media #{$palm} {
-        display: block;
-        clear: both;
-        margin-left: 0;
-      }
       @media #{$lap} {
         display: inline-block;
+        margin-left: 1em;
       }
     }
   }
