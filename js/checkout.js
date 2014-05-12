@@ -2123,6 +2123,7 @@ var Checkout = {
 						Checkout.Fields.BillingInfo.$credit_card_form.slideDown(Checkout.Settings.Shared.easing_duration, function () {
 							Checkout.Fields.BillingInfo.$credit_card_form.animatedScroll();
 						});
+						return false;
 					});
 				}
 			},
