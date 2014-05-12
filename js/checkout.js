@@ -1172,6 +1172,7 @@ var Checkout = {
 					}
 					else {
 						if (toggleCompleteClass) {
+							
 							$element.removeClass("complete");
 						}
 						$element.siblings("label").removeClass("notempty");
@@ -1380,8 +1381,11 @@ var Checkout = {
 				if (refreshSelector) {
 					Checkout.Fields.Shared.$form_inputs = $(Checkout.Fields.Shared.$form_inputs.selector);
 				}
-				Checkout.Fields.Shared.$form_inputs.on("change", function () {
-					Checkout.Functions.Shared.EvaluateFieldCompleteness($(this), false);
+				Checkout.Fields.Shared.$form_inputs.on("keydown", function () {
+					var $this = $(this);
+					setTimeout(function () {
+						Checkout.Functions.Shared.EvaluateFieldCompleteness($this, true);
+					}, 25);
 				});
 			},
 			"BindEvents_RequiredFields": function (refreshSelector) {
@@ -1666,7 +1670,7 @@ var Checkout = {
 				if (refreshSelector) {
 					Checkout.Fields.ShippingAddress.$required_address_inputs = $(Checkout.Fields.ShippingAddress.$required_address_inputs.selector);
 				}
-				Checkout.Fields.ShippingAddress.$required_address_inputs.on("change", function () {
+				Checkout.Fields.ShippingAddress.$required_address_inputs.on("keydown", function () {
 					setTimeout(function () {
 						Checkout.Functions.Shared.EvaluateAddressFormCompleteness(Checkout.Fields.ShippingAddress.$required_address_inputs, Checkout.Fields.ShippingAddress.$btnsave_address);
 					}, 50);
@@ -2814,7 +2818,7 @@ var Checkout = {
 					dateValid = !Checkout.Functions.BillingInfo.IsDateExpired(expiration);
 					if (!dateValid) {
 						isValid = false;
-						error_message = "Cannot enter an expired date";	
+						error_message = "Cannot enter an expired date";
 					}
 				}
 
