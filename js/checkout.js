@@ -2807,6 +2807,8 @@ var Checkout = {
 					$error_label = Checkout.Fields.BillingInfo.$input_cc_expiration.siblings("label"),
 					error_message = "";
 
+				alert("validate expiration fired.");
+
 				// Verify the length
 				if (expiration === Checkout.Fields.BillingInfo.$input_cc_expiration.attr("data-masked-text") || expiration.length !== 5) {
 					lengthValid = false;
