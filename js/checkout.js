@@ -2599,12 +2599,31 @@ var Checkout = {
 				return card;
 			},
 			"IsDateExpired": function (expiration) {
-				var expDate = new Date("'01/" + expiration + "'"),
-					today = new Date();
+				var parts,
+					year,
+					month,
+					expDate,
+					today = new Date()
+					isValid = true;
 
-				alert("expDate: " + expDate + " | today: " + today);
-
-				return expDate <= today;
+				try {
+					parts = expiration.split('/');
+					if (parts.length !== 2) {
+						isValid = false;
+					}
+					else {
+						month - parts[0];
+						year = parts[1];
+						expDate = new Date(year, month);
+						isValid = today.getTime() <= expDate.getTime();
+					}
+				}
+				catch(err) {
+					isValid = false;
+					console.error(err.message, err);
+				}
+				
+				return isValid;
 			},
 			"GetCreditCardAddressMarkup": function (street, city, state, postal) {
 				var mu = '<div class="address"><span class="label">Billing Address:</span>';
