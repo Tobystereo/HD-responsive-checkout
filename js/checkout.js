@@ -2614,7 +2614,7 @@ var Checkout = {
 					}
 					else {
 						month = parts[0];
-						year = parts[1];
+						year = parseInt("20" + parts[1]);
 						expDate = new Date(year, month);
 						alert("today: " + today + " | expDate: " + expDate);
 						isValid = today <= expDate;
