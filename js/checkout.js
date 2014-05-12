@@ -2811,18 +2811,21 @@ var Checkout = {
 				if (expiration === Checkout.Fields.BillingInfo.$input_cc_expiration.attr("data-masked-text") || expiration.length !== 5) {
 					lengthValid = false;
 					isValid = false;
+					alert("length is invalid");
 					error_message = $error_label.text() + " is required.";
 				}
 				if (lengthValid) {
 					// Check the date
 					dateValid = !Checkout.Functions.BillingInfo.IsDateExpired(expiration);
 					if (!dateValid) {
+						alert("date is invalid");
 						isValid = false;
 						error_message = "Cannot enter an expired date";
 					}
 				}
 
 				if (!isValid) {
+					alert("field is now invalid");
 					Checkout.Fields.BillingInfo.$input_cc_expiration.removeClass(Checkout.Settings.Shared.success_class).addClass(Checkout.Settings.Shared.error_class);
 					if ($error_element.length === 0) {
 						$error_element = $("<div style='display:none;' class='error'>" + error_message + "</div>");
