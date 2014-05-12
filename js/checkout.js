@@ -2402,12 +2402,10 @@ var Checkout = {
 					Checkout.Fields.BillingInfo.$input_cc_expiration = $(Checkout.Fields.BillingInfo.$input_cc_expiration.selector);
 				}
 				Checkout.Fields.BillingInfo.$input_cc_expiration.on("keydown", function () {
-					alert("expiration keydown event fired.");
 					setTimeout(function () {
 						Checkout.Functions.BillingInfo.ValidateExpirationDate();
 					}, 50)
 				}).on("change", function () {
-					alert("expiration change event fired.");
 					Checkout.Functions.BillingInfo.ValidateExpirationDate();
 				});
 			},
@@ -2809,7 +2807,7 @@ var Checkout = {
 					$error_label = Checkout.Fields.BillingInfo.$input_cc_expiration.siblings("label"),
 					error_message = "";
 
-				alert("validate expiration fired.");
+				alert("expiration: " + expiration + " | mask: " + Checkout.Fields.BillingInfo.$input_cc_expiration.attr("data-masked-text") + " | length: " + expiration.length);
 
 				// Verify the length
 				if (expiration === Checkout.Fields.BillingInfo.$input_cc_expiration.attr("data-masked-text") || expiration.length !== 5) {
