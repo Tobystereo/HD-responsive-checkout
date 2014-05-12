@@ -17,7 +17,7 @@
 				post_toggle: undefined,
 				callback: undefined,
 				delay: 300,
-				enable_logging: true,
+				enable_logging: false,
 				force_state: "", /* show|hide */
 				firing_events: "click",
 				toggle_self: true,
@@ -2109,7 +2109,6 @@ var Checkout = {
 							$radioBtn = $parent.find("input[type=radio]");
 
 						e.stopPropagation();
-						console.log("edit card button click");
 						$parent.parent().find("li").removeClass("edit-mode").find("input[type=radio]").removeAttr("checked");
 						$parent.addClass("edit-mode");
 						if ($radioBtn.attr("disabled") === undefined) {
@@ -2135,7 +2134,6 @@ var Checkout = {
 					Checkout.Fields.BillingInfo.$credit_cards.on("click", function (e) {
 						var $parent = $(this).parent();
 						e.stopPropagation();
-						console.log("address item click");
 						Checkout.Data.checkout_details.billing_method = "Credit Card";
 						Checkout.Functions.BillingInfo.UpdateCreditCardData($parent.find(".credit-card"));
 						Checkout.Functions.BillingInfo.UpdateBillingAddressData($parent);
