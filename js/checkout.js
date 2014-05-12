@@ -2833,7 +2833,6 @@ var Checkout = {
 				if (expiration === Checkout.Fields.BillingInfo.$input_cc_expiration.attr("data-masked-text") || expiration.length !== 5) {
 					lengthValid = false;
 					isValid = false;
-					alert("length is invalid");
 					error_message = $error_label.text() + " is required.";
 				}
 				if (lengthValid) {
