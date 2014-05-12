@@ -2681,6 +2681,7 @@ var Checkout = {
 				Checkout.Functions.BillingInfo.BindEvents_EditCreditCardButton(true);
 				Checkout.Functions.BillingInfo.BindEvents_CreditCardItems(true);
 				$newCard.find("input[type=radio]").trigger("click");
+				Checkout.Fields.BillingInfo.$credit_card_list.animatedScroll();
 			},
 			"UpdateCreditCardElement": function () {
 				var cc_data = undefined,
