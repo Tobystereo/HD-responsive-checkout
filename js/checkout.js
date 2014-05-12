@@ -2541,7 +2541,9 @@ var Checkout = {
 				Checkout.Fields.BillingInfo.$input_cc_name.val(creditCardData.name);
 				Checkout.Fields.BillingInfo.$input_cc_expiration.val(creditCardData.expiration);
 				Checkout.Fields.BillingInfo.$card_billing_address_container.data("addressId", addressData.id).html(Checkout.Functions.BillingInfo.GetCreditCardAddressMarkup(addressData.street, addressData.city, addressData.state, addressData.postal));
-				Checkout.Fields.BillingInfo.$credit_card_inputs.trigger("change");
+				Checkout.Fields.BillingInfo.$required_credit_card_inputs.each(function () {
+					Checkout.Functions.Shared.EvaluateFieldCompleteness($(this), false);
+				});
 			},
 			"ResetCreditCardForm": function () {
 				var address = Checkout.Functions.Shared.GetDefaultBillingAddress();
@@ -2555,10 +2557,11 @@ var Checkout = {
 				if (address !== undefined) {
 					Checkout.Fields.BillingInfo.$card_billing_address_container.data("addressId", address.id).html(Checkout.Functions.BillingInfo.GetCreditCardAddressMarkup(address.street, address.city, address.state, address.postal));
 				}
+				Checkout.Fields.BillingInfo.$required_credit_card_inputs.removeClass(Checkout.Settings.Shared.error_class).removeClass(Checkout.Settings.Shared.complete_class);
+				Checkout.Fields.BillingInfo.$credit_card_inputs.each(function () {
+					Checkout.Functions.Shared.EvaluateFieldCompleteness($(this), false);
+				});
 				Checkout.Fields.BillingInfo.$btnchange_billing_address.show();
-				if (Checkout.Fields.BillingInfo.$credit_card_inputs !== undefined) {
-					Checkout.Fields.BillingInfo.$credit_card_inputs.trigger("change");
-				}
 			},
 			"ResetAddressForm": function () {
 				Checkout.Fields.BillingInfo.$input_country.val("");
