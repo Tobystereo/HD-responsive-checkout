@@ -2402,10 +2402,12 @@ var Checkout = {
 					Checkout.Fields.BillingInfo.$input_cc_expiration = $(Checkout.Fields.BillingInfo.$input_cc_expiration.selector);
 				}
 				Checkout.Fields.BillingInfo.$input_cc_expiration.on("keydown", function () {
+					alert("expiration keydown event fired.");
 					setTimeout(function () {
 						Checkout.Functions.BillingInfo.ValidateExpirationDate();
 					}, 50)
-				}).on("blur", function () {
+				}).on("change", function () {
+					alert("expiration change event fired.");
 					Checkout.Functions.BillingInfo.ValidateExpirationDate();
 				});
 			},
