@@ -2609,7 +2609,6 @@ var Checkout = {
 				try {
 					parts = expiration.split('/');
 					if (parts.length !== 2) {
-						alert("parts.length is not 2: " + parts.length);
 						isValid = false;
 					}
 					else {
@@ -2617,7 +2616,7 @@ var Checkout = {
 						year = parseInt("20" + parts[1]);
 						expDate = new Date(year, month);
 						alert("today: " + today + " | expDate: " + expDate);
-						isValid = today <= expDate;
+						isValid = expDate < today;
 					}
 				}
 				catch(err) {
