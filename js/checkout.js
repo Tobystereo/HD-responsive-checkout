@@ -2616,8 +2616,8 @@ var Checkout = {
 						month = parts[0];
 						year = parts[1];
 						expDate = new Date(year, month);
-						alert("today: " + today.getDate() + " | expDate: " + expDate.getDate())
-						isValid = today.getDate() <= expDate.getDate();
+						alert("today: " + today + " | expDate: " + expDate);
+						isValid = today <= expDate;
 					}
 				}
 				catch(err) {
