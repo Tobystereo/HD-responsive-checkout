@@ -2382,7 +2382,7 @@ var Checkout = {
 				if (refreshSelector) {
 					Checkout.Fields.BillingInfo.$required_address_inputs = $(Checkout.Fields.BillingInfo.$required_address_inputs.selector);
 				}
-				Checkout.Fields.BillingInfo.$required_address_inputs.on("change", function () {
+				Checkout.Fields.BillingInfo.$required_address_inputs.on("keydown", function () {
 					setTimeout(function () {
 						Checkout.Functions.Shared.EvaluateAddressFormCompleteness(Checkout.Fields.BillingInfo.$required_address_inputs, Checkout.Fields.BillingInfo.$btnsave_address);
 					}, 50);
