@@ -1,8 +1,9 @@
 $formfieldheight: 3.25;
 
 form {
-    width: 100%;
-    padding-left: 1.5em;
+    display: block;
+    // width: 100%;
+    // padding-left: 1.5em;
 }
     input[type=text], input[type=tel], input[type=number], select {
         @include rem-height($formfieldheight);
