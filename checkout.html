@@ -245,53 +245,47 @@
                                     <button class="create-credit-card btn taptarget tertiary one-whole add">Add new credit card</button>
                                 </li>
                             </ul>
-                            <div class="grid">
-                                <form id="credit-card-form" action="#" style="display: none;">
-                                    <h2 data-new-text="Add new credit card" data-edit-text="Edit credit card add">Add new credit card</h2>
-                                    <ul class="grid__item add-edit-credit-card form-fields one-whole desk-one-half card">
-                                        <li class="required-field-message">required fields</li>
-                                        <li class="field card-number_read_only">
-                                            <span class="type" style="display:none;"></span>
-                                            <span class="cc-number-masked" style="display: none;"></span>
-                                        </li>
-                                        <li class="field name">
-                                            <input type="text" class="text-input required" id="cc-name-input" title="Name">
-                                            <label for="cc-name-input">Name</label>
-                                        </li>
-                                        <li class="field card-number">
-                                            <input type="text" class="text-input required" id="cc-number-input" title="Card Number" pattern="\d*">
-                                            <label for="cc-number-input">Card Number</label>
-                                        </li>
-                                        <li class="field grid__item one-half palm-one-whole card-expiration">
-                                            <input type="text" class="text-input required" id="cc-expiration-input" title="Expiration" pattern="\d*">
-                                            <label for="cc-expiration-input">Expires: MM/YY</label>
-                                        </li>
-                                        <li class="field grid__item one-half palm-one-whole card-security">
-                                            <input type="text" class="text-input required" id="cc-security-code-input" title="Security Code" pattern="\d*">
-                                            <label for="cc-security-code-input">Security Code</label>
-                                        </li>
-                                        <li class="field grid__item billing-address one-half">
-                                        </li>
-                                        <li class="buttons grid__item one-whole lap-one-half  desk-one-half">
-                                            <button class="change-billing-address small btn taptarget tertiary one-whole">Change Address</button>
-                                        </li>
-                                        <li class="field card-wallet">
-                                            <input type="checkbox" class="checkbox-input" id="cc-wallet-input" title="Save this card to use again">
-                                            <label for="cc-wallet-input">Remember this card</label>
-                                        </li>
-                                        <li class="buttons">
-                                            <ul class="grid">
-                                                <li class="save_button grid__item one-whole lap-one-half  desk-one-half">
-                                                    <button class="save btn btn--small taptarget secondary one-whole" data-new-text="Pay with this card" data-edit-text="Save">Pay with this card</button>
-                                                </li>
-                                                <li class="cancel_button grid__item one-whole lap-one-half  desk-one-half">
-                                                    <button class="cancel btn btn--small taptarget tertiary one-whole">Cancel</button>
-                                                </li>
-                                            </ul>
-                                        </li>
-                                    </ul>
-                                </form>
-                            </div>
+                            <form id="credit-card-form" action="#" style="display: none;" class="grid">
+                                <h2 data-new-text="Add new credit card" data-edit-text="Edit credit card add">Add new credit card</h2>
+                                <ul class="grid__item grid add-edit-credit-card form-fields one-whole card">
+                                    <li class="grid__item required-field-message">required fields</li>
+                                    <li class="field grid__item one-whole card-number_read_only">
+                                        <span class="type" style="display:none;"></span>
+                                        <span class="cc-number-masked" style="display: none;"></span>
+                                    </li>
+                                    <li class="field grid__item one-whole name">
+                                        <input type="text" class="text-input required" id="cc-name-input" title="Name">
+                                        <label for="cc-name-input">Name</label>
+                                    </li>
+                                    <li class="field grid__item one-whole card-number">
+                                        <input type="text" class="text-input required" id="cc-number-input" title="Card Number" pattern="\d*">
+                                        <label for="cc-number-input">Card Number</label>
+                                    </li>
+                                    <li class="field grid__item one-half palm-one-whole card-expiration">
+                                        <input type="text" class="text-input required" id="cc-expiration-input" title="Expiration" pattern="\d*">
+                                        <label for="cc-expiration-input">Expires: MM/YY</label>
+                                    </li>
+                                    <li class="field grid__item one-half palm-one-whole card-security">
+                                        <input type="text" class="text-input required" id="cc-security-code-input" title="Security Code" pattern="\d*">
+                                        <label for="cc-security-code-input">Security Code</label>
+                                    </li>
+                                    <li class="field grid__item billing-address one-half">
+                                    </li>
+                                    <li class="buttons grid__item one-whole lap-one-half  desk-one-half">
+                                        <button class="change-billing-address small btn taptarget tertiary one-whole">Change Address</button>
+                                    </li>
+                                    <li class="field grid__item one-whole card-wallet">
+                                        <input type="checkbox" class="checkbox-input" id="cc-wallet-input" title="Save this card to use again">
+                                        <label for="cc-wallet-input">Remember this card</label>
+                                    </li>
+                                    <li class="save_button grid__item one-whole lap-one-half desk-one-half">
+                                        <button class="save btn btn--small taptarget secondary one-whole" data-new-text="Pay with this card" data-edit-text="Save">Pay with this card</button>
+                                    </li>
+                                    <li class="cancel_button grid__item one-whole lap-one-half desk-one-half">
+                                        <button class="cancel btn btn--small taptarget tertiary one-whole">Cancel</button>
+                                    </li>
+                                </ul>
+                            </form>
                             <div class="billing-address-container" style="display:none;">
                                 <h3>Select a billing address</h3>
                                 <ul class="grid address-list">
