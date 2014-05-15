@@ -262,26 +262,18 @@
                                             <input type="text" class="text-input required" id="cc-number-input" title="Card Number" pattern="\d*">
                                             <label for="cc-number-input">Card Number</label>
                                         </li>
-                                        <li>
-                                            <ul class="grid">
-                                                <li class="field grid__item one-half palm-one-whole card-expiration">
-                                                    <input type="text" class="text-input required" id="cc-expiration-input" title="Expiration" pattern="\d*">
-                                                    <label for="cc-expiration-input">Expires: MM/YY</label>
-                                                </li>
-                                                <li class="field grid__item one-half palm-one-whole card-security">
-                                                    <input type="text" class="text-input required" id="cc-security-code-input" title="Security Code" pattern="\d*">
-                                                    <label for="cc-security-code-input">Security Code</label>
-                                                </li>
-                                            </ul>
+                                        <li class="field grid__item one-half palm-one-whole card-expiration">
+                                            <input type="text" class="text-input required" id="cc-expiration-input" title="Expiration" pattern="\d*">
+                                            <label for="cc-expiration-input">Expires: MM/YY</label>
                                         </li>
-                                        <li>
-                                            <ul class="grid">
-                                                <li class="field grid__item billing-address one-half">
-                                                </li>
-                                                <li class="buttons grid__item one-whole lap-one-half  desk-one-half">
-                                                    <button class="change-billing-address small btn taptarget tertiary one-whole">Change Address</button>
-                                                </li>
-                                            </ul>
+                                        <li class="field grid__item one-half palm-one-whole card-security">
+                                            <input type="text" class="text-input required" id="cc-security-code-input" title="Security Code" pattern="\d*">
+                                            <label for="cc-security-code-input">Security Code</label>
+                                        </li>
+                                        <li class="field grid__item billing-address one-half">
+                                        </li>
+                                        <li class="buttons grid__item one-whole lap-one-half  desk-one-half">
+                                            <button class="change-billing-address small btn taptarget tertiary one-whole">Change Address</button>
                                         </li>
                                         <li class="field card-wallet">
                                             <input type="checkbox" class="checkbox-input" id="cc-wallet-input" title="Save this card to use again">
@@ -312,8 +304,7 @@
                                         <ul class="grid__item add-edit-address form-fields one-whole card">
                                             <li class="field country ">
                                                 <h3 class="title" data-new-text="Create a new address" data-edit-text="Edit address">Create a new address</h3>
-                                                <select class="required" id="billing-country-input">
-                                                </select>
+                                                <select class="required" id="billing-country-input"></select>
                                                 <label for="billing-country-input">Country</label>
                                             </li>
                                             <li class="required-field-message">required fields</li>
