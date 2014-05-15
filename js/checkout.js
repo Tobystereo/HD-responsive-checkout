@@ -466,13 +466,11 @@ var Checkout = {
 			"$btnsave_address": undefined,
 			"$btnedit_address": undefined,
 			"$input_country": undefined,
-			"$autocomplete_county": undefined,
 			"$input_name": undefined,
 			"$input_company": undefined,
 			"$input_street": undefined,
 			"$input_city": undefined,
 			"$input_state": undefined,
-			"$autocomplete_state": undefined,
 			"$input_state_select": undefined,
 			"$input_postal": undefined,
 			"$input_phone": undefined,
@@ -526,13 +524,11 @@ var Checkout = {
 			"$billing_address_form": undefined,
 			"$billing_address_form_title": undefined,
 			"$input_country": undefined,
-			"$autocomplete_county": undefined,
 			"$input_name": undefined,
 			"$input_company": undefined,
 			"$input_street": undefined,
 			"$input_city": undefined,
 			"$input_state": undefined,
-			"$autocomplete_state": undefined,
 			"$input_state_select": undefined,
 			"$input_postal": undefined,
 			"$input_phone": undefined,
@@ -647,7 +643,7 @@ var Checkout = {
 				Checkout.Fields.Shared.$step_current = Checkout.Fields.Shared.$step_shipping_address;
 				Checkout.Fields.Shared.$step_next = Checkout.Fields.Shared.$step_shipping_option;
 				Checkout.Fields.Shared.$step_previous = Checkout.Fields.Shared.$step_current.prev();
-				Checkout.Fields.Shared.$form_inputs = $("input[type=text], input[type=tel], textarea, #country-input, #billing-country-input");
+				Checkout.Fields.Shared.$form_inputs = $("input[type=text], input[type=tel], textarea, select");
 				Checkout.Fields.Shared.$required_fields = Checkout.Fields.Shared.$form_inputs.filter("." + Checkout.Settings.Shared.required_class);
 				Checkout.Fields.Shared.$footer = $(".checkout > footer");
 				Checkout.Fields.Shared.$cta_bar = Checkout.Fields.Shared.$footer.find(".cta_bar");
@@ -779,7 +775,7 @@ var Checkout = {
 				/// <summary>Wire up control events</summary>
 				Checkout.Functions.Shared.BindEvents_NeedHelp(false);
 				Checkout.Functions.Shared.BindEvents_NextButton(false);
-				Checkout.Functions.Shared.BindEvents_FormInputs(false);
+				Checkout.Functions.Shared.BindEvents_FormInputs(true);
 				Checkout.Functions.Shared.BindEvents_ProgressBarItems(false);
 				Checkout.Functions.Shared.BindEvents_RequiredFields(false);
 				Checkout.Functions.ShippingAddress.BindEvents_AdditionalAddressButton(false);
@@ -1179,37 +1175,6 @@ var Checkout = {
 					}
 				}
 			},
-			"InitAutoComplete": function ($select_element, on_select) {
-				var $autocomplete_field = undefined,
-					required = $select_element.hasClass(Checkout.Settings.Shared.required_class);
-
-				// Remove existing autocomplete fields
-				$select_element.siblings(".show-all").remove();
-				$select_element.siblings("input.autocomplete").remove();
-				$select_element.siblings("label").removeClass("notempty");
-
-				$select_element.selectToAutocomplete({
-					"remove-valueless-options": false,
-					"copy-attributes-to-text-field": false,
-					"input_class": required ? Checkout.Settings.Shared.required_class : "" + " text-input",
-					"appendTo": $select_element.parent()
-				});
-				$autocomplete_field = $select_element.siblings("input.autocomplete");
-
-				if (on_select !== undefined) {
-					$autocomplete_field.on("autocompleteselect", function (event, ui) {
-						on_select();
-					});
-				}
-				$autocomplete_field.next().attr("for", $autocomplete_field.attr("id"));
-				$autocomplete_field.on("blur", function () {
-					Checkout.Functions.Shared.EvaluateFieldCompleteness($(this), false);
-				});
-				if (required) {
-					Checkout.Fields.Shared.$required_fields = Checkout.Fields.Shared.$required_fields.add($autocomplete_field);
-				}
-				return $autocomplete_field;
-			},
 			"EvaluateAddressFormCompleteness": function ($required_address_inputs, $save_address_button) {
 				var isFormComplete = true;
 
@@ -1359,8 +1324,6 @@ var Checkout = {
 				$(document).ready(function () {
 					Checkout.Functions.Shared.GetFields();
 					Checkout.Functions.Shared.BindUIElements();
-					Checkout.Functions.ShippingAddress.InitializeCountryDropdown();
-					Checkout.Functions.BillingInfo.InitializeCountryDropdown();
 					Checkout.Functions.Shared.GetDynamicFields();
 					Checkout.Functions.Shared.WireEvents();
 					if (Checkout.Settings.Shared.mode == "new") {
@@ -1386,6 +1349,8 @@ var Checkout = {
 					setTimeout(function () {
 						Checkout.Functions.Shared.EvaluateFieldCompleteness($this, true);
 					}, 25);
+				}).on("change", function () {
+					Checkout.Functions.Shared.EvaluateFieldCompleteness($(this), true);
 				});
 			},
 			"BindEvents_RequiredFields": function (refreshSelector) {
@@ -1534,7 +1499,6 @@ var Checkout = {
 						Checkout.Fields.ShippingAddress.$btnadd_address.slideUp(Checkout.Settings.Shared.easing_duration - 200);
 						// Set the input values
 						Checkout.Fields.ShippingAddress.$input_country.val(data.country_code);
-						Checkout.Fields.ShippingAddress.$autocomplete_county.val(Checkout.Fields.ShippingAddress.$input_country.find(":selected").text());
 						Checkout.Fields.ShippingAddress.$input_name.val(data.name);
 						Checkout.Fields.ShippingAddress.$input_company.val(data.company);
 						Checkout.Fields.ShippingAddress.$input_street.val(data.street);
@@ -1542,7 +1506,6 @@ var Checkout = {
 						Checkout.Functions.ShippingAddress.InitializeStateField();
 						if ($.inArray(data.country_code, Checkout.Settings.Shared.countries_with_states) !== -1) {
 							Checkout.Fields.ShippingAddress.$input_state_select.val(data.state);
-							Checkout.Fields.ShippingAddress.$autocomplete_state.val(Checkout.Fields.ShippingAddress.$input_state_select.find("[value=" + Checkout.Fields.ShippingAddress.$input_state_select.val() + "]").text());
 						}
 						else {
 							Checkout.Fields.ShippingAddress.$input_state.val(data.state);
@@ -1786,18 +1749,12 @@ var Checkout = {
 			},
 			"ResetAddressForm": function () {
 				Checkout.Fields.ShippingAddress.$input_country.val("");
-				if (Checkout.Fields.ShippingAddress.$autocomplete_county !== undefined) {
-					Checkout.Fields.ShippingAddress.$autocomplete_county.val("");
-				}
 				Checkout.Fields.ShippingAddress.$input_name.val("");
 				Checkout.Fields.ShippingAddress.$input_company.val("");
 				Checkout.Fields.ShippingAddress.$input_street.val("");
 				Checkout.Fields.ShippingAddress.$input_city.val("");
 				Checkout.Fields.ShippingAddress.$input_state.val("");
 				Checkout.Fields.ShippingAddress.$input_state_select.val("");
-				if (Checkout.Fields.ShippingAddress.$autocomplete_state !== undefined) {
-					Checkout.Fields.ShippingAddress.$autocomplete_state.val("");
-				}
 				Checkout.Fields.ShippingAddress.$input_postal.val("");
 				Checkout.Fields.ShippingAddress.$input_phone.val("");
 				Checkout.Fields.ShippingAddress.$required_address_inputs.removeClass(Checkout.Settings.Shared.error_class).removeClass(Checkout.Settings.Shared.complete_class);
@@ -1809,13 +1766,6 @@ var Checkout = {
 			"ValidateAddressForm": function () {
 				return Checkout.Functions.Shared.ValidateFormRequiredFields(Checkout.Fields.ShippingAddress.$new_address_form, Checkout.Fields.ShippingAddress.$required_address_inputs);
 			},
-			"InitializeCountryDropdown": function () {
-				Checkout.Fields.ShippingAddress.$autocomplete_county = Checkout.Functions.Shared.InitAutoComplete(Checkout.Fields.ShippingAddress.$input_country, function () {
-					Checkout.Fields.ShippingAddress.$autocomplete_county.trigger("change");
-				});
-				Checkout.Fields.Shared.$form_inputs = Checkout.Fields.Shared.$form_inputs.add(Checkout.Fields.ShippingAddress.$autocomplete_county);
-				Checkout.Fields.ShippingAddress.$address_inputs = Checkout.Fields.ShippingAddress.$address_inputs.add(Checkout.Fields.ShippingAddress.$autocomplete_county);
-			},
 			"InitializeStateField": function () {
 				var country_code = Checkout.Fields.ShippingAddress.$input_country.val();
 
@@ -1826,18 +1776,6 @@ var Checkout = {
 					Checkout.Fields.ShippingAddress.$input_state_select.replaceWith(Checkout.Functions.Shared.GetStateSelectElement(Checkout.Fields.ShippingAddress.$input_state_select, country_code));
 					// Refresh the state drop down variable
 					Checkout.Fields.ShippingAddress.$input_state_select = $(Checkout.Fields.ShippingAddress.$input_state_select.selector);
-					// Make the state drop down field an auto-complete field.
-					Checkout.Fields.ShippingAddress.$autocomplete_state = Checkout.Functions.Shared.InitAutoComplete(Checkout.Fields.ShippingAddress.$input_state_select, function () {
-						setTimeout(function () {
-							Checkout.Fields.ShippingAddress.$autocomplete_state.addClass(Checkout.Settings.Shared.complete_class);
-							Checkout.Functions.Shared.ValidateRequiredField(Checkout.Fields.ShippingAddress.$autocomplete_state);
-							Checkout.Functions.Shared.EvaluateAddressFormCompleteness(Checkout.Fields.ShippingAddress.$required_address_inputs, Checkout.Fields.ShippingAddress.$btnsave_address);
-						}, 50);
-					});
-					// Add the new auto-complete input to the collection of form inputs
-					Checkout.Fields.Shared.$form_inputs = Checkout.Fields.Shared.$form_inputs.add(Checkout.Fields.ShippingAddress.$autocomplete_state);
-					// Add the new auto-complete input to the collection of address inputs
-					Checkout.Fields.ShippingAddress.$address_inputs = Checkout.Fields.ShippingAddress.$address_inputs.add(Checkout.Fields.ShippingAddress.$autocomplete_state);
 					// Make the state select drop down required, and it's container the displayed field.
 					Checkout.Fields.ShippingAddress.$input_state_select.addClass(Checkout.Settings.Shared.required_class).parent().addClass(Checkout.Settings.Shared.secondary_field_class);
 				}
@@ -1849,7 +1787,7 @@ var Checkout = {
 				}
 				Checkout.Fields.ShippingAddress.$secondary_fields = $(Checkout.Fields.ShippingAddress.$secondary_fields.selector);
 				// Re-bind applicable events
-				Checkout.Functions.Shared.BindEvents_FormInputs(false);
+				Checkout.Functions.Shared.BindEvents_FormInputs(true);
 				Checkout.Functions.Shared.BindEvents_RequiredFields(true);
 				Checkout.Functions.ShippingAddress.BindEvents_RequiredAddressFields(true);
 			},
@@ -2336,7 +2274,6 @@ var Checkout = {
 						Checkout.Fields.ShippingAddress.$btnadd_address.slideUp(Checkout.Settings.Shared.easing_duration - 200);
 						// Set the input values
 						Checkout.Fields.BillingInfo.$input_country.val(addressData.country_code);
-						Checkout.Fields.BillingInfo.$autocomplete_county.val(Checkout.Fields.BillingInfo.$input_country.find(":selected").text());
 						Checkout.Fields.BillingInfo.$input_name.val(addressData.name);
 						Checkout.Fields.BillingInfo.$input_company.val(addressData.company);
 						Checkout.Fields.BillingInfo.$input_street.val(addressData.street);
@@ -2344,7 +2281,6 @@ var Checkout = {
 						Checkout.Functions.BillingInfo.InitializeStateField();
 						if ($.inArray(addressData.country_code, Checkout.Settings.Shared.countries_with_states) !== -1) {
 							Checkout.Fields.BillingInfo.$input_state_select.val(addressData.state);
-							Checkout.Fields.BillingInfo.$autocomplete_state.val(Checkout.Fields.BillingInfo.$input_state_select.find("[value=" + Checkout.Fields.BillingInfo.$input_state_select.val() + "]").text());
 						}
 						else {
 							Checkout.Fields.BillingInfo.$input_state.val(addressData.state);
@@ -2416,13 +2352,6 @@ var Checkout = {
 				$credit_cards.eq(1).data("credit-card-id", 2);
 				$credit_cards.eq(2).data("credit-card-id", 3);
 			},
-			"InitializeCountryDropdown": function () {
-				Checkout.Fields.BillingInfo.$autocomplete_county = Checkout.Functions.Shared.InitAutoComplete(Checkout.Fields.BillingInfo.$input_country, function () {
-					Checkout.Fields.BillingInfo.$autocomplete_county.trigger("change");
-				});
-				Checkout.Fields.Shared.$form_inputs = Checkout.Fields.Shared.$form_inputs.add(Checkout.Fields.BillingInfo.$autocomplete_county);
-				Checkout.Fields.BillingInfo.$address_inputs = Checkout.Fields.BillingInfo.$address_inputs.add(Checkout.Fields.BillingInfo.$autocomplete_county);
-			},
 			"InitializeStateField": function () {
 				var country_code = Checkout.Fields.BillingInfo.$input_country.val();
 
@@ -2433,18 +2362,6 @@ var Checkout = {
 					Checkout.Fields.BillingInfo.$input_state_select.replaceWith(Checkout.Functions.Shared.GetStateSelectElement(Checkout.Fields.BillingInfo.$input_state_select, country_code));
 					// Refresh the state drop down variable
 					Checkout.Fields.BillingInfo.$input_state_select = $(Checkout.Fields.BillingInfo.$input_state_select.selector);
-					// Make the state drop down field an auto-complete field.
-					Checkout.Fields.BillingInfo.$autocomplete_state = Checkout.Functions.Shared.InitAutoComplete(Checkout.Fields.BillingInfo.$input_state_select, function () {
-						setTimeout(function () {
-							Checkout.Fields.BillingInfo.$autocomplete_state.addClass(Checkout.Settings.Shared.complete_class);
-							Checkout.Functions.Shared.ValidateRequiredField(Checkout.Fields.BillingInfo.$autocomplete_state);
-							Checkout.Functions.Shared.EvaluateAddressFormCompleteness(Checkout.Fields.BillingInfo.$required_address_inputs, Checkout.Fields.BillingInfo.$btnsave_address);
-						}, 50);
-					});
-					// Add the new auto-complete input to the collection of form inputs
-					Checkout.Fields.Shared.$form_inputs = Checkout.Fields.Shared.$form_inputs.add(Checkout.Fields.BillingInfo.$autocomplete_state);
-					// Add the new auto-complete input to the collection of address inputs
-					Checkout.Fields.BillingInfo.$address_inputs = Checkout.Fields.BillingInfo.$address_inputs.add(Checkout.Fields.BillingInfo.$autocomplete_state);
 					// Make the state select drop down required, and it's container the displayed field.
 					Checkout.Fields.BillingInfo.$input_state_select.addClass(Checkout.Settings.Shared.required_class).parent().addClass(Checkout.Settings.Shared.secondary_field_class);
 				}
@@ -2456,7 +2373,7 @@ var Checkout = {
 				}
 				Checkout.Fields.BillingInfo.$secondary_fields = $(Checkout.Fields.BillingInfo.$secondary_fields.selector);
 				// Re-bind applicable events
-				Checkout.Functions.Shared.BindEvents_FormInputs(false);
+				Checkout.Functions.Shared.BindEvents_FormInputs(true);
 				Checkout.Functions.Shared.BindEvents_RequiredFields(true);
 				Checkout.Functions.BillingInfo.BindEvents_RequiredAddressFields(true);
 			},
@@ -2565,18 +2482,12 @@ var Checkout = {
 			},
 			"ResetAddressForm": function () {
 				Checkout.Fields.BillingInfo.$input_country.val("");
-				if (Checkout.Fields.BillingInfo.$autocomplete_county !== undefined) {
-					Checkout.Fields.BillingInfo.$autocomplete_county.val("");
-				}
 				Checkout.Fields.BillingInfo.$input_name.val("");
 				Checkout.Fields.BillingInfo.$input_company.val("");
 				Checkout.Fields.BillingInfo.$input_street.val("");
 				Checkout.Fields.BillingInfo.$input_city.val("");
 				Checkout.Fields.BillingInfo.$input_state.val("");
 				Checkout.Fields.BillingInfo.$input_state_select.val("");
-				if (Checkout.Fields.BillingInfo.$autocomplete_state !== undefined) {
-					Checkout.Fields.BillingInfo.$autocomplete_state.val("");
-				}
 				Checkout.Fields.BillingInfo.$input_postal.val("");
 				Checkout.Fields.BillingInfo.$input_phone.val("");
 				Checkout.Fields.BillingInfo.$required_address_inputs.removeClass(Checkout.Settings.Shared.error_class).removeClass(Checkout.Settings.Shared.complete_class);
