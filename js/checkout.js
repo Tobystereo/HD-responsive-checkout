@@ -1961,7 +1961,6 @@ var Checkout = {
 				}
 
 				Checkout.Fields.BillingInfo.$btnsave_credit_card.on("click", function () {
-					var $checked = undefined;
 					Checkout.Settings.BillingInfo.is_credit_card_valid = Checkout.Functions.BillingInfo.ValidateCreditCardForm();
 					if (!Checkout.Settings.BillingInfo.is_credit_card_valid || !Checkout.Settings.BillingInfo.is_address_valid) {
 						Checkout.Settings.BillingInfo.is_step_valid = false;
@@ -1975,7 +1974,14 @@ var Checkout = {
 						else {
 							Checkout.Functions.BillingInfo.UpdateCreditCardElement();
 						}
-						$checked = Checkout.Fields.BillingInfo.$credit_card_list.find("input:checked");
+					}
+				}).toggleContainer({
+					content_element: Checkout.Fields.BillingInfo.$btncreate_credit_card,
+					toggle_condition: Checkout.Functions.Shared.IsErrorPanelHidden,
+					toggle_self: false,
+					delay: Checkout.Settings.Shared.easing_duration - 200,
+					post_toggle: function () {
+						var $checked = Checkout.Fields.BillingInfo.$credit_card_list.find("input:checked");
 						if ($checked !== undefined && $checked.length > 0) {
 							$checked.parent().animatedScroll();
 						}
@@ -1983,11 +1989,6 @@ var Checkout = {
 							Checkout.Fields.BillingInfo.$credit_card_list.find(".edit-mode").animatedScroll();
 						}
 					}
-				}).toggleContainer({
-					content_element: Checkout.Fields.BillingInfo.$btncreate_credit_card,
-					toggle_condition: Checkout.Functions.Shared.IsErrorPanelHidden,
-					toggle_self: false,
-					delay: Checkout.Settings.Shared.easing_duration - 200
 				}).toggleContainer({
 					content_element: Checkout.Fields.BillingInfo.$credit_card_form,
 					toggle_condition: Checkout.Functions.Shared.IsErrorPanelHidden,
