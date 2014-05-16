@@ -846,6 +846,8 @@ var Checkout = {
 						}, 3000);
 						break;
 					case Checkout.Settings.Shared.billing_step_id:
+						Checkout.Fields.BillingInfo.$input_cc_number.setCustomValidity("");
+						Checkout.Fields.BillingInfo.$input_cc_expiration.setCustomValidity("");
 						if (Checkout.Settings.Shared.mode === "return" && Checkout.Data.checkout_details.billing_method == "") {
 							Checkout.Functions.BillingInfo.SelectDefaultOption();
 						}
