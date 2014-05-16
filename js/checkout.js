@@ -803,6 +803,7 @@ var Checkout = {
 				Checkout.Functions.BillingInfo.BindEvents_BillingAddressForm(false);
 				Checkout.Functions.BillingInfo.BindEvents_BillingCountrySelect(false);
 				Checkout.Functions.BillingInfo.BindEvents_RequiredAddressFields(false);
+				Checkout.Functions.BillingInfo.BindEvents_RequiredCreditCardFields(false);
 				Checkout.Functions.BillingInfo.BindEvents_CancelAddressButton(false);
 				Checkout.Functions.BillingInfo.BindEvents_SaveAddressButton(false);
 				Checkout.Functions.BillingInfo.BindEvents_EditAddressButton(false);
@@ -1186,21 +1187,22 @@ var Checkout = {
 					}
 				}
 			},
-			"EvaluateAddressFormCompleteness": function ($required_address_inputs, $save_address_button) {
-				var isFormComplete = true;
+			"EvaluateFormCompleteness": function ($form, $required_inputs, $save_button) {
+				var isFormComplete = true,
+					$errors = $form.find("div.error");
 
-				$required_address_inputs.each(function () {
+				$required_inputs.each(function () {
 					var $this = $(this);
 					if ($this.is(":visible") && !$this.hasClass(Checkout.Settings.Shared.complete_class)) {
 						isFormComplete = false;
 						return false;
 					}
 				});
-				if (isFormComplete) {
-					$save_address_button.removeAttr("disabled");
+				if (isFormComplete && ($errors === undefined || $errors.length === 0)) {
+					$save_button.removeAttr("disabled");
 				}
 				else {
-					$save_address_button.attr("disabled", "disabled");
+					$save_button.attr("disabled", "disabled");
 				}
 			},
 			"GetDecimal": function (number) {
@@ -1652,7 +1654,7 @@ var Checkout = {
 				}
 				Checkout.Fields.ShippingAddress.$required_address_inputs.on("keydown", function () {
 					setTimeout(function () {
-						Checkout.Functions.Shared.EvaluateAddressFormCompleteness(Checkout.Fields.ShippingAddress.$required_address_inputs, Checkout.Fields.ShippingAddress.$btnsave_address);
+						Checkout.Functions.Shared.EvaluateFormCompleteness(Checkout.Fields.ShippingAddress.$new_address_form, Checkout.Fields.ShippingAddress.$required_address_inputs, Checkout.Fields.ShippingAddress.$btnsave_address);
 					}, 50);
 				});
 			},
@@ -1765,6 +1767,7 @@ var Checkout = {
 				Checkout.Data.checkout_details.shipping_address.phone_number = data.phone;
 			},
 			"ResetAddressForm": function () {
+				Checkout.Fields.ShippingAddress.$btnsave_address.attr("disabled", "");
 				Checkout.Fields.ShippingAddress.$input_country.val("");
 				Checkout.Fields.ShippingAddress.$input_name.val("");
 				Checkout.Fields.ShippingAddress.$input_company.val("");
@@ -2345,13 +2348,23 @@ var Checkout = {
 					// DO STUFF
 				});
 			},
+			"BindEvents_RequiredCreditCardFields": function (refreshSelector) {
+				if (refreshSelector) {
+					Checkout.Fields.BillingInfo.$required_credit_card_inputs = $(Checkout.Fields.BillingInfo.$required_credit_card_inputs.selector);
+				}
+				Checkout.Fields.BillingInfo.$required_credit_card_inputs.on("keydown", function () {
+					setTimeout(function () {
+						Checkout.Functions.Shared.EvaluateFormCompleteness(Checkout.Fields.BillingInfo.$credit_card_form, Checkout.Fields.BillingInfo.$required_credit_card_inputs, Checkout.Fields.BillingInfo.$btnsave_credit_card);
+					}, 50);
+				});
+			},
 			"BindEvents_RequiredAddressFields": function (refreshSelector) {
 				if (refreshSelector) {
 					Checkout.Fields.BillingInfo.$required_address_inputs = $(Checkout.Fields.BillingInfo.$required_address_inputs.selector);
 				}
 				Checkout.Fields.BillingInfo.$required_address_inputs.on("keydown", function () {
 					setTimeout(function () {
-						Checkout.Functions.Shared.EvaluateAddressFormCompleteness(Checkout.Fields.BillingInfo.$required_address_inputs, Checkout.Fields.BillingInfo.$btnsave_address);
+						Checkout.Functions.Shared.EvaluateFormCompleteness(Checkout.Fields.BillingInfo.$billing_address_form, Checkout.Fields.BillingInfo.$required_address_inputs, Checkout.Fields.BillingInfo.$btnsave_address);
 					}, 50);
 				});
 			},
@@ -2491,6 +2504,7 @@ var Checkout = {
 			},
 			"ResetCreditCardForm": function () {
 				var address = Checkout.Functions.Shared.GetDefaultBillingAddress();
+				Checkout.Fields.BillingInfo.$btnsave_credit_card.attr("disabled", "");
 				Checkout.Fields.BillingInfo.$edited_card_masked_number.html("");
 				Checkout.Fields.BillingInfo.$edited_card_type.removeClass("visa mastercard amex discover").html("");
 				Checkout.Fields.BillingInfo.$input_cc_name.val("");
@@ -2509,6 +2523,7 @@ var Checkout = {
 				Checkout.Fields.BillingInfo.$btnchange_billing_address.show();
 			},
 			"ResetAddressForm": function () {
+				Checkout.Fields.BillingInfo.$btnsave_address.attr("disabled", "");
 				Checkout.Fields.BillingInfo.$input_country.val("");
 				Checkout.Fields.BillingInfo.$input_name.val("");
 				Checkout.Fields.BillingInfo.$input_company.val("");
