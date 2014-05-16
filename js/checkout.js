@@ -2337,11 +2337,7 @@ var Checkout = {
 				if (refreshSelector) {
 					Checkout.Fields.BillingInfo.$input_cc_expiration = $(Checkout.Fields.BillingInfo.$input_cc_expiration.selector);
 				}
-				Checkout.Fields.BillingInfo.$input_cc_expiration.on("keydown", function () {
-					setTimeout(function () {
-						Checkout.Functions.BillingInfo.ValidateExpirationDate();
-					}, 50)
-				}).on("change", function () {
+				Checkout.Fields.BillingInfo.$input_cc_expiration.on("blur", function () {
 					Checkout.Functions.BillingInfo.ValidateExpirationDate();
 				});
 			},
@@ -2769,6 +2765,11 @@ var Checkout = {
 						$error_element.text(error_message);
 					}
 					$error_element.slideDown(Checkout.Settings.Shared.easing_duration);
+					Checkout.Fields.BillingInfo.$input_cc_expiration.one("keydown", function () {
+						setTimeout(function () {
+							Checkout.Functions.BillingInfo.ValidateExpirationDate();
+						}, 50);
+					});
 				}
 				else {
 					Checkout.Fields.BillingInfo.$input_cc_expiration.removeClass(Checkout.Settings.Shared.error_class).addClass(Checkout.Settings.Shared.success_class);
