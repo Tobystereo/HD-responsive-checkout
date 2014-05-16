@@ -1977,7 +1977,7 @@ var Checkout = {
 						}
 						$checked = Checkout.Fields.BillingInfo.$credit_card_list.find("input:checked");
 						if ($checked !== undefined && $checked.length > 0) {
-							$checked.animatedScroll();
+							$checked.parent().animatedScroll();
 						}
 						else {
 							Checkout.Fields.BillingInfo.$credit_card_list.find(".edit-mode").animatedScroll();
