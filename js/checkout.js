@@ -1168,7 +1168,7 @@ var Checkout = {
 					}
 					else {
 						if (toggleCompleteClass) {
-							
+
 							$element.removeClass("complete");
 						}
 						$element.siblings("label").removeClass("notempty");
@@ -1961,6 +1961,7 @@ var Checkout = {
 				}
 
 				Checkout.Fields.BillingInfo.$btnsave_credit_card.on("click", function () {
+					var $checked = undefined;
 					Checkout.Settings.BillingInfo.is_credit_card_valid = Checkout.Functions.BillingInfo.ValidateCreditCardForm();
 					if (!Checkout.Settings.BillingInfo.is_credit_card_valid || !Checkout.Settings.BillingInfo.is_address_valid) {
 						Checkout.Settings.BillingInfo.is_step_valid = false;
@@ -1974,23 +1975,19 @@ var Checkout = {
 						else {
 							Checkout.Functions.BillingInfo.UpdateCreditCardElement();
 						}
-					}
-				}).toggleContainer({
-					content_element: Checkout.Fields.BillingInfo.$btncreate_credit_card,
-					toggle_condition: Checkout.Functions.Shared.IsErrorPanelHidden,
-					toggle_self: false,
-					delay: Checkout.Settings.Shared.easing_duration - 200,
-					post_toggle: function () {
-						var $checked = Checkout.Fields.BillingInfo.$credit_card_list.find("input:checked");
+						$checked = Checkout.Fields.BillingInfo.$credit_card_list.find("input:checked");
 						if ($checked !== undefined && $checked.length > 0) {
-							setTimeout(function () {
-								$checked.animatedScroll();
-							}, 50);
+							$checked.animatedScroll();
 						}
 						else {
 							Checkout.Fields.BillingInfo.$credit_card_list.find(".edit-mode").animatedScroll();
 						}
 					}
+				}).toggleContainer({
+					content_element: Checkout.Fields.BillingInfo.$btncreate_credit_card,
+					toggle_condition: Checkout.Functions.Shared.IsErrorPanelHidden,
+					toggle_self: false,
+					delay: Checkout.Settings.Shared.easing_duration - 200
 				}).toggleContainer({
 					content_element: Checkout.Fields.BillingInfo.$credit_card_form,
 					toggle_condition: Checkout.Functions.Shared.IsErrorPanelHidden,
@@ -2519,7 +2516,7 @@ var Checkout = {
 					month,
 					expDate,
 					today = new Date()
-					isValid = true;
+				isValid = true;
 
 				try {
 					parts = expiration.split('/');
@@ -2533,11 +2530,11 @@ var Checkout = {
 						isValid = expDate < today;
 					}
 				}
-				catch(err) {
+				catch (err) {
 					isValid = false;
 					console.error(err.message, err);
 				}
-				
+
 				return isValid;
 			},
 			"GetCreditCardAddressMarkup": function (street, city, state, postal) {
