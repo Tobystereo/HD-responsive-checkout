@@ -1983,7 +1983,9 @@ var Checkout = {
 					post_toggle: function () {
 						var $checked = Checkout.Fields.BillingInfo.$credit_card_list.find("input:checked");
 						if ($checked !== undefined && $checked.length > 0) {
-							$checked.animatedScroll();
+							setTimeout(function () {
+								$checked.animatedScroll();
+							}, 50);
 						}
 						else {
 							Checkout.Fields.BillingInfo.$credit_card_list.find(".edit-mode").animatedScroll();
@@ -2020,6 +2022,9 @@ var Checkout = {
 					content_element: Checkout.Fields.BillingInfo.$btncreate_credit_card,
 					force_state: "show",
 					toggle_self: false,
+					pre_logic: function () {
+						Checkout.Functions.Shared.HideErrorPanel();
+					},
 					delay: Checkout.Settings.Shared.easing_duration - 200,
 					post_toggle: function () {
 						var $selectedCard = undefined;
