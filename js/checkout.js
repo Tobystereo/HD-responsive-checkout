@@ -1189,7 +1189,7 @@ var Checkout = {
 			},
 			"EvaluateFormCompleteness": function ($form, $required_inputs, $save_button) {
 				var isFormComplete = true,
-					$errors = $form.find("div.error");
+					$errors = $form.find("div.error:visible");
 
 				$required_inputs.each(function () {
 					var $this = $(this);
