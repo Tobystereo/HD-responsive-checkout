@@ -62,54 +62,52 @@
                         </div>
                     </div>
                 </div>
-                <div class="grid">
-                    <form id="new-address-form" action="#" class="new-address" style="display: none;">
-                        <ul class="grid__item add-edit-address form-fields one-whole card">
-                            <li class="field country ">
-                                <h2 data-new-text="Create a new address" data-edit-text="Edit address">Create a new address</h2>
-                                <select class="required" id="country-input"></select>
-                                <label for="country-input" class="dropdownlabel">Country</label>
-                            </li>
-                            <li class="required-field-message">required fields</li>
-                            <li class="field field__secondary name" style="display: none;">
-                                <input type="text" class="text-input required" id="name-input" title="Name">
-                                <label for="name-input">Name</label>
-                            </li>
-                            <li class="field field__secondary company" style="display: none;">
-                                <input type="text" class="text-input" id="company-input">
-                                <label for="company-input">Company</label>
-                            </li>
-                            <li class="field field__secondary address" style="display: none;">
-                                <textarea class="text-input required" id="address-input"></textarea>
-                                <label for="address-input">Street Address</label>
-                            </li>
-                            <li class="field field__secondary city" style="display: none;">
-                                <input type="text" class="text-input  required" id="city-input">
-                                <label for="city-input">City</label>
-                            </li>
-                            <li class="field field__secondary state" style="display: none;">
-                                <input type="text" class="text-input" id="state-input">
-                                <label for="state-input">State/Province</label>
-                            </li>
-                            <li class="field state-select" style="display: none; overflow: inherit;">
-                                <select class="required" id="state-input-select"></select>
-                                <label for="state-input-select" class="dropdownlabel">State/Province</label>
-                            </li>
-                            <li class="field field__secondary postal-code" style="display: none;">
-                                <input type="text" class="text-input required" id="postal-code-input">
-                                <label for="postal-code-input">Postal Code</label>
-                            </li>
-                            <li class="field field__secondary phone" style="display: none;">
-                                <input type="tel" class="text-input required" id="phone-input">
-                                <label for="phone-input">Phone</label>
-                            </li>
-                            <li class="field__secondary buttons" style="display: none;">
-                                <button class="cancel btn btn--small taptarget tertiary">Cancel</button>
-                                <button class="save btn btn--small taptarget secondary" disabled="disabled">Save Address</button>
-                            </li>
-                        </ul>
-                    </form>
-                </div>
+                <form id="new-address-form" action="#" class="new-address grid" style="display: none;">
+                    <ul class="grid__item grid add-edit-address form-fields one-whole card">
+                        <li class="field country grid__item one-whole">
+                            <h2 data-new-text="Create a new address" data-edit-text="Edit address">Create a new address</h2>
+                            <select class="required" id="country-input"></select>
+                            <label for="country-input" class="dropdownlabel">Country</label>
+                        </li>
+                        <li class="required-field-message grid__item one-whole">required fields</li>
+                        <li class="field field__secondary name grid__item one-whole" style="display: none;">
+                            <input type="text" class="text-input required" id="name-input" title="Name">
+                            <label for="name-input">Name</label>
+                        </li>
+                        <li class="field field__secondary company grid__item one-whole" style="display: none;">
+                            <input type="text" class="text-input" id="company-input">
+                            <label for="company-input">Company</label>
+                        </li>
+                        <li class="field field__secondary address grid__item one-whole" style="display: none;">
+                            <textarea class="text-input required" id="address-input"></textarea>
+                            <label for="address-input">Street Address</label>
+                        </li>
+                        <li class="field field__secondary city grid__item one-whole" style="display: none;">
+                            <input type="text" class="text-input  required" id="city-input">
+                            <label for="city-input">City</label>
+                        </li>
+                        <li class="field field__secondary state grid__item one-whole" style="display: none;">
+                            <input type="text" class="text-input" id="state-input">
+                            <label for="state-input">State/Province</label>
+                        </li>
+                        <li class="field state-select grid__item one-whole" style="display: none; overflow: inherit;">
+                            <select class="required" id="state-input-select"></select>
+                            <label for="state-input-select" class="dropdownlabel">State/Province</label>
+                        </li>
+                        <li class="field field__secondary postal-code grid__item one-whole" style="display: none;">
+                            <input type="text" class="text-input required" id="postal-code-input">
+                            <label for="postal-code-input">Postal Code</label>
+                        </li>
+                        <li class="field field__secondary phone grid__item one-whole" style="display: none;">
+                            <input type="tel" class="text-input required" id="phone-input">
+                            <label for="phone-input">Phone</label>
+                        </li>
+                        <li class="field__secondary buttons grid__item one-whole" style="display: none;">
+                            <button class="cancel btn btn--small taptarget tertiary">Cancel</button>
+                            <button class="save btn btn--small taptarget secondary" disabled="disabled">Save Address</button>
+                        </li>
+                    </ul>
+                </form>
             </div>
             <div id="shipping-method" class="grid__item one-whole shipping-method" style="display:none;">
                 <h2 class="instructions">
@@ -245,7 +243,7 @@
                             </li>
                         </ul>
                         <form id="credit-card-form" action="#" style="display: none;" class="grid">
-                            <h2 data-new-text="Add new credit card" data-edit-text="Edit credit card add" class="grid__item one-whole">Add new credit card</h2>
+                            <h2 data-new-text="Add new credit card" data-edit-text="Edit credit card" class="grid__item one-whole">Add new credit card</h2>
                             <ul class="grid__item add-edit-credit-card form-fields one-whole card grid ">
                                 <li class="grid__item required-field-message">required fields</li>
                                 <li class="field grid__item one-whole card-number_read_only">
@@ -278,7 +276,7 @@
                                     <label for="cc-wallet-input">Remember this card</label>
                                 </li>
                                 <li class="save_button grid__item one-whole lap-one-half desk-one-half">
-                                    <button class="save btn btn--small taptarget secondary one-whole" data-new-text="Pay with this card" data-edit-text="Save">Pay with this card</button>
+                                    <button class="save btn btn--small taptarget secondary one-whole" data-new-text="Use this card" data-edit-text="Update card" disabled>Use this card</button>
                                 </li>
                                 <li class="cancel_button grid__item one-whole lap-one-half desk-one-half">
                                     <button class="cancel btn btn--small taptarget tertiary one-whole">Cancel</button>
@@ -292,54 +290,52 @@
                                     <button class="create-billing-address btn taptarget tertiary one-whole add" style="display: none;">Create new address</button>
                                 </li>
                             </ul>
-                            <div class="grid">
-                                <form id="billing-address-form" action="#" style="display: none;">
-                                    <ul class="grid__item add-edit-address form-fields one-whole card">
-                                        <li class="field country ">
-                                            <h3 class="title" data-new-text="Create a new address" data-edit-text="Edit address">Create a new address</h3>
-                                            <select class="required" id="billing-country-input"></select>
-                                            <label for="billing-country-input">Country</label>
-                                        </li>
-                                        <li class="required-field-message">required fields</li>
-                                        <li class="field field__secondary name" style="display: none;">
-                                            <input type="text" class="text-input required" id="name-input" title="Name">
-                                            <label for="name-input" class="dropdownlabel">Name</label>
-                                        </li>
-                                        <li class="field field__secondary company" style="display: none;">
-                                            <input type="text" class="text-input" id="company-input">
-                                            <label for="company-input">Company</label>
-                                        </li>
-                                        <li class="field field__secondary address" style="display: none;">
-                                            <textarea class="text-input required" id="address-input"></textarea>
-                                            <label for="address-input">Street Address</label>
-                                        </li>
-                                        <li class="field field__secondary city" style="display: none;">
-                                            <input type="text" class="text-input required" id="city-input">
-                                            <label for="city-input">City</label>
-                                        </li>
-                                        <li class="field field__secondary state" style="display: none;">
-                                            <input type="text" class="text-input" id="state-input">
-                                            <label for="state-input">State/Province</label>
-                                        </li>
-                                        <li class="field state-select" style="display: none; overflow: inherit;">
-                                            <select class="required" id="state-input-select"></select>
-                                            <label for="state-input-select" class="dropdownlabel">State/Province</label>
-                                        </li>
-                                        <li class="field field__secondary postal-code" style="display: none;">
-                                            <input type="text" class="text-input required" id="postal-code-input">
-                                            <label for="postal-code-input">Postal Code</label>
-                                        </li>
-                                        <li class="field field__secondary phone" style="display: none;">
-                                            <input type="tel" class="text-input required" id="phone-input">
-                                            <label for="phone-input">Phone</label>
-                                        </li>
-                                        <li class="field__secondary buttons" style="display: none;">
-                                            <button class="cancel btn btn--small taptarget tertiary">Cancel</button>
-                                            <button class="save btn btn--small taptarget secondary" disabled="disabled">Save Address</button>
-                                        </li>
-                                    </ul>
-                                </form>
-                            </div>
+                            <form id="billing-address-form" action="#" class="grid" style="display: none;">
+                                <ul class="grid__item grid add-edit-address form-fields one-whole card">
+                                    <li class="field country grid__item one-whole">
+                                        <h3 class="title" data-new-text="Create a new address" data-edit-text="Edit address">Create a new address</h3>
+                                        <select class="required" id="billing-country-input"></select>
+                                        <label for="billing-country-input">Country</label>
+                                    </li>
+                                    <li class="required-field-message grid__item one-whole">required fields</li>
+                                    <li class="field field__secondary name grid__item one-whole" style="display: none;">
+                                        <input type="text" class="text-input required" id="name-input" title="Name">
+                                        <label for="name-input" class="dropdownlabel">Name</label>
+                                    </li>
+                                    <li class="field field__secondary company grid__item one-whole" style="display: none;">
+                                        <input type="text" class="text-input" id="company-input">
+                                        <label for="company-input">Company</label>
+                                    </li>
+                                    <li class="field field__secondary address grid__item one-whole" style="display: none;">
+                                        <textarea class="text-input required" id="address-input"></textarea>
+                                        <label for="address-input">Street Address</label>
+                                    </li>
+                                    <li class="field field__secondary city grid__item one-whole" style="display: none;">
+                                        <input type="text" class="text-input required" id="city-input">
+                                        <label for="city-input">City</label>
+                                    </li>
+                                    <li class="field field__secondary state grid__item one-whole" style="display: none;">
+                                        <input type="text" class="text-input" id="state-input">
+                                        <label for="state-input">State/Province</label>
+                                    </li>
+                                    <li class="field state-select grid__item one-whole" style="display: none; overflow: inherit;">
+                                        <select class="required" id="state-input-select"></select>
+                                        <label for="state-input-select" class="dropdownlabel">State/Province</label>
+                                    </li>
+                                    <li class="field field__secondary postal-code grid__item one-whole" style="display: none;">
+                                        <input type="text" class="text-input required" id="postal-code-input">
+                                        <label for="postal-code-input">Postal Code</label>
+                                    </li>
+                                    <li class="field field__secondary phone grid__item one-whole" style="display: none;">
+                                        <input type="tel" class="text-input required" id="phone-input">
+                                        <label for="phone-input">Phone</label>
+                                    </li>
+                                    <li class="field__secondary buttons grid__item one-whole" style="display: none;">
+                                        <button class="cancel btn btn--small taptarget tertiary">Cancel</button>
+                                        <button class="save btn btn--small taptarget secondary" disabled="disabled">Save Address</button>
+                                    </li>
+                                </ul>
+                            </form>
                         </div>
                     </div>
                     <div class="paypal-container grid__item grid" style="display:none;">
@@ -792,10 +788,10 @@
                         <p>
                             Are you sure you want to cancel your order?
                         </p>
-                        <a href="#" data-close="Close" data-dismiss="modal" class="cancel taptarget btn secondary small success">No</a>
-                        <a href="#" data-close="Close" data-dismiss="modal" class="leave taptarget btn secondary small info">Yes, but keep my cart</a>
-                        <a href="#" data-close="Close" data-dismiss="modal" class="remove taptarget btn secondary small error">Yes, and remove items in my cart</a>
-
+                        <ul class="grid__item grid form-fields one-whole">
+                            <li class="field grid__item one-half"><a href="#" data-close="Close" data-dismiss="modal" class="taptarget btn small secondary">Yes</a></li>
+                            <li class="field grid__item one-half"><a href="#" data-close="Close" data-dismiss="modal" class="cancel taptarget btn small tertiary">No</a></li>
+                        </ul>
                     </div>
                 </div>
                 <a href="#" class="modal-close" title="Close this modal" data-close="Close" data-dismiss="modal">×</a>
